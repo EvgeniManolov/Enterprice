@@ -1,33 +1,99 @@
-<div class="container body-content span=8 offset=2">
-    <div class="well">
-        <form class="form-inline" action="/" method="POST">
-            <fieldset>
-                <div class="form-group">
-                    <div class="col-sm-1 ">
-                        <input type="text" class="form-control" id="email" placeholder="Email"
-                               name="login[email]" value="{{login.email}}">
-                    </div>
-                </div>
+<div class="container">
+    <div class="home-login-container">
 
-
-                <div class="form-group">
-                    <div class="col-sm-4 ">
-                        <input type="password" class="form-control" id="password" placeholder="Password"
-                               name="login[password]" value="{{login.password}}">
-                    </div>
-                </div>
-
-
-                <div class="form-group">
-                    <div class="col-sm-4 col-sm-offset-4">
-                        <button type="submit" class="btn btn-primary">Login</button>
-                    </div>
-                </div>
-            </fieldset>
+        <form  action="/" method="POST">
+            <div class="form-group center-content">
+                <label for="email" class="center sr-only">Enter your email</label>
+                <input type="text" class="form-control center input-lg" id="email" placeholder="Email"
+                       name="login[email]" value="{{login.email}}">
+            </div>
+            <div class="form-group center-content">
+                <label for="password" class="center sr-only" >Enter your password</label>
+                <input type="password" class="form-control center input-lg" id="password" placeholder="Password"
+                       name="login[password]" value="{{login.password}}">
+            </div>
+            <div class="form-group center-content home-login-container">
+                <button type="submit" class="btn btn-primary btn-lg">Login</button>
+            </div>
         </form>
 
-        <div>
-            <a href="/register" class="">Create new account</a>
+        <div class="form-group center-content">
+            <a href="" class="" data-toggle="modal" data-target="#myModal">Create new account</a><br/>
+            <a href="/user" class="">User Page</a><br/>
+            <a href="/register" class="">Register Page</a><br/>
         </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Register</h4>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <form  action="/register" method="POST">
+
+                            <div class="form-group">
+                                <input type="text" class="form-control center" id="name" placeholder="Full Name"
+                                       name="register[name]" value="{{register.name}}">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="email" class="form-control center" id="email" placeholder="Email"
+                                       name="register[email]" value="{{register.email}}">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="password" class="form-control center" id="password" placeholder="Password"
+                                       name="register[password]" value="{{register.password}}">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="password" class="form-control center" id="reenterPassword" placeholder="Re-enter Password"
+                                       name="register[reenterPassword]" value="{{register.reenterPassword}}">
+                            </div>
+
+                            <div class="form-group ">
+                                <input type="text" class="form-control center" id="phone" placeholder="Phone Number"
+                                       name="register[phone]" value="{{register.phone}}">
+                            </div>
+
+                            <div class="form-group">
+                                <select class="form-control center" id="country" placeholder="Address"
+                                        name="register[country]" value="{{register.address}}">
+                                    <option>Bulgaria</option>
+                                    <option>India</option>
+                                    <option>Sweden</option>
+                                    <option>Nepal</option>
+                                    <option>Bolivia</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <input class="form-control center" id="address" placeholder="Address"
+                                       name="register[address]" value="{{register.address}}">
+                            </div>
+
+                            <div class="form-group">
+                                <div class="checkbox center-content">
+                                    <label>
+                                        <input type="checkbox">
+                                        Administrator Account
+                                    </label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Create account</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
