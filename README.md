@@ -1,2 +1,0 @@
-# Enterprice
-SoftwareTechnologies project

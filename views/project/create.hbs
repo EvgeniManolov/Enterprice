@@ -1,0 +1,86 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
+
+
+<div class="container body-content span=8 offset=2">
+    <div class="well">
+        <form class="form-horizontal" method="post" action="/project/create">
+            <fieldset>
+                <legend>Create project</legend>
+
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="projectName">Project name</label>
+                    <div class="col-sm-4 ">
+                        <input type="text" class="form-control" id="projectName" placeholder="" name="projectName" required >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="projectCustomerId">Customer</label>
+                    <div class="col-sm-4 ">
+                        <div class="row-fluid">
+                            <select class="selectpicker form-control " id="projectCustomerId" name="projectCustomerId" required data-live-search="true">
+                                <option ></option>
+                                <option >Tom Foolery</option>
+                                <option >Bill Gordon</option>
+                                <option >Elizabeth Warren</option>
+                                <option >Mario Flores</option>
+                                <option >Don Young</option>
+                                <option >Marvin Martinez</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="projectPrice">Project price</label>
+                    <div class="col-sm-4 ">
+                        <input type="number" class="form-control" id="projectPrice" placeholder="" name="projectPrice" required >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="projectExpenses">Project expenses</label>
+                    <div class="col-sm-4 ">
+                        <input type="number" class="form-control" id="projectExpenses" placeholder="" name="projectExpenses" required >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="projectWorkingHours">Working hours provision</label>
+                    <div class="col-sm-4 ">
+                        <input type="number" class="form-control" id="projectWorkingHours" placeholder="" name="projectWorkingHours" required >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="projectTeam">Team</label>
+                    <div class="col-sm-4">
+                        <div class="row-fluid">
+                            <select class="selectpicker form-control " id="projectTeam" name="projectTeam" required data-live-search="true">
+                                <option ></option>
+                                <option >Alpha</option>
+                                <option >Beta</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="projectDueDate">Due date</label>
+                    <div class="col-sm-4 ">
+                        <input type="date" class="form-control" id="projectDueDate" placeholder="" name="projectDueDate" required >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-4 col-sm-offset-4">
+                        <button type="reset" class="btn btn-default">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

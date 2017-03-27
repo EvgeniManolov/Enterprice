@@ -1,5 +1,5 @@
 {
-  "name": "softuniCalculator",
+  "name": "softuniblog",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -7,12 +7,15 @@
   },
   "dependencies": {
     "body-parser": "~1.15.2",
+    "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
     "express": "~4.14.0",
-    "handlebars-helper-selectif": "^1.0.0",
+    "express-session": "^1.14.2",
     "hbs": "~4.0.1",
     "mongoose": "^4.6.6",
     "morgan": "~1.7.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "serve-favicon": "~2.3.0"
   }
 }

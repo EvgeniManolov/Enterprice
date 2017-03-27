@@ -3,6 +3,8 @@
 <head>
     <title>Enterprice</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
     <script src="/javascripts/jquery-1.10.2.js"></script>
     <script src="/javascripts/bootstrap.js"></script>
 </head>
@@ -12,16 +14,28 @@
 
             <div class="container">
 
-                <div class="navbar-header">
-                    <a href="/" class="navbar-brand">Enterprice</a>
-                </div>
+                {{#if user}}
+                    <div class="navbar-header">
+                        <a href="/userViews/user" class="navbar-brand">Enterprice</a>
+                    </div>
 
-                <div class="navbar-header dropdown">
+                {{else}}
+                    <div class="navbar-header">
+                        <a href="/" class="navbar-brand">Enterprice</a>
+                    </div>
+
+                {{/if}}
+
+
+                {{#if user}}
+                <div class="navbar-header dropdown pull-right">
 
                     <a class="btn" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        UserName
+                        Welcome, {{user.fullName}}!
                         <span class="caret"></span>
                     </a>
+
+                    <a href="/user/logout">Logout</a>
 
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
 
@@ -47,6 +61,7 @@
                         </li>
                     </ul>
                 </div>
+                    {{/if}}
 
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="icon-bar"></span>

@@ -4,13 +4,13 @@
         <form  action="/" method="POST">
             <div class="form-group center-content">
                 <label for="email" class="center sr-only">Enter your email</label>
-                <input type="text" class="form-control center input-lg" id="email" placeholder="Email"
-                       name="login[email]" value="{{login.email}}">
+                <input type="text" class="form-control center input-lg" id="inputEmail" placeholder="Email"
+                       name="email">
             </div>
             <div class="form-group center-content">
                 <label for="password" class="center sr-only" >Enter your password</label>
-                <input type="password" class="form-control center input-lg" id="password" placeholder="Password"
-                       name="login[password]" value="{{login.password}}">
+                <input type="password" class="form-control center input-lg" id="inputPassword" placeholder="Password"
+                       name="password">
             </div>
             <div class="form-group center-content home-login-container">
                 <button type="submit" class="btn btn-primary btn-lg">Login</button>
@@ -19,8 +19,7 @@
 
         <div class="form-group center-content">
             <a href="" class="" data-toggle="modal" data-target="#myModal">Create new account</a><br/>
-            <a href="/user" class="">User Page</a><br/>
-            <a href="/register" class="">Register Page</a><br/>
+            <a href="/user/register" class="">Register</a><br/>
         </div>
 
         <!-- Modal -->

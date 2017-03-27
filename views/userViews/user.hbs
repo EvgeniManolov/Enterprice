@@ -1,0 +1,107 @@
+<div class="container section">
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Projects</a></li>
+        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+        <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="home">
+            <div class="container">
+                <div class="row">
+                    <div class="container section">
+
+                        <h3 class="section">Active projects</h3>
+
+                        <table class="col-lg-12">
+
+                            <tr>
+                                <th>Project name</th>
+                                <th>Progress</th>
+                                <th>Team</th>
+                                <th>Due date</th>
+                                <th>Details</th>
+                            </tr>
+
+                            <tr>
+                                <td class="" id="projectName" name="project[name]" value="{{project.name}}">
+                                    <h4>Some Project Name Ever</h4>
+                                    <h6>Coca-Cola</h6>
+                                </td>
+
+                                <td class="" id="projectStatus" name="project[status]" value="{{project.status}}">25%
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">
+
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="" id="projectTeam" name="project[team]" value="{{project.team}}">Team 1</td>
+                                <td class="" id="projectDueDate" name="project[dueDate]" value="{{project.dueDate}}">
+                                    <span class="date">12.04.2017</span>
+                                </td>
+                                <td>
+                                    <button class="btn btn-primary">More</button>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="container section">
+
+                        <h3 class="section">Closed projects</h3>
+
+                        <table class="col-lg-12">
+
+                            <tr>
+                                <th>Project name</th>
+                                <th>Client</th>
+                                <th>Progress</th>
+                                <th>Team</th>
+                                <th>Due date</th>
+                            </tr>
+
+                            <tr>
+                                <td class="" id="projectName" name="project[name]" value="{{project.name}}">Project 1</td>
+                                <td class="" id="projectClient" name="project[client]" value="{{project.client}}">Coca-Cola</td>
+                                <td class="" id="projectStatus" name="project[status]" value="{{project.status}}">
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
+                                            <span class="">80%</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="" id="projectTeam" name="project[team]" value="{{project.team}}">Team 1</td>
+                                <td class="" id="projectDueDate" name="project[dueDate]" value="{{project.dueDate}}">12.04.2017</td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="container section">
+
+                        <button><a href="../project/create">Create new project</a></button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="profile">...</div>
+        <div role="tabpanel" class="tab-pane" id="messages">...</div>
+        <div role="tabpanel" class="tab-pane" id="settings">...</div>
+    </div>
+
+
+
+</div>
+
+

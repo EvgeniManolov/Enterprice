@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="ProjectOne" id="Project_29d04c32" template="Default" database="MySql" >
+	<schema name="projectone" schemaname="projectone" >
+		<table name="customers" >
+			<column name="customer id" type="int" jt="4" mandatory="y" unsigned="y" autoincrement="y" />
+			<column name="name" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="address" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="phone" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="email" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="number of projects" type="int" jt="4" mandatory="y" unsigned="y" >
+				<defo>0</defo>
+				<comment><![CDATA[calculated automatically]]></comment>
+			</column>
+			<index name="pk_customers" unique="PRIMARY_KEY" >
+				<column name="customer id" />
+			</index>
+			<storage><![CDATA[engine=InnoDB]]></storage>
+		</table>
+		<table name="developer rates" >
+			<comment><![CDATA[rates per hour working time]]></comment>
+			<column name="developer id" type="int" jt="4" mandatory="y" unsigned="y" />
+			<column name="rate" type="decimal" length="0" decimal="2" jt="3" mandatory="y" >
+				<defo>0</defo>
+			</column>
+			<index name="idx_developer rates" unique="NORMAL" >
+				<column name="developer id" />
+			</index>
+			<index name="pk_developer rates" unique="PRIMARY_KEY" >
+				<column name="developer id" />
+			</index>
+			<fk name="fk_developer rates_developers" to_schema="projectone" to_table="developers" >
+				<fk_column name="developer id" pk="developer id" />
+			</fk>
+			<storage><![CDATA[engine=InnoDB]]></storage>
+		</table>
+		<table name="developers" >
+			<comment><![CDATA[list of registered developers and admin]]></comment>
+			<column name="developer id" type="int" jt="4" mandatory="y" unsigned="y" autoincrement="y" />
+			<column name="name" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="profession" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="address" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="phone" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="email" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="number of active projects" type="int" jt="4" mandatory="y" >
+				<defo>0</defo>
+				<comment><![CDATA[the number of active projects the developer is currently working on]]></comment>
+			</column>
+			<index name="pk_developers" unique="PRIMARY_KEY" >
+				<column name="developer id" />
+			</index>
+			<storage><![CDATA[engine=InnoDB]]></storage>
+		</table>
+		<table name="project details" >
+			<column name="task id" type="int" jt="4" mandatory="y" unsigned="y" autoincrement="y" />
+			<column name="task description" type="text" length="100" jt="-1" mandatory="y" />
+			<column name="comments" type="text" jt="-1" />
+			<column name="project id" type="int" jt="4" mandatory="y" unsigned="y" />
+			<column name="team name" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="due date" type="date" jt="91" mandatory="y" />
+			<column name="weight" type="int" jt="4" mandatory="y" unsigned="y" >
+				<defo>100</defo>
+				<comment><![CDATA[task weight in % in total project (max 100%)]]></comment>
+			</column>
+			<column name="active/closed" type="bool" jt="-7" mandatory="y" >
+				<defo>true</defo>
+			</column>
+			<index name="pk_project details" unique="PRIMARY_KEY" >
+				<column name="task id" />
+			</index>
+			<index name="idx_project details" unique="NORMAL" >
+				<column name="project id" />
+			</index>
+			<index name="idx_project details_0" unique="NORMAL" >
+				<column name="team name" />
+			</index>
+			<fk name="fk_project details_projects" to_schema="projectone" to_table="projects" >
+				<fk_column name="project id" pk="project id" />
+			</fk>
+			<fk name="fk_project details_teams" to_schema="projectone" to_table="teams" >
+				<fk_column name="team name" pk="team name" />
+			</fk>
+			<storage><![CDATA[engine=InnoDB]]></storage>
+		</table>
+		<table name="projects" >
+			<comment><![CDATA[list of projects]]></comment>
+			<column name="project id" type="int" jt="4" mandatory="y" unsigned="y" autoincrement="y" />
+			<column name="name" type="varchar" length="100" jt="12" mandatory="y" >
+				<comment><![CDATA[project name]]></comment>
+			</column>
+			<column name="customer id" type="int" jt="4" mandatory="y" unsigned="y" >
+				<comment><![CDATA[customer id -> relation to customers table]]></comment>
+			</column>
+			<column name="price to customer" type="decimal" length="0" decimal="2" jt="3" mandatory="y" >
+				<comment><![CDATA[the agreed final price to the customer]]></comment>
+			</column>
+			<column name="expenses" type="decimal" length="0" decimal="2" jt="3" mandatory="y" >
+				<defo>0</defo>
+				<comment><![CDATA[expenses for third party services/materials]]></comment>
+			</column>
+			<column name="working hours provision" type="int" jt="4" mandatory="y" >
+				<defo>0</defo>
+			</column>
+			<column name="labor expenses" type="decimal" length="0" decimal="2" jt="3" mandatory="y" >
+				<defo>0</defo>
+				<comment><![CDATA[expenses for labor /calculated on base of worked hours per developer and rate per developer per hour]]></comment>
+			</column>
+			<column name="progress" type="int" jt="4" mandatory="y" >
+				<defo>0</defo>
+				<comment><![CDATA[percentage of completion of the project/ calculated on base of completed tasks]]></comment>
+			</column>
+			<column name="team name" type="varchar" length="10" jt="12" mandatory="y" >
+				<comment><![CDATA[the team that will be working on the project]]></comment>
+			</column>
+			<column name="due date" type="date" jt="91" mandatory="y" />
+			<column name="active/closed" type="bool" length="6" jt="-7" mandatory="y" >
+				<defo>true</defo>
+			</column>
+			<index name="pk_projects" unique="PRIMARY_KEY" >
+				<column name="project id" />
+			</index>
+			<index name="idx_projects" unique="NORMAL" >
+				<column name="team name" />
+			</index>
+			<index name="idx_projects_0" unique="NORMAL" >
+				<column name="customer id" />
+			</index>
+			<fk name="fk_projects_teams" to_schema="projectone" to_table="teams" >
+				<fk_column name="team name" pk="team name" />
+			</fk>
+			<fk name="fk_projects_customers" to_schema="projectone" to_table="customers" >
+				<fk_column name="customer id" pk="customer id" />
+			</fk>
+			<storage><![CDATA[engine=InnoDB]]></storage>
+		</table>
+		<table name="teams" >
+			<column name=" id" type="int" jt="4" mandatory="y" unsigned="y" autoincrement="y" />
+			<column name="team name" type="varchar" length="10" jt="12" mandatory="y" />
+			<column name="developer id" type="int" jt="4" mandatory="y" unsigned="y" />
+			<index name="pk_teams" unique="PRIMARY_KEY" >
+				<column name=" id" />
+			</index>
+			<index name="idx_teams" unique="NORMAL" >
+				<column name="developer id" />
+			</index>
+			<index name="pk_teams_0" unique="UNIQUE" >
+				<column name="team name" />
+			</index>
+			<fk name="fk_teams_developers" to_schema="projectone" to_table="developers" >
+				<fk_column name="developer id" pk="developer id" />
+			</fk>
+			<storage><![CDATA[engine=InnoDB]]></storage>
+		</table>
+	</schema>
+	<layout name="Default Layout" id="Layout_1962747b" joined_routing="y" show_relation="columns" >
+		<entity schema="projectone" name="customers" color="c1d8ee" x="45" y="405" />
+		<entity schema="projectone" name="developer rates" color="c1d8ee" x="255" y="405" />
+		<entity schema="projectone" name="developers" color="c8daf5" x="465" y="405" />
+		<entity schema="projectone" name="teams" color="c8daf5" x="855" y="375" />
+		<entity schema="projectone" name="project details" color="c1d8ee" x="780" y="45" />
+		<entity schema="projectone" name="projects" color="c8daf5" x="135" y="90" />
+	</layout>
+</project>
