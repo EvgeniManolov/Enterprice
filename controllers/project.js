@@ -12,7 +12,7 @@ module.exports = {
         let projectArgs = req.body;
 
         Project.create(projectArgs).then(article => {
-            res.redirect('/')
+            res.redirect('/userViews/user')
         });
     }
 };
