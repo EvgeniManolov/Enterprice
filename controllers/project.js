@@ -11,6 +11,8 @@ module.exports = {
     createPost: (req, res) => {
         let projectArgs = req.body;
 
-        Project.create(projectArgs);
+        Project.create(projectArgs).then(article => {
+            res.redirect('/')
+        });
     }
 };
