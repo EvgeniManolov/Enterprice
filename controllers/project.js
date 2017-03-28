@@ -11,8 +11,16 @@ module.exports = {
     createPost: (req, res) => {
         let projectArgs = req.body;
 
-        Project.create(projectArgs).then(article => {
+        Project.create(projectArgs).then(project => {
             res.redirect('/userViews/user')
+        });
+    },
+
+    projectDetails: (req, res) => {
+        let id = req.params.id;
+
+        Project.findOne({'_id' : id }).then(project => {
+            res.render('project/details', project)
         });
     }
 };

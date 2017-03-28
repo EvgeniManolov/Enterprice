@@ -55,6 +55,7 @@
 			<column name="task description" type="text" length="100" jt="-1" mandatory="y" />
 			<column name="comments" type="text" jt="-1" />
 			<column name="project id" type="int" jt="4" mandatory="y" unsigned="y" />
+			<column name="team name" type="varchar" length="100" jt="12" mandatory="y" />
 			<column name="due date" type="date" jt="91" mandatory="y" />
 			<column name="weight" type="int" jt="4" mandatory="y" unsigned="y" >
 				<defo>100</defo>
@@ -69,8 +70,14 @@
 			<index name="idx_project details" unique="NORMAL" >
 				<column name="project id" />
 			</index>
+			<index name="idx_project details_0" unique="NORMAL" >
+				<column name="team name" />
+			</index>
 			<fk name="fk_project details_projects" to_schema="projectone" to_table="projects" >
 				<fk_column name="project id" pk="project id" />
+			</fk>
+			<fk name="fk_project details_teams" to_schema="projectone" to_table="teams" >
+				<fk_column name="team name" pk="team name" />
 			</fk>
 			<storage><![CDATA[engine=InnoDB]]></storage>
 		</table>
@@ -149,7 +156,7 @@
 		<entity schema="projectone" name="developer rates" color="c1d8ee" x="255" y="405" />
 		<entity schema="projectone" name="developers" color="c8daf5" x="465" y="405" />
 		<entity schema="projectone" name="teams" color="c8daf5" x="855" y="375" />
-		<entity schema="projectone" name="projects" color="c8daf5" x="135" y="90" />
 		<entity schema="projectone" name="project details" color="c1d8ee" x="780" y="45" />
+		<entity schema="projectone" name="projects" color="c8daf5" x="135" y="90" />
 	</layout>
 </project>

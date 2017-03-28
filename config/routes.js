@@ -14,10 +14,13 @@ module.exports = (app) => {
 
     app.get('/user/logout', userController.logout);
 
-    app.get('/project/create', projectController.createGet)
-    app.post('/project/create', projectController.createPost)
+    app.get('/project/create', projectController.createGet);
+    app.post('/project/create', projectController.createPost);
 
-    app.get('/userViews/user', userViewsController.mainGet)
+    app.get('/project/details/:id', projectController.projectDetails);
+
+    app.get('/userViews/user', userViewsController.mainGet);
+
 
 
 };

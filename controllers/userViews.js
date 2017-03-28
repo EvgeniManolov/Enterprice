@@ -7,7 +7,7 @@ const Project = mongoose.model('Project');
 
 module.exports = {
     mainGet: (req, res) => {
-        Project.find({}).then(projects => {
+        Project.find({}).sort('projectDueDate').then(projects => {
             res.render('userViews/user', {projects: projects});
         })
     }
