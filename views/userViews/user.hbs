@@ -1,3 +1,26 @@
+<script>
+    function myFunction() {
+        // Declare variables
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("activeProjectsTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
 <div class="container section">
 
     <!-- Nav tabs -->
@@ -13,21 +36,20 @@
         <div role="tabpanel" class="tab-pane active" id="home">
             <div class="container">
                 <div class="row">
-                    <div class="container section">
+                    <div class="container section"  id="activeProjects">
 
                         <h3 class="section">Active projects</h3>
 
-                        <table class="col-lg-12">
+                        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for project..">
 
-                            <tr>
-                                <th>Project name/ Customer</th>
-                                <th>Progress</th>
-                                <th>Team</th>
-                                <th>Due date</th>
-                                <th>Details</th>
-                            </tr>
-
-
+                        <table class="col-lg-12" id="activeProjectsTable">
+                                <tr>
+                                    <th>Project name/ Customer</th>
+                                    <th>Progress</th>
+                                    <th>Team</th>
+                                    <th>Due date</th>
+                                    <th>Details</th>
+                                </tr>
 
                                     {{#each projects}}
                                         {{#if this.projectActive}}
