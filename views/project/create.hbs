@@ -15,17 +15,14 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-4 control-label" for="projectCustomerId">Customer</label>
+                    <label class="col-sm-4 control-label" for="projectCustomer">Customer</label>
                     <div class="col-sm-4 ">
                         <div class="row-fluid">
-                            <select class="selectpicker form-control " id="projectCustomerId" name="projectCustomerId" required data-live-search="true">
+                            <select class="selectpicker form-control " id="projectCustomer" name="projectCustomer" required data-live-search="true">
                                 <option ></option>
-                                <option >Tom Foolery</option>
-                                <option >Bill Gordon</option>
-                                <option >Elizabeth Warren</option>
-                                <option >Mario Flores</option>
-                                <option >Don Young</option>
-                                <option >Marvin Martinez</option>
+                                {{#each customers}}
+                                <option >{{this.customerName}}</option>
+                                {{/each}}each}}
                             </select>
                         </div>
                     </div>

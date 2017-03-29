@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 
 let projectSchema = mongoose.Schema ({
     projectName: { type: String, required: true, unique: true},
-    projectCustomerId: { type: String},
+    projectCustomer: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Customer'},
     projectPrice: {type: Number, required: true},
     projectExpenses: {type: Number, default: 0},
     projectWorkingHours: {type: Number, required: true},

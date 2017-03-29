@@ -2,18 +2,38 @@
  * Created by Marian on 27.3.2017 г..
  */
 const Project = require('mongoose').model('Project')
+const Customer = require('mongoose').model('Customer');
 
 module.exports = {
     createGet: (req, res) => {
-        res.render('project/create')
+
+        Customer.find({}).sort('customerName').then(customers => {
+            res.render('project/create', {customers: customers})
+        });
     },
 
     createPost: (req, res) => {
         let projectArgs = req.body;
 
-        Project.create(projectArgs).then(project => {
-            res.redirect('/userViews/user')
+        Customer.findOne({customerName: projectArgs.projectCustomer}).then(customer => {
+            let customerId = customer._id;
+            projectArgs.projectCustomer = customerId;
+
+            Project.create(projectArgs).then(project => {
+                customer.customerProjects.push(project.id);
+                customer.save(err => {
+                    if (err) {
+                        res.redirect('/userViews/user', {error: err.message});
+                    }
+
+                    else {
+                        res.redirect('/userViews/user')
+                    }
+                });
+            });
         });
+
+
     },
 
     projectDetails: (req, res) => {

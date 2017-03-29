@@ -4,10 +4,11 @@
 
 const mongoose = require('mongoose');
 const Project = mongoose.model('Project');
+const Customer = mongoose.model('Customer');
 
 module.exports = {
     mainGet: (req, res) => {
-        Project.find({}).sort('projectDueDate').then(projects => {
+        Project.find({}).sort('projectDueDate').populate('projectCustomer').then(projects => {
             res.render('userViews/user', {projects: projects});
         })
     }

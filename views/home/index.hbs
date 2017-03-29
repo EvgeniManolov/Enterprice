@@ -34,35 +34,33 @@
                     <div class="modal-body">
 
                         <form  action="/user/register" method="POST">
-
                             <div class="form-group">
                                 <input type="text" class="form-control center" id="name" placeholder="Full Name"
-                                       name="register[name]" value="{{register.name}}">
+                                       name="fullName">
                             </div>
 
                             <div class="form-group">
                                 <input type="email" class="form-control center" id="email" placeholder="Email"
-                                       name="register[email]" value="{{register.email}}">
+                                       name="email">
                             </div>
 
                             <div class="form-group">
                                 <input type="password" class="form-control center" id="password" placeholder="Password"
-                                       name="register[password]" value="{{register.password}}">
+                                       name="password">
                             </div>
 
                             <div class="form-group">
-                                <input type="password" class="form-control center" id="reenterPassword" placeholder="Re-enter Password"
-                                       name="register[reenterPassword]" value="{{register.reenterPassword}}">
+                                <input type="password" class="form-control center" id="password" placeholder="Re-enter Password"
+                                       name="repeatedPassword">
                             </div>
 
                             <div class="form-group ">
                                 <input type="text" class="form-control center" id="phone" placeholder="Phone Number"
-                                       name="register[phone]" value="{{register.phone}}">
+                                       name="phone">
                             </div>
 
                             <div class="form-group">
-                                <select class="form-control center" id="country" placeholder="Address"
-                                        name="register[country]" value="{{register.address}}">
+                                <select class="form-control center" id="country" name="country">
                                     <option>Bulgaria</option>
                                     <option>India</option>
                                     <option>Sweden</option>
@@ -73,23 +71,15 @@
 
                             <div class="form-group">
                                 <input class="form-control center" id="address" placeholder="Address"
-                                       name="register[address]" value="{{register.address}}">
+                                       name="address">
                             </div>
-
-                            <div class="form-group">
-                                <div class="checkbox center-content">
-                                    <label>
-                                        <input type="checkbox">
-                                        Administrator Account
-                                    </label>
+                            <div class="">
+                                <div class="col-sm-4 col-sm-offset-6">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Create account</button>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">Create account</button>
                         </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Create account</button>
                     </div>
                 </div>
             </div>
