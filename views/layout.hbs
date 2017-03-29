@@ -3,8 +3,8 @@
 <head>
     <title>Enterprice</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    <!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />-->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
     <script src="/javascripts/jquery-1.10.2.js"></script>
     <script src="/javascripts/bootstrap.js"></script>
 </head>
@@ -15,32 +15,19 @@
             <div class="container">
 
                 {{#if user}}
-                    <div class="navbar-header">
-                        <a href="/" class="navbar-brand">Home</a>
-                    </div>
+                <div class="navbar-header dropdown pull-left">
 
-                {{else}}
-                    <div class="navbar-header">
-                        <a href="/" class="navbar-brand">Enterprice</a>
-                    </div>
-
-                {{/if}}
-
-
-                {{#if user}}
-                <div class="navbar-header dropdown pull-right">
-
-                    <a class="navbar-brand" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="navbar-brand" id="dLabel" type="button" data-toggle="dropdown">
                         {{user.fullName}}
                         <span class="caret"></span>
                     </a>
 
-                    <a class="navbar-brand" href="/user/logout">Logout</a>
+                    <!--<a class="navbar-brand" href="/user/logout">Logout</a>-->
 
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
+                    <ul class="dropdown-menu">
 
                         <li>
-                            <a id="dLabel" data-target="#" href="http://example.com" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <a id="dLabelOne" href="http://example.com">
                                 My Projects
                             </a>
                         </li>
@@ -48,21 +35,21 @@
                         <li role="separator" class="divider"></li>
 
                         <li>
-                            <a id="dLabel" data-target="#" href="http://example.com" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <a id="dLabelTwo" href="http://example.com">
                                 My Teams
                             </a>
                         </li>
                         <li role="separator" class="divider"></li>
 
                         <li>
-                            <a id="dLabel" data-target="#" href="http://example.com" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <a id="dLabelThree" href="http://example.com">
                                 Account Settings
                             </a>
                         </li>
                         <li role="separator" class="divider"></li>
 
                         <li>
-                            <a id="dLabel" data-target="" href="/user/logout" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <a id="dLabelFour" href="/user/logout">
                                 Logout
                             </a>
                         </li>
