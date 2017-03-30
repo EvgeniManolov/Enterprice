@@ -27,7 +27,8 @@ module.exports = {
                     }
 
                     else {
-                        res.redirect('/userViews/user')
+
+                        res.redirect('/project/create#profile')
                     }
                 });
             });
