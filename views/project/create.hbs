@@ -1,8 +1,197 @@
 
 
 <div class="container body-content span=8 offset=2">
+
     <div class="well">
-        <form class="form-horizontal" method="post" action="/project/create">
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+
+            <li role="presentation" class="active">
+                <a href="#home" aria-controls="home" role="tab" data-toggle="tab"><h2>STEP 1</h2>
+                    <br>
+                    <p>Project Initialization</p>
+                </a>
+            </li>
+
+            <li role="presentation">
+                <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><h2>STEP 2</h2>
+                    <br>
+                    <p>Crate Project Tasks</p>
+                </a>
+            </li>
+
+        </ul>
+
+        <!-- Nav Tab Views -->
+        <div class="tab-content">
+
+            <!-- Step 1 Create Project-->
+            <div role="tabpanel" class="tab-pane active" id="home">
+                <form class="form-horizontal" method="post" action="/project/create">
+                    <fieldset>
+
+                        <legend>Create project</legend>
+
+                        <!-- Name -->
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="projectName">Project name</label>
+                            <div class="col-sm-4 ">
+                                <input type="text" class="form-control" id="projectName" placeholder="" name="projectName" required >
+                            </div>
+                        </div>
+
+                        <!-- Customer -->
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="projectCustomer">Customer</label>
+                            <div class="col-sm-4 ">
+                                <div class="row-fluid">
+                                    <select class="selectpicker form-control " id="projectCustomer" name="projectCustomer" required data-live-search="true">
+                                        <option ></option>
+                                        {{#each customers}}
+                                            <option >{{this.customerName}}</option>
+                                        {{/each}}each}}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project Price -->
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="projectPrice">Project price</label>
+                            <div class="col-sm-4 ">
+                                <input type="number" class="form-control" id="projectPrice" placeholder="" name="projectPrice" required >
+                            </div>
+                        </div>
+
+                        <!-- Expences -->
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="projectExpenses">Project expenses</label>
+                            <div class="col-sm-4 ">
+                                <input type="number" class="form-control" id="projectExpenses" placeholder="" name="projectExpenses" required >
+                            </div>
+                        </div>
+
+                        <!-- Workin Hours Provision -->
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="projectWorkingHours">Working hours provision</label>
+                            <div class="col-sm-4 ">
+                                <input type="number" class="form-control" id="projectWorkingHours" placeholder="" name="projectWorkingHours" required >
+                            </div>
+                        </div>
+
+                        <!-- Team -->
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="projectTeam">Team</label>
+                            <div class="col-sm-4">
+                                <div class="row-fluid">
+                                    <select class="selectpicker form-control " id="projectTeam" name="projectTeam" required data-live-search="true">
+                                        <option ></option>
+                                        <option >Alpha</option>
+                                        <option >Beta</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Due Date -->
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="projectDueDate">Due date</label>
+                            <div class="col-sm-4 ">
+                                <input type="date" class="form-control" id="projectDueDate" placeholder="" name="projectDueDate" required >
+                            </div>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-4">
+                                <button type="reset" class="btn btn-default">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Next Step</button>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form>
+            </div>
+
+            <!-- Step 2 Add Tasks-->
+            <div role="tabpanel" class="tab-pane" id="profile">
+
+                <form class="form-horizontal" method="post" action="/project/create">
+
+                    <fieldset>
+
+                        <legend>Add Project Tasks</legend>
+                        <div class="form-group center-content">
+
+                            <!--  Admin Pass Trigger  -->
+                            <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                <h5>Add New Task</h5>
+                            </a>
+
+                            <!--  Admin Pass Field  -->
+                            <div class="collapse" id="collapseExample">
+
+
+
+                            </div>
+                        </div>
+
+                        <!--  Task Name  -->
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="taskName">Task Name</label>
+                            <div class="col-sm-4 ">
+                                <input type="text" class="form-control" id="projectName" placeholder="Task name" name="projectName" required >
+                            </div>
+                        </div>
+
+                        <!--  Task Description  -->
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="projectWorkingHours">Task Description</label>
+                            <div class="col-sm-4" >
+                                <textarea class="form-control" rows="4" id="taskDescription" placeholder="Task Description" name="projectWorkingHours" required ></textarea>
+                            </div>
+                        </div>
+
+                        <!--  Team Select  -->
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="projectTeam">Select Team</label>
+                            <div class="col-sm-4">
+                                <div class="row-fluid">
+                                    <select class="selectpicker form-control " id="projectTeam" name="projectTeam" required data-live-search="true">
+                                        <option>Select Team</option>
+                                        <option >Alpha</option>
+                                        <option >Beta</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--  Due Date  -->
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="projectDueDate">Due date</label>
+                            <div class="col-sm-4 ">
+                                <input type="date" class="form-control" id="projectDueDate" placeholder="" name="projectDueDate" required >
+                            </div>
+                        </div>
+
+                        <!--  Submit / Cancel  -->
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-4">
+                                <button type="reset" class="btn btn-default">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Create Task</button>
+                            </div>
+                        </div>
+
+                    </fieldset>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <!--<form class="form-horizontal" method="post" action="/project/create">
             <fieldset>
                 <legend>Create project</legend>
 
@@ -75,6 +264,6 @@
                     </div>
                 </div>
             </fieldset>
-        </form>
+        </form>-->
     </div>
 </div>

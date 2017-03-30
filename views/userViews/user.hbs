@@ -1,3 +1,5 @@
+
+<!-- Filter Scripts -->
 <script>
     function myFunction() {
         // Declare variables
@@ -21,27 +23,64 @@
     }
 </script>
 
+<!-- Body Tabs  -->
 <div class="container section">
 
-    <!-- Nav tabs -->
+    <!-- Tab Names -->
     <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Projects</a></li>
-        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
-        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
-        <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+        <li role="presentation" class="active">
+            <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Projects</a></li>
+        <li role="presentation">
+            <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+        <li role="presentation">
+            <a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+        <li role="presentation">
+            <a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
     </ul>
 
-    <!-- Tab panes -->
+    <!-- Tab Views -->
     <div class="tab-content">
+
+        <!-- Add Content Buttons -->
+        <div class="row">
+            <div class="container section">
+
+                <a href="../project/create">
+                    <button class="btn btn-default">New Project</button>
+                </a>
+
+                <a href="../customer/create">
+                        <button class="btn btn-default">New Customer</button>
+                </a>
+
+            </div>
+        </div>
+
+        <!-- Projects Tab -->
         <div role="tabpanel" class="tab-pane active" id="home">
             <div class="container">
+
+                <!-- Active Projects -->
                 <div class="row">
-                    <div class="container section"  id="activeProjects">
+                    <div class="container section" id="activeProjects">
 
-                        <h3 class="">Active projects</h3>
+                        <h1 class="">Active projects</h1>
 
-                        <input class="section col-lg-4" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for project/customer..">
+                        <!-- Filters and Stuff -->
+                        <div class="form-group well">
 
+                            <label class="text-uppercase" for="myInput">
+                                Search:
+                            </label>
+
+                            <input class="navbar-form form-inline form-control"
+                                   type="text"
+                                   id="myInput"
+                                   onkeyup="myFunction()"
+                                   placeholder="Search project / customer.." >
+                        </div>
+
+                        <!-- Table Active Projects -->
                         <table class="col-lg-12" id="activeProjectsTable">
                                 <tr>
                                     <th>Project name/ Customer</th>
@@ -83,10 +122,11 @@
                     </div>
                 </div>
 
+                <!-- Closed Projects -->
                 <div class="row">
                     <div class="container section">
 
-                        <h3 class="">Closed projects</h3>
+                        <h1 class="">Closed projects</h1>
 
                         <input class="section col-lg-4" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for project/customer..">
 
@@ -133,22 +173,18 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="container section">
-
-                        <button><a href="../project/create">Create new project</a></button>
-                        <button><a href="../customer/create">Create new customer</a></button>
-
-                    </div>
-                </div>
             </div>
         </div>
+
+        <!-- Profile Tab -->
         <div role="tabpanel" class="tab-pane" id="profile">...</div>
+
+        <!-- Messages Tab -->
         <div role="tabpanel" class="tab-pane" id="messages">...</div>
+
+        <!-- Settings Tab  -->
         <div role="tabpanel" class="tab-pane" id="settings">...</div>
     </div>
-
-
 
 </div>
 

@@ -1,80 +1,81 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
     <title>Enterprice</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
+    <!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />-->
     <script src="/javascripts/jquery-1.10.2.js"></script>
     <script src="/javascripts/bootstrap.js"></script>
 </head>
+
 <body>
-    <header>
-        <div class="navbar navbar-default navbar-fixed-top text-uppercase">
+    <!--  If user is Logged  -->
+    {{#if user}}
+        <header>
+            <!--  Navigation line  -->
+            <div class="navbar navbar-default navbar-fixed-top text-uppercase">
+                <div class="container">
 
-            <div class="container">
+                    <!--  Username  -->
+                    <div class="navbar-header dropdown pull-left">
+                        <a class="navbar-brand nav-tabs" id="dLabel" type="button" data-toggle="dropdown">
+                            {{user.fullName}}<span class="caret"></span>
+                        </a>
 
-                {{#if user}}
-                <div class="navbar-header dropdown pull-left">
+                        <!--  Drop-down  -->
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a id="dLabelOne" href="/userViews/user">
+                                    My Projects
+                                </a>
+                            </li>
+                            <li role="separator" class="divider"></li>
 
-                    <a class="navbar-brand" id="dLabel" type="button" data-toggle="dropdown">
-                        {{user.fullName}}
-                        <span class="caret"></span>
-                    </a>
+                            <li>
+                                <a id="dLabelTwo" href="">
+                                    My Teams
+                                </a>
+                            </li>
+                            <li role="separator" class="divider"></li>
 
-                    <!--<a class="navbar-brand" href="/user/logout">Logout</a>-->
+                            <li>
+                                <a id="dLabelThree" href="">
+                                    Account Settings
+                                </a>
+                            </li>
+                            <li role="separator" class="divider"></li>
 
-                    <ul class="dropdown-menu">
+                            <li>
+                                <a id="dLabelFour" href="/user/logout">
+                                    Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
 
-                        <li>
-                            <a id="dLabelOne" href="http://example.com">
-                                My Projects
-                            </a>
-                        </li>
-
-                        <li role="separator" class="divider"></li>
-
-                        <li>
-                            <a id="dLabelTwo" href="http://example.com">
-                                My Teams
-                            </a>
-                        </li>
-                        <li role="separator" class="divider"></li>
-
-                        <li>
-                            <a id="dLabelThree" href="http://example.com">
-                                Account Settings
-                            </a>
-                        </li>
-                        <li role="separator" class="divider"></li>
-
-                        <li>
-                            <a id="dLabelFour" href="/user/logout">
-                                Logout
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                    {{/if}}
-
+                    <!--  Low Resolution Menu View  -->
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
                     </button>
-
                 </div>
             </div>
-        </div>
-    </header>
+        </header>
+    {{/if}}
+
     {{#if error }}
         <div class="home-login-container center-content">
             <h2>{{error}}</h2>
         </div>
-
     {{/if}}
+
+    <!-- If Not Logged -->
     {{{body}}}
 </body>
+
 <footer>
     <div class="container modal-footer">
         <p>&copy; 2017 - Enterprice</p>

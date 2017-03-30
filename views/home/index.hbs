@@ -1,64 +1,86 @@
+
+<!--  Login / Index View -->
 <div class="container">
     <div class="home-login-container">
 
+        <!--  Form  -->
         <form  action="/" method="POST">
+
+            <!--  Username / mail  -->
             <div class="form-group center-content">
                 <label for="email" class="center sr-only">Enter your email</label>
                 <input type="text" class="form-control center input-lg" id="inputEmail" placeholder="Email"
                        name="email">
             </div>
+
+            <!--  Password  -->
             <div class="form-group center-content">
                 <label for="password" class="center sr-only" >Enter your password</label>
                 <input type="password" class="form-control center input-lg" id="inputPassword" placeholder="Password"
                        name="password">
             </div>
+
+            <!--  Buttons  -->
             <div class="form-group center-content home-login-container">
                 <button type="submit" class="btn btn-primary btn-lg">Login</button>
             </div>
         </form>
 
+        <!--  Links  -->
         <div class="form-group center-content">
             <a href="" class="" data-toggle="modal" data-target="#myModal">Create new account</a><br/>
-            <a href="/user/register" class="">Register</a><br/>
+            <a href="/userViews/register" class="">Register</a><br/>
         </div>
 
-        <!-- Modal -->
+        <!-- Modal-Form -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
+
+                    <!--  Header  -->
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">Register</h4>
                     </div>
 
+                    <!--  Body  -->
                     <div class="modal-body">
 
+                        <!--  Form  -->
                         <form  action="/user/register" method="POST">
+
+                            <!--  Full name  -->
                             <div class="form-group">
+                                <label class="" for="name">Test</label>
                                 <input type="text" class="form-control center" id="name" placeholder="Full Name"
                                        name="fullName">
                             </div>
 
+                            <!--  Email  -->
                             <div class="form-group">
                                 <input type="email" class="form-control center" id="email" placeholder="Email"
                                        name="email">
                             </div>
 
+                            <!--  Password  -->
                             <div class="form-group">
                                 <input type="password" class="form-control center" id="password" placeholder="Password"
                                        name="password">
                             </div>
 
+                            <!--  Re-enter Password  -->
                             <div class="form-group">
                                 <input type="password" class="form-control center" id="password" placeholder="Re-enter Password"
                                        name="repeatedPassword">
                             </div>
 
+                            <!--  Phone Number  -->
                             <div class="form-group ">
                                 <input type="text" class="form-control center" id="phone" placeholder="Phone Number"
                                        name="phone">
                             </div>
 
+                            <!--  Country  -->
                             <div class="form-group">
                                 <select class="form-control center" id="country" name="country">
                                     <option>Bulgaria</option>
@@ -69,10 +91,13 @@
                                 </select>
                             </div>
 
+                            <!--  Address  -->
                             <div class="form-group">
                                 <input class="form-control center" id="address" placeholder="Address"
                                        name="address">
                             </div>
+
+                            <!--  Submit / Discard  -->
                             <div class="">
                                 <div class="col-sm-4 col-sm-offset-6">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -84,6 +109,5 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
