@@ -12,25 +12,26 @@ module.exports = {
 		})
 	},
 	
-	rateCreatePost: (req, res) => {
+	rateCreatePost: (req, res) =>
+	{
 		let rateArgs = req.body;
 		
-		User.findOne({fullName: rateArgs.userID}).then(user => {
+		User.findOne({fullName: rateArgs.userID}).then(user =>
+		{
 			rateArgs.userID = user._id;
 			Rate.create(rateArgs).then(rate => {
 				
-				user[rate] = rate.rate;
-				/*user.save(err => {
+				user.rate = rate;
+				user.save(err => {
 					if (err) {
 						res.redirect('/userViews/user', {error: err.message});
 					}
 					
 					else {
 						res.redirect('/userViews/user')
-					}*/
-				res.redirect('/userViews/user')
+					}
 			})
 		});
+	  })
 	}
-	
 };
