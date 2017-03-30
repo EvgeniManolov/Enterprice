@@ -9,8 +9,8 @@ let userSchema = mongoose.Schema(
         phone: {type: String, default: ''},
         country: {type: String, default: ''},
         address: {type: String, default: ''},
-        salt: {type: String, required: true}
-
+        salt: {type: String, required: true},
+        rate: {type: Number, default: 0}
     }
 );
 

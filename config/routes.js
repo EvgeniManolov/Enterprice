@@ -3,6 +3,7 @@ const homeController = require('./../controllers/home');
 const projectController = require('./../controllers/project');
 const userViewsController = require('./../controllers/userViews');
 const customerController = require('./../controllers/customer');
+const rateController = require('./../controllers/rate');
 
 module.exports = (app) => {
     app.get('/', homeController.index);
@@ -24,6 +25,8 @@ module.exports = (app) => {
     app.get('/customer/create', customerController.customerCreateGet);
     app.post('/customer/create', customerController.customerCreatePost);
 
+    app.get('/rate/create', rateController.rateCreateGet);
+	app.post('/rate/create', rateController.rateCreatePost);
 
 
 };
