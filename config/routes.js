@@ -12,6 +12,8 @@ module.exports = (app) => {
 
     app.get('/user/logout', userController.logout);
 
+    app.post('/user/register', userController.registerPost);
+
     app.get('/project/create', projectController.createGet);
     app.post('/project/create', projectController.createPost);
 
@@ -21,6 +23,8 @@ module.exports = (app) => {
 
     app.get('/customer/create', customerController.customerCreateGet);
     app.post('/customer/create', customerController.customerCreatePost);
+
+
 
 };
 
