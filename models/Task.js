@@ -12,7 +12,8 @@ let taskSchema = mongoose.Schema ({
     taskProjectId: {type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Project'},
     taskTeamId: {type: String, required: true},
     taskComment: {type: String, default: ''},
-    taskActive: {type: Boolean, default: true}
+    taskActive: {type: Boolean, default: true},
+    taskWeight: {type: Number, required: true}
 });
 
 const Task = mongoose.model('Task', taskSchema);
