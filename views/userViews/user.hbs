@@ -89,6 +89,7 @@
 
                             <!-- Table Data -->
                             {{#each projects}}
+
                                 {{#if this.projectActive}}
                                     <tr>
                                         <!-- Project Name -->
@@ -115,7 +116,7 @@
 
                                         <!-- Project Due date -->
                                         <td class="" id="projectDueDate">
-                                            <span class="date"><time datetime="">{{this.projectDueDate}}</time></span>
+                                            <span class="date"><time datetime="">{{this.date}}</time></span>
                                         </td>
 
                                         <!-- Details Button -->
@@ -124,6 +125,7 @@
                                         </td>
                                     </tr>
                                 {{/if}}
+
                             {{/each}}
                         </table>
                     </div>

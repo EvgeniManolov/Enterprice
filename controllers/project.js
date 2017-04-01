@@ -8,6 +8,7 @@ module.exports = {
     createGet: (req, res) => {
 
         Customer.find({}).sort('customerName').then(customers => {
+
             res.render('project/create', {customers: customers})
         });
     },

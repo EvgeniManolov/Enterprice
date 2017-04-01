@@ -1,14 +1,13 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <script>
+    /*redirect to Step2 tab when a button is clicked*/
     $(document).ready(function(){
         $("button").click(function(){
             $("p").text("Hello!");
             $('.nav-tabs a[href="#profile"]').tab('show');
         });
     });
-
+    /*change tabs manually*/
     $(document).ready(function(){
         $(".nav-tabs a").click(function(){
             $(this).tab('show');
