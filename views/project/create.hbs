@@ -1,10 +1,11 @@
 
 <script>
-    /*redirect to Step2 tab when a button is clicked*/
+    /*redirect to Step2 tab when a button is clicked and make project create input fields inactive*/
     $(document).ready(function(){
-        $("button").click(function(){
-            $("p").text("Hello!");
+        $("#projectCreated").click(function(){
             $('.nav-tabs a[href="#profile"]').tab('show');
+            $("#home input").prop('disabled', true);
+            $("#home select").prop('disabled', true);
         });
     });
     /*change tabs manually*/
@@ -125,16 +126,14 @@
                         <!-- Buttons -->
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-4">
-                                <button type="reset" class="btn btn-default" id="projectCreated">Cancel</button>
-                                <button type="submit" class="btn btn-primary">Next Step</button>
+                                <button type="reset" class="btn btn-default">Cancel</button>
+                                <button type="submit" class="btn btn-primary" id="projectCreated">Next Step</button>
 
                             </div>
                         </div>
 
                     </fieldset>
                 </form>
-
-                <button id="harry">NExt Step 2</button>
             </div>
 
             <!-- Step 2 Add Tasks-->

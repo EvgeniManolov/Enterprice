@@ -29,7 +29,7 @@ module.exports = {
 
                     else {
 
-                        res.redirect('/project/create#profile')
+                        /*res.redirect('/project/create#profile')*/
                     }
                 });
             });
