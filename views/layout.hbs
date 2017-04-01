@@ -4,8 +4,6 @@
 <head>
     <title>Enterprice</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    <!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />-->
     <script src="/javascripts/jquery-1.10.2.js"></script>
     <script src="/javascripts/bootstrap.js"></script>
 </head>
@@ -23,7 +21,6 @@
                         <a class="navbar-brand nav-tabs" id="dLabel" type="button" data-toggle="dropdown">
                             {{user.fullName}}<span class="caret"></span>
                         </a>
-
                         <!--  Drop-down Username  -->
                         <ul class="dropdown-menu">
                             <li>
@@ -56,14 +53,33 @@
 
                         <!--  Navigation  -->
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="#">My Projects</a></li>
+                            <li class="active">
+                                <a class="navbar-brand nav-tabs" id="dLabel" type="button" data-toggle="dropdown">
+                                    Projects<span class="caret"></span>
+                                </a>
+
+                                <!--  Drop-down Projects  -->
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a id="dLabelActive" href="/userViews/user">
+                                            Active Projects
+                                        </a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+
+                                    <li>
+                                        <a id="dLabelClosed" href="">
+                                            Closed Projects
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
                             <li><a href="#">Teams</a></li>
                             <li><a href="#">Rates</a></li>
                             <li><a href="#">Clients</a></li>
                             <li><a href="#">Users</a></li>
                         </ul>
                     </div>
-
 
                     <!--  Low Resolution Menu View  -->
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
