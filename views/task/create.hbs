@@ -1,6 +1,5 @@
 <script>
     let tasks = [];
-    let lastTask = {};
     function addToTable() {
 
         var table = document.getElementById("tasks");
@@ -28,7 +27,6 @@
         };
 
         tasks.push(task);
-        lastTask = task;
     }
 
     function sendData() {
