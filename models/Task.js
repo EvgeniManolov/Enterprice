@@ -1,19 +1,21 @@
+
 /**
  * Created by Marian on 1.4.2017 г..
  */
 
-
 const mongoose = require('mongoose');
 
 let taskSchema = mongoose.Schema ({
-    name: { type: String, required: true},
-    description: {type: Text, required: true},
-    deadline: {type: Date, required: true},
-    comments: {type: Text, default: ''},
-    project: {type: }
-
+    taskName: { type: String, required: true},
+    taskDescription: {type: String, required: true},
+    taskDeadline: {type: Date, required: true},
+    taskProjectId: {type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Project'},
+    taskTeamId: {type: String, required: true},
+    taskComment: {type: String, default: ''},
+    taskActive: {type: Boolean, default: true},
+    taskWeight: {type: Number, required: true}
 });
 
-const Customer = mongoose.model('Customer', customerSchema);
+const Task = mongoose.model('Task', taskSchema);
 
-module.exports = Customer;
+module.exports = Task;

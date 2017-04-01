@@ -18,13 +18,12 @@ module.exports = {
 
         User.findOne({fullName: teamArgs.userID}).then(user =>
         {
-            let userId = user._id;
-
             teamArgs.userID = user._id;
             Team.create(teamArgs).then(team => {
 
+                console.log(team.id);
                 user.team.push(team.id);
-                team.save(err => {
+                user.save(err => {
                     if (err) {
                         res.redirect('/userViews/user', {error: err.message});
                     }

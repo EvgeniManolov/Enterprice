@@ -3,36 +3,72 @@
  */
 const Project = require('mongoose').model('Project')
 const Customer = require('mongoose').model('Customer');
+const Team = require('mongoose').model('Team');
 
 module.exports = {
     createGet: (req, res) => {
 
-        Customer.find({}).sort('customerName').then(customers => {
+        Team.find({}).sort('teamName').then(teams => {
 
-            res.render('project/create', {customers: customers})
-        });
+            Customer.find({}).sort('customerName').then(customers => {
+
+                res.render('project/create', {customers: customers, teams: teams})
+            });
+        })
+
+
     },
 
     createPost: (req, res) => {
         let projectArgs = req.body;
 
-        Customer.findOne({customerName: projectArgs.projectCustomer}).then(customer => {
-            let customerId = customer._id;
-            projectArgs.projectCustomer = customerId;
+        Team.findOne({teamName: projectArgs.projectTeam}).then(team => {
+            let teamID = team.id;
+            projectArgs.projectTeam = teamID;
 
-            Project.create(projectArgs).then(project => {
-                customer.customerProjects.push(project.id);
-                customer.save(err => {
-                    if (err) {
-                        res.redirect('/userViews/user', {error: err.message});
-                    }
+            Customer.findOne({customerName: projectArgs.projectCustomer}).then(customer => {
+                let customerId = customer.id;
+                projectArgs.projectCustomer = customerId;
 
-                    else {
+                Project.create(projectArgs).then(project => {
 
-                    }
+                Team.findOne({_id: project.projectTeam}).then(team => {
+
+                    project.projectTeamName = team.teamName;
+
+                    customer.customerProjects.push(project.id);
+
+                    customer.save(err => {
+                        if (err) {
+                            res.redirect('/userViews/user', {error: err.message});
+                        }
+
+                        else {
+
+                            team.projects.push(project.id);
+                            team.save(err => {
+                                if (err) {
+                                    res.redirect('/userViews/user', {error: err.message});
+                                }
+
+                                else {
+                                    res.render('./task/create', {project: project});
+                                }
+                            });
+
+                        }
+                    });
+
+
+
+                })
+
                 });
             });
-        });
+
+        })
+
+
 
 
     },

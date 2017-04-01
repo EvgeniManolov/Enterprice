@@ -17,8 +17,9 @@ module.exports = (config) => {
     require('./../models/User');
     require('./../models/Project');
     require('./../models/Customer');
-    require('./../models/Rate');
+    require('./../models/Rate')
     require('./../models/Team');
+    require('./../models/Task')
 };
 
 
