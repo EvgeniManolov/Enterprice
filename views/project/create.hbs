@@ -1,64 +1,15 @@
-
-<script>
-    /*redirect to Step2 tab when a button is clicked and make project create input fields inactive*/
-    $(document).ready(function(){
-        $("#projectCreated").click(function(){
-            $('.nav-tabs a[href="#profile"]').tab('show');
-            $("#home input").prop('disabled', true);
-            $("#home select").prop('disabled', true);
-        });
-    });
-    /*change tabs manually*/
-    $(document).ready(function(){
-        $(".nav-tabs a").click(function(){
-            $(this).tab('show');
-        });
-    });
-</script>
-
-
-
-
-
-
 <div class="container body-content span=8 offset=2">
-
     <div class="well">
-
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs">
-
-            <li class="active">
-                <a href="#home"><h2>STEP 1</h2>
-                    <br>
-                    <p>Project Initialization</p>
-                </a>
-            </li>
-
-            <li>
-                <a href="#profile"><h2>STEP 2</h2>
-                    <br>
-                    <p>Crate Project Tasks</p>
-                </a>
-            </li>
-
-        </ul>
-
-        <!-- Nav Tab Views -->
-        <div class="tab-content">
-
-            <!-- Step 1 Create Project-->
-            <div  id="home" class="tab-pane fade in active">
-                <form class="form-horizontal" method="post" action="/project/create">
+        <form class="form-horizontal" method="post" action="/project/create">
                     <fieldset>
 
                         <legend>Create project</legend>
-                        <p>Test</p>
+
                         <!-- Name -->
                         <div class="form-group">
                             <label class="col-sm-4 control-label" for="projectName">Project name</label>
                             <div class="col-sm-4 ">
-                                <input type="text" class="form-control" id="projectName" placeholder="" name="projectName" required >
+                                <input type="text" class="form-control" id="projectName" name="projectName" required >
                             </div>
                         </div>
 
@@ -126,15 +77,19 @@
                         <!-- Buttons -->
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-4">
-                                <button type="reset" class="btn btn-default">Cancel</button>
-                                <button type="submit" class="btn btn-primary" id="projectCreated">Next Step</button>
+                                <button type="reset" class="btn btn-default" id="projectCancel">Cancel</button>
+                                <button type="submit" class="btn btn-primary" id="projectCreated">Create project</button>
 
                             </div>
                         </div>
 
                     </fieldset>
                 </form>
-            </div>
+    </div>
+</div>
+
+
+
 
             <!-- Step 2 Add Tasks-->
             <div  id="profile" class="tab-pane fade">

@@ -1,0 +1,73 @@
+<div class="container body-content span=8 offset=2">
+    <div class="well">
+
+<form class="form-horizontal" method="post" action="/task/create">
+
+    <fieldset>
+
+        <legend>Add Project Tasks</legend>
+        <div class="form-group center-content">
+
+            <!--  Admin Pass Field  -->
+            <div class="collapse" id="collapseExample">
+
+
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="taskProject">Project</label>
+            <div class="col-sm-4 ">
+                <input type="text" class="form-control" id="taskProject" placeholder="{{project.projectName}}" name="taskProject" required value="{{project.projectName}}">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="taskTeam">Team</label>
+            <div class="col-sm-4 ">
+                <input type="text" class="form-control" id="taskTeam" placeholder="{{project.projectTeam}}" name="taskTeam" required value="{{project.projectTeam}}">
+            </div>
+        </div>
+
+        <!--  Task Name  -->
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="taskName">Task Name</label>
+            <div class="col-sm-4 ">
+                <input type="text" class="form-control" id="taskName" placeholder="Task name" name="taskName" required >
+            </div>
+        </div>
+
+        <!--  Task Description  -->
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="taskDescription">Task Description</label>
+            <div class="col-sm-4" >
+                <textarea class="form-control" rows="4" id="taskDescription" placeholder="Task Description" name="taskDescription" required ></textarea>
+            </div>
+        </div>
+
+
+        <!--  Deadline  -->
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="taskDeadline">Deadline</label>
+            <div class="col-sm-4 ">
+                <input type="date" class="form-control" id="taskDeadline" placeholder="" name="taskDeadline" required >
+            </div>
+        </div>
+
+
+
+        <!--  Submit / Cancel  -->
+        <div class="form-group">
+            <div class="col-sm-4 col-sm-offset-4">
+                <button type="reset" class="btn btn-default">Cancel</button>
+                <button type="submit" class="btn btn-primary">Create Task</button>
+            </div>
+        </div>
+
+    </fieldset>
+
+</form>
+
+    </div>
+</div>

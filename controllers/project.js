@@ -16,8 +16,9 @@ module.exports = {
     createPost: (req, res) => {
         let projectArgs = req.body;
 
+
         Customer.findOne({customerName: projectArgs.projectCustomer}).then(customer => {
-            let customerId = customer._id;
+            let customerId = customer.id;
             projectArgs.projectCustomer = customerId;
 
             Project.create(projectArgs).then(project => {
@@ -28,7 +29,7 @@ module.exports = {
                     }
 
                     else {
-
+                        res.render('./task/create', {project: project});
                     }
                 });
             });

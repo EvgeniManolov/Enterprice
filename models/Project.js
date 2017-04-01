@@ -14,7 +14,8 @@ let projectSchema = mongoose.Schema ({
     projectProgress: {type: Number, default: 0},
     projectTeam: {type: String},
     projectDueDate: {type: Date, required: true},
-    projectActive: {type: Boolean, default: true}
+    projectActive: {type: Boolean, default: true},
+    projectTasks: {type: [mongoose.Schema.Types.ObjectId], default: [], ref: 'Task'}
 });
 
 const Project = mongoose.model('Project', projectSchema);
