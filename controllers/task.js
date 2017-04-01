@@ -10,34 +10,48 @@ const Team = require('mongoose').model('Team');
 module.exports = {
 
     taskCreatePost: (req, res) => {
-        let taskArgs = req.body;
 
-        Team.findOne({teamName: taskArgs.taskTeam}).then(team => {
-            taskArgs.taskTeamId = team.id;
+        console.log(req.body);
 
-            Project.findOne({projectName: taskArgs.taskProject}).then(project => {
+        for (var key in req.body) {
+            if (req.body.hasOwnProperty(key)) {
+                let item = req.body[key];
+                console.log(item);
+            }
+        }
 
-                taskArgs.taskProjectId = project._id;
+        let taskArgsArray = req.body;
 
-                Task.create(taskArgs).then(task => {
-                    project.projectTasks.push(task.id);
-                    project.save(err => {
-                        if (err) {
-                            res.redirect('/userViews/user', {error: err.message});
-                        }
+        taskArgsArray.forEach(function(taskArgs)
+        {
+            console.log(req.body);
 
-                        else {
-                            res.redirect('/userViews/user')
-                        }
+            Team.findOne({teamName: taskArgs.taskTeam}).then(team => {
+                taskArgs.taskTeamId = team.id;
+
+                Project.findOne({projectName: taskArgs.taskProject}).then(project => {
+
+                    taskArgs.taskProjectId = project._id;
+
+                    Task.create(taskArgs).then(task => {
+
+                        project.projectTasks.push(task.id);
+                        project.save(err => {
+                            if (err) {
+                                res.redirect('./task/create', {error: err.message});
+                            }
+
+                            else {
+                                project.projectTeamName = team.teamName;
+                                res.render('./task/create', {project: project})
+                            }
+                        })
+
                     })
-
                 })
+
             })
-
         })
-
-
-
 
     }
 };
