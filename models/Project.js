@@ -12,7 +12,7 @@ let projectSchema = mongoose.Schema ({
     projectWorkingHours: {type: Number, required: true},
     projectLaborCost: {type: Number, default: 0},
     projectProgress: {type: Number, default: 0},
-    projectTeam: {type: String},
+    projectTeam: {type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Team'},
     projectDueDate: {type: Date, required: true},
     projectActive: {type: Boolean, default: true},
     projectTasks: {type: [mongoose.Schema.Types.ObjectId], default: [], ref: 'Task'}

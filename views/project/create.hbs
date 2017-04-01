@@ -59,8 +59,9 @@
                                 <div class="row-fluid">
                                     <select class="selectpicker form-control " id="projectTeam" name="projectTeam" required data-live-search="true">
                                         <option ></option>
-                                        <option >Alpha</option>
-                                        <option >Beta</option>
+                                        {{#each teams}}
+                                            <option >{{this.teamName}}</option>
+                                        {{/each}}each}}
                                     </select>
                                 </div>
                             </div>
