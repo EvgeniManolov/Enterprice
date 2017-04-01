@@ -20,12 +20,10 @@
 
         let task = {
             taskName: document.getElementsByName("taskName")[0].value,
-            taskDescription: document.getElementsByName("taskDescription"[0].value),
+            taskDescription: document.getElementsByName("taskDescription")[0].value,
             taskDeadline: document.getElementsByName("taskDeadline")[0].value,
             taskProjectId: document.getElementsByName("taskProject")[0].value,
             taskTeamId: document.getElementsByName("taskTeam")[0].value,
-            taskComment: '',
-            taskActive: true,
             taskWeight: document.getElementsByName("taskWeight")[0].value,
         };
 
@@ -35,9 +33,20 @@
 
     function sendData() {
 
-        $.post('/task/create', {data: {lastTask}}, function () {
-            alert("Hello")
-        });
+        tasks.forEach(function (task) {
+            $.post('/task/create',
+                    {taskName: task.taskName,
+                        taskDescription: task.taskDescription,
+                        taskDeadline: task.taskDeadline,
+                        taskProjectId: task.taskProjectId,
+                        taskTeamId: task.taskTeamId,
+                        taskComment: '',
+                        taskActive: true,
+                        taskWeight: task.taskWeight,
+            }, function () {
+            });
+        })
+
     };
 
 
