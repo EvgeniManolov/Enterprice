@@ -8,7 +8,7 @@ let customerSchema = mongoose.Schema ({
     customerName: { type: String, required: true, unique: true},
     customerPhone: {type: String, required: true},
     customerAddress: { type: String, default: ''},
-    customerProjects: {type: [mongoose.Schema.Types.ObjectId], default: []},
+    customerProjects: {type: [mongoose.Schema.Types.ObjectId], default: [], ref: 'Project'},
     customerEmail: {type: String, default: ''}
 
 });
