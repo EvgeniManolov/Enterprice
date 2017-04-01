@@ -5,7 +5,7 @@
 const mongoose = require('mongoose');
 
 let rateSchema = mongoose.Schema ({
-	userID: { type: String, required: true},
+	userID: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User'},
 	rate: {type: Number, required: true},
 });
 

@@ -29,5 +29,7 @@ module.exports = (app) => {
 	app.post('/rate/create', rateController.rateCreatePost);
 
 
+
+
 };
 
