@@ -13,7 +13,6 @@ module.exports = {
             /*Format projectDueDate property of project and add another property 'date' in format (dd.mm.yyyy)*/
 
             projects.forEach(function (project) {
-                console.log(project.projectDueDate);
 
                 let date = project.projectDueDate.getDate();
                 if (date < 10)

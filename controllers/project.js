@@ -29,7 +29,6 @@ module.exports = {
 
                     else {
 
-                        /*res.redirect('/project/create#profile')*/
                     }
                 });
             });

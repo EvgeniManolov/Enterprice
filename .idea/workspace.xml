@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="70e29a90-b571-434f-83c9-6a5e79e3c273" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/project.js" afterPath="$PROJECT_DIR$/controllers/project.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/project/create.hbs" afterPath="$PROJECT_DIR$/views/project/create.hbs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/userViews.js" afterPath="$PROJECT_DIR$/controllers/userViews.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/userViews/user.hbs" afterPath="$PROJECT_DIR$/views/userViews/user.hbs" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -21,11 +22,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="user.hbs" pinned="false" current-in-tab="false">
+      <file leaf-file-name="user.hbs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/userViews/user.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1938">
-              <caret line="114" column="95" lean-forward="true" selection-start-line="114" selection-start-column="95" selection-end-line="114" selection-end-column="95" />
+            <state relative-caret-position="408">
+              <caret line="189" column="61" lean-forward="true" selection-start-line="189" selection-start-column="61" selection-end-line="189" selection-end-column="61" />
               <folding />
             </state>
           </provider>
@@ -86,8 +87,8 @@
       <file leaf-file-name="project.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/project.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="31" column="26" lean-forward="false" selection-start-line="31" selection-start-column="24" selection-end-line="31" selection-end-column="67" />
+            <state relative-caret-position="510">
+              <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -106,18 +107,18 @@
       <file leaf-file-name="userViews.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/userViews.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="52" lean-forward="true" selection-start-line="15" selection-start-column="52" selection-end-line="15" selection-end-column="52" />
+            <state relative-caret-position="238">
+              <caret line="14" column="49" lean-forward="false" selection-start-line="14" selection-start-column="49" selection-end-line="14" selection-end-column="49" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="create.hbs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="create.hbs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/project/create.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="58" lean-forward="true" selection-start-line="5" selection-start-column="58" selection-end-line="5" selection-end-column="58" />
+            <state relative-caret-position="-1768">
+              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -161,10 +162,10 @@
         <option value="$PROJECT_DIR$/views/layout.hbs" />
         <option value="$PROJECT_DIR$/views/home/index.hbs" />
         <option value="$PROJECT_DIR$/public/javascripts/bootstrap.js" />
-        <option value="$PROJECT_DIR$/views/userViews/user.hbs" />
-        <option value="$PROJECT_DIR$/controllers/userViews.js" />
-        <option value="$PROJECT_DIR$/controllers/project.js" />
         <option value="$PROJECT_DIR$/views/project/create.hbs" />
+        <option value="$PROJECT_DIR$/controllers/project.js" />
+        <option value="$PROJECT_DIR$/controllers/userViews.js" />
+        <option value="$PROJECT_DIR$/views/userViews/user.hbs" />
       </list>
     </option>
   </component>
@@ -558,12 +559,12 @@
       <workItem from="1490903214628" duration="5401000" />
       <workItem from="1490947067257" duration="7817000" />
       <workItem from="1491031911698" duration="388000" />
-      <workItem from="1491032508340" duration="4820000" />
+      <workItem from="1491032508340" duration="6298000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41145000" />
+    <option name="totallyTimeSpent" value="42623000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -961,34 +962,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/userViews.js">
+    <entry file="file://$PROJECT_DIR$/views/project/create.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="52" lean-forward="true" selection-start-line="15" selection-start-column="52" selection-end-line="15" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/userViews/user.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1938">
-          <caret line="114" column="95" lean-forward="true" selection-start-line="114" selection-start-column="95" selection-end-line="114" selection-end-column="95" />
+        <state relative-caret-position="-1768">
+          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/project.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="31" column="26" lean-forward="false" selection-start-line="31" selection-start-column="24" selection-end-line="31" selection-end-column="67" />
+        <state relative-caret-position="510">
+          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/project/create.hbs">
+    <entry file="file://$PROJECT_DIR$/controllers/userViews.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="58" lean-forward="true" selection-start-line="5" selection-start-column="58" selection-end-line="5" selection-end-column="58" />
+        <state relative-caret-position="238">
+          <caret line="14" column="49" lean-forward="false" selection-start-line="14" selection-start-column="49" selection-end-line="14" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/userViews/user.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="189" column="61" lean-forward="true" selection-start-line="189" selection-start-column="61" selection-end-line="189" selection-end-column="61" />
           <folding />
         </state>
       </provider>
