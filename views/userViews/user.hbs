@@ -89,6 +89,7 @@
 
                             <!-- Table Data -->
                             {{#each projects}}
+
                                 {{#if this.projectActive}}
                                     <tr>
                                         <!-- Project Name -->
@@ -115,7 +116,7 @@
 
                                         <!-- Project Due date -->
                                         <td class="" id="projectDueDate">
-                                            <span class="date"><time datetime="">{{this.projectDueDate}}</time></span>
+                                            <span class="date"><time datetime="">{{this.date}}</time></span>
                                         </td>
 
                                         <!-- Details Button -->
@@ -124,6 +125,7 @@
                                         </td>
                                     </tr>
                                 {{/if}}
+
                             {{/each}}
                         </table>
                     </div>
@@ -161,7 +163,7 @@
 
                         <!-- Table Data -->
                         {{#each projects}}
-                            {{#if this.projectActive}}
+                            {{#unless this.projectActive}}
                                 <tr>
                                     <!-- Project Name -->
                                     <td class="" id="projectName">
@@ -187,7 +189,7 @@
 
                                     <!-- Project Due date -->
                                     <td class="" id="projectDueDate">
-                                        <span class="date"><time datetime="">{{this.projectDueDate}}</time></span>
+                                        <span class="date"><time datetime="">{{this.date}}</time></span>
                                     </td>
 
                                     <!-- Details Button -->
@@ -195,7 +197,7 @@
                                         <a href="/project/details/{{this.id}}"><button class="btn btn-primary">More</button></a>
                                     </td>
                                 </tr>
-                            {{/if}}
+                            {{/unless}}
                         {{/each}}
                     </table>
                 </div>
