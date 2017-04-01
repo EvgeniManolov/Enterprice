@@ -4,6 +4,7 @@ const projectController = require('./../controllers/project');
 const userViewsController = require('./../controllers/userViews');
 const customerController = require('./../controllers/customer');
 const rateController = require('./../controllers/rate');
+const teamController = require('./../controllers/team');
 
 module.exports = (app) => {
     app.get('/', homeController.index);
@@ -28,6 +29,8 @@ module.exports = (app) => {
     app.get('/rate/create', rateController.rateCreateGet);
 	app.post('/rate/create', rateController.rateCreatePost);
 
+    app.get('/team/create', teamController.teamCreateGet);
+    app.post('/team/create', teamController.teamCreatePost);
 
 
 
