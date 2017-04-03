@@ -77,6 +77,20 @@ module.exports = {
         let id = req.params.id;
 
         Project.findOne({'_id' : id }).then(project => {
+            
+            let date = project.projectDueDate.getDate();
+            if (date < 10)
+                date = '0' + date;
+            let month = project.projectDueDate.getMonth()+1;
+            if (month < 10)
+                month = '0' + month;
+            let year = project.projectDueDate.getFullYear();
+            
+            project.date = '' + date + '.' + month + '.' + year;
+            project.day = '' + date;
+            project.month = '' + month;
+            project.year = '' + year;
+
             res.render('project/details', project)
         });
     }
