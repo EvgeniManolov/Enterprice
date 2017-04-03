@@ -17,10 +17,11 @@
     <!-- Left Section -->
     <div class="col-lg-2 well section">
         <div class="col-lg-1">
-            {{this.projectDueDate}}
+            <span class="label label-danger">{{this.day}}</span>
+            {{this.month}}.{{this.year}}
         </div>
         <div class="col-lg-1">
-            {{this.projectName}}
+            {{this.projectTeam}}
         </div>
     </div>
 
@@ -31,7 +32,7 @@
         <div class="">
             <h3>{{this.projectName}}</h3>
             <p>
-                {{this.projectCustomer}}  |  {{this.projectDueDate}}
+                {{this.projectCustomer}}  |  {{this.date}}
             </p>
         </div>
 

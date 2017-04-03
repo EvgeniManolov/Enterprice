@@ -173,8 +173,8 @@
 
 
 
-        <div class="">
-            <table class="col-lg-12" id="tasks">
+        <div class="container">
+            <table class="table" id="tasks">
 
                 <!-- Table Head -->
                 <tr>
@@ -196,17 +196,10 @@
                     <td id="weight">{{this.task.taskWeight}}</td>
                 </tr>
                 {{/each}}
+
             </table>
-<!--            <table class="col-lg-12 pull-right">
-                <tr >
-                    <td id=""></td>
-                    <td id=""></td>
-                    <td id=""></td>
-                    <td id=""></td>
-                    <td id="">Total Weight:</td>
-                    <td id="totalWeight"></td>
-                </tr>
-            </table>-->
+            <div class="pull-right"><h4>Total weight:</h4><h4 id="totalWeight"></h4> </div>
+
         </div>
 
         <!--  Tasks array  -->
@@ -223,9 +216,10 @@
             <div class="col-sm-4 col-sm-offset-4">
                 <button type="reset" class="btn btn-default">Cancel</button>
                 <button id="doneButton" type="button" class="btn btn-primary" onclick="sendData()">Done</button>
-                <div class="pull-right"><h4>Total weight:</h4><h4 id="totalWeight"></h4> </div>
             </div>
         </div>
+
+
 
 
     </fieldset>
