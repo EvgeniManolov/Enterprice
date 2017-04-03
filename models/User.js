@@ -10,7 +10,8 @@ let userSchema = mongoose.Schema(
         country: {type: String, default: ''},
         address: {type: String, default: ''},
         salt: {type: String, required: true},
-        rate: {type: mongoose.Schema.Types.ObjectId, default: null, ref: 'Rate'}
+        rate: {type: mongoose.Schema.Types.ObjectId, default: null, ref: 'Rate'},
+        team: {type: [mongoose.Schema.Types.ObjectId], default:[], ref: 'Team'}
     }
 );
 

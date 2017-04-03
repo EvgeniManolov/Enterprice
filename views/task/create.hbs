@@ -1,0 +1,181 @@
+<script>
+    let tasks = [];
+    function addToTable() {
+
+        var table = document.getElementById("tasks");
+        var row = table.insertRow();
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+        var cell5 = row.insertCell(4);
+        var cell6 = row.insertCell(5);
+        cell1.innerHTML = document.getElementsByName("taskProject")[0].value;
+        cell2.innerHTML = document.getElementsByName("taskTeam")[0].value;
+        cell3.innerHTML = document.getElementsByName("taskName")[0].value;
+        cell4.innerHTML = document.getElementsByName("taskDescription")[0].value;
+        cell5.innerHTML = document.getElementsByName("taskDeadline")[0].value;
+        cell6.innerHTML = document.getElementsByName("taskWeight")[0].value;
+
+        let task = {
+            taskName: document.getElementsByName("taskName")[0].value,
+            taskDescription: document.getElementsByName("taskDescription")[0].value,
+            taskDeadline: document.getElementsByName("taskDeadline")[0].value,
+            taskProjectId: document.getElementsByName("taskProject")[0].value,
+            taskTeamId: document.getElementsByName("taskTeam")[0].value,
+            taskWeight: document.getElementsByName("taskWeight")[0].value,
+        };
+
+        tasks.push(task);
+    }
+
+    function sendData() {
+
+        tasks.forEach(function (task) {
+            $.post('/task/create',
+                    {taskName: task.taskName,
+                        taskDescription: task.taskDescription,
+                        taskDeadline: task.taskDeadline,
+                        taskProjectId: task.taskProjectId,
+                        taskTeamId: task.taskTeamId,
+                        taskComment: '',
+                        taskActive: true,
+                        taskWeight: task.taskWeight,
+            }, function () {
+            });
+        })
+
+    };
+
+
+
+</script>
+
+
+<div class="container body-content span=8 offset=2">
+    <div class="well">
+
+<form class="form-horizontal" method="post" action="/task/create" id="tasksForm">
+
+    <fieldset>
+
+        <legend>Add Project Tasks</legend>
+        <div class="form-group center-content">
+
+            <!--  Admin Pass Field  -->
+            <div class="collapse" id="collapseExample">
+
+
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="taskProject">Project</label>
+            <div class="col-sm-4 ">
+                <input type="text" class="form-control" id="taskProject" placeholder="{{project.projectName}}" name="taskProject" required value="{{project.projectName}}">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="taskTeam">Team</label>
+            <div class="col-sm-4 ">
+                <input type="text" class="form-control" id="taskTeam" placeholder="{{project.projectTeamName}}" name="taskTeam" required value="{{project.projectTeamName}}">
+            </div>
+        </div>
+
+        <!--  Task Name  -->
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="taskName">Task Name</label>
+            <div class="col-sm-4 ">
+                <input type="text" class="form-control" id="taskName" placeholder="Task name" name="taskName" required >
+            </div>
+        </div>
+
+        <!--  Task Description  -->
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="taskDescription">Task Description</label>
+            <div class="col-sm-4" >
+                <textarea class="form-control" rows="4" id="taskDescription" placeholder="Task Description" name="taskDescription" required ></textarea>
+            </div>
+        </div>
+
+
+        <!--  Deadline  -->
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="taskDeadline">Deadline</label>
+            <div class="col-sm-4 ">
+                <input type="date" class="form-control" id="taskDeadline" placeholder="" name="taskDeadline" required >
+            </div>
+        </div>
+
+        <!--  Weight  -->
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="taskWeight">Weight</label>
+            <div class="col-sm-4 ">
+                <input min="0" max="100" type="number" class="form-control" id="taskWeight" placeholder="" name="taskWeight" required >
+            </div>
+        </div>
+
+        <!--  Add task  -->
+        <div class="form-group">
+            <div class="col-sm-4 col-sm-offset-4">
+                <button onclick="addToTable()" type="button" class="btn btn-primary">Add task</button>
+            </div>
+        </div>
+
+
+
+        <div class="">
+            <table class="col-lg-12" id="tasks">
+
+                <!-- Table Head -->
+                <tr>
+                    <th>Project name</th>
+                    <th>Team</th>
+                    <th>Task</th>
+                    <th>Description</th>
+                    <th>Deadline</th>
+                    <th>Weight</th>
+                </tr>
+
+                {{#each tasks}}
+                <tr >
+                    <td id="projectName">{{this.project}}</td>
+                    <td id="team">{{this.team}}</td>
+                    <td id="task">{{this.task.taskName}}</td>
+                    <td id="description">{{this.task.taskDescription}}</td>
+                    <td id="deadline">{{this.task.taskDeadline}}</td>
+                    <td id="weight">{{this.task.taskWeight}}</td>
+                </tr>
+                {{/each}}
+
+            </table>
+        </div>
+
+        <!--  Tasks array  -->
+        <div class="form-group" hidden>
+            <label class="col-sm-4 control-label" for="tasks">Tasks</label>
+            <div class="col-sm-4 ">
+                <input type="range" class="form-control" id="tasks" placeholder="" name="tasks" required>
+            </div>
+        </div>
+
+
+        <!--  Submit / Cancel  -->
+        <div class="form-group">
+            <div class="col-sm-4 col-sm-offset-4">
+                <button type="reset" class="btn btn-default">Cancel</button>
+                <button id="doneButton" type="button" class="btn btn-primary" onclick="sendData()">Done</button>
+            </div>
+        </div>
+
+
+    </fieldset>
+
+</form>
+
+
+
+    </div>
+</div>
