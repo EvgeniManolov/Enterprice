@@ -2,6 +2,7 @@
     let tasks = [];
     function addToTable() {
 
+        /* Inserts a new row to the table with tasks*/
         var table = document.getElementById("tasks");
         var row = table.insertRow();
         var cell1 = row.insertCell(0);
@@ -17,6 +18,7 @@
         cell5.innerHTML = document.getElementsByName("taskDeadline")[0].value;
         cell6.innerHTML = document.getElementsByName("taskWeight")[0].value;
 
+        /* Adds the current task to the array */
         let task = {
             taskName: document.getElementsByName("taskName")[0].value,
             taskDescription: document.getElementsByName("taskDescription")[0].value,
@@ -29,6 +31,7 @@
         tasks.push(task);
     }
 
+    /* Sends an array with tasks as a post request to /task/create and tasks are created*/
     function sendData() {
 
         tasks.forEach(function (task) {
