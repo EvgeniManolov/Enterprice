@@ -3,78 +3,60 @@
 
 <head>
     <title>Enterprice</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <script src="/javascripts/jquery-1.10.2.js"></script>
-    <script src="/javascripts/bootstrap.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <link link rel='stylesheet' href='/stylesheets/theme_2.css'>
+    <link link rel='stylesheet' href='/stylesheets/customization.css'>
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-    <!--  If user is Logged  -->
+    <!--  If User  -->
     {{#if user}}
         <header>
             <!--  Navigation line  -->
-            <div class="navbar navbar-default navbar-fixed-top text-uppercase">
+            <div class="navbar navbar-default text-uppercase">
                 <div class="container">
 
-                    <!--  Username  -->
-                    <div class="navbar-header dropdown pull-left">
-                        <a class="navbar-brand" id="dLabel" type="button" data-toggle="dropdown">
-                            {{user.fullName}}<span class="caret"></span>
-                        </a>
-                        <!--  Drop-down Username  -->
+                    <!--  Navbar Collapse  -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <!--  Username Field  -->
+                    <div class="navbar-header dropdown">
+                        <a class="navbar-brand dropdown-toggle" data-toggle="dropdown" href="" id="">{{user.fullName}}<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li>
-                                <a id="dLabelThree" href="">
-                                    Account Settings
-                                </a>
-                            </li>
+                            <li><a id="dLabelActive" href="/userViews/user">My Account</a></li>
                             <li role="separator" class="divider"></li>
-
-                            <li>
-                                <a id="dLabelFour" href="/user/logout">
-                                    Logout
-                                </a>
-                            </li>
-                        </ul>
-
-                        <!--  Navigation  -->
-                        <ul class="nav navbar-nav">
-
-                            <!--  Projects  -->
-                            <li class="active">
-                                <a class="" id="dLabel" type="button" data-toggle="dropdown">
-                                    Projects<span class="caret"></span>
-                                </a>
-
-                                <!--  Drop-down Projects  -->
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a id="dLabelActive" href="/userViews/user">
-                                            Active Projects
-                                        </a>
-                                    </li>
-                                    <li role="separator" class="divider"></li>
-
-                                    <li>
-                                        <a id="dLabelClosed" href="">
-                                            Closed Projects
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Teams</a></li>
-                            <li><a href="#">Rates</a></li>
-                            <li><a href="#">Clients</a></li>
-                            <li><a href="#">Users</a></li>
+                            <li><a id="dLabelClosed" href="/user/logout">Logout</a></li>
                         </ul>
                     </div>
 
-                    <!--  Low Resolution Menu View  -->
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                    </button>
+                    <!--  Navigation  -->
+                    <ul class="nav navbar-nav pull-right">
+                        <li class="dropdown active">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="" id="">Projects<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a id="dLabelActive" href="/userViews/user">Active Projects</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a id="dLabelClosed" href="/userViews/user/#closedProjects">Closed Projects</a></li>
+                                </ul>
+                            </li>
+                        <!--<li class="active"><a href="/userViews/user">Projects</a></li>-->
+                        <li><a href="#">Teams</a></li>
+                        <li><a href="#">Rates</a></li>
+                        <li><a href="#">Clients</a></li>
+                        <li><a href="#">Users</a></li>
+                    </ul>
+                </div>
                 </div>
             </div>
         </header>
@@ -86,7 +68,7 @@
         </div>
     {{/if}}
 
-    <!-- If Not Logged -->
+    <!-- If Not User -->
     {{{body}}}
 </body>
 

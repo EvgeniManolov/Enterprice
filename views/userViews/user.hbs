@@ -23,35 +23,50 @@
     }
 </script>
 
-<!-- Body Tabs  -->
-<div class="container section">
+<!-- Popover Script -->
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="popover"]').popover();
+    });
+</script>
 
-    <!-- Tab Names -->
-    <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active">
-            <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Active Projects</a></li>
-        <li role="presentation">
-            <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Closed Projects</a></li>
-    </ul>
+<!-- Add Content Buttons -->
+<div class="container">
+    <div class="well">
+        <a href="../project/create">
+            <button class="btn btn-default btn-sm">New Project</button>
+        </a>
 
-    <!-- Tab Views -->
-    <div class="tab-content">
+        <a href="../customer/create">
+            <button class="btn btn-default btn-sm">New Customer</button>
+        </a>
 
-        <!-- Add Content Buttons -->
-        <div class="row">
-            <div class="container section">
+        <a href="../rate/create">
+            <button class="btn btn-default btn-sm">Rates</button>
+        </a>
+    </div>
+</div>
 
-                <a href="../project/create">
-                    <button class="btn btn-default">New Project</button>
+<!-- Project Tabs  -->
+<div class="container">
+
+    <!-- Left (tabs) -->
+    <div class="col-lg-2">
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="#activeProject" aria-controls="activeProject" role="tab" data-toggle="tab"><h2>1</h2>
+                    <br>
+                    <p>Active Projects</p>
                 </a>
+            </li>
 
-                <a href="../customer/create">
-                        <button class="btn btn-default">New Customer</button>
+            <li>
+                <a href="#closedProjects" aria-controls="closedProjects" role="tab" data-toggle="tab"><h2>2</h2>
+                    <br>
+                    <p>Closed Projects</p>
                 </a>
-
-                <a href="../rate/create">
-                    <button class="btn btn-default">Rates</button>
-                </a>
+            </li>
+        </ul>
 
                 <a href="../team/create">
                     <button class="btn btn-default">Create Team</button>
@@ -60,101 +75,90 @@
             </div>
         </div>
 
-        <!-- Active Projects Tab -->
-        <div role="tabpanel" class="tab-pane active" id="home">
-            <div class="row">
-                    <div class="container section" id="activeProjects">
-
-                        <h1 class="">Active projects</h1>
-
-                        <!-- Filters and Stuff -->
-
-                        <div class="form-inline form-group ">
-                            <label class="text-uppercase" for="myInput">Filter Projects:</label>
-                            <input class="form-control"
-                                   type="text"
-                                   id="myInput"
-                                   onkeyup="myFunction()"
-                                   placeholder="Search project / customer.." >
-                        </div>
 
 
-                        <!-- Table Active Projects -->
-                        <table class="col-lg-12" id="activeProjectsTable">
+    <!-- Right (Tab Views) -->
+    <div class="col-lg-8">
 
-                            <!-- Table Head -->
-                            <tr>
-                                <th>Project name/ Customer</th>
-                                <th>Progress</th>
-                                <th>Team</th>
-                                <th>Due date</th>
-                                <th>Details</th>
-                            </tr>
+        <div class="tab-content">
 
-                            <!-- Table Data -->
-                            {{#each projects}}
+            <!-- Active Projects Tab -->
+            <div role="tabpanel" class="tab-pane active" id="activeProject">
 
-                                {{#if this.projectActive}}
-                                    <tr>
-                                        <!-- Project Name -->
-                                        <td class="" id="projectName">
-                                            <h4>{{this.projectName}}</h4>
-                                            <h6>{{this.projectCustomer.customerName}}</h6>
-                                        </td>
 
-                                        <!-- Project Progress -->
-                                        <td class="" id="projectProgress">{{this.projectProgress}}%
-                                            <div class="progress">
-                                                <div class="progress-bar"
-                                                     role="progressbar"
-                                                     aria-valuenow=""
-                                                     aria-valuemin="0"
-                                                     aria-valuemax="100"
-                                                     style="width: 25%;">
-                                                </div>
-                                            </div>
-                                        </td>
 
-                                        <!-- Project Team -->
-                                        <td class="" id="projectTeam">{{this.projectTeam}}</td>
+                    <h1>Active Projects</h1>
 
-                                        <!-- Project Due date -->
-                                        <td class="" id="projectDueDate">
-                                            <span class="date"><time datetime="">{{this.date}}</time></span>
-                                        </td>
-
-                                        <!-- Details Button -->
-                                        <td>
-                                            <a href="/project/details/{{this.id}}"><button class="btn btn-primary">More</button></a>
-                                        </td>
-                                    </tr>
-                                {{/if}}
-
-                            {{/each}}
-                        </table>
+                    <!-- Filters and Stuff -->
+                    <div class="filters-container">
+                        <label class="text-uppercase " for="myInput">Filter Projects:</label>
+                        <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search project / customer.." >
                     </div>
-                </div>
-        </div>
 
-        <!-- Closed Projects Tab -->
-        <div role="tabpanel" class="tab-pane" id="profile">
-            <div class="row">
-                <div class="container section" id="activeProjects">
+                    <!-- Table Active Projects -->
+                    <table class="table" id="activeProjectsTable">
+
+                        <!-- Table Head -->
+                        <tr>
+                            <th>Project name/ Customer</th>
+                            <th>Progress</th>
+                            <th>Team</th>
+                            <th>Due date</th>
+                            <th>Details</th>
+                        </tr>
+
+                        <!-- Table Data -->
+                        {{#each projects}}
+                            {{#if this.projectActive}}
+                                <tr>
+                                    <!-- Project Name -->
+                                    <td class="" id="projectName">
+                                        <h4>{{this.projectName}}</h4>
+                                        <h6>{{this.projectCustomer.customerName}}</h6>
+                                    </td>
+                                    <!-- Project Progress -->
+                                    <td class="" id="projectProgress">{{this.projectProgress}}%
+                                        <div class="progress">
+                                            <div class="progress-bar"
+                                                 role="progressbar"
+                                                 aria-valuenow=""
+                                                 aria-valuemin="0"
+                                                 aria-valuemax="100"
+                                                 style="width: 25%;">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <!-- Project Team -->
+                                    <td class="" id="projectTeam">{{this.projectTeam}}</td>
+                                    <!-- Project Due date -->
+                                    <td class="" id="projectDueDate">
+                                        <span class="date"><time datetime="">{{this.date}}</time></span>
+                                    </td>
+                                    <!-- Details Button -->
+                                    <td>
+                                        <a href="/project/details/{{this.id}}"><button class="btn btn-primary">More</button></a>
+                                    </td></tr>
+                            {{/if}}
+
+                        {{/each}}
+                    </table>
+
+
+            </div>
+
+            <!-- Closed Projects Tab -->
+            <div role="tabpanel" class="tab-pane" id="closedProjects">
 
                     <h1 class="">Closed</h1>
 
                     <!-- Filters and Stuff -->
                     <div class="form-group">
                         <label class="text-uppercase" for="myInput">Search:</label>
-                        <input class="form-control"
-                               type="text"
-                               id="myInput"
-                               onkeyup="myFunction()"
-                               placeholder="Search project / customer.." >
+                        <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search project / customer.." >
                     </div>
 
                     <!-- Table Closed Projects -->
-                    <table class="col-lg-12" id="activeProjectsTable">
+                    <table class="table" id="activeProjectsTable">
 
                         <!-- Table Head -->
                         <tr>
@@ -204,11 +208,15 @@
                             {{/unless}}
                         {{/each}}
                     </table>
-                </div>
-            </div>
-        </div>
 
+            </div>
+
+        </div>
     </div>
+
+
+
+
 
 </div>
 
