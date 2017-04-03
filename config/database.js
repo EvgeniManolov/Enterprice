@@ -12,14 +12,13 @@ module.exports = (config) => {
         }
 
         console.log('MongoDB ready!')
-    });
+});
 
     require('./../models/User');
     require('./../models/Project');
     require('./../models/Customer');
-    require('./../models/Rate')
     require('./../models/Team');
-    require('./../models/Task')
+    require('./../models/Task');
 };
 
 

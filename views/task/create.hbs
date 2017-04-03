@@ -1,10 +1,48 @@
 <script>
+    var deletedTaskNames = []; // an array with the names of removed tasks
 
+    /*Remove task from table*/
+    $(document).on('click', '.remove', function () {
+
+        var taskWeight = Number($(this).closest('tr').find('td:last').text()); //retrieves task weight for task to be deleted
+        var taskName = $(this).closest('tr').find('td:nth-child(4)').text(); //retrieved task name for task to be deleted
+
+        deletedTaskNames.push(taskName); //adds task name to the array
+
+        $(this).closest('tr').remove(); //removes selected task/row in the table
+
+        totalWeight -= taskWeight; //subtracts deleted task's weight from total weight
+
+        $("#totalWeight").text('' + totalWeight + '%'); //displays updated total weight
+        return false;
+
+    });
+
+
+    /* Set minimum requirement for task deadline*/
+    $(document).ready(function(){
+        var currentDate = new Date();
+
+        let date = currentDate.getDate();
+        if (date < 10)
+            date = '0' + date;
+        let month = currentDate.getMonth()+1;
+        if (month < 10)
+            month = '0' + month;
+        let year = currentDate.getFullYear();
+
+        var minDate = '' + year + '-' + month + '-' + date;
+
+        $("#taskDeadline").attr({"min": minDate});
+    });
 
     let tasks = [];
     let totalWeight = 0;
 
+    /*Adds current task from input to the table below the input form*/
     function addToTable() {
+        var projectDueDate = $("#projectDueDate").val();
+
         let task = {
             taskName: document.getElementsByName("taskName")[0].value,
             taskDescription: document.getElementsByName("taskDescription")[0].value,
@@ -14,88 +52,138 @@
             taskWeight: document.getElementsByName("taskWeight")[0].value,
         };
 
-        if(Number(task.taskWeight) < 0 || Number(task.taskWeight)>100) {
-            alert("TaskWeight cannot be negative or bigger than 100");
+        let isDataComplete = true;
 
-            $("#taskWeight").val('').focus();
+        if (task.taskName == '') {
+            isDataComplete = false;
         }
 
-        else {
-            totalWeight += Number(task.taskWeight);
-            if (totalWeight > 100) {
-                totalWeight -= Number(task.taskWeight);
+        if (task.taskDescription == '') {
+            isDataComplete = false;
+        }
 
-                alert("Total weight cannot be bigger than 100");
+        if (task.taskDeadline == '') {
+            isDataComplete = false;
+        }
 
-                $("#taskWeight").val('').focus();
+        if (task.taskProjectId == '') {
+            isDataComplete = false;
+        }
+
+        if (task.taskTeamId == '') {
+            isDataComplete = false;
+        }
+
+        if (task.taskWeight == '') {
+            isDataComplete = false;
+        }
+
+        var currentDeadline = Date.parse(document.getElementsByName("taskDeadline")[0].value);
+
+        if (!isDataComplete) {
+            alert("Please fill in all required fields!")
+
+        } else {
+            if (currentDeadline > projectDueDate) {
+                alert("Task deadline cannot be later than project due date!");
+
+                $("#taskDeadline").val('').focus();
             }
 
             else {
-                let isTaskNameDuplicate = false;
+                if(Number(task.taskWeight) < 0 || Number(task.taskWeight)>100) {
+                    alert("TaskWeight cannot be negative or bigger than 100");
 
-                if (tasks.length > 0) {
-                    tasks.forEach(function (singleTask) {
-
-                        if(singleTask.taskName == task.taskName) {
-                            isTaskNameDuplicate = true;
-                        }
-                    })
+                    $("#taskWeight").val('').focus();
                 }
 
-                if (isTaskNameDuplicate) {
-                    totalWeight -= Number(task.taskWeight);
+                else {
+                    totalWeight += Number(task.taskWeight);
+                    if (totalWeight > 100) {
+                        totalWeight -= Number(task.taskWeight);
 
-                    alert("Please enter different task name!");
+                        alert("Total weight cannot be bigger than 100");
 
-                    $("#taskName").val('').focus();
+                        $("#taskWeight").val('').focus();
+                    }
 
-                } else {
-                    /* Inserts a new row to the table with tasks*/
-                    var table = document.getElementById("tasks");
-                    var row = table.insertRow();
-                    var cell1 = row.insertCell(0);
-                    var cell2 = row.insertCell(1);
-                    var cell3 = row.insertCell(2);
-                    var cell4 = row.insertCell(3);
-                    var cell5 = row.insertCell(4);
-                    var cell6 = row.insertCell(5);
-                    cell1.innerHTML = document.getElementsByName("taskProject")[0].value;
-                    cell2.innerHTML = document.getElementsByName("taskTeam")[0].value;
-                    cell3.innerHTML = document.getElementsByName("taskName")[0].value;
-                    cell4.innerHTML = document.getElementsByName("taskDescription")[0].value;
-                    cell5.innerHTML = document.getElementsByName("taskDeadline")[0].value;
-                    cell6.innerHTML = document.getElementsByName("taskWeight")[0].value;
+                    else {
+                        let isTaskNameDuplicate = false;
 
-                    tasks.push(task);
-                    $("#totalWeight").text('' + totalWeight + '%');
+                        if (tasks.length > 0) {
+                            tasks.forEach(function (singleTask) {
+
+                                if(singleTask.taskName == task.taskName) {
+                                    isTaskNameDuplicate = true;
+                                }
+                            })
+                        }
+
+                        if (isTaskNameDuplicate && !deletedTaskNames.includes(task.taskName)) {
+                            totalWeight -= Number(task.taskWeight);
+
+                            alert("Please enter different task name!");
+
+                            $("#taskName").val('').focus();
+
+                        } else {
+                            /* Inserts a new row to the table with tasks*/
+                            var table = document.getElementById("tasks");
+                            var row = table.insertRow();
+                            var cell1 = row.insertCell(0);
+                            var cell2 = row.insertCell(1);
+                            var cell3 = row.insertCell(2);
+                            var cell4 = row.insertCell(3);
+                            var cell5 = row.insertCell(4);
+                            var cell6 = row.insertCell(5);
+                            var cell7 = row.insertCell(6);
+                            cell1.innerHTML = '<button id="remove" type="button" class="remove">-</button>';
+                            cell2.innerHTML = document.getElementsByName("taskProject")[0].value;
+                            cell3.innerHTML = document.getElementsByName("taskTeam")[0].value;
+                            cell4.innerHTML = document.getElementsByName("taskName")[0].value;
+                            cell5.innerHTML = document.getElementsByName("taskDescription")[0].value;
+                            cell6.innerHTML = document.getElementsByName("taskDeadline")[0].value;
+                            cell7.innerHTML = document.getElementsByName("taskWeight")[0].value;
+
+                            $("#taskName").val('').focus();
+                            $("#taskDescription").val('');
+                            $("#taskDeadline").val('');
+                            $("#taskWeight").val('');
+
+                            tasks.push(task);
+                            $("#totalWeight").text('' + totalWeight + '%');
+                        }
+                    }
                 }
             }
         }
     }
 
-    /* Sends an array with tasks as a post request to /task/create and tasks are created*/
+    /* Sends an array with tasks as a post request to URL '/task/create' and tasks are created*/
     function sendData() {
 
-        tasks.forEach(function (task) {
-            $.post('/task/create',
-                    {taskName: task.taskName,
-                        taskDescription: task.taskDescription,
-                        taskDeadline: task.taskDeadline,
-                        taskProjectId: task.taskProjectId,
-                        taskTeamId: task.taskTeamId,
-                        taskComment: '',
-                        taskActive: true,
-                        taskWeight: task.taskWeight,
-            }, function () {
+        if(totalWeight != 100) {
+            alert("Total weight must be 100%!")
+
+            $("#taskName").focus();
+        } else {
+            tasks.forEach(function (task) {
+                $.post('/task/create',
+                        {taskName: task.taskName,
+                            taskDescription: task.taskDescription,
+                            taskDeadline: task.taskDeadline,
+                            taskProjectId: task.taskProjectId,
+                            taskTeamId: task.taskTeamId,
+                            taskComment: '',
+                            taskActive: true,
+                            taskWeight: task.taskWeight,
+                        }, function () {
+                        });
             });
-        })
 
-        window.location.replace('/userViews/user')
-
+            window.location.replace('/userViews/user')
+        }
     }
-
-
-
 </script>
 
 
@@ -112,8 +200,6 @@
             <!--  Admin Pass Field  -->
             <div class="collapse" id="collapseExample">
 
-
-
             </div>
         </div>
 
@@ -128,6 +214,13 @@
             <label class="col-sm-4 control-label" for="taskTeam">Team</label>
             <div class="col-sm-4 ">
                 <input type="text" class="form-control" id="taskTeam" placeholder="{{project.projectTeamName}}" name="taskTeam" required value="{{project.projectTeamName}}">
+            </div>
+        </div>
+
+        <div class="form-group" hidden>
+            <label class="col-sm-4 control-label" for="projectDueDate">Project Due Date</label>
+            <div class="col-sm-4 ">
+                <input type="text" class="form-control" id="projectDueDate" placeholder="{{project.dateAsNumber}}" name="projectDueDate" required value="{{project.dateAsNumber}}">
             </div>
         </div>
 
@@ -152,7 +245,7 @@
         <div class="form-group">
             <label class="col-sm-4 control-label" for="taskDeadline">Deadline</label>
             <div class="col-sm-4 ">
-                <input type="date" class="form-control" id="taskDeadline" placeholder="" name="taskDeadline" required >
+                <input type="date" min="" class="form-control" id="taskDeadline" placeholder="" name="taskDeadline" required >
             </div>
         </div>
 
@@ -160,7 +253,7 @@
         <div class="form-group">
             <label class="col-sm-4 control-label" for="taskWeight">Weight</label>
             <div class="col-sm-4 ">
-                <input min="0" max="100" type="number" class="form-control" id="taskWeight" placeholder="" name="taskWeight" required >
+                <input type="number" class="form-control" id="taskWeight" placeholder="" name="taskWeight" required >
             </div>
         </div>
 
@@ -174,10 +267,11 @@
 
 
         <div class="container">
-            <table class="table" id="tasks">
+            <table class="display" id="tasks" width="100%">
 
                 <!-- Table Head -->
                 <tr>
+                    <th>Remove task</th>
                     <th>Project name</th>
                     <th>Team</th>
                     <th>Task</th>
@@ -186,30 +280,10 @@
                     <th>Weight</th>
                 </tr>
 
-                {{#each tasks}}
-                <tr >
-                    <td id="projectName">{{this.project}}</td>
-                    <td id="team">{{this.team}}</td>
-                    <td id="task">{{this.task.taskName}}</td>
-                    <td id="description">{{this.task.taskDescription}}</td>
-                    <td id="deadline">{{this.task.taskDeadline}}</td>
-                    <td id="weight">{{this.task.taskWeight}}</td>
-                </tr>
-                {{/each}}
-
             </table>
             <div class="pull-right"><h4>Total weight:</h4><h4 id="totalWeight"></h4> </div>
 
         </div>
-
-        <!--  Tasks array  -->
-        <div class="form-group" hidden>
-            <label class="col-sm-4 control-label" for="tasks">Tasks</label>
-            <div class="col-sm-4 ">
-                <input type="range" class="form-control" id="tasks" placeholder="" name="tasks" required>
-            </div>
-        </div>
-
 
         <!--  Submit / Cancel  -->
         <div class="form-group">
@@ -225,8 +299,6 @@
     </fieldset>
 
 </form>
-
-
 
     </div>
 </div>

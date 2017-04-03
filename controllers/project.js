@@ -52,6 +52,8 @@ module.exports = {
                                 }
 
                                 else {
+                                    project.dateAsNumber = Number(project.projectDueDate);
+
                                     res.render('./task/create', {project: project});
                                 }
                             });
@@ -76,7 +78,7 @@ module.exports = {
     projectDetails: (req, res) => {
         let id = req.params.id;
 
-        Project.findOne({'_id' : id }).then(project => {
+        Project.findOne({'_id' : id }).populate('projectTeam').populate('projectCustomer').populate('projectTasks').then(project => {
             
             let date = project.projectDueDate.getDate();
             if (date < 10)
@@ -90,6 +92,21 @@ module.exports = {
             project.day = '' + date;
             project.month = '' + month;
             project.year = '' + year;
+
+            project.projectTasks.forEach(function (task) {
+                let date = task.taskDeadline.getDate();
+                if (date < 10)
+                    date = '0' + date;
+                let month = task.taskDeadline.getMonth()+1;
+                if (month < 10)
+                    month = '0' + month;
+                let year = task.taskDeadline.getFullYear();
+
+                task.date = '' + date + '.' + month + '.' + year;
+                task.day = '' + date;
+                task.month = '' + month;
+                task.year = '' + year;
+            });
 
             res.render('project/details', project)
         });

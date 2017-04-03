@@ -8,7 +8,7 @@ const Customer = mongoose.model('Customer');
 
 module.exports = {
     mainGet: (req, res) => {
-        Project.find({}).sort('projectDueDate').populate('projectCustomer').then(projects => {
+        Project.find({}).sort('projectDueDate').populate('projectCustomer').populate('projectTeam').then(projects => {
 
             /*Format projectDueDate property of project and add another property 'date' in format (dd.mm.yyyy)*/
 
