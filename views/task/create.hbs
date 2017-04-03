@@ -1,24 +1,10 @@
 <script>
+
+
     let tasks = [];
+    let totalWeight = 0;
+
     function addToTable() {
-
-        /* Inserts a new row to the table with tasks*/
-        var table = document.getElementById("tasks");
-        var row = table.insertRow();
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-        var cell4 = row.insertCell(3);
-        var cell5 = row.insertCell(4);
-        var cell6 = row.insertCell(5);
-        cell1.innerHTML = document.getElementsByName("taskProject")[0].value;
-        cell2.innerHTML = document.getElementsByName("taskTeam")[0].value;
-        cell3.innerHTML = document.getElementsByName("taskName")[0].value;
-        cell4.innerHTML = document.getElementsByName("taskDescription")[0].value;
-        cell5.innerHTML = document.getElementsByName("taskDeadline")[0].value;
-        cell6.innerHTML = document.getElementsByName("taskWeight")[0].value;
-
-        /* Adds the current task to the array */
         let task = {
             taskName: document.getElementsByName("taskName")[0].value,
             taskDescription: document.getElementsByName("taskDescription")[0].value,
@@ -28,7 +14,63 @@
             taskWeight: document.getElementsByName("taskWeight")[0].value,
         };
 
-        tasks.push(task);
+        if(Number(task.taskWeight) < 0 || Number(task.taskWeight)>100) {
+            alert("TaskWeight cannot be negative or bigger than 100");
+
+            $("#taskWeight").val('').focus();
+        }
+
+        else {
+            totalWeight += Number(task.taskWeight);
+            if (totalWeight > 100) {
+                totalWeight -= Number(task.taskWeight);
+
+                alert("Total weight cannot be bigger than 100");
+
+                $("#taskWeight").val('').focus();
+            }
+
+            else {
+                let isTaskNameDuplicate = false;
+
+                if (tasks.length > 0) {
+                    tasks.forEach(function (singleTask) {
+
+                        if(singleTask.taskName == task.taskName) {
+                            isTaskNameDuplicate = true;
+                        }
+                    })
+                }
+
+                if (isTaskNameDuplicate) {
+                    totalWeight -= Number(task.taskWeight);
+
+                    alert("Please enter different task name!");
+
+                    $("#taskName").val('').focus();
+
+                } else {
+                    /* Inserts a new row to the table with tasks*/
+                    var table = document.getElementById("tasks");
+                    var row = table.insertRow();
+                    var cell1 = row.insertCell(0);
+                    var cell2 = row.insertCell(1);
+                    var cell3 = row.insertCell(2);
+                    var cell4 = row.insertCell(3);
+                    var cell5 = row.insertCell(4);
+                    var cell6 = row.insertCell(5);
+                    cell1.innerHTML = document.getElementsByName("taskProject")[0].value;
+                    cell2.innerHTML = document.getElementsByName("taskTeam")[0].value;
+                    cell3.innerHTML = document.getElementsByName("taskName")[0].value;
+                    cell4.innerHTML = document.getElementsByName("taskDescription")[0].value;
+                    cell5.innerHTML = document.getElementsByName("taskDeadline")[0].value;
+                    cell6.innerHTML = document.getElementsByName("taskWeight")[0].value;
+
+                    tasks.push(task);
+                    $("#totalWeight").text('' + totalWeight + '%');
+                }
+            }
+        }
     }
 
     /* Sends an array with tasks as a post request to /task/create and tasks are created*/
@@ -48,7 +90,9 @@
             });
         })
 
-    };
+        window.location.replace('/userViews/user')
+
+    }
 
 
 
@@ -152,8 +196,17 @@
                     <td id="weight">{{this.task.taskWeight}}</td>
                 </tr>
                 {{/each}}
-
             </table>
+<!--            <table class="col-lg-12 pull-right">
+                <tr >
+                    <td id=""></td>
+                    <td id=""></td>
+                    <td id=""></td>
+                    <td id=""></td>
+                    <td id="">Total Weight:</td>
+                    <td id="totalWeight"></td>
+                </tr>
+            </table>-->
         </div>
 
         <!--  Tasks array  -->
@@ -170,6 +223,7 @@
             <div class="col-sm-4 col-sm-offset-4">
                 <button type="reset" class="btn btn-default">Cancel</button>
                 <button id="doneButton" type="button" class="btn btn-primary" onclick="sendData()">Done</button>
+                <div class="pull-right"><h4>Total weight:</h4><h4 id="totalWeight"></h4> </div>
             </div>
         </div>
 
