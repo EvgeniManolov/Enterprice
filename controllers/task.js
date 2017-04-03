@@ -14,8 +14,6 @@ module.exports = {
 
         let taskArgs = req.body;
 
-        console.log(taskArgs);
-
             Team.findOne({teamName: taskArgs.taskTeamId}).then(team => {
                 taskArgs.taskTeamId = team.id;
 
