@@ -16,8 +16,7 @@ module.exports = {
         let teamArgs = req.body;
 
 
-        User.findOne({fullName: teamArgs.userID}).then(user =>
-        {
+        User.findOne({fullName: teamArgs.userID}).then(user => {
             teamArgs.userID = user._id;
             Team.create(teamArgs).then(team => {
 
@@ -33,7 +32,19 @@ module.exports = {
                     }
                 })
             });
-    });
+        });
 
-}};
+
+    },
+    editGet: (req,res) =>{
+
+        let id = req.params.id;
+
+        Team.findOne({'_id' : id }).then(team =>{
+            res.render('team/edit',team);
+        });
+    },
+
+
+};
 
