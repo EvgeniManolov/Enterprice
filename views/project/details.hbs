@@ -3,14 +3,11 @@
 
     <!-- Add Content Buttons -->
     <div class="well">
-        <a href="../project/create">
+        <a href="/project/create">
             <button class="btn btn-default btn-sm">New Project</button>
         </a>
-        <a href="../customer/create">
+        <a href="/customer/create">
             <button class="btn btn-default btn-sm">New Customer</button>
-        </a>
-        <a href="../rate/create">
-            <button class="btn btn-default btn-sm">Rates</button>
         </a>
     </div>
 
@@ -21,7 +18,7 @@
             {{this.month}}.{{this.year}}
         </div>
         <div class="col-lg-1">
-            {{this.projectTeam}}
+            {{this.projectTeam.teamName}}
         </div>
     </div>
 
@@ -32,7 +29,7 @@
         <div class="">
             <h3>{{this.projectName}}</h3>
             <p>
-                {{this.projectCustomer}}  |  {{this.date}}
+                {{this.projectCustomer.customerName}}  |  {{this.date}}
             </p>
         </div>
 
@@ -103,50 +100,33 @@
 
                 <!-- Table Head -->
                 <tr>
-                    <th>Project name/ Customer</th>
-                    <th>Progress</th>
-                    <th>Team</th>
-                    <th>Due date</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Deadline</th>
+                    <th>Status</th>
                     <th>Details</th>
                 </tr>
 
                 <!-- Table Data -->
-                {{#each projects}}
-                    {{#unless this.projectActive}}
+                {{#each projectTasks}}
                         <tr>
-                            <!-- Project Name -->
-                            <td class="" id="projectName">
-                                <h4>{{this.projectName}}</h4>
-                                <h6>{{this.projectCustomer.customerName}}</h6>
-                            </td>
+                            <!-- Task Name -->
+                            <td class="" id="taskName"><h6>{{this.taskName}}</h6></td>
 
-                            <!-- Project Progress -->
-                            <td class="" id="projectProgress">{{this.projectProgress}}%
-                                <div class="progress">
-                                    <div class="progress-bar"
-                                         role="progressbar"
-                                         aria-valuenow=""
-                                         aria-valuemin="0"
-                                         aria-valuemax="100"
-                                         style="width: 25%;">
-                                    </div>
-                                </div>
-                            </td>
+                            <!-- Task Description -->
+                            <td class="" id="taskDescription">{{this.taskDescription}}</td>
 
-                            <!-- Project Team -->
-                            <td class="" id="projectTeam">{{this.projectTeam}}</td>
+                            <!-- Task Deadline -->
+                            <td class="" id="taskDeadline">{{this.date}}</td>
 
-                            <!-- Project Due date -->
-                            <td class="" id="projectDueDate">
-                                <span class="date"><time datetime="">{{this.date}}</time></span>
-                            </td>
+                            <!-- Task Status -->
+                            <td class="" id="taskActive">{{this.taskActive}}</td>
 
                             <!-- Details Button -->
                             <td>
                                 <a href="/project/details/{{this.id}}"><button class="btn btn-primary">More</button></a>
                             </td>
                         </tr>
-                    {{/unless}}
                 {{/each}}
             </table>
         </div>

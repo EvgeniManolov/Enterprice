@@ -1,12 +1,13 @@
 
 <!-- Filter Scripts -->
 <script>
-    function myFunction() {
+    function myFunction(projectType, inputType) {
+
         // Declare variables
         var input, filter, table, tr, td, i;
-        input = document.getElementById("myInput");
+        input = document.getElementById(inputType);
         filter = input.value.toUpperCase();
-        table = document.getElementById("activeProjectsTable");
+        table = document.getElementById(projectType);
         tr = table.getElementsByTagName("tr");
 
         // Loop through all table rows, and hide those who don't match the search query
@@ -21,13 +22,12 @@
             }
         }
     }
-</script>
 
-<!-- Popover Script -->
-<script>
+    <!-- Popover Script -->
     $(document).ready(function(){
         $('[data-toggle="popover"]').popover();
     });
+
 </script>
 
 <!-- Javascript to enable link to tab -->
@@ -47,20 +47,20 @@
 <div class="container body-content">
 
     <!-- Add Content Buttons -->
+
+
+<!-- Add Content Buttons -->
+<div class="container">
     <div class="well">
-        <a href="../project/create">
+        <a href="/project/create">
             <button class="btn btn-default btn-sm">New Project</button>
         </a>
 
-        <a href="../customer/create">
+        <a href="/customer/create">
             <button class="btn btn-default btn-sm">New Customer</button>
         </a>
 
-        <a href="../rate/create">
-            <button class="btn btn-default btn-sm">Rates</button>
-        </a>
-
-        <a href="../team/create">
+        <a href="/team/create">
             <button class="btn btn-default btn-sm">Create Team</button>
         </a>
     </div>
@@ -93,8 +93,8 @@
 
                 <!-- Filters and Stuff -->
                 <div class="filters-container">
-                    <label class="text-uppercase sr-only" for="myInput">Filter Projects:</label>
-                    <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search project / customer.." >
+                    <label class="text-uppercase sr-only" for="myInputActive"></label>
+                    <input class="form-control" type="text" id="myInputActive" onkeyup="myFunction('activeProjectsTable', 'myInputActive')" placeholder="Search project / customer.." >
                 </div>
 
                 <!-- Table Active Projects -->
@@ -193,7 +193,7 @@
                                 </td>
 
                                 <!-- Project Team -->
-                                <td class="" id="projectTeam">{{this.projectTeam}}</td>
+                                <td class="" id="projectTeam">{{this.projectTeam.teamName}}</td>
 
                                 <!-- Project Due date -->
                                 <td class="" id="projectDueDate">

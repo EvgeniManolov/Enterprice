@@ -3,7 +3,6 @@ const homeController = require('./../controllers/home');
 const projectController = require('./../controllers/project');
 const userViewsController = require('./../controllers/userViews');
 const customerController = require('./../controllers/customer');
-const rateController = require('./../controllers/rate');
 const teamController = require('./../controllers/team');
 const taskController = require('./../controllers/task');
 const profileController = require('./../controllers/profile');
@@ -28,9 +27,6 @@ module.exports = (app) => {
 
     app.get('/customer/create', customerController.customerCreateGet);
     app.post('/customer/create', customerController.customerCreatePost);
-
-    app.get('/rate/create', rateController.rateCreateGet);
-	app.post('/rate/create', rateController.rateCreatePost);
 
     app.get('/team/create', teamController.teamCreateGet);
     app.post('/team/create', teamController.teamCreatePost);
