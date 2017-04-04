@@ -15,7 +15,7 @@ let projectSchema = mongoose.Schema ({
     projectTeam: {type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Team'},
     projectDueDate: {type: Date, required: true},
     projectActive: {type: Boolean, default: true},
-    projectTasks: {type: [mongoose.Schema.Types.ObjectId], default: [], ref: 'Task'}
+    projectTasks: [{type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Task'}]
 });
 
 const Project = mongoose.model('Project', projectSchema);

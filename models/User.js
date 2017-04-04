@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
 const encryption = require('./../utilities/encryption');
 
+var workPerProject = {
+    Project: mongoose.Schema.Types.ObjectId,
+    Hours: Number, // total spent hours per project
+    Amount: Number, //hours per rate
+};
+
 let userSchema = mongoose.Schema(
     {
         email: {type: String, required: true, unique: true},
@@ -10,8 +16,9 @@ let userSchema = mongoose.Schema(
         country: {type: String, default: ''},
         address: {type: String, default: ''},
         salt: {type: String, required: true},
-        rate: {type: mongoose.Schema.Types.ObjectId, default: null, ref: 'Rate'},
-        team: {type: [mongoose.Schema.Types.ObjectId], default:[], ref: 'Team'}
+        rate: {type: Number, default: 0},
+        team: {type: [mongoose.Schema.Types.ObjectId], default:[], ref: 'Team'},
+        workedHours: {type: [workPerProject], default: []} //array [project: spent hours]
     }
 );
 
