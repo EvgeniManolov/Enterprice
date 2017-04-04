@@ -20,7 +20,6 @@ module.exports = {
 		{
 			rateArgs.userID = user._id;
 			Rate.create(rateArgs).then(rate => {
-				
 				user.rate = rate;
 				user.save(err => {
 					if (err) {

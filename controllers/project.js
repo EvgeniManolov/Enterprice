@@ -15,8 +15,6 @@ module.exports = {
                 res.render('project/create', {customers: customers, teams: teams})
             });
         })
-
-
     },
 
     createPost: (req, res) => {
