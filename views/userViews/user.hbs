@@ -63,6 +63,7 @@
         <a href="/team/create">
             <button class="btn btn-default btn-sm">Create Team</button>
         </a>
+
     </div>
 
     <!-- Left Side (Tabs) -->
@@ -131,7 +132,7 @@
                                         </div>
                                     </td>
                                     <!-- Project Team -->
-                                    <td class="" id="projectTeam">{{this.projectTeam}}</td>
+                                    <td class="" id="projectTeam">{{this.projectTeam.teamName}}</td>
                                     <!-- Project Due date -->
                                     <td class="" id="projectDueDate">
                                         <span class="date"><time datetime="">{{this.date}}</time></span>
@@ -153,8 +154,8 @@
 
                 <!-- Filters and Stuff -->
                 <div class="filters-container">
-                    <label class="text-uppercase sr-only" for="myInput">Filter Projects:</label>
-                    <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search project / customer.." >
+                    <label class="text-uppercase sr-only" for="myInputClosed"></label>
+                    <input class="form-control" type="text" id="myInputClosed" onkeyup="myFunction('closedProjectsTable', 'myInputClosed')" placeholder="Search project / customer.." >
                 </div>
 
                 <!-- Table Closed Projects -->

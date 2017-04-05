@@ -16,21 +16,20 @@
 
                 <!-- Select User -->
                 <div class="form-group">
-                    <label class="col-sm-4 control-label" for="projectCustomer">User</label>
+                    <label class="col-sm-4 control-label " for="projectCustomer">User</label>
                     <div class="col-sm-4 ">
                         <div class="row-fluid">
-                            <select class="selectpicker form-control " id="userID" name="userID" required data-live-search="true">
+                            <select class="selectpicker form-control"  id="userID" name="userID"  required data-live-search="true">
                                 <option ></option>
                                 {{#each users}}
                                     <option >
-                                        <div>{{this.fullName}}</div>
+                                        <div >{{this.fullName}}</div>
                                     </option>
                                 {{/each}}
                             </select>
                         </div>
                     </div>
                 </div>
-
 
                 <!-- Submit / Discard -->
                 <div class="form-group">
@@ -39,10 +38,11 @@
                             Cancel
                         </a>
                         <button type="submit" class="btn btn-primary">Submit</button>
+                        <a class="btn btn-success btn-xs" href="/team/edit">Edit &raquo;</a>
                     </div>
                 </div>
-
             </fieldset>
         </form>
     </div>
 </div>
+
