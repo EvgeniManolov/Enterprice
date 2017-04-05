@@ -41,7 +41,7 @@ module.exports = {
         let id = req.params.id;
 
         Team.findOne({'_id' : id }).then(team =>{
-            res.render('team/edit',team);
+            res.render('team/edit', team);
         });
     },
 
