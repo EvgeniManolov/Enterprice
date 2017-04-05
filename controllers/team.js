@@ -20,7 +20,6 @@ module.exports = {
             teamArgs.userID = user._id;
             Team.create(teamArgs).then(team => {
 
-                console.log(team.id);
                 user.team.push(team.id);
                 user.save(err => {
                     if (err) {
