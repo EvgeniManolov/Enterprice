@@ -5,6 +5,8 @@ const userViewsController = require('./../controllers/userViews');
 const customerController = require('./../controllers/customer');
 const teamController = require('./../controllers/team');
 const taskController = require('./../controllers/task');
+const profileController = require('./../controllers/profile');
+const allUsersController = require('./../controllers/allUsers');
 
 module.exports = (app) => {
     app.get('/', homeController.index);
@@ -28,8 +30,14 @@ module.exports = (app) => {
 
     app.get('/team/create', teamController.teamCreateGet);
     app.post('/team/create', teamController.teamCreatePost);
+    app.get('/team/edit/:id', teamController.editGet);
 
     app.post('/task/create', taskController.taskCreatePost);
+	
+	app.get('/userViews/userProfile', profileController.profileGet);
+	
+	app.get('/userViews/allUsers', allUsersController.usersGet);
+
 
 };
 

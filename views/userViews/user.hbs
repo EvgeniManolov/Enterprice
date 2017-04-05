@@ -30,6 +30,23 @@
 
 </script>
 
+<!-- Javascript to enable link to tab -->
+<script>
+    // Javascript to enable link to tab
+    var url = document.location.toString();
+    if (url.match('/userViews/user#closedProjects')) {
+        $('.nav-tabs a[href="/userViews/user#closedProjects' + url.split('/userViews/user#closedProjects')[1] + '-tab"]').tab('show');
+    } //add a suffix
+
+    // Change hash for page-reload
+    $('.nav-tabs a').on('shown.bs.tab', function (e) {
+        window.location.hash = e.target.hash;
+    })
+</script>
+
+<div class="container body-content">
+
+    <!-- Add Content Buttons -->
 
 
 <!-- Add Content Buttons -->
@@ -46,34 +63,28 @@
         <a href="/team/create">
             <button class="btn btn-default btn-sm">Create Team</button>
         </a>
+
     </div>
-</div>
 
-<!-- Project Tabs  -->
-<div class="container">
-
-    <!-- Left (tabs) -->
+    <!-- Left Side (Tabs) -->
     <div class="col-lg-2">
         <ul class="nav nav-tabs">
             <li class="active">
                 <a href="#activeProject" aria-controls="activeProject" role="tab" data-toggle="tab"><h2>1</h2>
-                    <br>
                     <p>Active Projects</p>
                 </a>
             </li>
 
             <li>
                 <a href="#closedProjects" aria-controls="closedProjects" role="tab" data-toggle="tab"><h2>2</h2>
-                    <br>
                     <p>Closed Projects</p>
                 </a>
             </li>
         </ul>
     </div>
 
-    <!-- Right (Tab Views) -->
+    <!-- Right Side(Tab Views) -->
     <div class="col-lg-10">
-
         <div class="tab-content">
 
             <!-- Active Projects Tab -->
@@ -90,63 +101,61 @@
                 <!-- Table Active Projects -->
                 <table class="table" id="activeProjectsTable">
 
-                    <!-- Table Head -->
-                    <tr>
-                        <th>Project name/ Customer</th>
-                        <th>Progress</th>
-                        <th>Team</th>
-                        <th>Due date</th>
-                        <th>Details</th>
-                    </tr>
+                        <!-- Table Head -->
+                        <tr>
+                            <th>Project name/ Customer</th>
+                            <th>Progress</th>
+                            <th>Team</th>
+                            <th>Due date</th>
+                            <th>Details</th>
+                        </tr>
 
-                    <!-- Table Data -->
-                    {{#each projects}}
-                        {{#if this.projectActive}}
-                            <tr>
-                                <!-- Project Name -->
-                                <td class="" id="projectName">
-                                    <h4>{{this.projectName}}</h4>
-                                    <h6>{{this.projectCustomer.customerName}}</h6>
-                                </td>
-                                <!-- Project Progress -->
-                                <td class="" id="projectProgress">{{this.projectProgress}}%
-                                    <div class="progress">
-                                        <div class="progress-bar"
-                                             role="progressbar"
-                                             aria-valuenow=""
-                                             aria-valuemin="0"
-                                             aria-valuemax="100"
-                                             style="width: 25%;">
+                        <!-- Table Data -->
+                        {{#each projects}}
+                            {{#if this.projectActive}}
+                                <tr>
+                                    <!-- Project Name -->
+                                    <td class="" id="projectName">
+                                        <h4>{{this.projectName}}</h4>
+                                        <h6>{{this.projectCustomer.customerName}}</h6>
+                                    </td>
+                                    <!-- Project Progress -->
+                                    <td class="" id="projectProgress">{{this.projectProgress}}%
+                                        <div class="progress">
+                                            <div class="progress-bar"
+                                                 role="progressbar"
+                                                 aria-valuenow=""
+                                                 aria-valuemin="0"
+                                                 aria-valuemax="100"
+                                                 style="width: 25%;">
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <!-- Project Team -->
-                                <td class="" id="projectTeam">{{this.projectTeam.teamName}}</td>
-                                <!-- Project Due date -->
-                                <td class="" id="projectDueDate">
-                                    <span class="date"><time datetime="">{{this.date}}</time></span>
-                                </td>
-                                <!-- Details Button -->
-                                <td>
-                                    <a href="/project/details/{{this.id}}"><button class="btn btn-primary">More</button></a>
-                                </td></tr>
-                        {{/if}}
+                                    </td>
+                                    <!-- Project Team -->
+                                    <td class="" id="projectTeam">{{this.projectTeam}}</td>
+                                    <!-- Project Due date -->
+                                    <td class="" id="projectDueDate">
+                                        <span class="date"><time datetime="">{{this.date}}</time></span>
+                                    </td>
+                                    <!-- Details Button -->
+                                    <td>
+                                        <a href="/project/details/{{this.id}}"><button class="btn btn-primary">More</button></a>
+                                    </td></tr>
+                            {{/if}}
 
-                    {{/each}}
-                </table>
-
-
+                        {{/each}}
+                    </table>
             </div>
 
             <!-- Closed Projects Tab -->
             <div role="tabpanel" class="tab-pane" id="closedProjects">
 
-                <h1 class="">Closed projects</h1>
+                <h1>Closed Projects</h1>
 
                 <!-- Filters and Stuff -->
                 <div class="filters-container">
-                    <label class="text-uppercase sr-only" for="myInputClosed"></label>
-                    <input class="form-control" type="text" id="myInputClosed" onkeyup="myFunction('closedProjectsTable', 'myInputClosed')" placeholder="Search project / customer.." >
+                    <label class="text-uppercase sr-only" for="myInput">Filter Projects:</label>
+                    <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search project / customer.." >
                 </div>
 
                 <!-- Table Closed Projects -->
@@ -155,9 +164,9 @@
                     <!-- Table Head -->
                     <tr>
                         <th>Project name/ Customer</th>
-                        <th>Progress</th>
+                        <th>Status</th>
                         <th>Team</th>
-                        <th>Due date</th>
+                        <th>Date Closed</th>
                         <th>Details</th>
                     </tr>
 
@@ -197,25 +206,15 @@
                                     <a href="/project/details/{{this.id}}"><button class="btn btn-primary">More</button></a>
                                 </td>
                             </tr>
-                        {{/unless}}
-                    {{/each}}
-                </table>
+                            {{/unless}}
+                        {{/each}}
+                    </table>
 
             </div>
-
         </div>
     </div>
-
 </div>
 
 
-
-
-
-
-
-
-
-</div>
 
 
