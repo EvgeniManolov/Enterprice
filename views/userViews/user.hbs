@@ -30,28 +30,12 @@
 
 </script>
 
-<!-- Javascript to enable link to tab -->
-<script>
-    // Javascript to enable link to tab
-    var url = document.location.toString();
-    if (url.match('/userViews/user#closedProjects')) {
-        $('.nav-tabs a[href="/userViews/user#closedProjects' + url.split('/userViews/user#closedProjects')[1] + '-tab"]').tab('show');
-    } //add a suffix
-
-    // Change hash for page-reload
-    $('.nav-tabs a').on('shown.bs.tab', function (e) {
-        window.location.hash = e.target.hash;
-    })
-</script>
 
 <div class="container body-content">
 
     <!-- Add Content Buttons -->
-
-
-<!-- Add Content Buttons -->
-<div class="container">
     <div class="well">
+
         <a href="/project/create">
             <button class="btn btn-default btn-sm">New Project</button>
         </a>
@@ -213,7 +197,3 @@
         </div>
     </div>
 </div>
-
-
-
-
