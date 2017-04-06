@@ -20,7 +20,6 @@ module.exports = {
             teamArgs.userID = user._id;
             Team.create(teamArgs).then(team => {
 
-                console.log(team.id);
                 user.team.push(team.id);
                 user.save(err => {
                     if (err) {
@@ -41,7 +40,7 @@ module.exports = {
         let id = req.params.id;
 
         Team.findOne({'_id' : id }).then(team =>{
-            res.render('team/edit',team);
+            res.render('team/edit', team);
         });
     },
 

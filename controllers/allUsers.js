@@ -8,4 +8,4 @@ module.exports = {
 	usersGet: (req, res) => {
 		res.render('userViews/allUsers');
 	}
-}
+};
