@@ -5,6 +5,8 @@
 const mongoose = require('mongoose');
 const Project = mongoose.model('Project');
 const Customer = mongoose.model('Customer');
+const Role = require('mongoose').model('Role');
+const User = require('mongoose').model('User');
 
 module.exports = {
     mainGet: (req, res) => {
@@ -25,7 +27,29 @@ module.exports = {
                 project.date = '' + date + '.' + month + '.' + year;
             });
 
+            let user = req.user;
+
+            let isAdmin = user.isAdmin(user.roles);
+
+            console.log(isAdmin);
+
             res.render('userViews/user', {projects: projects});
+
+/*            Role.findOne({name: 'Admin'}).then(role => {
+
+                console.log(role._id);
+                if(req.user.roles.indexOf(role._id) == -1) {
+                    isAdmin = false;
+
+                    console.log(isAdmin);
+
+                }
+
+                console.log(isAdmin);
+                res.render('userViews/user', {projects: projects, isAdmin: isAdmin});
+            })*/
+
+
         })
     }
 };

@@ -1,14 +1,18 @@
 <div class="container body-content">
-    <div class="col-lg-3 well">
-        <h1>User 1</h1>
-    </div>
-    <div class="col-lg-3 well">
-        <h1>User 2</h1>
-    </div>
-    <div class="col-lg-3 well">
-        <h1>User 3</h1>
-    </div>
-    <div class="col-lg-3 well">
-        <h1>User 4</h1>
+    <div class="row">
+    {{#each users}}
+        <div class="col-lg-3 well">
+            <h1>{{this.fullName}}</h1>
+        </div>
+        <div class="col-lg-3 well">
+            <h1>User 2</h1>
+        </div>
+        <div class="col-lg-3 well">
+            <h1>User 3</h1>
+        </div>
+        <div class="col-lg-3 well">
+            <h1>User 4</h1>
+        </div>
+    {{/each}}
     </div>
 </div>
