@@ -22,11 +22,15 @@ module.exports = {
                 let salt = encryption.generateSalt();
                 let passwordHash = encryption.hashPassword(registerArgs.password, salt);
 
+
                 let userObject = {
                     email: registerArgs.email,
                     passwordHash: passwordHash,
                     fullName: registerArgs.fullName,
-                    salt: salt
+                    salt: salt,
+                    phone: registerArgs.phone,
+                    country: registerArgs.country,
+                    address: registerArgs.address
                 };
 
                 let roles = [];
