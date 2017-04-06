@@ -29,7 +29,7 @@ module.exports = {
 
                 teamArgs.userID.push( user._id );
 
-                if (count==numberOfUsers){
+                if (count == numberOfUsers){
                     Team.create(teamArgs).then(team => {
 
                         teamArgs.userID.forEach(userID => {
@@ -38,12 +38,10 @@ module.exports = {
 
                                 user.team.push(team.id);
 
-                                user.save(
-
-                                )
+                                user.save()
                             })
                         })
-                })};
+                })}
                 count++;
         })});
         res.redirect('/userViews/user')
