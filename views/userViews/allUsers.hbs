@@ -1,17 +1,28 @@
 <div class="container body-content">
     <div class="row">
+        <a href="/userViews/rates">
+            <btn class="btn btn-primary">Manage Rates</btn>
+        </a>
+    </div>
+    <div class="row">
     {{#each users}}
-        <div class="col-lg-3 well">
-            <h1>{{this.fullName}}</h1>
-        </div>
-        <div class="col-lg-3 well">
-            <h1>User 2</h1>
-        </div>
-        <div class="col-lg-3 well">
-            <h1>User 3</h1>
-        </div>
-        <div class="col-lg-3 well">
-            <h1>User 4</h1>
+        <div class="col-lg-3">
+            <div class="profile-well">
+                <img class="img img-circle center-block" src="/images/lora.jpg" width="150" height="150">
+
+                <h5 class="text-center">{{this.fullName}}</h5>
+
+                <div class="">
+
+                    <p>E-mail: {{this.email}}</p>
+                    <p>Team: {{this.team}}</p>
+                    <p>Phone: {{this.phone}}</p>
+                </div>
+
+
+
+                <div class="btn btn-default center-block">View Profile</div>
+            </div>
         </div>
     {{/each}}
     </div>

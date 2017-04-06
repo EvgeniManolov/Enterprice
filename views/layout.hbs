@@ -20,7 +20,7 @@
     {{#if user}}
         <header>
             <!--  Navigation line  -->
-            <div class="navbar navbar-default text-uppercase">
+            <nav class="navbar navbar-default text-uppercase">
                 <div class="container">
 
                     <!--  Navbar Collapse  -->
@@ -43,27 +43,29 @@
                     <!--  Navigation  -->
                     <ul class="nav navbar-nav pull-right">
                         <li class="dropdown active">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="" id="">Projects<span class="caret"></span></a>
+                                <a class="dropdown-toggle active" data-toggle="dropdown" href="/userViews/user" id="projectsView">
+                                    Projects <span class="caret"></span>
+                                </a>
                                 <ul class="dropdown-menu">
-                                    <li><a id="dLabelActive" href="/userViews/user">Active Projects</a></li>
+                                    <li><a id="dLabelActive" href="/userViews/user">Projects</a></li>
                                     <li role="separator" class="divider"></li>
-                                    <li><a id="dLabelClosed" href="/userViews/user#closedProjects">Closed Projects</a></li>
+                                    <li><a id="dLabelClosed" href="/userViews/user#closedProjects">Statistics</a></li>
                                 </ul>
                             </li>
                         <!--<li class="active"><a href="/userViews/user">Projects</a></li>-->
-                        <li><a href="#">Teams</a></li>
-                        <li><a href="#">Clients</a></li>
-                        <li><a href="/userViews/allUsers">Users</a></li>
+                        <li id="teamsView"><a href="#">Teams</a></li>
+                        <li id="clientsView"><a href="#">Clients</a></li>
+                        <li id="usersView"><a href="/userViews/allUsers">Users</a></li>
                     </ul>
                 </div>
-                </div>
+                </nav>
             </div>
         </header>
     {{/if}}
 
     {{#if error }}
-        <div class="home-login-container center-content">
-            <h2>{{error}}</h2>
+        <div class="text-center">
+            <h4>{{error}}</h4>
         </div>
     {{/if}}
 

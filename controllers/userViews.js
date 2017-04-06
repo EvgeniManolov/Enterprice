@@ -5,6 +5,7 @@
 const mongoose = require('mongoose');
 const Project = mongoose.model('Project');
 const Customer = mongoose.model('Customer');
+const User = mongoose.model('User');
 
 module.exports = {
     mainGet: (req, res) => {
@@ -27,5 +28,15 @@ module.exports = {
 
             res.render('userViews/user', {projects: projects});
         })
+    },
+    
+    ratesGet: (req, res) => {
+    
+		User.find({}).then(users => {
+        
+            /*TO DO: Error message*/
+		
+			res.render('userViews/rates', {users: users});
+		})
     }
 };
