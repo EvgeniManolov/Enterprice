@@ -14,26 +14,37 @@ module.exports = {
 
     teamCreatePost: ( req, res ) => {
         let teamArgs = req.body;
+        let numberOfUsers = 0;
 
-
-        User.findOne({fullName: teamArgs.userID}).then(user => {
-            teamArgs.userID = user._id;
-            Team.create(teamArgs).then(team => {
-
-                user.team.push(team.id);
-                user.save(err => {
-                    if (err) {
-                        res.redirect('/userViews/user', {error: err.message});
-                    }
-
-                    else {
-                        res.redirect('/userViews/user')
-                    }
-                })
-            });
+        teamArgs.userName.forEach(user =>{
+            numberOfUsers++;
         });
 
+        teamArgs.userID = [];
+        let count = 1;
 
+        teamArgs.userName.forEach(userName =>{
+
+            User.findOne({fullName: userName}).then(user => {
+
+                teamArgs.userID.push( user._id );
+
+                if (count == numberOfUsers){
+                    Team.create(teamArgs).then(team => {
+
+                        teamArgs.userID.forEach(userID => {
+
+                            User.findOne ({_id: userID}).then(user =>{
+
+                                user.team.push(team.id);
+
+                                user.save()
+                            })
+                        })
+                })}
+                count++;
+        })});
+        res.redirect('/userViews/user')
     },
     editGet: (req,res) =>{
 
@@ -44,7 +55,7 @@ module.exports = {
         });
     },
 
-    //TO DO POST GET...
+    //TO DO POST ..
 
 
 

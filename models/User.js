@@ -30,8 +30,23 @@ userSchema.method ({
        let isSamePasswordHash = inputPasswordHash === this.passwordHash;
 
        return isSamePasswordHash;
-   }
+   },
+
+    isAdmin: function (roles) {
+        Role.findOne({name: 'Admin'}).then(role => {
+
+            let isAdmin = true;
+
+            if(roles.indexOf(role._id) == -1) {
+                isAdmin = false; }
+
+            return isAdmin;
+        })
+    }
+
 });
+
+
 
 const User = mongoose.model('User', userSchema);
 
@@ -44,7 +59,7 @@ module.exports.seedAdmin = () => {
         if (!admin) {
             Role.findOne({name: 'Admin'}).then(role => {
                 let salt = encryption.generateSalt();
-                let passwordHash = encryption.hashPassword('admin123', salt);
+                let passwordHash = encryption.hashPassword('123', salt);
 
                 let roles = [];
                 roles.push(role.id);

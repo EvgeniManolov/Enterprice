@@ -1,3 +1,16 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+$('#userName').multiselect();
+
+});
+
+</script>
+
 <div class="container body-content span=8 offset=2">
     <div class="well">
         <form class="form-horizontal" method="post" action="/team/create">
@@ -19,7 +32,7 @@
                     <label class="col-sm-4 control-label " for="projectCustomer">User</label>
                     <div class="col-sm-4 ">
                         <div class="row-fluid">
-                            <select class="selectpicker form-control"  id="userID" name="userID"  required data-live-search="true">
+                            <select class="selectpicker form-control" multiple="multiple" id="userName" name="userName"  required data-live-search="true">
                                 <option ></option>
                                 {{#each users}}
                                     <option >
