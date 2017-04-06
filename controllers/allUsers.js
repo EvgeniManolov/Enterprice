@@ -5,7 +5,15 @@
 const User = require('mongoose').model('User');
 
 module.exports = {
+	
 	usersGet: (req, res) => {
-		res.render('userViews/allUsers');
+		
+		User.find({}).then(users => {
+			
+			/*TO DO: Error message*/
+			
+			res.render('userViews/allUsers', {users: users});
+			
+		})
 	}
 };

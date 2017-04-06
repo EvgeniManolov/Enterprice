@@ -3,27 +3,42 @@
 
     <!-- Add Content Buttons -->
     <div class="well">
+
         <a href="/project/create">
             <button class="btn btn-default btn-sm">New Project</button>
         </a>
+
         <a href="/customer/create">
             <button class="btn btn-default btn-sm">New Customer</button>
         </a>
+
+        <a href="/team/create">
+            <button class="btn btn-default btn-sm">Create Team</button>
+        </a>
+
     </div>
 
     <!-- Left Section -->
-    <div class="col-lg-2 well section">
-        <div class="col-lg-1">
-            <span class="label label-danger">{{this.day}}</span>
-            {{this.month}}.{{this.year}}
+    <row>
+        <div class="col-lg-3 well section">
+            <div class="col-lg-6">
+                <h4><span class="label label-danger">{{this.day}}.{{this.month}}</span></h4>
+                {{this.year}}
+            </div>
+            <div class="col-lg-6">
+                <h5>Team:</h5>
+                {{this.projectTeam.teamName}}
+            </div>
         </div>
-        <div class="col-lg-1">
-            {{this.projectTeam.teamName}}
-        </div>
-    </div>
+    </row>
+
+    <row>
+        <!--TODO: circle view-->
+    </row>
+
 
     <!-- Right Section -->
-    <div class="col-lg-10 section">
+    <div class="col-lg-9 section">
 
         <!-- Project Name -->
         <div class="">
@@ -90,11 +105,11 @@
                 Rather number can and set praise. Distrusts an it contented perceived attending oh.
                 Thoroughly estimating introduced stimulated why but motionless.
             </p>
-            <div class="btn btn-xs btn-default">Show More</div>
+            <div class="btn btn-xs btn-default center">Show More</div>
         </div>
 
         <div class="table">
-            <h5>Tasks</h5>
+            <h5>Project Tasks</h5>
             <!-- Table Closed Projects -->
             <table class="table" id="activeProjectsTable">
 

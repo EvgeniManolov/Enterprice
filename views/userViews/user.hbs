@@ -74,14 +74,14 @@
         <div class="tab-content">
 
             <!-- Active Projects Tab -->
-            <div role="tabpanel" class="tab-pane active" id="activeProject">
+            <div role="tabpanel" class="tab-pane fade in active" id="activeProject">
 
                 <h1>Active Projects</h1>
 
                 <!-- Filters and Stuff -->
                 <div class="filters-container">
                     <label class="text-uppercase sr-only" for="myInputActive"></label>
-                    <input class="form-control" type="text" id="myInputActive" onkeyup="myFunction('activeProjectsTable', 'myInputActive')" placeholder="Search project / customer.." >
+                    <input class="form-control" type="text" id="myInputActive" onkeyup="myFunction('activeProjectsTable', 'myInputActive')" placeholder="Search" >
                 </div>
 
                 <!-- Table Active Projects -->
@@ -129,15 +129,16 @@
                                     <!-- Details Button -->
                                     <td>
                                         <a href="/project/details/{{this.id}}"><button class="btn btn-primary">More</button></a>
-                                    </td></tr>
+                                    </td>
+                                </tr>
                             {{/if}}
 
                         {{/each}}
-                    </table>
+                </table>
             </div>
 
             <!-- Closed Projects Tab -->
-            <div role="tabpanel" class="tab-pane" id="closedProjects">
+            <div role="tabpanel" class="tab-pane fade" id="closedProjects">
 
                 <h1>Closed Projects</h1>
 

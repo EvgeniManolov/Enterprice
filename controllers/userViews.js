@@ -40,5 +40,15 @@ module.exports = {
 
 
         })
+    },
+    
+    ratesGet: (req, res) => {
+    
+		User.find({}).then(users => {
+        
+            /*TO DO: Error message*/
+		
+			res.render('userViews/rates', {users: users});
+		})
     }
 };
