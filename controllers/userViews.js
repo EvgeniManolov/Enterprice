@@ -28,26 +28,15 @@ module.exports = {
             });
 
             let user = req.user;
+            let isAdmin = true;
 
-            let isAdmin = user.isAdmin(user.roles);
+            Role.findOne({name: 'Admin'}).then(role => {
 
-            console.log(isAdmin);
-
-            res.render('userViews/user', {projects: projects});
-
-/*            Role.findOne({name: 'Admin'}).then(role => {
-
-                console.log(role._id);
-                if(req.user.roles.indexOf(role._id) == -1) {
+                if(user.roles.indexOf(role._id) == -1) {
                     isAdmin = false;
-
-                    console.log(isAdmin);
-
                 }
-
-                console.log(isAdmin);
                 res.render('userViews/user', {projects: projects, isAdmin: isAdmin});
-            })*/
+            })
 
 
         })
