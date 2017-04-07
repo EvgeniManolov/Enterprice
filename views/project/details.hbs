@@ -47,7 +47,7 @@
             <!--  Commits  -->
             <div class="">
                 <span class="glyphicon glyphicon-pencil"></span>
-                <a href="#">Commits <span class="badge">42</span></a>
+                <a href="#">Commits <span class="badge">{{project.commits}}</span></a>
             </div>
 
         </div>
@@ -74,7 +74,7 @@
                 </div>
 
                 <div class="info-squares">
-                    Hours spent
+                    Hours provision
                     <h5>{{project.projectWorkingHours}}</h5>
                 </div>
 
@@ -86,15 +86,15 @@
                              aria-valuenow=""
                              aria-valuemin="0"
                              aria-valuemax="100"
-                             style="width: 22%">
+                             style="width: {{project.projectProgress}}%">
                         </div>
                     </div>
-                    25%
+                    {{project.projectProgress}}%
                 </div>
 
                 <div class="info-squares">
-                    Hours provision
-                    <h5>{{project.projectPrice}}</h5>
+                    Actual hours
+                    <h5>{{project.actualHours}}</h5>
                 </div>
 
                 <div class="info-squares">
@@ -103,13 +103,13 @@
                 </div>
 
                 <div class="info-squares">
-                    Spent money
-                    <h5>{{project.projectPrice}}</h5>
+                    Labour cost
+                    <h5>{{project.projectLaborCost}}</h5>
                 </div>
 
                 <div class="info-squares red">
-                    Total Price
-                    <h5>{{project.projectPrice}}</h5>
+                    Total Cost
+                    <h5>{{project.totalCost}}</h5>
                 </div>
             </div>
 

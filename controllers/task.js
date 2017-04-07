@@ -84,7 +84,7 @@ module.exports = {
         let currentUser = req.user.id;
         let taskArgs = req.body;
         let comment = taskArgs.comment;
-        let hoursSpent = taskArgs.hoursSpent;
+        let hoursSpent = Number(taskArgs.hoursSpent);
 
         let tempDate = new Date();
 
@@ -107,6 +107,9 @@ module.exports = {
                         comment: comment,
                         date: currentDate
                     };
+                    let totalHours = task.taskActualHours;
+                    totalHours += hoursSpent;
+                    task.taskActualHours = totalHours;
 
                     let laborCost = project.projectLaborCost;
                     laborCost += user.rate * hoursSpent;

@@ -145,6 +145,19 @@ module.exports = {
                 }
             });
 
+
+            let commits = 0;
+            let actualHours = 0;
+
+            project.projectTasks.forEach(function (task) {
+                commits += task.taskComment.length;
+                actualHours += task.taskActualHours;
+            })
+
+            project.commits = commits;
+            project.actualHours = actualHours;
+            project.totalCost = project.projectLaborCost + project.projectExpenses;
+
             let user = req.user;
             let isAdmin = true;
 
