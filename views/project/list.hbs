@@ -1,4 +1,5 @@
 
+
 <!-- Filter Scripts -->
 <script>
     function myFunction(projectType, inputType) {
@@ -31,39 +32,39 @@
 </script>
 
 <main>
-
-    <div class="container">
-        <!-- Add Content Buttons -->
-        <a href="/project/create">
-            <button class="btn btn-primary btn-sm">New Project</button>
-        </a>
-        <a href="/customer/create">
-            <button class="btn btn-default btn-sm">New Customer</button>
-        </a>
-        <a href="/team/create">
-            <button class="btn btn-default btn-sm">Create Team</button>
-        </a>
-    </div>
+    {{#if isAdmin}}
+        <div class="container">
+            <!-- Add Content Buttons -->
+            <a href="/project/create">
+                <button class="btn btn-primary btn-sm">New Project</button>
+            </a>
+            <a href="/customer/create">
+                <button class="btn btn-default btn-sm">New Customer</button>
+            </a>
+            <a href="/team/create">
+                <button class="btn btn-default btn-sm">Create Team</button>
+            </a>
+        </div>
 
     <div class="container">
         <!-- Tab Names -->
 
-            <ul class="nav nav-tabs nav-justified">
-                <li class="nav-item active">
-                    <a href="#activeProject" aria-controls="activeProject" role="tab" data-toggle="tab">
-                        <p>Active Projects</p>
-                    </a>
-                </li>
+        <ul class="nav nav-tabs nav-justified">
+            <li class="nav-item active">
+                <a href="#activeProject" aria-controls="activeProject" role="tab" data-toggle="tab">
+                    <p>Active Projects</p>
+                </a>
+            </li>
 
-                <li class="nav nav-item">
-                    <a href="#closedProjects" aria-controls="closedProjects" role="tab" data-toggle="tab">
-                        <p>Closed Projects</p>
-                    </a>
-                </li>
-            </ul>
+            <li class="nav nav-item">
+                <a href="#closedProjects" aria-controls="closedProjects" role="tab" data-toggle="tab">
+                    <p>Closed Projects</p>
+                </a>
+            </li>
+        </ul>
 
 
-    <!-- Tab Views -->
+        <!-- Tab Views -->
         <div class="tab-content">
 
             <!-- Active Projects Tab -->
@@ -78,53 +79,53 @@
                 <!-- Table Active Projects -->
                 <table class="table" id="activeProjectsTable">
 
-                        <!-- Table Head -->
-                        <tr>
-                            <th>Project name/ Customer</th>
-                            <th>Progress</th>
-                            <th>Team</th>
-                            <th>Due date</th>
-                            <th>Details</th>
-                        </tr>
+                    <!-- Table Head -->
+                    <tr>
+                        <th>Project name/ Customer</th>
+                        <th>Progress</th>
+                        <th>Team</th>
+                        <th>Due date</th>
+                        <th>Details</th>
+                    </tr>
 
-                        <!-- Table Data -->
-                        {{#each projects}}
-                            {{#if this.projectActive}}
-                                <tr>
-                                    <!-- Project Name -->
-                                    <td class="" id="projectName">
-                                        <h4>{{this.projectName}}</h4>
-                                        <h6>{{this.projectCustomer.customerName}}</h6>
-                                    </td>
-                                    <!-- Project Progress -->
-                                    <td class="" id="projectProgress">{{this.projectProgress}}%
-                                        <div class="progress">
-                                            <div class="progress-bar"
-                                                 role="progressbar"
-                                                 aria-valuenow=""
-                                                 aria-valuemin="0"
-                                                 aria-valuemax="100"
-                                                 style="width: 25%;">
-                                            </div>
+                    <!-- Table Data -->
+                    {{#each projects}}
+                        {{#if this.projectActive}}
+                            <tr>
+                                <!-- Project Name -->
+                                <td class="" id="projectName">
+                                    <h4>{{this.projectName}}</h4>
+                                    <h6>{{this.projectCustomer.customerName}}</h6>
+                                </td>
+                                <!-- Project Progress -->
+                                <td class="" id="projectProgress">{{this.projectProgress}}%
+                                    <div class="progress">
+                                        <div class="progress-bar"
+                                             role="progressbar"
+                                             aria-valuenow=""
+                                             aria-valuemin="0"
+                                             aria-valuemax="100"
+                                             style="width: 25%;">
                                         </div>
-                                    </td>
+                                    </div>
+                                </td>
 
-                                    <!-- Project Team -->
-                                    <td class="" id="projectTeam">{{this.projectTeam.teamName}}</td>
+                                <!-- Project Team -->
+                                <td class="" id="projectTeam">{{this.projectTeam.teamName}}</td>
 
-                                    <!-- Project Due date -->
-                                    <td class="" id="projectDueDate">
-                                        <span class="date"><time datetime="">{{this.date}}</time></span>
-                                    </td>
+                                <!-- Project Due date -->
+                                <td class="" id="projectDueDate">
+                                    <span class="date"><time datetime="">{{this.date}}</time></span>
+                                </td>
 
-                                    <!-- Details Button -->
-                                    <td>
-                                        <a href="/project/details/{{this.id}}"><button class="btn btn-primary">More</button></a>
-                                    </td>
-                                </tr>
-                            {{/if}}
+                                <!-- Details Button -->
+                                <td>
+                                    <a href="/project/details/{{this.id}}"><button class="btn btn-primary">More</button></a>
+                                </td>
+                            </tr>
+                        {{/if}}
 
-                        {{/each}}
+                    {{/each}}
                 </table>
             </div>
 
@@ -134,7 +135,7 @@
                 <!-- Filters and Stuff -->
                 <div class="filters-container">
                     <label class="text-uppercase sr-only" for="myInputClosed"></label>
-                    <input class="form-control" type="text" id="myInputClosed" onkeyup="myFunction('closedProjectsTable', 'myInputClosed')" placeholder="Search project / customer.." >
+                    <input class="form-control" type="text" id="myInputClosed" onkeyup="myFunction('closedProjectsTable', 'myInputClosed')" placeholder="Search" >
                 </div>
 
                 <!-- Table Closed Projects -->
@@ -178,9 +179,9 @@
                                     <a href="/project/details/{{this.id}}"><button class="btn btn-primary">More</button></a>
                                 </td>
                             </tr>
-                            {{/unless}}
-                        {{/each}}
-                    </table>
+                        {{/unless}}
+                    {{/each}}
+                </table>
             </div>
         </div>
     </div>
