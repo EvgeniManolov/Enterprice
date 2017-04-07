@@ -1,8 +1,12 @@
 
+
+
 <div class="container body-content">
 
     <!-- Add Content Buttons -->
+    {{#if isAdmin}}
     <div class="well">
+
 
         <a href="/project/create">
             <button class="btn btn-default btn-sm">New Project</button>
@@ -17,17 +21,18 @@
         </a>
 
     </div>
+    {{/if}}
 
     <!-- Left Section -->
     <row>
         <div class="col-lg-3 well section">
             <div class="col-lg-6">
-                <h4><span class="label label-danger">{{this.day}}.{{this.month}}</span></h4>
-                {{this.year}}
+                <h4><span class="label label-danger">{{project.day}}.{{project.month}}</span></h4>
+                {{project.year}}
             </div>
             <div class="col-lg-6">
                 <h5>Team:</h5>
-                {{this.projectTeam.teamName}}
+                {{project.projectTeam.teamName}}
             </div>
         </div>
     </row>
@@ -42,22 +47,23 @@
 
         <!-- Project Name -->
         <div class="">
-            <h3>{{this.projectName}}</h3>
+            <h3>{{project.projectName}}</h3>
             <p>
-                {{this.projectCustomer.customerName}}  |  {{this.date}}
+                {{project.projectCustomer.customerName}}  |  {{project.date}}
             </p>
         </div>
 
         <!-- Data Squares -->
+        {{#if isAdmin}}
         <div class="text-uppercase">
             <div class="info-squares">
                 Project Price
-                <h5>$ {{this.projectPrice}}</h5>
+                <h5>$ {{project.projectPrice}}</h5>
             </div>
 
             <div class="info-squares">
                 Hours spent
-                <h5>{{this.projectWorkingHours}}</h5>
+                <h5>{{project.projectWorkingHours}}</h5>
             </div>
 
             <div class="info-squares white">
@@ -76,24 +82,25 @@
 
             <div class="info-squares">
                 Hours provision
-                <h5>{{this.projectPrice}}</h5>
+                <h5>{{project.projectWorkingHours}}</h5>
             </div>
 
             <div class="info-squares">
-                Other expences
-                <h5>$ {{this.projectExpenses}}</h5>
+                Other expenses
+                <h5>$ {{project.projectExpenses}}</h5>
             </div>
 
             <div class="info-squares">
                 Spent money
-                <h5>{{this.projectPrice}}</h5>
+                <h5>{{project.projectPrice}}</h5>
             </div>
 
             <div class="info-squares red">
                 Total Price
-                <h5>{{this.projectPrice}}</h5>
+                <h5>{{project.projectPrice}}</h5>
             </div>
         </div>
+        {{/if}}
 
         <!-- Project Name -->
         <div class="section">
@@ -122,8 +129,10 @@
                     <th>Details</th>
                 </tr>
 
-                <!-- Table Data -->
-                {{#each projectTasks}}
+                        <!-- Table Data -->
+                    {{#each project.projectTasks}}
+
+
                         <tr>
                             <!-- Task Name -->
                             <td class="" id="taskName"><h6>{{this.taskName}}</h6></td>
@@ -132,10 +141,22 @@
                             <td class="" id="taskDescription">{{this.taskDescription}}</td>
 
                             <!-- Task Deadline -->
-                            <td class="" id="taskDeadline">{{this.date}}</td>
+                            {{#if this.isOverdue}}
+                            <td class="alert-warning" id="taskDeadline" >{{this.date}}</td>
+                            {{/if}}
+
+                            {{#unless this.isOverdue}}
+                                <td class="" id="taskDeadline" >{{this.date}}</td>
+                            {{/unless}}
 
                             <!-- Task Status -->
-                            <td class="" id="taskActive">{{this.taskActive}}</td>
+                            {{#if this.taskActive}}
+                            <td class="" id="taskActive">Active</td>
+                            {{/if}}
+
+                            {{#unless this.taskActive}}
+                                <td class="" id="taskActive">Closed</td>
+                            {{/unless}}
 
                             <!-- Details Button -->
                             <td>
