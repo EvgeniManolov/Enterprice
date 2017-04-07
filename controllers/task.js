@@ -2,7 +2,6 @@
  * Created by Marian on 1.4.2017 г..
  */
 
-
 const Task = require('mongoose').model('Task');
 const Project = require('mongoose').model('Project');
 const Team = require('mongoose').model('Team');
@@ -10,7 +9,6 @@ const Team = require('mongoose').model('Team');
 module.exports = {
 
     taskCreatePost: (req, res) => {
-
 
         let taskArgs = req.body;
 
@@ -50,5 +48,13 @@ module.exports = {
 
             })
 
+    },
+
+    taskDetailsGet: (req, res) => {
+        let currentTaskID = req.params.id;
+
+        Task.findOne({_id: currentTaskID}).then(task => {
+            res.render('./task/details', {task: task})
+        });
     }
 };
