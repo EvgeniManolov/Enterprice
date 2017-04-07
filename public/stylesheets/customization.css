@@ -49,10 +49,6 @@ main {
 	margin-top: 10px;
 }
 
-.nav-item:active {
-	background-color: #2ed1c7;
-}
-
 .nav-item:hover {
 	background-color: #f6f6f6;
 	transition: 0.5s ease-in-out;
@@ -62,6 +58,12 @@ main {
 	padding-top:13px !important;
 	padding-bottom:0 !important;
 	height: 50px;
+}
+
+.navbar-nav > li:hover {
+	background-color: #b3063b;
+	color: #ffffff;
+	transition: 0.5s ease-in-out;
 }
 
 .navbar {
@@ -193,12 +195,14 @@ select:focus,
 }
 
 .profile-well {
+	margin-top: 20px;
 	padding: 20px;
 	border: 1px solid #a8a8a8;
 	border-radius: 4px;
 }
 
 .profile-well:hover {
+
 	background-color: #fff;
 	border: 1px solid #eee;
 	border-bottom: 4px solid rgba(244, 56, 27, .8);
