@@ -26,7 +26,6 @@
                 <img class="section" src="/images/circle.png">
             </div>
 
-            
             <!--  Date  -->
             <div class="section">
                 <span class="glyphicon glyphicon-hourglass"></span>
@@ -52,7 +51,7 @@
 
         </div>
 
-         <!-- Right Section -->
+        <!-- Right Section -->
         <div class="col-lg-9 section">
 
             <!-- Project Name -->
@@ -65,56 +64,57 @@
                 <hr>
             </div>
 
-            <!-- Data Squares -->
-        {{#if isAdmin}}
-            <div class="text-uppercase">
-                <div class="info-squares">
-                    Project Price
-                    <h5><span class="glyphicon glyphicon-eur"></span> {{project.projectPrice}}</h5>
-                </div>
-
-                <div class="info-squares">
-                    Hours spent
-                    <h5>{{project.projectWorkingHours}}</h5>
-                </div>
-
-                <div class="info-squares white">
-                    Status
-                    <div class="progress">
-                        <div class="progress-bar"
-                             role="progressbar"
-                             aria-valuenow=""
-                             aria-valuemin="0"
-                             aria-valuemax="100"
-                             style="width: 22%">
-                        </div>
+            {{#if isAdmin}}
+                <!-- Data Squares -->
+                <div class="text-uppercase">
+                    <div class="info-squares">
+                        Project Price
+                        <h5><span class="glyphicon glyphicon-eur"></span> {{project.projectPrice}}</h5>
                     </div>
-                    25%
-                </div>
 
-                <div class="info-squares">
-                    Hours provision
-                    <h5>{{project.projectPrice}}</h5>
-                </div>
+                    <div class="info-squares">
+                        Hours spent
+                        <h5>{{project.projectWorkingHours}}</h5>
+                    </div>
 
-                <div class="info-squares">
-                    Other expenses
-                    <h5>$ {{project.projectExpenses}}</h5>
-                </div>
+                    <div class="info-squares white">
+                        Status
+                        <div class="progress">
+                            <div class="progress-bar"
+                                 role="progressbar"
+                                 aria-valuenow=""
+                                 aria-valuemin="0"
+                                 aria-valuemax="100"
+                                 style="width: 22%">
+                            </div>
+                        </div>
+                        25%
+                    </div>
 
-                <div class="info-squares">
-                    Spent money
-                    <h5>{{project.projectPrice}}</h5>
-                </div>
+                    <div class="info-squares">
+                        Hours provision
+                        <h5>{{project.projectPrice}}</h5>
+                    </div>
 
-                <div class="info-squares red">
-                    Total Price
-                    <h5>{{project.projectPrice}}</h5>
-                </div>
-            </div>
+                    <div class="info-squares">
+                        Other expenses
+                        <h5>$ {{project.projectExpenses}}</h5>
+                    </div>
 
-            <hr>
-            <!-- Project Name -->
+                    <div class="info-squares">
+                        Spent money
+                        <h5>{{project.projectPrice}}</h5>
+                    </div>
+
+                    <div class="info-squares red">
+                        Total Price
+                        <h5>{{project.projectPrice}}</h5>
+                    </div>
+                </div>
+                <hr>
+            {{/if}}
+
+            <!-- Project Description -->
             <div class="section">
                 <h5>Description</h5>
                 <p>
@@ -126,7 +126,6 @@
                 </p>
                 <div class="btn btn-xs btn-default center">Show More</div>
             </div>
-        {{/if}}
 
             <div class="table">
                 <h5>Project Tasks</h5>
