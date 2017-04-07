@@ -5,6 +5,7 @@ const Project = require('mongoose').model('Project');
 const Customer = require('mongoose').model('Customer');
 const Team = require('mongoose').model('Team');
 const Role = require('mongoose').model('Role');
+const User = require('mongoose').model('User');
 
 module.exports = {
 

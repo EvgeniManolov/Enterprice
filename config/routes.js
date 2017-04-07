@@ -1,12 +1,9 @@
 const userController = require('./../controllers/user');
-const homeController = require('./../controllers/home');
 const projectController = require('./../controllers/project');
-const userViewsController = require('./../controllers/userViews');
 const customerController = require('./../controllers/customer');
 const teamController = require('./../controllers/team');
 const taskController = require('./../controllers/task');
-const profileController = require('./../controllers/profile');
-const allUsersController = require('./../controllers/allUsers');
+const rateController = require('./../controllers/rate');
 
 module.exports = (app) => {
 
@@ -39,20 +36,20 @@ module.exports = (app) => {
     app.post('/user/register', userController.registerPost);
 
     /* list */
-    app.get('/userViews/allUsers', allUsersController.usersGet);
+    app.get('/userViews/allUsers', userController.usersGet);
 
     /* own profile */
-    app.get('/userViews/userProfile', profileController.profileGet);
+    app.get('/userViews/userProfile', userController.profileGet);
 
     /* details*/
-    app.get('/userViews/userProfile/:id', allUsersController.userDetailsGet);
+    app.get('/userViews/userProfile/:id', userController.userDetailsGet);
 
 
 
     /* RATES */
 
     /* list */
-    app.get('/userViews/rates', userViewsController.ratesGet);
+    app.get('/rate/list', rateController.ratesGet);
 
 
 
@@ -79,13 +76,5 @@ module.exports = (app) => {
 
     /* create */
     app.post('/task/create', taskController.taskCreatePost);
-	
-
-	
-
-	
-
-	
-
 };
 
