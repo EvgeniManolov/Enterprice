@@ -76,5 +76,8 @@ module.exports = (app) => {
 
     /* create */
     app.post('/task/create', taskController.taskCreatePost);
+
+    /* details*/
+    app.post('/task/details/:id', taskController.taskDetailsGet);
 };
 
