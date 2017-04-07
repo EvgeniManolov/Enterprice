@@ -32,11 +32,13 @@
 </script>
 
 <main>
+
     {{#if isAdmin}}
+        <!-- Add Content Buttons -->
         <div class="container">
-            <!-- Add Content Buttons -->
+
             <a href="/project/create">
-                <button class="btn btn-primary btn-sm">New Project</button>
+                <button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span> New Project</button>
             </a>
             <a href="/customer/create">
                 <button class="btn btn-default btn-sm">New Customer</button>
@@ -45,145 +47,159 @@
                 <button class="btn btn-default btn-sm">Create Team</button>
             </a>
         </div>
+    {{/if}}
 
     <div class="container">
-        <!-- Tab Names -->
 
-        <ul class="nav nav-tabs nav-justified">
-            <li class="nav-item active">
-                <a href="#activeProject" aria-controls="activeProject" role="tab" data-toggle="tab">
-                    <p>Active Projects</p>
-                </a>
-            </li>
+        <div class="col-lg-3 section well">
 
-            <li class="nav nav-item">
-                <a href="#closedProjects" aria-controls="closedProjects" role="tab" data-toggle="tab">
-                    <p>Closed Projects</p>
-                </a>
-            </li>
-        </ul>
+        </div>
 
+        <div class="col-lg-9 section">
+            <!-- Tab Names -->
+            <ul class="nav nav-tabs nav-justified">
+                <li class="nav-item active">
+                    <a href="#activeProject" aria-controls="activeProject" role="tab" data-toggle="tab">
+                        Active Projects
+                    </a>
+                </li>
 
-        <!-- Tab Views -->
-        <div class="tab-content">
+                <li class="nav nav-item">
+                    <a href="#closedProjects" aria-controls="closedProjects" role="tab" data-toggle="tab">
+                        Closed Projects
+                    </a>
+                </li>
+            </ul>
 
-            <!-- Active Projects Tab -->
-            <div role="tabpanel" class="tab-pane fade in active" id="activeProject">
+            <!-- Tab Views -->
+            <div class="tab-content">
 
-                <!-- Filters and Stuff -->
-                <div class="filters-container">
-                    <label class="text-uppercase sr-only" for="myInputActive"></label>
-                    <input class="form-control" type="text" id="myInputActive" onkeyup="myFunction('activeProjectsTable', 'myInputActive')" placeholder="Search" >
-                </div>
+                <!-- Active Projects Tab -->
+                <div role="tabpanel" class="tab-pane fade in active" id="activeProject">
 
-                <!-- Table Active Projects -->
-                <table class="table" id="activeProjectsTable">
+                    <!-- Filters and Stuff -->
+                    <div class="filters-container">
+                        <label class="text-uppercase sr-only" for="myInputActive"></label>
+                        <input class="form-control" type="text" id="myInputActive" onkeyup="myFunction('activeProjectsTable', 'myInputActive')" placeholder="Search" >
+                    </div>
 
-                    <!-- Table Head -->
-                    <tr>
-                        <th>Project name/ Customer</th>
-                        <th>Progress</th>
-                        <th>Team</th>
-                        <th>Due date</th>
-                        <th>Details</th>
-                    </tr>
+                    <!-- Table Active Projects -->
+                    <table class="table" id="activeProjectsTable">
 
-                    <!-- Table Data -->
-                    {{#each projects}}
-                        {{#if this.projectActive}}
-                            <tr>
-                                <!-- Project Name -->
-                                <td class="" id="projectName">
-                                    <h4>{{this.projectName}}</h4>
-                                    <h6>{{this.projectCustomer.customerName}}</h6>
-                                </td>
-                                <!-- Project Progress -->
-                                <td class="" id="projectProgress">{{this.projectProgress}}%
-                                    <div class="progress">
-                                        <div class="progress-bar"
-                                             role="progressbar"
-                                             aria-valuenow=""
-                                             aria-valuemin="0"
-                                             aria-valuemax="100"
-                                             style="width: 25%;">
+                        <!-- Table Head -->
+                        <tr>
+                            <th>Priority</th>
+                            <th>Project name/ Customer</th>
+                            <th>Progress</th>
+                            <th>Team</th>
+                            <th>Due date</th>
+                            <th>Details</th>
+                        </tr>
+
+                        <!-- Table Data -->
+                        {{#each projects}}
+                            {{#if this.projectActive}}
+                                <tr>
+
+                                    <!-- Flag -->
+                                    <td class="text-center" id="flag">
+                                        <span class="glyphicon glyphicon-flag glyphicon-cool"></span>
+                                    </td>
+
+                                    <!-- Project Name -->
+                                    <td class="" id="projectName">
+                                        <h6><strong>{{this.projectName}}</strong></h6>
+                                        <p>{{this.projectCustomer.customerName}}</p>
+                                    </td>
+                                    <!-- Project Progress -->
+                                    <td class="" id="projectProgress">{{this.projectProgress}}%
+                                        <div class="progress">
+                                            <div class="progress-bar"
+                                                 role="progressbar"
+                                                 aria-valuenow=""
+                                                 aria-valuemin="0"
+                                                 aria-valuemax="100"
+                                                 style="width: 25%;">
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
+                                    </td>
 
-                                <!-- Project Team -->
-                                <td class="" id="projectTeam">{{this.projectTeam.teamName}}</td>
+                                    <!-- Project Team -->
+                                    <td class="" id="projectTeam">
+                                        {{this.projectTeam.teamName}}
+                                    </td>
 
-                                <!-- Project Due date -->
-                                <td class="" id="projectDueDate">
-                                    <span class="date"><time datetime="">{{this.date}}</time></span>
-                                </td>
+                                    <!-- Project Due date -->
+                                    <td class="" id="projectDueDate">
+                                        <span class=""><span class="glyphicon glyphicon-hourglass"></span>{{this.date}}</span>
+                                    </td>
 
-                                <!-- Details Button -->
-                                <td>
-                                    <a href="/project/details/{{this.id}}"><button class="btn btn-primary">More</button></a>
-                                </td>
-                            </tr>
-                        {{/if}}
+                                    <!-- Details Button -->
+                                    <td>
+                                        <a href="/project/details/{{this.id}}"><button class="btn btn-primary">More</button></a>
+                                    </td>
+                                </tr>
+                            {{/if}}
 
-                    {{/each}}
-                </table>
-            </div>
-
-            <!-- Closed Projects Tab -->
-            <div role="tabpanel" class="tab-pane fade" id="closedProjects">
-
-                <!-- Filters and Stuff -->
-                <div class="filters-container">
-                    <label class="text-uppercase sr-only" for="myInputClosed"></label>
-                    <input class="form-control" type="text" id="myInputClosed" onkeyup="myFunction('closedProjectsTable', 'myInputClosed')" placeholder="Search" >
+                        {{/each}}
+                    </table>
                 </div>
 
-                <!-- Table Closed Projects -->
-                <table class="table" id="closedProjectsTable">
+                <!-- Closed Projects Tab -->
+                <div role="tabpanel" class="tab-pane fade" id="closedProjects">
 
-                    <!-- Table Head -->
-                    <tr>
-                        <th>Project name/ Customer</th>
-                        <th>Status</th>
-                        <th>Team</th>
-                        <th>Date Closed</th>
-                        <th>Details</th>
-                    </tr>
+                    <!-- Filters and Stuff -->
+                    <div class="filters-container">
+                        <label class="text-uppercase sr-only" for="myInputClosed"></label>
+                        <input class="form-control" type="text" id="myInputClosed" onkeyup="myFunction('closedProjectsTable', 'myInputClosed')" placeholder="Search" >
+                    </div>
 
-                    <!-- Table Data -->
-                    {{#each projects}}
-                        {{#unless this.projectActive}}
-                            <tr>
-                                <!-- Project Name -->
-                                <td class="" id="projectName">
-                                    <h4>{{this.projectName}}</h4>
-                                    <h6>{{this.projectCustomer.customerName}}</h6>
-                                </td>
+                    <!-- Table Closed Projects -->
+                    <table class="table" id="closedProjectsTable">
 
-                                <!-- Status -->
-                                <td class="" id="projectStatus">{{this.projectProgress}}%
+                        <!-- Table Head -->
+                        <tr>
+                            <th>Project name/ Customer</th>
+                            <th>Status</th>
+                            <th>Team</th>
+                            <th>Date Closed</th>
+                            <th>Details</th>
+                        </tr>
 
-                                </td>
+                        <!-- Table Data -->
+                        {{#each projects}}
+                            {{#unless this.projectActive}}
+                                <tr>
+                                    <!-- Project Name -->
+                                    <td class="" id="projectName">
+                                        <h4>{{this.projectName}}</h4>
+                                        <h6>{{this.projectCustomer.customerName}}</h6>
+                                    </td>
 
-                                <!-- Project Team -->
-                                <td class="" id="projectTeam">{{this.projectTeam.teamName}}</td>
+                                    <!-- Status -->
+                                    <td class="" id="projectStatus">{{this.projectProgress}}%
+
+                                    </td>
+
+                                    <!-- Project Team -->
+                                    <td class="" id="projectTeam">{{this.projectTeam.teamName}}</td>
 
 
-                                <!-- Date Closed -->
-                                <td class="" id="projectDueDate">
-                                    <span class="date"><time datetime="">{{this.date}}</time></span>
-                                </td>
+                                    <!-- Date Closed -->
+                                    <td class="" id="projectDueDate">
+                                        <span class="date"><time datetime="">{{this.date}}</time></span>
+                                    </td>
 
-                                <!-- Details Button -->
-                                <td>
-                                    <a href="/project/details/{{this.id}}"><button class="btn btn-primary">More</button></a>
-                                </td>
-                            </tr>
-                        {{/unless}}
-                    {{/each}}
-                </table>
+                                    <!-- Details Button -->
+                                    <td>
+                                        <a href="/project/details/{{this.id}}"><button class="btn btn-primary">More</button></a>
+                                    </td>
+                                </tr>
+                            {{/unless}}
+                        {{/each}}
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-
 </main>

@@ -44,6 +44,7 @@ main {
 	margin-top: 5px;
 	margin-bottom: 5px;
 }
+
 .nav-item {
 	background-color: #ffffff;
 	margin-top: 10px;
@@ -249,4 +250,24 @@ select:focus,
 	line-height: 1.846;
 	vertical-align: middle;
 	border-top: 1px solid #dddddd;
+}
+
+.glyphicon {
+	color: #cfcfcf;
+	margin-right: 6px;
+}
+
+.glyphicon-cool {
+	font-size: 18px;
+	color: #18bc9c;
+}
+
+.glyphicon-danger {
+	font-size: 18px;
+	color: #d80641;
+}
+
+/*todo*/
+.btn:hover ~ glyphicon {
+	color: #bc0e58;
 }
