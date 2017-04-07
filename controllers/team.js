@@ -44,7 +44,7 @@ module.exports = {
                 })}
                 count++;
         })});
-        res.redirect('/userViews/user')
+        res.redirect('/project/list')
     },
     editGet: (req,res) =>{
 

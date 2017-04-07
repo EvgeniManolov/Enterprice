@@ -78,6 +78,14 @@ module.exports = (app) => {
     app.post('/task/create', taskController.taskCreatePost);
 
     /* details*/
-    app.post('/task/details/:id', taskController.taskDetailsGet);
+    app.get('/task/details/:id', taskController.taskDetailsGet);
+
+    /* edit */
+    app.post('/task/details/:id', taskController.taskDetailsPost);
+
+    /* complete */
+    app.post('/task/complete/:id', taskController.taskCompletePost);
+
+
 };
 
