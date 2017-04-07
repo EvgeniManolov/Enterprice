@@ -8,8 +8,10 @@ module.exports = {
 	
 	profileGet: (req, res) => {
 		
-		User.findOne({}).then(user => {
-			
+		let currentUser = req.user.id;
+		
+		User.findOne({_id: currentUser}).then(user => {
+
 			res.render('userViews/userProfile',{user: user} );
 		})
 	}

@@ -186,119 +186,109 @@
     }
 </script>
 
+<main>
+    <div class="container">
+        <form class="form-horizontal" method="post" action="/task/create" id="tasksForm">
+            <fieldset>
 
-<div class="container body-content span=8 offset=2">
-    <div class="well">
+                <legend>Add Project Tasks</legend>
+                <!--<div class="form-group      ">
 
-<form class="form-horizontal" method="post" action="/task/create" id="tasksForm">
+                    &lt;!&ndash;  Admin Pass Field  &ndash;&gt;
+                    <div class="collapse" id="collapseExample">
 
-    <fieldset>
+                    </div>
+                </div>-->
 
-        <legend>Add Project Tasks</legend>
-        <div class="form-group center-content">
+                <div class="form-group" hidden>
+                    <label class="col-sm-4 control-label" for="taskProject">Project</label>
+                    <div class="col-sm-4 ">
+                        <input type="text" class="form-control" id="taskProject" placeholder="{{project.projectName}}" name="taskProject" required value="{{project.projectName}}">
+                    </div>
+                </div>
 
-            <!--  Admin Pass Field  -->
-            <div class="collapse" id="collapseExample">
+                <div class="form-group" hidden>
+                    <label class="col-sm-4 control-label" for="taskTeam">Team</label>
+                    <div class="col-sm-4 ">
+                        <input type="text" class="form-control" id="taskTeam" placeholder="{{project.projectTeamName}}" name="taskTeam" required value="{{project.projectTeamName}}">
+                    </div>
+                </div>
 
-            </div>
-        </div>
+                <div class="form-group" hidden>
+                    <label class="col-sm-4 control-label" for="projectDueDate">Project Due Date</label>
+                    <div class="col-sm-4 ">
+                        <input type="text" class="form-control" id="projectDueDate" placeholder="{{project.dateAsNumber}}" name="projectDueDate" required value="{{project.dateAsNumber}}">
+                    </div>
+                </div>
 
-        <div class="form-group" hidden>
-            <label class="col-sm-4 control-label" for="taskProject">Project</label>
-            <div class="col-sm-4 ">
-                <input type="text" class="form-control" id="taskProject" placeholder="{{project.projectName}}" name="taskProject" required value="{{project.projectName}}">
-            </div>
-        </div>
+                <!--  Task Name  -->
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="taskName">Task Name</label>
+                    <div class="col-sm-4 ">
+                        <input type="text" class="form-control" id="taskName" placeholder="Task name" name="taskName" required >
+                    </div>
+                </div>
 
-        <div class="form-group" hidden>
-            <label class="col-sm-4 control-label" for="taskTeam">Team</label>
-            <div class="col-sm-4 ">
-                <input type="text" class="form-control" id="taskTeam" placeholder="{{project.projectTeamName}}" name="taskTeam" required value="{{project.projectTeamName}}">
-            </div>
-        </div>
+                <!--  Task Description  -->
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="taskDescription">Task Description</label>
+                    <div class="col-sm-4" >
+                        <textarea class="form-control" rows="4" id="taskDescription" placeholder="Task Description" name="taskDescription" required ></textarea>
+                    </div>
+                </div>
 
-        <div class="form-group" hidden>
-            <label class="col-sm-4 control-label" for="projectDueDate">Project Due Date</label>
-            <div class="col-sm-4 ">
-                <input type="text" class="form-control" id="projectDueDate" placeholder="{{project.dateAsNumber}}" name="projectDueDate" required value="{{project.dateAsNumber}}">
-            </div>
-        </div>
+                <!--  Deadline  -->
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="taskDeadline">Deadline</label>
+                    <div class="col-sm-4 ">
+                        <input type="date" min="" class="form-control" id="taskDeadline" placeholder="" name="taskDeadline" required >
+                    </div>
+                </div>
 
-        <!--  Task Name  -->
-        <div class="form-group">
-            <label class="col-sm-4 control-label" for="taskName">Task Name</label>
-            <div class="col-sm-4 ">
-                <input type="text" class="form-control" id="taskName" placeholder="Task name" name="taskName" required >
-            </div>
-        </div>
+                <!--  Weight  -->
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="taskWeight">Weight</label>
+                    <div class="col-sm-4 ">
+                        <input type="number" class="form-control" id="taskWeight" placeholder="" name="taskWeight" required >
+                    </div>
+                </div>
 
-        <!--  Task Description  -->
-        <div class="form-group">
-            <label class="col-sm-4 control-label" for="taskDescription">Task Description</label>
-            <div class="col-sm-4" >
-                <textarea class="form-control" rows="4" id="taskDescription" placeholder="Task Description" name="taskDescription" required ></textarea>
-            </div>
-        </div>
+                <!--  Add task  -->
+                <div class="form-group">
+                    <div class="col-sm-4 col-sm-offset-4">
+                        <button onclick="addToTable()" type="button" class="btn btn-primary">Add task</button>
+                    </div>
+                </div>
 
+                <div class="container">
+                    <table class="table" id="tasks" width="100%">
 
-        <!--  Deadline  -->
-        <div class="form-group">
-            <label class="col-sm-4 control-label" for="taskDeadline">Deadline</label>
-            <div class="col-sm-4 ">
-                <input type="date" min="" class="form-control" id="taskDeadline" placeholder="" name="taskDeadline" required >
-            </div>
-        </div>
+                        <!-- Table Head -->
+                        <tr>
+                            <th>Remove task</th>
+                            <th>Project name</th>
+                            <th>Team</th>
+                            <th>Task</th>
+                            <th>Description</th>
+                            <th>Deadline</th>
+                            <th>Weight</th>
+                        </tr>
 
-        <!--  Weight  -->
-        <div class="form-group">
-            <label class="col-sm-4 control-label" for="taskWeight">Weight</label>
-            <div class="col-sm-4 ">
-                <input type="number" class="form-control" id="taskWeight" placeholder="" name="taskWeight" required >
-            </div>
-        </div>
+                    </table>
+                    <div class="pull-right"><h4>Total weight:</h4><h4 id="totalWeight"></h4> </div>
 
-        <!--  Add task  -->
-        <div class="form-group">
-            <div class="col-sm-4 col-sm-offset-4">
-                <button onclick="addToTable()" type="button" class="btn btn-primary">Add task</button>
-            </div>
-        </div>
+                </div>
 
+                <!--  Submit / Cancel  -->
+                <div class="form-group">
+                    <div class="col-sm-4 col-sm-offset-4">
+                        <button type="reset" class="btn btn-default">Cancel</button>
+                        <button id="doneButton" type="button" class="btn btn-primary" onclick="sendData()">Done</button>
+                    </div>
+                </div>
 
+            </fieldset>
 
-        <div class="container">
-            <table class="display" id="tasks" width="100%">
-
-                <!-- Table Head -->
-                <tr>
-                    <th>Remove task</th>
-                    <th>Project name</th>
-                    <th>Team</th>
-                    <th>Task</th>
-                    <th>Description</th>
-                    <th>Deadline</th>
-                    <th>Weight</th>
-                </tr>
-
-            </table>
-            <div class="pull-right"><h4>Total weight:</h4><h4 id="totalWeight"></h4> </div>
-
-        </div>
-
-        <!--  Submit / Cancel  -->
-        <div class="form-group">
-            <div class="col-sm-4 col-sm-offset-4">
-                <button type="reset" class="btn btn-default">Cancel</button>
-                <button id="doneButton" type="button" class="btn btn-primary" onclick="sendData()">Done</button>
-            </div>
-        </div>
-
-
-
-
-    </fieldset>
-
-</form>
-
+        </form>
     </div>
-</div>
+</main>
