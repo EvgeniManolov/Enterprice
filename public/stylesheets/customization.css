@@ -44,13 +44,10 @@ main {
 	margin-top: 5px;
 	margin-bottom: 5px;
 }
+
 .nav-item {
 	background-color: #ffffff;
 	margin-top: 10px;
-}
-
-.nav-item:active {
-	background-color: #2ed1c7;
 }
 
 .nav-item:hover {
@@ -62,6 +59,12 @@ main {
 	padding-top:13px !important;
 	padding-bottom:0 !important;
 	height: 50px;
+}
+
+.navbar-nav > li:hover {
+	background-color: #b3063b;
+	color: #ffffff;
+	transition: 0.5s ease-in-out;
 }
 
 .navbar {
@@ -193,12 +196,14 @@ select:focus,
 }
 
 .profile-well {
+	margin-top: 20px;
 	padding: 20px;
 	border: 1px solid #a8a8a8;
 	border-radius: 4px;
 }
 
 .profile-well:hover {
+
 	background-color: #fff;
 	border: 1px solid #eee;
 	border-bottom: 4px solid rgba(244, 56, 27, .8);
@@ -245,4 +250,24 @@ select:focus,
 	line-height: 1.846;
 	vertical-align: middle;
 	border-top: 1px solid #dddddd;
+}
+
+.glyphicon {
+	color: #cfcfcf;
+	margin-right: 6px;
+}
+
+.glyphicon-cool {
+	font-size: 18px;
+	color: #18bc9c;
+}
+
+.glyphicon-danger {
+	font-size: 18px;
+	color: #d80641;
+}
+
+/*todo*/
+.btn:hover ~ glyphicon {
+	color: #bc0e58;
 }

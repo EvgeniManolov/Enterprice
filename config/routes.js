@@ -70,8 +70,8 @@ module.exports = (app) => {
     /* edit */
     app.get('/team/edit/:id', teamController.editGet);
 
-
-
+    
+    
     /* TASKS */
 
     /* create */

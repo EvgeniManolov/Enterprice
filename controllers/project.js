@@ -93,22 +93,12 @@ module.exports = {
                                     res.render('./task/create', {project: project});
                                 }
                             });
-
                         }
                     });
-
-
-
                 })
-
                 });
             });
-
         })
-
-
-
-
     },
 
     projectDetails: (req, res) => {

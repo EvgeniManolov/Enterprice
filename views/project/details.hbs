@@ -1,46 +1,68 @@
 <main>
 
-    <div class="container">
-        <!-- Add Content Buttons -->
-
-
     {{#if isAdmin}}
+        <!-- Add Content Buttons -->
+        <div class="container">
 
-        <a href="/project/create">
-            <button class="btn btn-default btn-sm">New Project</button>
-        </a>
-        <a href="/customer/create">
-            <button class="btn btn-default btn-sm">New Customer</button>
-        </a>
-        <a href="/team/create">
-            <button class="btn btn-default btn-sm">Create Team</button>
-        </a>
-    </div>
+            <a href="/project/create">
+                <button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span> New Project</button>
+            </a>
+            <a href="/customer/create">
+                <button class="btn btn-default btn-sm">New Customer</button>
+            </a>
+            <a href="/team/create">
+                <button class="btn btn-default btn-sm">Create Team</button>
+            </a>
+        </div>
     {{/if}}
 
     <!-- Left Section -->
-    <row>
-        <div class="col-lg-3 well section">
-            <div class="col-lg-6">
-                <h4><span class="label label-danger">{{project.day}}.{{project.month}}</span></h4>
-                {{project.year}}
+    
+    <div class="container">
+        <div class="col-lg-3 section">
+
+            <!--  Graphic  -->
+            <div class="section">
+                <img class="section" src="/images/circle.png">
             </div>
+
+            
+            <!--  Date  -->
+            <div class="section">
+                <span class="glyphicon glyphicon-hourglass"></span>
+                {{project.day}}.{{project.month}}
+                <!--{{project.year}}-->
+            </div>
+            
+            <hr>
+            
+            <!--  Team  -->
+            <div class="section">
+                <span class="glyphicon glyphicon-user"></span>
+                {{project.projectTeam.teamName}}
+            </div>
+            
+            <hr>
+            
+            <!--  Commits  -->
+            <div class="">
+                <span class="glyphicon glyphicon-pencil"></span>
+                <a href="#">Commits <span class="badge">42</span></a>
+            </div>
+
         </div>
-        </row>
 
-        <row>
-            <!--TODO: circle view-->
-        </row>
-
-    <!-- Right Section -->
+         <!-- Right Section -->
         <div class="col-lg-9 section">
 
             <!-- Project Name -->
             <div class="">
                 <h3>{{project.projectName}}</h3>
+                <hr>
                 <p>
                     {{project.projectCustomer.customerName}}  |  {{project.date}}
                 </p>
+                <hr>
             </div>
 
             <!-- Data Squares -->
@@ -48,7 +70,7 @@
             <div class="text-uppercase">
                 <div class="info-squares">
                     Project Price
-                    <h5>$ {{project.projectPrice}}</h5>
+                    <h5><span class="glyphicon glyphicon-eur"></span> {{project.projectPrice}}</h5>
                 </div>
 
                 <div class="info-squares">
@@ -91,6 +113,7 @@
                 </div>
             </div>
 
+            <hr>
             <!-- Project Name -->
             <div class="section">
                 <h5>Description</h5>
