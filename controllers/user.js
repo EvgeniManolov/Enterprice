@@ -78,7 +78,7 @@ module.exports = {
                     return;
                 }
 
-                res.redirect('userViews/user');
+                res.redirect('/project/list');
             })
         })
     },

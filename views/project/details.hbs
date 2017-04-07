@@ -25,6 +25,7 @@
                 <h4><span class="label label-danger">{{project.day}}.{{project.month}}</span></h4>
                 {{project.year}}
             </div>
+        </div>
         </row>
 
         <row>
@@ -36,22 +37,23 @@
 
             <!-- Project Name -->
             <div class="">
-                <h3>{{this.projectName}}</h3>
+                <h3>{{project.projectName}}</h3>
                 <p>
-                    {{this.projectCustomer.customerName}}  |  {{this.date}}
+                    {{project.projectCustomer.customerName}}  |  {{project.date}}
                 </p>
             </div>
 
             <!-- Data Squares -->
+        {{#if isAdmin}}
             <div class="text-uppercase">
                 <div class="info-squares">
                     Project Price
-                    <h5>$ {{this.projectPrice}}</h5>
+                    <h5>$ {{project.projectPrice}}</h5>
                 </div>
 
                 <div class="info-squares">
                     Hours spent
-                    <h5>{{this.projectWorkingHours}}</h5>
+                    <h5>{{project.projectWorkingHours}}</h5>
                 </div>
 
                 <div class="info-squares white">
@@ -70,22 +72,22 @@
 
                 <div class="info-squares">
                     Hours provision
-                    <h5>{{this.projectPrice}}</h5>
+                    <h5>{{project.projectPrice}}</h5>
                 </div>
 
                 <div class="info-squares">
-                    Other expences
-                    <h5>$ {{this.projectExpenses}}</h5>
+                    Other expenses
+                    <h5>$ {{project.projectExpenses}}</h5>
                 </div>
 
                 <div class="info-squares">
                     Spent money
-                    <h5>{{this.projectPrice}}</h5>
+                    <h5>{{project.projectPrice}}</h5>
                 </div>
 
                 <div class="info-squares red">
                     Total Price
-                    <h5>{{this.projectPrice}}</h5>
+                    <h5>{{project.projectPrice}}</h5>
                 </div>
             </div>
 
@@ -118,7 +120,7 @@
                     </tr>
 
                     <!-- Table Data -->
-                    {{#each projectTasks}}
+                    {{#each project.projectTasks}}
                         <tr>
                             <!-- Task Name -->
                             <td class="" id="taskName"><h6>{{this.taskName}}</h6></td>
