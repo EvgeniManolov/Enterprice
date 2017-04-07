@@ -13,7 +13,7 @@ module.exports = {
         let customerArgs = req.body;
 
         Customer.create(customerArgs).then(customer => {
-            res.redirect('/userViews/user')
+            res.redirect('/project/list')
         })
     }
 };

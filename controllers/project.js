@@ -28,6 +28,7 @@ module.exports = {
             });
 
             let user = req.user;
+
             let isAdmin = true;
 
             Role.findOne({name: 'Admin'}).then(role => {
@@ -35,6 +36,7 @@ module.exports = {
                 if(user.roles.indexOf(role._id) == -1) {
                     isAdmin = false;
                 }
+
                 res.render('./project/list', {projects: projects, isAdmin: isAdmin});
             })
 
@@ -74,7 +76,7 @@ module.exports = {
 
                     customer.save(err => {
                         if (err) {
-                            res.redirect('/userViews/user', {error: err.message});
+                            res.redirect('/project/list', {error: err.message});
                         }
 
                         else {
@@ -82,7 +84,7 @@ module.exports = {
                             team.projects.push(project.id);
                             team.save(err => {
                                 if (err) {
-                                    res.redirect('/userViews/user', {error: err.message});
+                                    res.redirect('/project/list', {error: err.message});
                                 }
 
                                 else {
