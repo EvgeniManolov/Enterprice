@@ -75,7 +75,7 @@ module.exports = {
     },
 
     projectDetails: (req, res) => {
-        let id = req.params.id;
+        let id = req.params.id; //take user id, then populate 'team (as object => this.team.name)'
 
         Project.findOne({'_id' : id }).populate('projectTeam').populate('projectCustomer').populate('projectTasks').then(project => {
             

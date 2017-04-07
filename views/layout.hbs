@@ -20,9 +20,9 @@
     {{#if user}}
         <header>
             <!--  Navigation line  -->
-            <nav class="navbar navbar-default text-uppercase">
-                <div class="container">
+            <nav class="navbar navbar-default navbar-fixed-top text-uppercase">
 
+                <div class="container nav-container">
                     <!--  Navbar Collapse  -->
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="icon-bar"></span>
@@ -58,8 +58,8 @@
                         <li id="usersView"><a href="/userViews/allUsers">Users</a></li>
                     </ul>
                 </div>
-                </nav>
-            </div>
+            </nav>
+
         </header>
     {{/if}}
 
@@ -69,8 +69,12 @@
         </div>
     {{/if}}
 
+
     <!-- If Not User -->
     {{{body}}}
+
+
+
 </body>
 
 <footer>

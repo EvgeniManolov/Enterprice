@@ -15,5 +15,15 @@ module.exports = {
 			res.render('userViews/allUsers', {users: users});
 			
 		})
+	},
+	
+	userDetailsGet: (req, res) => {
+		
+		let userID = req.params.id; //take user id, then populate 'team (as object => this.team.name)'
+		
+		User.findOne({'_id' : userID }).populate('team').then(user => {
+			
+			res.render('userViews/userProfile/', {user: user})
+		})
 	}
 };

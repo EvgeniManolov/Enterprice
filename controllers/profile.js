@@ -5,14 +5,14 @@
 const User = require('mongoose').model('User');
 
 module.exports = {
+	
+	profileGet: (req, res) => {
+		
+		let currentUser = req.user.id;
+		
+		User.findOne({_id: currentUser}).then(user => {
 
-    profileGet: (req, res) => {
-
-        let userID = req.user.id;
-
-        User.findOne({_id: userID}).then(user => {
-
-            res.render('userViews/userProfile',{user: user} );
-        })
-    }
+			res.render('userViews/userProfile',{user: user} );
+		})
+	}
 }

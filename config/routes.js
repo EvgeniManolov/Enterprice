@@ -39,5 +39,7 @@ module.exports = (app) => {
 	app.get('/userViews/allUsers', allUsersController.usersGet);
 	
 	app.get('/userViews/rates', userViewsController.ratesGet);
+	
+	app.get('/userViews/userProfile/:id', allUsersController.userDetailsGet);
 };
 

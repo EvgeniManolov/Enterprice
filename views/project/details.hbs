@@ -1,25 +1,20 @@
+<main>
+
+    <div class="container">
+        <!-- Add Content Buttons -->
 
 
-
-<div class="container body-content">
-
-    <!-- Add Content Buttons -->
     {{#if isAdmin}}
-    <div class="well">
-
 
         <a href="/project/create">
             <button class="btn btn-default btn-sm">New Project</button>
         </a>
-
         <a href="/customer/create">
             <button class="btn btn-default btn-sm">New Customer</button>
         </a>
-
         <a href="/team/create">
             <button class="btn btn-default btn-sm">Create Team</button>
         </a>
-
     </div>
     {{/if}}
 
@@ -30,109 +25,100 @@
                 <h4><span class="label label-danger">{{project.day}}.{{project.month}}</span></h4>
                 {{project.year}}
             </div>
-            <div class="col-lg-6">
-                <h5>Team:</h5>
-                {{project.projectTeam.teamName}}
-            </div>
-        </div>
-    </row>
+        </row>
 
-    <row>
-        <!--TODO: circle view-->
-    </row>
-
+        <row>
+            <!--TODO: circle view-->
+        </row>
 
     <!-- Right Section -->
-    <div class="col-lg-9 section">
+        <div class="col-lg-9 section">
 
-        <!-- Project Name -->
-        <div class="">
-            <h3>{{project.projectName}}</h3>
-            <p>
-                {{project.projectCustomer.customerName}}  |  {{project.date}}
-            </p>
-        </div>
-
-        <!-- Data Squares -->
-        {{#if isAdmin}}
-        <div class="text-uppercase">
-            <div class="info-squares">
-                Project Price
-                <h5>$ {{project.projectPrice}}</h5>
+            <!-- Project Name -->
+            <div class="">
+                <h3>{{this.projectName}}</h3>
+                <p>
+                    {{this.projectCustomer.customerName}}  |  {{this.date}}
+                </p>
             </div>
 
-            <div class="info-squares">
-                Hours spent
-                <h5>{{project.projectWorkingHours}}</h5>
-            </div>
-
-            <div class="info-squares white">
-                Status
-                <div class="progress">
-                    <div class="progress-bar"
-                         role="progressbar"
-                         aria-valuenow=""
-                         aria-valuemin="0"
-                         aria-valuemax="100"
-                         style="width: 22%">
-                    </div>
+            <!-- Data Squares -->
+            <div class="text-uppercase">
+                <div class="info-squares">
+                    Project Price
+                    <h5>$ {{this.projectPrice}}</h5>
                 </div>
-                25%
+
+                <div class="info-squares">
+                    Hours spent
+                    <h5>{{this.projectWorkingHours}}</h5>
+                </div>
+
+                <div class="info-squares white">
+                    Status
+                    <div class="progress">
+                        <div class="progress-bar"
+                             role="progressbar"
+                             aria-valuenow=""
+                             aria-valuemin="0"
+                             aria-valuemax="100"
+                             style="width: 22%">
+                        </div>
+                    </div>
+                    25%
+                </div>
+
+                <div class="info-squares">
+                    Hours provision
+                    <h5>{{this.projectPrice}}</h5>
+                </div>
+
+                <div class="info-squares">
+                    Other expences
+                    <h5>$ {{this.projectExpenses}}</h5>
+                </div>
+
+                <div class="info-squares">
+                    Spent money
+                    <h5>{{this.projectPrice}}</h5>
+                </div>
+
+                <div class="info-squares red">
+                    Total Price
+                    <h5>{{this.projectPrice}}</h5>
+                </div>
             </div>
 
-            <div class="info-squares">
-                Hours provision
-                <h5>{{project.projectWorkingHours}}</h5>
+            <!-- Project Name -->
+            <div class="section">
+                <h5>Description</h5>
+                <p>
+                    Am if number no up period regard sudden better.
+                    Decisively surrounded all admiration and not you.
+                    Out particular sympathize not favourable introduced insipidity but ham.
+                    Rather number can and set praise. Distrusts an it contented perceived attending oh.
+                    Thoroughly estimating introduced stimulated why but motionless.
+                </p>
+                <div class="btn btn-xs btn-default center">Show More</div>
             </div>
-
-            <div class="info-squares">
-                Other expenses
-                <h5>$ {{project.projectExpenses}}</h5>
-            </div>
-
-            <div class="info-squares">
-                Spent money
-                <h5>{{project.projectPrice}}</h5>
-            </div>
-
-            <div class="info-squares red">
-                Total Price
-                <h5>{{project.projectPrice}}</h5>
-            </div>
-        </div>
         {{/if}}
 
-        <!-- Project Name -->
-        <div class="section">
-            <h5>Description</h5>
-            <p>
-                Am if number no up period regard sudden better.
-                Decisively surrounded all admiration and not you.
-                Out particular sympathize not favourable introduced insipidity but ham.
-                Rather number can and set praise. Distrusts an it contented perceived attending oh.
-                Thoroughly estimating introduced stimulated why but motionless.
-            </p>
-            <div class="btn btn-xs btn-default center">Show More</div>
-        </div>
+            <div class="table">
+                <h5>Project Tasks</h5>
+                <!-- Table Closed Projects -->
+                <table class="table" id="activeProjectsTable">
 
-        <div class="table">
-            <h5>Project Tasks</h5>
-            <!-- Table Closed Projects -->
-            <table class="table" id="activeProjectsTable">
+                    <!-- Table Head -->
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Deadline</th>
+                        <th>Status</th>
+                        <th>Details</th>
+                    </tr>
 
-                <!-- Table Head -->
-                <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Deadline</th>
-                    <th>Status</th>
-                    <th>Details</th>
-                </tr>
-
-                        <!-- Table Data -->
-                    {{#each project.projectTasks}}
-
-
+                    <!-- Table Data -->
+                    {{#each projectTasks}}
                         <tr>
                             <!-- Task Name -->
                             <td class="" id="taskName"><h6>{{this.taskName}}</h6></td>
@@ -163,8 +149,9 @@
                                 <a href="/project/details/{{this.id}}"><button class="btn btn-primary">More</button></a>
                             </td>
                         </tr>
-                {{/each}}
-            </table>
+                    {{/each}}
+                </table>
+            </div>
         </div>
     </div>
-</div>
+</main>
