@@ -1,0 +1,46 @@
+<main>
+
+    <div class="container body-content">
+        <table class="table" id="ratesTable">
+
+            <div class="center-block">
+                <h3><span class="glyphicon glyphicon-education"></span> Edit User Rates</h3>
+            </div>
+
+            <!-- Table Head -->
+            <tr>
+                <th>Picture</th>
+                <th>Username</th>
+                <th>Rate</th>
+                <th>Action</th>
+            </tr>
+
+            <!-- Table Body -->
+
+            {{#each users}}
+
+                <div class="col-lg-12">
+                    <tr>
+                        <!-- User Name -->
+                        <td class="col-lg-2" id="userPicture">
+                            <img class="img img-circle" src="/images/lora.jpg" width="60" height="60">
+                        </td>
+                        <td class="col-lg-6" id="userPicture">
+                            <h6>{{this.fullName}}</h6>
+                        </td>
+
+                        <!-- User Rate -->
+                        <td class="col-lg-2" id="projectTeam">{{this.rate}}</td>
+
+                        <!-- Change Button -->
+                        <td class="col-lg-2">
+                            <a href="/project/details/{{this.id}}"><button class="btn btn-primary">Change</button></a>
+                        </td>
+                    </tr>
+                </div>
+
+            {{/each}}
+
+        </table>
+    </div>
+</main>

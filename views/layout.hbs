@@ -20,9 +20,9 @@
     {{#if user}}
         <header>
             <!--  Navigation line  -->
-            <div class="navbar navbar-default text-uppercase">
-                <div class="container">
+            <nav class="navbar navbar-default navbar-fixed-top text-uppercase">
 
+                <div class="container nav-container">
                     <!--  Navbar Collapse  -->
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="icon-bar"></span>
@@ -43,32 +43,39 @@
                     <!--  Navigation  -->
                     <ul class="nav navbar-nav pull-right">
                         <li class="dropdown active">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="" id="">Projects<span class="caret"></span></a>
+                                <a class="dropdown-toggle active" data-toggle="dropdown" href="/project/list" id="projectsView">
+                                    Projects <span class="caret"></span>
+                                </a>
                                 <ul class="dropdown-menu">
-                                    <li><a id="dLabelActive" href="/userViews/user">Active Projects</a></li>
+                                    <li><a id="dLabelActive" href="/project/list">Projects</a></li>
                                     <li role="separator" class="divider"></li>
-                                    <li><a id="dLabelClosed" href="/userViews/user#closedProjects">Closed Projects</a></li>
+                                    <li><a id="dLabelClosed" href="/project/list#closedProjects">Statistics</a></li>
                                 </ul>
                             </li>
                         <!--<li class="active"><a href="/userViews/user">Projects</a></li>-->
-                        <li><a href="#">Teams</a></li>
+                        <li id="teamsView"><a href="#">Teams</a></li>
                         <li><a href="/customer/allCustomersView">Clients</a></li>
-                        <li><a href="/userViews/allUsers">Users</a></li>
+                        <li id="usersView"><a href="/userViews/allUsers">Users</a></li>
                     </ul>
                 </div>
-                </div>
-            </div>
+            </nav>
+
         </header>
     {{/if}}
 
     {{#if error }}
-        <div class="home-login-container center-content">
-            <h2>{{error}}</h2>
+        <div class="text-center">
+            <h4>{{error}}</h4>
         </div>
     {{/if}}
 
+
     <!-- If Not User -->
+
     {{{body}}}
+
+
+
 </body>
 
 <footer>

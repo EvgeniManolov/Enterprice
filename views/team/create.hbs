@@ -1,5 +1,4 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
 
 <script type="text/javascript">
@@ -12,13 +11,13 @@ $('#userName').multiselect();
 
 </script>
 
-<div class="container body-content span=8 offset=2">
-    <div class="well">
+<main>
+    <div class="container">
+
         <form class="form-horizontal" method="post" action="/team/create">
             <fieldset>
 
                 <legend>Create team</legend>
-
 
                 <!-- Enter teamName -->
                 <div class="form-group">
@@ -34,7 +33,6 @@ $('#userName').multiselect();
                     <div class="col-sm-4 ">
                         <div class="row-fluid">
                             <select class="selectpicker form-control" multiple="multiple" id="userName" name="userName"  required data-live-search="true">
-                                <option ></option>
                                 {{#each users}}
                                     <option >
                                         <div >{{this.fullName}}</div>
@@ -48,7 +46,7 @@ $('#userName').multiselect();
                 <!-- Submit / Discard -->
                 <div class="form-group">
                     <div class="col-sm-4 col-sm-offset-4">
-                        <a class="btn btn-default" href="./../userViews/user">
+                        <a class="btn btn-default" href="./../project/list">
                             Cancel
                         </a>
                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -57,6 +55,7 @@ $('#userName').multiselect();
                 </div>
             </fieldset>
         </form>
+
     </div>
-</div>
+</main>
 

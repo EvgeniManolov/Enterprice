@@ -1,0 +1,26 @@
+
+<div class="container body-content">
+
+    <legend>All Customers</legend>
+
+    <div class="row">
+        {{#each customers}}
+            <div class="col-md-12">
+                <article>
+                    <header>
+                        <h2>{{this.customerName}}</h2>
+                    </header>
+
+                    <footer>
+                        <div class="pull-right">
+                            <a class="btn btn-default btn-xs" href="">Edit Team &raquo;</a>
+                        </div>
+                        <div class="pull-right">
+                            <a class="btn btn-default btn-xs" href="">Details Team&raquo;</a>
+                        </div>
+                    </footer>
+                </article>
+            </div>
+        {{/each}}
+    </div>
+</div>

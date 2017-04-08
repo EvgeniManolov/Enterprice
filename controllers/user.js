@@ -78,7 +78,7 @@ module.exports = {
                     return;
                 }
 
-                res.redirect('userViews/user');
+                res.redirect('/project/list');
             })
         })
     },
@@ -86,5 +86,38 @@ module.exports = {
     logout: (req, res) => {
         req.logOut();
         res.redirect('/');
+    },
+
+
+
+    usersGet: (req, res) => {
+
+        User.find({}).then(users => {
+
+            /*TO DO: Error message*/
+
+            res.render('userViews/allUsers', {users: users});
+
+        })
+    },
+
+    userDetailsGet: (req, res) => {
+
+        let userID = req.params.id; //take user id, then populate 'team (as object => this.team.name)'
+
+        User.findOne({_id : userID }).populate('team').then(userData => {
+
+            res.render('userViews/userProfile', {userData: userData})
+        })
+    },
+
+    profileGet: (req, res) => {
+
+        let currentUser = req.user.id;
+
+        User.findOne({_id: currentUser}).then(user => {
+
+            res.render('userViews/userProfile',{user: user} );
+        })
     }
 };

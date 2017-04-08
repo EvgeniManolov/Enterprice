@@ -1,11 +1,62 @@
 /**
  * Created by Marian on 27.3.2017 г..
  */
-const Project = require('mongoose').model('Project')
+const Project = require('mongoose').model('Project');
 const Customer = require('mongoose').model('Customer');
 const Team = require('mongoose').model('Team');
+const Role = require('mongoose').model('Role');
+const User = require('mongoose').model('User');
+const Task = require('mongoose').model('Task');
 
 module.exports = {
+
+    mainGet: (req, res) => {
+        Project.find({}).sort('projectDueDate').populate('projectCustomer').populate('projectTeam').then(projects => {
+
+            /*Format projectDueDate property of project and add another property 'date' in format (dd.mm.yyyy)*/
+
+            projects.forEach(function (project) {
+
+                let date = project.projectDueDate.getDate();
+                if (date < 10)
+                    date = '0' + date;
+                let month = project.projectDueDate.getMonth()+1;
+                if (month < 10)
+                    month = '0' + month;
+                let year = project.projectDueDate.getFullYear();
+
+                project.date = '' + date + '.' + month + '.' + year;
+
+                let status = '';
+
+                if (project.projectActive == false) {
+                    if (project.projectProgress < 100) {
+                        status = 'Cancelled'
+                    } else {
+                        status = 'Completed'
+                    }
+                }
+
+                project.projectStatus = status;
+            });
+
+            let user = req.user;
+
+            let isAdmin = true;
+
+            Role.findOne({name: 'Admin'}).then(role => {
+
+                if(user.roles.indexOf(role._id) == -1) {
+                    isAdmin = false;
+                }
+
+                res.render('./project/list', {projects: projects, isAdmin: isAdmin});
+            })
+
+
+        })
+    },
+
     createGet: (req, res) => {
 
         Team.find({}).sort('teamName').then(teams => {
@@ -38,7 +89,7 @@ module.exports = {
 
                     customer.save(err => {
                         if (err) {
-                            res.redirect('/userViews/user', {error: err.message});
+                            res.redirect('/project/list', {error: err.message});
                         }
 
                         else {
@@ -46,7 +97,7 @@ module.exports = {
                             team.projects.push(project.id);
                             team.save(err => {
                                 if (err) {
-                                    res.redirect('/userViews/user', {error: err.message});
+                                    res.redirect('/project/list', {error: err.message});
                                 }
 
                                 else {
@@ -55,26 +106,16 @@ module.exports = {
                                     res.render('./task/create', {project: project});
                                 }
                             });
-
                         }
                     });
-
-
-
                 })
-
                 });
             });
-
         })
-
-
-
-
     },
 
     projectDetails: (req, res) => {
-        let id = req.params.id;
+        let id = req.params.id; //take user id, then populate 'team (as object => this.team.name)'
 
         Project.findOne({'_id' : id }).populate('projectTeam').populate('projectCustomer').populate('projectTasks').then(project => {
             
@@ -106,7 +147,66 @@ module.exports = {
                 task.year = '' + year;
             });
 
-            res.render('project/details', project)
+            let today = new Date();
+
+            project.projectTasks.forEach(function (task) {
+                if (task.taskDeadline <= today) {
+                    task.isOverdue = true;
+
+                } else {
+                    task.isOverdue = false;
+                }
+            });
+
+
+            let commits = 0;
+            let actualHours = 0;
+
+            project.projectTasks.forEach(function (task) {
+                commits += task.taskComment.length;
+                actualHours += task.taskActualHours;
+            });
+
+            project.commits = commits;
+            project.actualHours = actualHours;
+            project.totalCost = project.projectLaborCost + project.projectExpenses;
+
+            let progress = project.projectProgress;
+            progress = Math.round(progress/5)*5;
+            project.projectProgressRounded = progress;
+
+            let shortDescription = project.projectDescription;
+            shortDescription = shortDescription.substr(0, 250);
+            project.projectDescriptionShort = shortDescription;
+
+            let user = req.user;
+            let isAdmin = true;
+
+            Role.findOne({name: 'Admin'}).then(role => {
+
+                if(user.roles.indexOf(role._id) == -1) {
+                    isAdmin = false;
+                }
+                res.render('project/details', {project: project, isAdmin: isAdmin});
+            });
+
         });
+    },
+
+    projectCancel: (req, res) => {
+        let projectId = req.params.id;
+
+        Project.findOne({_id: projectId}).then(project => {
+            Task.find({taskProjectId: projectId}).then(tasks => {
+
+                for (var i=0; i < tasks.length; i++) {
+                    tasks[i].taskActive = false;
+                    tasks[i].save();
+                };
+            })
+
+            project.projectActive = false;
+            project.save();
+        })
     }
 };

@@ -16,37 +16,55 @@ module.exports = {
         let teamArgs = req.body;
         let numberOfUsers = 0;
 
-        teamArgs.userName.forEach(user =>{
-            numberOfUsers++;
-        });
+        let isArray = Array.isArray(teamArgs.userName);
 
-        teamArgs.userID = [];
-        let count = 1;
+        if(isArray) {
+            teamArgs.userName.forEach(user =>{
+                numberOfUsers++;
+            });
 
-        teamArgs.userName.forEach(userName =>{
+            teamArgs.userID = [];
+            let count = 1;
 
-            User.findOne({fullName: userName}).then(user => {
+            teamArgs.userName.forEach(userName =>{
 
-                teamArgs.userID.push( user._id );
+                User.findOne({fullName: userName}).then(user => {
 
-                if (count==numberOfUsers){
+                    teamArgs.userID.push( user._id );
+
+                    if (count == numberOfUsers){
+                        Team.create(teamArgs).then(team => {
+
+                            teamArgs.userID.forEach(userID => {
+
+                                User.findOne ({_id: userID}).then(user =>{
+
+                                    user.team.push(team.id);
+
+                                    user.save()
+                                })
+                            })
+                        })}
+                    count++;
+                })});
+        } else {
+
+            User.findOne({fullName: teamArgs.userName}).then(user => {
+
+                teamArgs.userID = user.id;
+
                     Team.create(teamArgs).then(team => {
 
-                        teamArgs.userID.forEach(userID => {
+                            User.findOne ({_id: teamArgs.userID}).then(user =>{
 
-                            User.findOne ({_id: userID}).then(user =>{
+                                user.team = teamArgs.userID;
 
-                                user.team.push(team.id);
-
-                                user.save(
-
-                                )
+                                user.save()
                             })
                         })
-                })};
-                count++;
-        })});
-        res.redirect('/userViews/user')
+                    })}
+
+        res.redirect('/project/list')
     },
     editGet: (req,res) =>{
 

@@ -1,0 +1,198 @@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+
+    function completeTask () {
+
+        let taskId = $("#completeTask").val();
+        let url = '/task/complete/' + taskId;
+
+        if(confirm("Are you sure you want to close this task?")){
+            $.post(url, {complete: false}, function () {
+            });
+            window.location.replace('/project/list')
+        }
+        else{
+            return false;
+        }
+    };
+
+</script>
+
+<main>
+    <ol class="container breadcrumb transparent">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Library</a></li>
+        <li class="active">Data</li>
+    </ol>
+    {{#if isAdmin}}
+        <!-- Add Content Buttons -->
+        <div class="container">
+
+            <a href="/project/create">
+                <button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span> New Project</button>
+            </a>
+            <a href="/customer/create">
+                <button class="btn btn-default btn-sm">New Customer</button>
+            </a>
+            <a href="/team/create">
+                <button class="btn btn-default btn-sm">Create Team</button>
+            </a>
+        </div>
+    {{/if}}
+
+    <div class="container">
+
+        <!-- Left Section -->
+        <div class="col-lg-3 section">
+
+            <!--  Project Info  -->
+            <div class="section well ">
+                <h4>{{task.taskProjectId.projectName}}</h4>
+                <p>Project Progress: {{this.projectProgress}}%
+                    <div class="progress" style="width: 100%">
+                        <div class="progress-bar"
+                             role="progressbar"
+                             aria-valuenow="{{this.projectProgress}}"
+                             aria-valuemin="0"
+                             aria-valuemax="100"
+                             style="width: {{this.projectProgress}}%;">
+                        </div>
+                    </div>
+                </p>
+
+                <span class="glyphicon glyphicon-hourglass"></span>
+                {{task.date}}
+                <hr>
+
+                <span class="glyphicon glyphicon-user"></span>
+                {{task.taskTeamId.teamName}}
+                <hr>
+
+                <span class="glyphicon glyphicon-pencil"></span>
+                <a href="#">Project Commits <span class="badge pull-right">200</span></a>
+            </div>
+
+            <!--  Task Info  -->
+            <div class="section well ">
+                <h4>{{task.taskName}}</h4>
+                <hr>
+
+                <p>Status: <span class="glyphicon glyphicon-alert glyphicon-cool"></span></p>
+                <hr>
+
+                <span class="glyphicon glyphicon-hourglass"></span>
+                {{task.date}}
+                <hr>
+
+                <span class="glyphicon glyphicon-user"></span>
+                {{task.taskTeamId.teamName}}
+                <hr>
+
+                <span class="glyphicon glyphicon-pencil"></span>
+                <a href="#">Task Commits <span class="badge pull-right">29</span></a>
+
+
+            </div>
+
+        </div>
+
+        <!-- Right Section -->
+        <div class="col-lg-9 section">
+
+            <!-- Task Name -->
+            <div class="">
+                <h3>{{task.taskName}}</h3>
+                <hr>
+            </div>
+
+            <!-- Task Description -->
+            <div class="section">
+                <h5>Task Description</h5>
+                <p>{{task.taskDescription}}</p>
+                <!--<div class="btn btn-xs btn-default center">Show More</div>-->
+                <hr>
+            </div>
+
+            <div>
+                <h5>Commits:</h5>
+                {{#each task.taskComment}}
+                    <div class="media well">
+                        <div class="media-left">
+                            <img src="/images/lora.jpg" class="media-object" style="width:60px">
+                        </div>
+                        <div class="media-body">
+                            <h5 class="media-heading">{{this.name}} posted on {{this.date}}</h5>
+                            <p>{{this.comment}}</p>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+
+            {{#if task.taskActive}}
+                <!--  Update Report  -->
+                <div class="text-center" data-toggle="modal" data-target="#myModal">
+                    <div class="btn btn-primary">
+                        Update
+                    </div>
+                </div>
+
+                <!-- Update Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+
+                        <!--  Modal Content  -->
+                        <div class="modal-content">
+
+                            <!--  Header  -->
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">User input</h4>
+                            </div>
+
+                            <!--  Body  -->
+                            <div class="modal-body">
+
+                                <!--  Form  -->
+                                <form class="form-horizontal" action="/task/details/{{task.id}}" method="POST">
+
+                                    <!--  Comment  -->
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2" for="comment">Comment</label>
+                                        <div class="col-sm-10">
+                                            <textarea rows="4" class="form-control center" id="comment" placeholder="..." name="comment"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <!--  Hours spent  -->
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2" for="hoursSpent">Hours spent</label>
+                                        <div class="col-sm-10">
+                                            <input type="number" class="form-control center" id="hoursSpent" placeholder="..." name="hoursSpent">
+                                        </div>
+                                    </div>
+
+
+                                    <!--  Submit / Discard  -->
+                                    <div class="modal-footer">
+
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Add comment</button>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{/if}}
+
+            {{#if task.taskActive}}
+                <a><button id="completeTask" class="btn btn-success" onclick="completeTask()" value="{{task.id}}">Close Task</button></a>
+            {{/if}}
+
+            <a href="/project/details/{{task.taskProjectId._id}}"><button class="btn btn-default">Back</button></a>
+        </div>
+    </div>
+</main>

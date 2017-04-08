@@ -1,43 +1,95 @@
 const userController = require('./../controllers/user');
-const homeController = require('./../controllers/home');
 const projectController = require('./../controllers/project');
-const userViewsController = require('./../controllers/userViews');
 const customerController = require('./../controllers/customer');
 const teamController = require('./../controllers/team');
 const taskController = require('./../controllers/task');
-const profileController = require('./../controllers/profile');
-const allUsersController = require('./../controllers/allUsers');
+const rateController = require('./../controllers/rate');
 const allCustomersController = require('./../controllers/allCustomers');
 
 module.exports = (app) => {
-    app.get('/', homeController.index);
 
-    app.get('/', userController.loginGet);
-    app.post('/', userController.loginPost);
 
-    app.get('/user/logout', userController.logout);
 
-    app.post('/user/register', userController.registerPost);
+    /* PROJECTS */
 
+    /* create */
     app.get('/project/create', projectController.createGet);
     app.post('/project/create', projectController.createPost);
 
+    /* details */
     app.get('/project/details/:id', projectController.projectDetails);
 
-    app.get('/userViews/user', userViewsController.mainGet);
+    /* list */
+    app.get('/project/list', projectController.mainGet);
 
+    /* cancel */
+    app.post('/project/cancel/:id', projectController.projectCancel);
+
+
+    /* USERS */
+
+    /* login */
+    app.get('/', userController.loginGet);
+    app.post('/', userController.loginPost);
+
+    /* logout */
+    app.get('/user/logout', userController.logout);
+
+    /* register */
+    app.post('/user/register', userController.registerPost);
+
+    /* list */
+    app.get('/userViews/allUsers', userController.usersGet);
+
+    /* own profile */
+    app.get('/userViews/userProfile', userController.profileGet);
+
+    /* details*/
+    app.get('/userViews/userProfile/:id', userController.userDetailsGet);
+
+
+
+    /* RATES */
+
+    /* list */
+    app.get('/rate/list', rateController.ratesGet);
+
+
+
+    /* CUSTOMERS */
+
+    /* create */
     app.get('/customer/create', customerController.customerCreateGet);
     app.post('/customer/create', customerController.customerCreatePost);
     app.get('/customer/allCustomersView', allCustomersController.allCustomersGet);
 
+
+
+    /* TEAMS */
+
+    /* create */
     app.get('/team/create', teamController.teamCreateGet);
     app.post('/team/create', teamController.teamCreatePost);
+
+    /* edit */
     app.get('/team/edit/:id', teamController.editGet);
 
+    
+    
+    /* TASKS */
+
+    /* create */
     app.post('/task/create', taskController.taskCreatePost);
-	
-	app.get('/userViews/userProfile', profileController.profileGet);
-	
-	app.get('/userViews/allUsers', allUsersController.usersGet);
+
+    /* details*/
+    app.get('/task/details/:id', taskController.taskDetailsGet);
+
+    /* edit */
+    app.post('/task/details/:id', taskController.taskDetailsPost);
+
+    /* complete */
+    app.post('/task/complete/:id', taskController.taskCompletePost);
+
+
 };
 

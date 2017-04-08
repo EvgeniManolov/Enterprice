@@ -1,18 +1,27 @@
-<div class="container body-content">
-    <div class="row">
-    {{#each users}}
-        <div class="col-lg-3 well">
-            <h1>{{this.fullName}}</h1>
+<main>
+    <div class="container">
+        <div class="row">
+            <a href="/rate/list">
+                <btn class="btn btn-primary">Manage Rates</btn>
+            </a>
         </div>
-        <div class="col-lg-3 well">
-            <h1>User 2</h1>
+        <div class="row">
+            {{#each users}}
+                <div class="col-lg-3">
+                    <div class="profile-well">
+                        <img class="img img-circle center-block" src="/images/lora.jpg" width="150" height="150">
+
+                        <h5 class="text-center">{{this.fullName}}</h5>
+
+                        <div class="">
+                            <p>E-mail: {{this.email}}</p>
+                            <p>Phone: {{this.phone}}</p>
+                        </div>
+
+                        <a href="/userViews/userProfile/{{this.id}}" class="btn btn-default center-block">View Profile</a>
+                    </div>
+                </div>
+            {{/each}}
         </div>
-        <div class="col-lg-3 well">
-            <h1>User 3</h1>
-        </div>
-        <div class="col-lg-3 well">
-            <h1>User 4</h1>
-        </div>
-    {{/each}}
     </div>
-</div>
+</main>
