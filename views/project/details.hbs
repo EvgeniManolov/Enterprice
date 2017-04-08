@@ -9,6 +9,22 @@
             $(this).height($(this).width());
         });
     });
+
+    $(document).ready(function() {
+        $("#shortDescription").show();
+        $("#longDescription").hide();
+
+        $("#showMoreButton").click(function(){
+                    $("#shortDescription").hide();
+                    $("#longDescription").show();
+        });
+
+        $("#showLessButton").click(function(){
+            $("#shortDescription").show();
+            $("#longDescription").hide();
+        });
+    });
+
 </script>
 
 <main>
@@ -142,17 +158,18 @@
 
                 {{/if}}
 
-            <!-- Project Description -->
-            <div class="section">
+            <!-- Project Description Short-->
+            <div id="shortDescription" class="section">
                 <h5>Description</h5>
-                <p>
-                    Am if number no up period regard sudden better.
-                    Decisively surrounded all admiration and not you.
-                    Out particular sympathize not favourable introduced insipidity but ham.
-                    Rather number can and set praise. Distrusts an it contented perceived attending oh.
-                    Thoroughly estimating introduced stimulated why but motionless.
-                </p>
-                <div class="btn btn-xs btn-default center">Show More</div>
+                <p>{{project.projectDescriptionShort}}</p>
+                <button id="showMoreButton" class="btn btn-xs btn-default center">Show More</button>
+            </div>
+
+            <!-- Project Description Long-->
+            <div id="longDescription" class="section" hidden>
+                <h5>Description</h5>
+                <p>{{project.projectDescription}}</p>
+                <button id="showLessButton" class="btn btn-xs btn-default center">Show less</button>
             </div>
 
             <!--  Tasks  -->

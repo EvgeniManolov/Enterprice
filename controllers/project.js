@@ -152,7 +152,7 @@ module.exports = {
             project.projectTasks.forEach(function (task) {
                 commits += task.taskComment.length;
                 actualHours += task.taskActualHours;
-            })
+            });
 
             project.commits = commits;
             project.actualHours = actualHours;
@@ -161,6 +161,10 @@ module.exports = {
             let progress = project.projectProgress;
             progress = Math.round(progress/5)*5;
             project.projectProgressRounded = progress;
+
+            let shortDescription = project.projectDescription;
+            shortDescription = shortDescription.substr(0, 250);
+            project.projectDescriptionShort = shortDescription;
 
             let user = req.user;
             let isAdmin = true;
