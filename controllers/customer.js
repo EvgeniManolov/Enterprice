@@ -3,6 +3,8 @@
  */
 
 const Customer = require('mongoose').model('Customer');
+const Role = require('mongoose').model('Role');
+const User = require('mongoose').model('User');
 
 module.exports = {
     customerCreateGet: (req, res) => {
@@ -18,8 +20,18 @@ module.exports = {
     },
 
     allCustomersGet:(req,res) =>{
-        Customer.find({}).then(customers =>{
-            res.render('customer/list', {customers:customers});
-        })
-    }
+        Customer.find({}).sort('customerName').then(customers =>{
+            let user = req.user;
+
+            let isAdmin = true;
+
+            Role.findOne({name: 'Admin'}).then(role => {
+
+                if(user.roles.indexOf(role._id) == -1) {
+                    isAdmin = false;
+                }
+
+                res.render('./customer/list', {customers: customers, isAdmin: isAdmin});
+            })
+    })}
 };

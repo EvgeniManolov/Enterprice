@@ -67,7 +67,7 @@ module.exports = {
         res.redirect('/project/list')
     },
     allTeamsGet:(req,res) =>{
-        Team.find({}).then(teams=>{
+        Team.find({}).sort('teamName').then(teams=>{
             res.render('team/list', {teams:teams});
         })
     },
