@@ -1,5 +1,11 @@
 <main>
 
+    <ol class="container breadcrumb transparent">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Library</a></li>
+        <li class="active">Data</li>
+    </ol>
+
     {{#if isAdmin}}
         <!-- Add Content Buttons -->
         <div class="container">
@@ -16,14 +22,19 @@
         </div>
     {{/if}}
 
-    <!-- Left Section -->
-    
+    <!-- Content -->
     <div class="container">
+
+        <!-- Left Section -->
         <div class="col-lg-3 section">
 
             <!--  Graphic  -->
             <div class="section">
                 <img class="section" src="/images/circle.png">
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-body">A Basic Panel</div>
             </div>
 
             <!--  Date  -->
@@ -85,7 +96,7 @@
                                  aria-valuenow=""
                                  aria-valuemin="0"
                                  aria-valuemax="100"
-                                 style="width: 22%">
+                                 style="width: {{this.projectProgress}}%">
                             </div>
                         </div>
                         25%
@@ -127,55 +138,53 @@
                 <div class="btn btn-xs btn-default center">Show More</div>
             </div>
 
-            <div class="table">
-                <h5>Project Tasks</h5>
-                <!-- Table Closed Projects -->
-                <table class="table" id="activeProjectsTable">
+            <!--  Tasks  -->
+            <h5>Project Tasks</h5>
+            <table class="table" id="activeProjectsTable">
 
-                    <!-- Table Head -->
+                <!-- Table Head -->
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Deadline</th>
+                    <th>Status</th>
+                    <th>Details</th>
+                </tr>
+
+                <!-- Table Data -->
+                {{#each project.projectTasks}}
                     <tr>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Deadline</th>
-                        <th>Status</th>
-                        <th>Details</th>
+                        <!-- Task Name -->
+                        <td class="" id="taskName"><h6>{{this.taskName}}</h6></td>
+
+                        <!-- Task Description -->
+                        <td class="" id="taskDescription">{{this.taskDescription}}</td>
+
+                        <!-- Task Deadline -->
+                        {{#if this.isOverdue}}
+                        <td class="alert-warning" id="taskDeadline" >{{this.date}}</td>
+                        {{/if}}
+
+                        {{#unless this.isOverdue}}
+                            <td class="" id="taskDeadline" >{{this.date}}</td>
+                        {{/unless}}
+
+                        <!-- Task Status -->
+                        {{#if this.taskActive}}
+                        <td class="" id="taskActive">Active</td>
+                        {{/if}}
+
+                        {{#unless this.taskActive}}
+                            <td class="" id="taskActive">Closed</td>
+                        {{/unless}}
+
+                        <!-- Details Button -->
+                        <td>
+                            <a href="/task/details/{{this.id}}"><button class="btn btn-primary">More</button></a>
+                        </td>
                     </tr>
-
-                    <!-- Table Data -->
-                    {{#each project.projectTasks}}
-                        <tr>
-                            <!-- Task Name -->
-                            <td class="" id="taskName"><h6>{{this.taskName}}</h6></td>
-
-                            <!-- Task Description -->
-                            <td class="" id="taskDescription">{{this.taskDescription}}</td>
-
-                            <!-- Task Deadline -->
-                            {{#if this.isOverdue}}
-                            <td class="alert-warning" id="taskDeadline" >{{this.date}}</td>
-                            {{/if}}
-
-                            {{#unless this.isOverdue}}
-                                <td class="" id="taskDeadline" >{{this.date}}</td>
-                            {{/unless}}
-
-                            <!-- Task Status -->
-                            {{#if this.taskActive}}
-                            <td class="" id="taskActive">Active</td>
-                            {{/if}}
-
-                            {{#unless this.taskActive}}
-                                <td class="" id="taskActive">Closed</td>
-                            {{/unless}}
-
-                            <!-- Details Button -->
-                            <td>
-                                <a href="/task/details/{{this.id}}"><button class="btn btn-primary">More</button></a>
-                            </td>
-                        </tr>
-                    {{/each}}
-                </table>
-            </div>
+                {{/each}}
+            </table>
 
             <a href="/project/list"><button class="btn btn-default">Back</button></a>
         </div>
