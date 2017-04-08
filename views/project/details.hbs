@@ -80,31 +80,34 @@
             </div>
             <div class="clear"></div>
 
-            <div class="panel panel-default">
-                <div class="panel-body">A Basic Panel</div>
-            </div>
+            <div class="section well ">
 
-            <!--  Date  -->
-            <div class="section">
+                <h4>{{task.taskProjectId.projectName}}</h4>
+                <p>Project Progress: {{this.projectProgress}}%
+                <div class="progress" style="width: 100%">
+                    <div class="progress-bar"
+                         role="progressbar"
+                         aria-valuenow="{{this.projectProgress}}"
+                         aria-valuemin="0"
+                         aria-valuemax="100"
+                         style="width: {{this.projectProgress}}%;">
+                    </div>
+                </div>
+                </p>
+
+                <!--  Date  -->
                 <span class="glyphicon glyphicon-hourglass"></span>
-                {{project.day}}.{{project.month}}
-                <!--{{project.year}}-->
-            </div>
-            
-            <hr>
-            
-            <!--  Team  -->
-            <div class="section">
+                {{project.date}}
+                <hr>
+
+                <!--  Team  -->
                 <span class="glyphicon glyphicon-user"></span>
                 {{project.projectTeam.teamName}}
-            </div>
-            
-            <hr>
-            
-            <!--  Commits  -->
-            <div class="">
+                <hr>
+
+                <!--  Commits  -->
                 <span class="glyphicon glyphicon-pencil"></span>
-                <a href="#">Commits <span class="badge">{{project.commits}}</span></a>
+                <a href="#">Project Commits <span class="badge pull-right">{{project.commits}}</span></a>
             </div>
 
         </div>
@@ -124,20 +127,26 @@
 
             <!-- Data Squares -->
             {{#if isAdmin}}
-                <div class="text-uppercase">
 
-                    <div class="info-squares">
+                <!--<div class="text-uppercase">
+
+                    <div class="info-squares green">
                         Project Price
                         <h5>$</span> {{project.projectPrice}}</h5>
                     </div>
 
                     <div class="info-squares">
-                        Hours spent
+                        Worktime Panned
                         <h5>{{project.projectWorkingHours}}</h5>
                     </div>
 
                     <div class="info-squares">
-                        Actual hours
+                        Other expenses
+                        <h5>$ {{project.projectExpenses}}</h5>
+                    </div>
+
+                    <div class="info-squares">
+                        Actual Worktime
                         <h5>{{project.actualHours}}</h5>
                     </div>
 
@@ -155,23 +164,89 @@
                         <h5>{{project.projectProgress}}%</h5>
                     </div>
 
-                        <div class="info-squares">
-                            Other expenses
-                            <h5>$ {{project.projectExpenses}}</h5>
-                        </div>
-
-                    <div class="info-squares">
-                        Labour cost
-                        <h5>$ {{project.projectLaborCost}}</h5>
-                    </div>
-
                     <div class="info-squares red">
                         Total Cost
                         <h5>$ {{project.totalCost}}</h5>
                     </div>
+
+                    &lt;!&ndash;<div class="info-squares">
+                        Labour cost
+                        <h5>$ {{project.projectLaborCost}}</h5>
+                    </div>&ndash;&gt;
+                </div>-->
+
+                <div class="text-uppercase">
+
+                    <div class="">
+
+                        <div class="info-squares">
+                            Time Planned
+                            <h5>{{project.projectWorkingHours}} <span class="small">/ hrs</span></h5>
+                        </div>
+
+                        <div class="info-squares">
+                            Labour cost
+                            <h5>$ {{project.projectLaborCost}}</h5>
+                        </div>
+
+                        <div class="info-squares">
+                            Planned expenses
+                            <h5>$ {{project.projectExpenses}}</h5>
+                        </div>
+
+                        <div class="info-squares white">
+
+                        </div>
+
+                        <div class="info-squares">
+                            Project Price
+                            <h5>$</span> {{project.projectPrice}}</h5>
+                        </div>
+
+                    </div>
+
+
+                    <div class="">
+
+                        <div class="info-squares">
+                            Time Spent
+                            <h5>{{project.actualHours}}  <span class="small">/ hrs</span></h5>
+                        </div>
+
+                        <div class="info-squares">
+                            Labour Cost
+                            <h5>$ {{project.projectLaborCost}}</h5>
+                        </div>
+
+                        <div class="info-squares white">
+                            Progress
+                            <div class="progress" style="width: 100%">
+                                <div class="progress-bar"
+                                     role="progressbar"
+                                     aria-valuenow=""
+                                     aria-valuemin="0"
+                                     aria-valuemax="100"
+                                     style="width: {{project.projectProgress}}20%;">
+                                </div>
+                            </div>
+                            <h5>{{project.projectProgress}}%</h5>
+                        </div>
+
+                        <div class="info-squares">
+                            Made expenses
+                            <h5>$ {{project.projectExpenses}}</h5>
+                        </div>
+
+                        <div class="info-squares red">
+                            Total Cost
+                            <h5>$ {{project.totalCost}}</h5>
+                        </div>
+
+                    </div>
+
                 </div>
 
-                {{/if}}
+            {{/if}}
 
             <!-- Project Description Short-->
             <div id="shortDescription" class="section">
