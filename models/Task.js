@@ -19,6 +19,7 @@ let taskSchema = mongoose.Schema ({
     taskTeamId: {type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Team'},
     taskComment: {type: [{user: mongoose.Schema.Types.ObjectId, name: String, comment: String, date: String }]},
     taskActive: {type: Boolean, default: true},
+    taskActualHours: {type: Number, default: 0},
     taskWeight: {type: Number, required: true}
 });
 
