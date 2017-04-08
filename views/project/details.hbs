@@ -75,12 +75,13 @@
                 <hr>
             </div>
 
+            <!-- Data Squares -->
             {{#if isAdmin}}
-                <!-- Data Squares -->
                 <div class="text-uppercase">
+
                     <div class="info-squares">
                         Project Price
-                        <h5><span class="glyphicon glyphicon-eur"></span> {{project.projectPrice}}</h5>
+                        <h5>$</span> {{project.projectPrice}}</h5>
                     </div>
 
                     <div class="info-squares">
@@ -88,51 +89,42 @@
                         <h5>{{project.projectWorkingHours}}</h5>
                     </div>
 
-                <div class="info-squares white">
-                    Status
-                    <div class="progress">
-                        <div class="progress-bar"
-                             role="progressbar"
-                             aria-valuenow=""
-                             aria-valuemin="0"
-                             aria-valuemax="100"
-                             style="width: {{project.projectProgress}}%">
+                    <div class="info-squares">
+                        Actual hours
+                        <h5>{{project.actualHours}}</h5>
+                    </div>
+
                     <div class="info-squares white">
                         Status
-                        <div class="progress">
+                        <div class="progress" style="width: 100%">
                             <div class="progress-bar"
                                  role="progressbar"
                                  aria-valuenow=""
                                  aria-valuemin="0"
                                  aria-valuemax="100"
-                                 style="width: {{this.projectProgress}}%">
+                                 style="width: {{project.projectProgress}}20%;">
                             </div>
                         </div>
-                        25%
+                        <h5>{{project.projectProgress}}%</h5>
                     </div>
-                    {{project.projectProgress}}%
 
-                <div class="info-squares">
-                    Actual hours
-                    <h5>{{project.actualHours}}</h5>
-                </div>
+                        <div class="info-squares">
+                            Other expenses
+                            <h5>$ {{project.projectExpenses}}</h5>
+                        </div>
 
                     <div class="info-squares">
-                        Other expenses
-                        <h5>$ {{project.projectExpenses}}</h5>
+                        Labour cost
+                        <h5>$ {{project.projectLaborCost}}</h5>
                     </div>
 
-                <div class="info-squares">
-                    Labour cost
-                    <h5>{{project.projectLaborCost}}</h5>
+                    <div class="info-squares red">
+                        Total Cost
+                        <h5>$ {{project.totalCost}}</h5>
+                    </div>
                 </div>
 
-                <div class="info-squares red">
-                    Total Cost
-                    <h5>{{project.totalCost}}</h5>
-                </div>
-                <hr>
-            {{/if}}
+                {{/if}}
 
             <!-- Project Description -->
             <div class="section">
