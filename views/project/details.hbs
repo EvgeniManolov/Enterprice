@@ -25,6 +25,21 @@
         });
     });
 
+    function cancelProject () {
+
+        let projectId = $("#cancelProject").val();
+        let url = '/project/cancel/' + projectId;
+
+        if(confirm("Are you sure you want to cancel this project?")){
+            $.post(url, {cancel: true}, function () {
+            });
+            window.location.replace('/project/list')
+        }
+        else{
+            return false;
+        }
+    };
+
 </script>
 
 <main>
@@ -221,6 +236,12 @@
             </table>
 
             <a href="/project/list"><button class="btn btn-default">Back</button></a>
+
+            {{#if isAdmin}}
+            {{#if project.projectActive}}
+                <a><button id="cancelProject" class="btn btn-success" onclick="cancelProject()" value="{{project.id}}">Cancel Project</button></a>
+            {{/if}}
+            {{/if}}
         </div>
     </div>
 </main>

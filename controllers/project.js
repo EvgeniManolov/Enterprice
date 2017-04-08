@@ -6,6 +6,7 @@ const Customer = require('mongoose').model('Customer');
 const Team = require('mongoose').model('Team');
 const Role = require('mongoose').model('Role');
 const User = require('mongoose').model('User');
+const Task = require('mongoose').model('Task');
 
 module.exports = {
 
@@ -25,6 +26,18 @@ module.exports = {
                 let year = project.projectDueDate.getFullYear();
 
                 project.date = '' + date + '.' + month + '.' + year;
+
+                let status = '';
+
+                if (project.projectActive == false) {
+                    if (project.projectProgress < 100) {
+                        status = 'Cancelled'
+                    } else {
+                        status = 'Completed'
+                    }
+                }
+
+                project.projectStatus = status;
             });
 
             let user = req.user;
@@ -178,5 +191,22 @@ module.exports = {
             });
 
         });
+    },
+
+    projectCancel: (req, res) => {
+        let projectId = req.params.id;
+
+        Project.findOne({_id: projectId}).then(project => {
+            Task.find({taskProjectId: projectId}).then(tasks => {
+
+                for (var i=0; i < tasks.length; i++) {
+                    tasks[i].taskActive = false;
+                    tasks[i].save();
+                };
+            })
+
+            project.projectActive = false;
+            project.save();
+        })
     }
 };

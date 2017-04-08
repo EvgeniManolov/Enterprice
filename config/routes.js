@@ -21,6 +21,8 @@ module.exports = (app) => {
     /* list */
     app.get('/project/list', projectController.mainGet);
 
+    /* cancel */
+    app.post('/project/cancel/:id', projectController.projectCancel);
 
 
     /* USERS */
