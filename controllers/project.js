@@ -158,6 +158,10 @@ module.exports = {
             project.actualHours = actualHours;
             project.totalCost = project.projectLaborCost + project.projectExpenses;
 
+            let progress = project.projectProgress;
+            progress = Math.round(progress/5)*5;
+            project.projectProgressRounded = progress;
+
             let user = req.user;
             let isAdmin = true;
 

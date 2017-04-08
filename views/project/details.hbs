@@ -1,3 +1,16 @@
+<script>
+    $( document ).ready(function() {
+        $(".setsize").each(function() {
+            $(this).height($(this).width());
+        });
+    });
+    $(window).on('resize', function(){
+        $(".setsize").each(function() {
+            $(this).height($(this).width());
+        });
+    });
+</script>
+
 <main>
 
     <ol class="container breadcrumb transparent">
@@ -29,9 +42,12 @@
         <div class="col-lg-3 section">
 
             <!--  Graphic  -->
-            <div class="section">
-                <img class="section" src="/images/circle.png">
+            <div class="progress-radial progress-{{project.projectProgressRounded}} setsize">
+                <div class="overlay setsize">
+                    <p>{{project.projectProgress}}%</p>
+                </div>
             </div>
+            <div class="clear"></div>
 
             <div class="panel panel-default">
                 <div class="panel-body">A Basic Panel</div>
