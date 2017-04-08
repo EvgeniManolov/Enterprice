@@ -4,6 +4,7 @@ const customerController = require('./../controllers/customer');
 const teamController = require('./../controllers/team');
 const taskController = require('./../controllers/task');
 const rateController = require('./../controllers/rate');
+const allCustomersController = require('./../controllers/allCustomers');
 
 module.exports = (app) => {
 
@@ -21,6 +22,8 @@ module.exports = (app) => {
     /* list */
     app.get('/project/list', projectController.mainGet);
 
+    /* cancel */
+    app.post('/project/cancel/:id', projectController.projectCancel);
 
 
     /* USERS */
@@ -58,6 +61,7 @@ module.exports = (app) => {
     /* create */
     app.get('/customer/create', customerController.customerCreateGet);
     app.post('/customer/create', customerController.customerCreatePost);
+    app.get('/customer/allCustomersView', allCustomersController.allCustomersGet);
 
 
 
