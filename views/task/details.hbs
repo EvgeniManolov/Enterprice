@@ -26,19 +26,13 @@
         <li><a href="#">Library</a></li>
         <li class="active">Data</li>
     </ol>
-    {{#if isAdmin}}
-        <!-- Add Content Buttons -->
-        <div class="container">
 
-            <a href="/project/create">
-                <button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span> New Project</button>
-            </a>
-            <a href="/customer/create">
-                <button class="btn btn-default btn-sm">New Customer</button>
-            </a>
-            <a href="/team/create">
-                <button class="btn btn-default btn-sm">Create Team</button>
-            </a>
+    <!-- Add Content Buttons -->
+    {{#if isAdmin}}
+        <div class="container">
+            <a class="btn btn-default btn-sm" href="/project/create"><span class="glyphicon glyphicon-plus"></span> New Project</a>
+            <a class="btn btn-default btn-sm" href="/customer/create"><span class="glyphicon glyphicon-plus"></span>New Customer</a>
+            <a class="btn btn-default btn-sm" href="/team/create"><span class="glyphicon glyphicon-user"></span>Create Team</a>
         </div>
     {{/if}}
 
