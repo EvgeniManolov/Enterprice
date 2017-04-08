@@ -66,6 +66,14 @@ module.exports = {
 
         res.redirect('/project/list')
     },
+    allTeamsGet:(req,res) =>{
+        Team.find({}).then(teams=>{
+            res.render('team/allTeamsView', {teams:teams});
+        })
+    },
+
+
+
     editGet: (req,res) =>{
 
         let id = req.params.id;

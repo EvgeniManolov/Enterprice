@@ -15,5 +15,11 @@ module.exports = {
         Customer.create(customerArgs).then(customer => {
             res.redirect('/project/list')
         })
+    },
+
+    allCustomersGet:(req,res) =>{
+        Customer.find({}).then(customers =>{
+            res.render('customer/list', {customers:customers});
+        })
     }
 };
