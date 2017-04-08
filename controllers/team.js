@@ -68,10 +68,9 @@ module.exports = {
     },
     allTeamsGet:(req,res) =>{
         Team.find({}).then(teams=>{
-            res.render('team/allTeamsView', {teams:teams});
+            res.render('team/list', {teams:teams});
         })
     },
-
 
 
     editGet: (req,res) =>{

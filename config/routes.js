@@ -75,7 +75,7 @@ module.exports = (app) => {
     app.post('/team/create', teamController.teamCreatePost);
 
     /* list */
-    app.get('/team/allTeamsView', allTeamsController.allTeamsGet);
+    app.get('/team/list', allTeamsController.allTeamsGet);
 
     /* edit */
     app.get('/team/edit/:id', teamController.editGet);
