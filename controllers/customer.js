@@ -34,5 +34,13 @@ module.exports = {
 
             res.render('./customer/details', {customer:customer});
         });
+    },
+
+    customerEditGet : (req,res)=>{
+        let id = req.params.id;
+
+        Customer.findOne({_id:id}).then(customer=>{
+            res.render('customer/edit', {customer:customer})
+        })
     }
 };
