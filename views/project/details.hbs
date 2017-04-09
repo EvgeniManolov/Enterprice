@@ -76,28 +76,7 @@
             </div>
             <hr>
 
-            <!--  Project Details  -->
-            <!--<div class="section well ">
-
-                <h4>Project Details</h4>
-                <hr>
-
-                &lt;!&ndash;  Date  &ndash;&gt;
-                <span class="glyphicon glyphicon-hourglass"></span>
-                {{project.date}}
-                <hr>
-
-                &lt;!&ndash;  Team  &ndash;&gt;
-                <span class="glyphicon glyphicon-user"></span>
-                {{project.projectTeam.teamName}}
-                <hr>
-
-                &lt;!&ndash;  Commits  &ndash;&gt;
-                <span class="glyphicon glyphicon-pencil"></span>
-                <a href="#">Project Commits <span class="badge pull-right">{{project.commits}}</span></a>
-            </div>-->
-
-            <!--  Project Details 2 -->
+            <!--  Project Details List Group -->
             <div class="list-group">
                 <div class="list-group-item active">
                     Project Details
@@ -128,7 +107,9 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" href="#collapse1">Project Details</a>
+                            <a data-toggle="collapse" href="#collapse1">
+                                <h6>Project Details<span class="caret"></span></h6>
+                            </a>
                         </h4>
                     </div>
                     <div id="collapse1" class="panel-collapse collapse">
@@ -157,23 +138,23 @@
             <!--  Client Details  -->
             <div class="section well">
 
-                <h4>Client Details</h4>
+                <h5>{{project.projectCustomer.customerName}}</h5>
                 <hr>
 
                 <!--  Name  -->
                 <span class="glyphicon glyphicon-user"></span>
                 {{project.projectCustomer.customerName}}
-                <hr>
+                <br>
 
                 <!--  Address  -->
                 <span class="glyphicon glyphicon-map-marker"></span>
                 {{project.projectCustomer.customerAddress}}
-                <hr>
+                <br>
 
                 <!--  Phone  -->
                 <span class="glyphicon glyphicon-earphone"></span>
                 {{project.projectCustomer.customerPhone}}
-                <hr>
+                <br>
 
                 <!--  Email  -->
                 <span class="glyphicon glyphicon-envelope"></span>
@@ -183,12 +164,28 @@
 
         <!-- Right Section -->
         <div class="col-lg-9 section">
-
-            <!-- Project Name -->
-            <div class="">
-                <h3>{{project.projectName}}</h3>
-                <p>{{project.projectCustomer.customerName}}  |  {{project.date}}</p>
-                <hr>
+            <div class="row">
+                <!-- Project Name -->
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <hr>
+                            <h3>{{project.projectName}}</h3>
+                            <p>{{project.projectCustomer.customerName}}  |  {{project.date}}</p>
+                            <hr>
+                        </div>
+                        <div class="col-lg-3">
+                            {{#if isAdmin}}
+                                {{#if project.projectActive}}
+                                    <button id="cancelProject" class="btn btn-default" onclick="cancelProject()" value="{{project.id}}">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                        Cancel Project
+                                    </button>
+                                {{/if}}
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Data Squares -->
@@ -266,20 +263,20 @@
             {{/if}}
 
             <!-- Project Description Short-->
-            <div id="shortDescription" class="section">
+            <div id="shortDescription" class="section well">
                 <h5>Description</h5>
                 <p>{{project.projectDescriptionShort}}</p>
                 <button id="showMoreButton" class="btn btn-xs btn-default center">Show More</button>
             </div>
 
             <!-- Project Description Long-->
-            <div id="longDescription" class="section" hidden>
+            <div id="longDescription" class="section well" hidden>
                 <h5>Description</h5>
                 <p>{{project.projectDescription}}</p>
                 <button id="showLessButton" class="btn btn-xs btn-default center">Show less</button>
             </div>
 
-            <!--  Tasks  -->
+            <!--  Tasks Table -->
             <h5>Project Tasks</h5>
             <table class="table" id="tasksTable">
 
@@ -295,45 +292,70 @@
                 <!-- Table Data -->
                 {{#each project.projectTasks}}
                     <tr>
-                        <!-- Task Name -->
-                        <td class="" id="taskName"><h6>{{this.taskName}}</h6></td>
-
-                        <!-- Task Description -->
-                        <td class="" id="taskDescription">{{this.taskDescription}}</td>
-
-                        <!-- Task Deadline -->
-                        {{#if this.isOverdue}}
-                        <td class="alert-warning" id="taskDeadline" >{{this.date}}</td>
-                        {{/if}}
-
-                        {{#unless this.isOverdue}}
-                            <td class="" id="taskDeadline" >{{this.date}}</td>
-                        {{/unless}}
 
                         <!-- Task Status -->
                         {{#if this.taskActive}}
-                        <td class="" id="taskActive"><span class="glyphicon glyphicon-star glyphicon-active"></span>Active</td>
+                            <td class="col-lg-1" id="taskActive">
+                                <span class="glyphicon glyphicon-star glyphicon-active"></span>
+                                <!--<h6><small>ative</small></h6>-->
+                            </td>
                         {{/if}}
 
                         {{#unless this.taskActive}}
-                            <td class="" id="taskActive"><span class="glyphicon glyphicon-ok glyphicon-cool"></span>Closed</td>
+                            <td class="" id="taskActive">
+                                <span class="glyphicon glyphicon-ok glyphicon-cool"></span>
+                            </td>
                         {{/unless}}
 
-                        <!-- Details Button -->
-                        <td>
-                            <a href="/task/details/{{this.id}}"><button class="btn btn-primary">More</button></a>
-                        </td>
+                        <!-- Task Name -->
+                        <td class="col-lg-2" id="taskName"><h6>{{this.taskName}}</h6></td>
+
+                        <!-- Task Description -->
+                        <td class="col-lg-6" id="taskDescription"><h6><small>{{this.taskDescription}}</small></h6></td>
+
+                        <!-- Task Deadline -->
+                        {{#if this.isOverdue}}
+                        <td class="col-lg-2 alert-warning" id="taskDeadline" >{{this.date}}</td>
+                        {{/if}}
+
+                        {{#unless this.isOverdue}}
+                            <td class="col-lg-1" id="taskDeadline" >{{this.date}}</td>
+                        {{/unless}}
+
+                        <!-- Update Button -->
+
+                        {{#if this.taskActive}}
+                            <td class="col-lg-1" id="taskActive">
+                                <a href="/task/details/{{this.id}}">
+                                    <button class="btn btn-primary btn-sm">
+                                        Update
+                                    </button>
+                                </a>
+                            </td>
+                        {{/if}}
+
+                        {{#unless this.taskActive}}
+                            <td class="col-lg-1" id="taskActive">
+                                <a href="/task/details/{{this.id}}">
+                                    <button class="btn btn-success btn-sm">
+                                        View
+                                    </button>
+                                </a>
+                            </td>
+                            </td>
+                        {{/unless}}
                     </tr>
                 {{/each}}
             </table>
 
-            <a href="/project/list"><button class="btn btn-default">Back</button></a>
+            <!--  Back Button  -->
+            <a href="/project/list">
+                <button class="btn btn-default pull-right">
+                    <span class="glyphicon glyphicon-menu-left"></span>
+                    Back to All Projects
+                </button>
+            </a>
 
-            {{#if isAdmin}}
-            {{#if project.projectActive}}
-                <a><button id="cancelProject" class="btn btn-success" onclick="cancelProject()" value="{{project.id}}">Cancel Project</button></a>
-            {{/if}}
-            {{/if}}
         </div>
     </div>
 </main>

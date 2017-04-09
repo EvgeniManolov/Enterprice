@@ -7107,7 +7107,7 @@ input[type=number],
 [type=tel].form-control,
 [contenteditable].form-control {
   padding: 0;
-  border: none;
+/*  border: none;*/
   border-radius: 0;
   -webkit-appearance: none;
   -webkit-box-shadow: inset 0 -1px 0 #dddddd;
