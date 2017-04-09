@@ -72,6 +72,13 @@ module.exports = {
         })
     },
 
+    teamDetailsGet:(req,res)=>{
+      let id = req.params.id;
+      Team.findOne({_id:id}).populate('userID').then(team=>{
+          res.render('./team/details',{team:team});
+      });
+    },
+
 
     editGet: (req,res) =>{
 

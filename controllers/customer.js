@@ -29,9 +29,9 @@ module.exports = {
 
     customerDetailsGet: (req, res)=> {
         let id = req.params.id;
-        console.log(id);
+
         Customer.findOne({_id:id}).then(customer=>{
-            console.log(customer);
+
             res.render('./customer/details', {customer:customer});
         });
     }

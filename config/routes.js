@@ -77,6 +77,9 @@ module.exports = (app) => {
     /* list */
     app.get('/team/list', teamController.allTeamsGet);
 
+    /* details*/
+    app.get('/team/details/:id',teamController.teamDetailsGet);
+
     /* edit */
     app.get('/team/edit/:id', teamController.editGet);
 
