@@ -21,10 +21,10 @@ module.exports = {
     },
 
     allCustomersGet:(req,res) =>{
-        Customer.find({}).sort('customerName').then(customers =>{
+        Customer.find({}).sort('customerName').then(customers => {
 
-                res.render('./customer/list', {customers: customers});
-            })
+                res.render('./customer/list', {customers: customers})
+            });
     },
 
     customerDetailsGet: (req, res)=> {
