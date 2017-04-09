@@ -10,16 +10,17 @@
                 <article>
                     <header>
                         <h2>{{this.customerName}}</h2>
-                    </header>
 
-                    <footer>
+                        {{#if isAdmin}}
                         <div class="pull-right">
-                            <a class="btn btn-default btn-xs" href="/customer/edit/{{this.id}}">Edit Customer &raquo;</a>
+                            <a class="btn btn-default btn-xs" href="/customer/edit/{{this.id}}">Edit Customer &raquo</a>
                         </div>
+                        {{/if}}
+
                         <div class="pull-right">
-                            <a class="btn btn-default btn-xs" href="/customer/details/{{this.id}}">Details Customer&raquo;</a>
+                            <a class="btn btn-default btn-xs" href="/customer/details/{{this.id}}">Details Customer &raquo</a>
                         </div>
-                    </footer>
+                    </header>
                 </article>
             </div>
         {{/each}}

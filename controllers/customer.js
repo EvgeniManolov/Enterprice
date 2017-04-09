@@ -22,8 +22,18 @@ module.exports = {
 
     allCustomersGet:(req,res) =>{
         Customer.find({}).sort('customerName').then(customers => {
+            let user = req.user;
 
-                res.render('./customer/list', {customers: customers})
+            let isAdmin = true;
+
+            Role.findOne({name: 'Admin'}).then(role => {
+
+                if(user.roles.indexOf(role._id) == -1) {
+                    isAdmin = false;
+                }
+
+                res.render('./customer/list', {customers: customers, isAdmin:isAdmin})
+            });
             });
     },
 

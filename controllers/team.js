@@ -4,6 +4,7 @@
 
 const Team = require('mongoose').model('Team');
 const User = require('mongoose').model('User');
+const Role = require('mongoose').model('Role');
 
 module.exports = {
     teamCreateGet: ( req, res ) => {
@@ -68,7 +69,20 @@ module.exports = {
     },
     allTeamsGet:(req,res) =>{
         Team.find({}).sort('teamName').then(teams=>{
-            res.render('team/list', {teams:teams});
+            let user = req.user;
+
+            let isAdmin = true;
+
+            Role.findOne({name: 'Admin'}).then(role => {
+
+                if(user.roles.indexOf(role._id) == -1) {
+                    isAdmin = false;
+                }
+
+                res.render('team/list', {teams:teams, isAdmin:isAdmin});
+            });
+
+
         })
     },
 
