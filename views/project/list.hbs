@@ -39,9 +39,11 @@
     <!-- Add Content Buttons -->
     {{#if isAdmin}}
         <div class="container">
-            <a class="btn btn-default btn-sm" href="/project/create"><span class="glyphicon glyphicon-plus"></span> New Project</a>
-            <a class="btn btn-default btn-sm" href="/customer/create"><span class="glyphicon glyphicon-plus"></span>New Customer</a>
-            <a class="btn btn-default btn-sm" href="/team/create"><span class="glyphicon glyphicon-user"></span>Create Team</a>
+            <div class="row">
+                <a class="btn btn-default btn-sm" href="/project/create"><span class="glyphicon glyphicon-plus"></span> New Project</a>
+                <a class="btn btn-default btn-sm" href="/customer/create"><span class="glyphicon glyphicon-plus"></span>New Customer</a>
+                <a class="btn btn-default btn-sm" href="/team/create"><span class="glyphicon glyphicon-user"></span>Create Team</a>
+            </div>
         </div>
     {{/if}}
 
@@ -69,16 +71,16 @@
         <div class="col-lg-9 section">
 
             <!-- Tab Names -->
-            <ul class="nav nav-tabs nav-justified">
+            <ul class="nav nav-tabs ">
                 <li class="nav-item active">
                     <a href="#activeProject" aria-controls="activeProject" role="tab" data-toggle="tab">
-                        Active Projects
+                        <h5>Active Projects</h5>
                     </a>
                 </li>
 
                 <li class="nav nav-item">
                     <a href="#closedProjects" aria-controls="closedProjects" role="tab" data-toggle="tab">
-                        Closed Projects
+                        <h5>Closed Projects</h5>
                     </a>
                 </li>
             </ul>
@@ -92,7 +94,7 @@
                     <!-- Filters and Stuff -->
                     <div class="filters-container">
                         <div class="input-group input-group-lg">
-                            <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
+                            <label class="sr-only" for="myInputActive"></label>
                             <input class="form-control" type="text" id="myInputActive" onkeyup="myFunction('activeProjectsTable', 'myInputActive')" placeholder="Search">
                         </div>
                     </div>
@@ -117,7 +119,7 @@
 
                                     <!-- Flag -->
                                     <td class="text-center" id="flag">
-                                        <span class="glyphicon glyphicon-flag glyphicon-cool"></span>
+                                        <span class="glyphicon glyphicon-flag glyphicon-done"></span>
                                     </td>
 
                                     <!-- Project Name -->
@@ -162,9 +164,11 @@
                 <div role="tabpanel" class="tab-pane fade" id="closedProjects">
 
                     <!-- Filters and Stuff -->
-                    <div class="filters-container">
-                        <label class="text-uppercase sr-only" for="myInputClosed"></label>
-                        <input class="form-control" type="text" id="myInputClosed" onkeyup="myFunction('closedProjectsTable', 'myInputClosed')" placeholder="Search" >
+                    <div class="filters-container input-group-lg">
+                        <div class="input-group input-group-lg">
+                            <label class="sr-only" for="myInputClosed"></label>
+                            <input class="form-control" type="text" id="myInputClosed" onkeyup="myFunction('closedProjectsTable', 'myInputClosed')" placeholder="Search" >
+                        </div>
                     </div>
 
                     <!-- Table Closed Projects -->
