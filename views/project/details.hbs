@@ -50,19 +50,12 @@
         <li class="active">Data</li>
     </ol>
 
+    <!-- Add Content Buttons -->
     {{#if isAdmin}}
-        <!-- Add Content Buttons -->
         <div class="container">
-
-            <a href="/project/create">
-                <button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span> New Project</button>
-            </a>
-            <a href="/customer/create">
-                <button class="btn btn-default btn-sm">New Customer</button>
-            </a>
-            <a href="/team/create">
-                <button class="btn btn-default btn-sm">Create Team</button>
-            </a>
+            <a class="btn btn-default btn-sm" href="/project/create"><span class="glyphicon glyphicon-plus"></span> New Project</a>
+            <a class="btn btn-default btn-sm" href="/customer/create"><span class="glyphicon glyphicon-plus"></span>New Customer</a>
+            <a class="btn btn-default btn-sm" href="/team/create"><span class="glyphicon glyphicon-user"></span>Create Team</a>
         </div>
     {{/if}}
 
@@ -72,44 +65,120 @@
         <!-- Left Section -->
         <div class="col-lg-3 section">
 
-            <!--  Graphic  -->
-            <div class="progress-radial progress-{{project.projectProgressRounded}} setsize">
-                <div class="overlay setsize">
-                    <p>{{project.projectProgress}}%</p>
-                </div>
-            </div>
-            <div class="clear"></div>
-
-            <div class="section well ">
-
-                <h4>{{task.taskProjectId.projectName}}</h4>
-                <p>Project Progress: {{this.projectProgress}}%
-                <div class="progress" style="width: 100%">
-                    <div class="progress-bar"
-                         role="progressbar"
-                         aria-valuenow="{{this.projectProgress}}"
-                         aria-valuemin="0"
-                         aria-valuemax="100"
-                         style="width: {{this.projectProgress}}%;">
+            <!--  Circle Progress  -->
+            <hr>
+            <div class="section">
+                <div class="progress-radial progress-{{project.projectProgressRounded}} setsize">
+                    <div class="overlay setsize">
+                        <p>{{project.projectProgress}}%</p>
                     </div>
                 </div>
-                </p>
+            </div>
+            <hr>
 
-                <!--  Date  -->
+            <!--  Project Details  -->
+            <!--<div class="section well ">
+
+                <h4>Project Details</h4>
+                <hr>
+
+                &lt;!&ndash;  Date  &ndash;&gt;
                 <span class="glyphicon glyphicon-hourglass"></span>
                 {{project.date}}
                 <hr>
 
-                <!--  Team  -->
+                &lt;!&ndash;  Team  &ndash;&gt;
                 <span class="glyphicon glyphicon-user"></span>
                 {{project.projectTeam.teamName}}
                 <hr>
 
-                <!--  Commits  -->
+                &lt;!&ndash;  Commits  &ndash;&gt;
                 <span class="glyphicon glyphicon-pencil"></span>
                 <a href="#">Project Commits <span class="badge pull-right">{{project.commits}}</span></a>
+            </div>-->
+
+            <!--  Project Details 2 -->
+            <div class="list-group">
+                <div class="list-group-item active">
+                    Project Details
+                </div>
+
+                <a href="#" class="list-group-item">
+                    <span class="glyphicon glyphicon-hourglass"></span>
+                    {{project.date}}
+                </a>
+
+                <a href="#" class="list-group-item">
+                    <span class="glyphicon glyphicon-user"></span>
+                    {{project.projectTeam.teamName}}
+                </a>
+
+                <a href="#tasksTable" class="list-group-item">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    Project Tasks <span class="badge">3</span>
+                </a>
+                <a href="#" class="list-group-item">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    Project Commits <span class="badge">{{project.commits}}</span>
+                </a>
             </div>
 
+            <!--  Project Details Collapsible -->
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#collapse1">Project Details</a>
+                        </h4>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <span class="glyphicon glyphicon-hourglass"></span>
+                                {{project.date}}
+                            </li>
+                            <li class="list-group-item">
+                                <span class="glyphicon glyphicon-user"></span>
+                                {{project.projectTeam.teamName}}
+                            </li>
+                            <li class="list-group-item">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                Project Tasks <span class="badge">3</span>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <a href="#">Project Commits <span class="badge pull-right">{{project.commits}}</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!--  Client Details  -->
+            <div class="section well">
+
+                <h4>Client Details</h4>
+                <hr>
+
+                <!--  Name  -->
+                <span class="glyphicon glyphicon-user"></span>
+                {{project.projectCustomer.customerName}}
+                <hr>
+
+                <!--  Address  -->
+                <span class="glyphicon glyphicon-map-marker"></span>
+                {{project.projectCustomer.customerAddress}}
+                <hr>
+
+                <!--  Phone  -->
+                <span class="glyphicon glyphicon-earphone"></span>
+                {{project.projectCustomer.customerPhone}}
+                <hr>
+
+                <!--  Email  -->
+                <span class="glyphicon glyphicon-envelope"></span>
+                <a href="#">{{project.projectCustomer.customerEmail}}</a>
+            </div>
         </div>
 
         <!-- Right Section -->
@@ -118,73 +187,22 @@
             <!-- Project Name -->
             <div class="">
                 <h3>{{project.projectName}}</h3>
-                <hr>
-                <p>
-                    {{project.projectCustomer.customerName}}  |  {{project.date}}
-                </p>
+                <p>{{project.projectCustomer.customerName}}  |  {{project.date}}</p>
                 <hr>
             </div>
 
             <!-- Data Squares -->
             {{#if isAdmin}}
-
-                <!--<div class="text-uppercase">
-
-                    <div class="info-squares green">
-                        Project Price
-                        <h5>$</span> {{project.projectPrice}}</h5>
-                    </div>
-
-                    <div class="info-squares">
-                        Worktime Panned
-                        <h5>{{project.projectWorkingHours}}</h5>
-                    </div>
-
-                    <div class="info-squares">
-                        Other expenses
-                        <h5>$ {{project.projectExpenses}}</h5>
-                    </div>
-
-                    <div class="info-squares">
-                        Actual Worktime
-                        <h5>{{project.actualHours}}</h5>
-                    </div>
-
-                    <div class="info-squares white">
-                        Status
-                        <div class="progress" style="width: 100%">
-                            <div class="progress-bar"
-                                 role="progressbar"
-                                 aria-valuenow=""
-                                 aria-valuemin="0"
-                                 aria-valuemax="100"
-                                 style="width: {{project.projectProgress}}20%;">
-                            </div>
-                        </div>
-                        <h5>{{project.projectProgress}}%</h5>
-                    </div>
-
-                    <div class="info-squares red">
-                        Total Cost
-                        <h5>$ {{project.totalCost}}</h5>
-                    </div>
-
-                    &lt;!&ndash;<div class="info-squares">
-                        Labour cost
-                        <h5>$ {{project.projectLaborCost}}</h5>
-                    </div>&ndash;&gt;
-                </div>-->
-
                 <div class="text-uppercase">
-
                     <div class="">
 
+                        <p>Project Budget Planning</p>
                         <div class="info-squares">
                             Time Planned
                             <h5>{{project.projectWorkingHours}} <span class="small">/ hrs</span></h5>
                         </div>
 
-                        <div class="info-squares">
+                        <div class="info-squares ">
                             Labour cost
                             <h5>$ {{project.projectLaborCost}}</h5>
                         </div>
@@ -202,20 +220,24 @@
                             Project Price
                             <h5>$</span> {{project.projectPrice}}</h5>
                         </div>
-
                     </div>
-
 
                     <div class="">
 
+                        <p>Actual Project Cost</p>
                         <div class="info-squares">
-                            Time Spent
+                            Actual Time
                             <h5>{{project.actualHours}}  <span class="small">/ hrs</span></h5>
                         </div>
 
                         <div class="info-squares">
-                            Labour Cost
+                            Current Labour Cost
                             <h5>$ {{project.projectLaborCost}}</h5>
+                        </div>
+
+                        <div class="info-squares">
+                            Actual expenses
+                            <h5>$ {{project.projectExpenses}}</h5>
                         </div>
 
                         <div class="info-squares white">
@@ -226,15 +248,10 @@
                                      aria-valuenow=""
                                      aria-valuemin="0"
                                      aria-valuemax="100"
-                                     style="width: {{project.projectProgress}}20%;">
+                                     style="width: {{project.projectProgress}}%;">
                                 </div>
                             </div>
                             <h5>{{project.projectProgress}}%</h5>
-                        </div>
-
-                        <div class="info-squares">
-                            Made expenses
-                            <h5>$ {{project.projectExpenses}}</h5>
                         </div>
 
                         <div class="info-squares red">
@@ -264,7 +281,7 @@
 
             <!--  Tasks  -->
             <h5>Project Tasks</h5>
-            <table class="table" id="activeProjectsTable">
+            <table class="table" id="tasksTable">
 
                 <!-- Table Head -->
                 <tr>
@@ -295,11 +312,11 @@
 
                         <!-- Task Status -->
                         {{#if this.taskActive}}
-                        <td class="" id="taskActive">Active</td>
+                        <td class="" id="taskActive"><span class="glyphicon glyphicon-star glyphicon-active"></span>Active</td>
                         {{/if}}
 
                         {{#unless this.taskActive}}
-                            <td class="" id="taskActive">Closed</td>
+                            <td class="" id="taskActive"><span class="glyphicon glyphicon-ok glyphicon-cool"></span>Closed</td>
                         {{/unless}}
 
                         <!-- Details Button -->
