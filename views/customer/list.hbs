@@ -3,6 +3,7 @@
 
     <legend>All Customers</legend>
 
+    <!-- List with All CustomersName -->
     <div class="row">
         {{#each customers}}
             <div class="col-md-12">
@@ -13,10 +14,10 @@
 
                     <footer>
                         <div class="pull-right">
-                            <a class="btn btn-default btn-xs" href="">Edit Team &raquo;</a>
+                            <a class="btn btn-default btn-xs" href="">Edit Customer &raquo;</a>
                         </div>
                         <div class="pull-right">
-                            <a class="btn btn-default btn-xs" href="">Details Team&raquo;</a>
+                            <a class="btn btn-default btn-xs" href="/customer/details/{{this.id}}">Details Customer&raquo;</a>
                         </div>
                     </footer>
                 </article>
