@@ -4,8 +4,7 @@ const customerController = require('./../controllers/customer');
 const teamController = require('./../controllers/team');
 const taskController = require('./../controllers/task');
 const rateController = require('./../controllers/rate');
-const allCustomersController = require('./../controllers/customer');
-const allTeamsController = require('./../controllers/team');
+
 
 module.exports = (app) => {
 
@@ -64,9 +63,10 @@ module.exports = (app) => {
     app.post('/customer/create', customerController.customerCreatePost);
 
     /*list*/
-    app.get('/customer/list', allCustomersController.allCustomersGet);
+    app.get('/customer/list', customerController.allCustomersGet);
 
-
+    /* details*/
+    app.get('/customer/details/:id', customerController.customerDetailsGet);
 
     /* TEAMS */
 
@@ -75,7 +75,7 @@ module.exports = (app) => {
     app.post('/team/create', teamController.teamCreatePost);
 
     /* list */
-    app.get('/team/list', allTeamsController.allTeamsGet);
+    app.get('/team/list', teamController.allTeamsGet);
 
     /* edit */
     app.get('/team/edit/:id', teamController.editGet);

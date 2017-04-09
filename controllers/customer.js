@@ -5,6 +5,7 @@
 const Customer = require('mongoose').model('Customer');
 const Role = require('mongoose').model('Role');
 const User = require('mongoose').model('User');
+const Project = require('mongoose').model('Project');
 
 module.exports = {
     customerCreateGet: (req, res) => {
@@ -21,17 +22,17 @@ module.exports = {
 
     allCustomersGet:(req,res) =>{
         Customer.find({}).sort('customerName').then(customers =>{
-            let user = req.user;
 
-            let isAdmin = true;
-
-            Role.findOne({name: 'Admin'}).then(role => {
-
-                if(user.roles.indexOf(role._id) == -1) {
-                    isAdmin = false;
-                }
-
-                res.render('./customer/list', {customers: customers, isAdmin: isAdmin});
+                res.render('./customer/list', {customers: customers});
             })
-    })}
+    },
+
+    customerDetailsGet: (req, res)=> {
+        let id = req.params.id;
+        console.log(id);
+        Customer.findOne({_id:id}).then(customer=>{
+            console.log(customer);
+            res.render('./customer/details', {customer:customer});
+        });
+    }
 };
