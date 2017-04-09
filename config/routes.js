@@ -69,7 +69,8 @@ module.exports = (app) => {
     app.get('/customer/details/:id', customerController.customerDetailsGet);
 
     /* edit */
-    app.get('/customer/edit/:id', customerController.customerEditGet)
+    app.get('/customer/edit/:id', customerController.customerEditGet);
+    app.post('/customer/edit/:id', customerController.customerEditPost);
 
     /* TEAMS */
 

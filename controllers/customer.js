@@ -42,5 +42,21 @@ module.exports = {
         Customer.findOne({_id:id}).then(customer=>{
             res.render('customer/edit', {customer:customer})
         })
+    },
+
+    customerEditPost: (req,res)=>{
+        let id = req.params.id;
+
+        let customerArgs = req.body;
+
+        Customer.update({_id: id}, {$set: {
+            customerName: customerArgs.customerName,
+            customerPhone: customerArgs.customerPhone,
+            customerEmail: customerArgs.customerEmail,
+            customerAddress: customerArgs.customerAddress,
+        }}).then(customer=> {
+            res.redirect('/customer/list');
+
+            })
     }
 };
