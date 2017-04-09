@@ -72,19 +72,35 @@ module.exports = {
         })
     },
 
+    teamDetailsGet:(req,res)=>{
+      let id = req.params.id;
+      Team.findOne({_id:id}).populate('userID').then(team=>{
+          res.render('./team/details',{team:team});
+      });
+    },
 
-    editGet: (req,res) =>{
+
+    teamEditGet: (req,res) =>{
 
         let id = req.params.id;
 
         Team.findOne({'_id' : id }).then(team =>{
-            res.render('team/edit', team);
+            res.render('team/edit', {team:team});
         });
     },
 
-    //TO DO POST ..
+    teamEditPost: ( req, res ) =>{
+        let id = req.params.id;
+        let teamArgs = req.body;
 
-
+        Team.update({_id:id},{$set:{
+            teamName: teamArgs.teamName,
+            userID: teamArgs.userID
+        }}).then(team=>{
+            console.log(id)
+            res.redirect('/team/list')
+        })
+    }
 
 };
 

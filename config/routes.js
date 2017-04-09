@@ -68,6 +68,10 @@ module.exports = (app) => {
     /* details*/
     app.get('/customer/details/:id', customerController.customerDetailsGet);
 
+    /* edit */
+    app.get('/customer/edit/:id', customerController.customerEditGet);
+    app.post('/customer/edit/:id', customerController.customerEditPost);
+
     /* TEAMS */
 
     /* create */
@@ -77,8 +81,12 @@ module.exports = (app) => {
     /* list */
     app.get('/team/list', teamController.allTeamsGet);
 
+    /* details*/
+    app.get('/team/details/:id',teamController.teamDetailsGet);
+
     /* edit */
-    app.get('/team/edit/:id', teamController.editGet);
+    app.get('/team/edit/:id', teamController.teamEditGet);
+    app.post('/team/edit/:id', teamController.teamEditPost);
 
     
     
