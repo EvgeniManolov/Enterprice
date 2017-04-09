@@ -85,7 +85,8 @@ module.exports = (app) => {
     app.get('/team/details/:id',teamController.teamDetailsGet);
 
     /* edit */
-    app.get('/team/edit/:id', teamController.editGet);
+    app.get('/team/edit/:id', teamController.teamEditGet);
+    app.post('/team/edit/:id', teamController.teamEditPost);
 
     
     
