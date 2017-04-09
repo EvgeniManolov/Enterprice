@@ -53,9 +53,11 @@
     <!-- Add Content Buttons -->
     {{#if isAdmin}}
         <div class="container">
-            <a class="btn btn-default btn-sm" href="/project/create"><span class="glyphicon glyphicon-plus"></span> New Project</a>
-            <a class="btn btn-default btn-sm" href="/customer/create"><span class="glyphicon glyphicon-plus"></span>New Customer</a>
-            <a class="btn btn-default btn-sm" href="/team/create"><span class="glyphicon glyphicon-user"></span>Create Team</a>
+            <div class="row">
+                <a class="btn btn-default btn-sm" href="/project/create"><span class="glyphicon glyphicon-plus"></span> New Project</a>
+                <a class="btn btn-default btn-sm" href="/customer/create"><span class="glyphicon glyphicon-plus"></span>New Customer</a>
+                <a class="btn btn-default btn-sm" href="/team/create"><span class="glyphicon glyphicon-user"></span>Create Team</a>
+            </div>
         </div>
     {{/if}}
 
@@ -165,15 +167,18 @@
         <!-- Right Section -->
         <div class="col-lg-9 section">
             <div class="row">
-                <!-- Project Name -->
-                <div class="col-lg-12">
+
+                <!-- Project -->
+                <div class="container col-lg-12">
                     <div class="row">
+
+                        <!-- Project Name + Client -->
                         <div class="col-lg-9">
-                            <hr>
                             <h3>{{project.projectName}}</h3>
                             <p>{{project.projectCustomer.customerName}}  |  {{project.date}}</p>
-                            <hr>
                         </div>
+
+                        <!-- Cancel Project Button -->
                         <div class="col-lg-3">
                             {{#if isAdmin}}
                                 {{#if project.projectActive}}
@@ -193,7 +198,7 @@
                 <div class="text-uppercase">
                     <div class="">
 
-                        <p>Project Budget Planning</p>
+                        <p>Declared Budget</p>
                         <div class="info-squares">
                             Time Planned
                             <h5>{{project.projectWorkingHours}} <span class="small">/ hrs</span></h5>
@@ -263,14 +268,15 @@
             {{/if}}
 
             <!-- Project Description Short-->
-            <div id="shortDescription" class="section well">
+            <div id="shortDescription" class="section">
+                <hr>
                 <h5>Description</h5>
                 <p>{{project.projectDescriptionShort}}</p>
                 <button id="showMoreButton" class="btn btn-xs btn-default center">Show More</button>
             </div>
 
             <!-- Project Description Long-->
-            <div id="longDescription" class="section well" hidden>
+            <div id="longDescription" class="section" hidden>
                 <h5>Description</h5>
                 <p>{{project.projectDescription}}</p>
                 <button id="showLessButton" class="btn btn-xs btn-default center">Show less</button>
@@ -282,10 +288,10 @@
 
                 <!-- Table Head -->
                 <tr>
+                    <th>Status</th>
                     <th>Name</th>
                     <th>Description</th>
                     <th>Deadline</th>
-                    <th>Status</th>
                     <th>Details</th>
                 </tr>
 
@@ -302,8 +308,8 @@
                         {{/if}}
 
                         {{#unless this.taskActive}}
-                            <td class="" id="taskActive">
-                                <span class="glyphicon glyphicon-ok glyphicon-cool"></span>
+                            <td class="col-lg-1" id="taskActive">
+                                <span class="glyphicon glyphicon-ok glyphicon-done"></span>
                             </td>
                         {{/unless}}
 
@@ -311,7 +317,9 @@
                         <td class="col-lg-2" id="taskName"><h6>{{this.taskName}}</h6></td>
 
                         <!-- Task Description -->
-                        <td class="col-lg-6" id="taskDescription"><h6><small>{{this.taskDescription}}</small></h6></td>
+                        <td class="col-lg-6" id="taskDescription">
+                            <p>{{this.taskDescription}}</p>
+                        </td>
 
                         <!-- Task Deadline -->
                         {{#if this.isOverdue}}
@@ -327,7 +335,7 @@
                         {{#if this.taskActive}}
                             <td class="col-lg-1" id="taskActive">
                                 <a href="/task/details/{{this.id}}">
-                                    <button class="btn btn-primary btn-sm">
+                                    <button class="btn btn-primary">
                                         Update
                                     </button>
                                 </a>
@@ -337,7 +345,7 @@
                         {{#unless this.taskActive}}
                             <td class="col-lg-1" id="taskActive">
                                 <a href="/task/details/{{this.id}}">
-                                    <button class="btn btn-success btn-sm">
+                                    <button class="btn btn-primary">
                                         View
                                     </button>
                                 </a>

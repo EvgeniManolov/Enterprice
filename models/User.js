@@ -21,7 +21,7 @@ let userSchema = mongoose.Schema(
         team: {type: [mongoose.Schema.Types.ObjectId], default: [], ref: 'Team'},
         workedHours: {type: [workPerProject], default: []}, //array [project: spent hours]
         roles: [{type: mongoose.Schema.Types.ObjectId, ref: 'Role'}],
-        profession: {type: String, requred: true}
+        profession: {type: String, required: true}
     }
 );
 
