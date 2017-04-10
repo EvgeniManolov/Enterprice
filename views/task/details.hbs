@@ -6,12 +6,13 @@
     function completeTask () {
 
         let taskId = $("#completeTask").val();
-        let url = '/task/complete/' + taskId;
+        let urlComplete = '/task/complete/' + taskId;
+        let urlDetails = '/task/details/' + taskId;
 
         if(confirm("Are you sure you want to close this task?")){
-            $.post(url, {complete: false}, function () {
+            $.post(urlComplete, {complete: false}, function () {
             });
-            window.location.replace('/project/list')
+            window.location.replace(urlDetails)
         }
         else{
             return false;
@@ -135,13 +136,13 @@
                     <!--  Comment  -->
                     <div class="form-group">
                         <label class="sr-only" for="comment">Commit Description</label>
-                        <textarea rows="4" class="form-control form-control-tasks" id="comment" placeholder="Add your description here" name="comment"></textarea>
+                        <textarea rows="4" class="form-control form-control-tasks" id="comment" placeholder="Add your description here" name="comment" required></textarea>
                     </div>
 
                     <!--  Hours spent  -->
                     <div class="form-group">
                         <label class="sr-only" for="hoursSpent">Hours spent</label>
-                        <input type="number" class="form-control-tasks" id="hoursSpent" placeholder="Add spent time" name="hoursSpent">
+                        <input type="number" class="form-control-tasks" id="hoursSpent" placeholder="Add spent time" name="hoursSpent" required>
                     </div>
 
                     <!--  Submit / Discard  -->

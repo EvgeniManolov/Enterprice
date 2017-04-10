@@ -9,7 +9,7 @@
         table = document.getElementById(projectType);
         tr = table.getElementsByTagName("tr");
 
-        // Loop through all table rows, and hide those who don't match the search query
+        // Loop through all table rows, and hide those that don't match the search query
         for (i = 0; i < tr.length; i++) {
             td = tr[i].getElementsByTagName("td")[1];
             if (td) {
@@ -26,6 +26,20 @@
     $(document).ready(function(){
         $('[data-toggle="popover"]').popover();
     });
+
+    $(document).ready(function() {
+        let activeProjects = $("#activeProjectsTable tr").length - 1;
+
+        $("#activeProjectsCount").text(activeProjects);
+
+    })
+
+    $(document).ready(function() {
+        let closedProjects = $("#closedProjectsTable tr").length - 1;
+
+        $("#closedProjectsCount").text(closedProjects);
+
+    })
 </script>
 
 <main>
@@ -57,11 +71,11 @@
                 </div>
                 <a href="#" class="list-group-item">
                     <span class="glyphicon glyphicon-pencil"></span>
-                    Active Projects <span class="badge">23</span>
+                    Active Projects <span id="activeProjectsCount" class="badge" ></span>
                 </a>
                 <a href="#" class="list-group-item">
                     <span class="glyphicon glyphicon-pencil"></span>
-                    Closed Projects <span class="badge">64</span>
+                    Closed Projects <span id="closedProjectsCount" class="badge"></span>
                 </a>
             </div>
             
