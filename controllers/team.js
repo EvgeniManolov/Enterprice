@@ -102,11 +102,8 @@ module.exports = {
 
               res.render('./team/details',{team:team, isAdmin:isAdmin});
           });
-
-
       });
     },
-
 
     teamEditGet: (req,res) =>{
 
@@ -119,6 +116,7 @@ module.exports = {
 
     teamEditPost: ( req, res ) =>{
         let id = req.params.id;
+        let url = '/team/details/'+id;
         let teamArgs = req.body;
 
         Team.update({_id:id},{$set:{
@@ -126,9 +124,9 @@ module.exports = {
             userID: teamArgs.userID
         }}).then(team=>{
             console.log(id)
-            res.redirect('/team/list')
+
+            res.redirect(url);
         })
     }
-
 };
 
