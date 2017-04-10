@@ -1,27 +1,81 @@
 <main>
-    <div class="container">
-        <div class="row">
-            <a href="/rate/list">
-                <btn class="btn btn-primary">Manage Rates</btn>
-            </a>
+
+    <!-- Add Content Buttons -->
+
+        <div class="container">
+            <div class="row">
+                <a class="btn btn-default btn-sm" href="/project/create"><span class="glyphicon glyphicon-plus"></span> New Project</a>
+                <a class="btn btn-default btn-sm" href="/customer/create"><span class="glyphicon glyphicon-plus"></span> New Customer</a>
+                <a class="btn btn-default btn-sm" href="/team/create"><span class="glyphicon glyphicon-user"></span> Create Team</a>
+                <a class="btn btn-default btn-sm" href="/rate/list"><span class="glyphicon glyphicon glyphicon-usd"></span> Manage Rates</a>
+            </div>
         </div>
-        <div class="row">
-            {{#each users}}
-                <div class="col-lg-3">
-                    <div class="profile-well">
-                        <img class="img img-circle center-block" src="/images/lora.jpg" width="150" height="150">
 
-                        <h5 class="text-center">{{this.fullName}}</h5>
+    <div class="container">
 
-                        <div class="">
+        <!-- Left Section -->
+        <div class="container col-lg-3 section">
+            <div class="list-group">
+                <div class="list-group-item active">
+                    Filter by Profession
+                </div>
+                <a href="#" class="list-group-item">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    Designers <span class="badge">23</span>
+                </a>
+                <a href="#" class="list-group-item">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    Programers <span class="badge">64</span>
+                </a>
+                <a href="#" class="list-group-item">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    Another One <span class="badge">64</span>
+                </a>
+            </div>
+
+        </div>
+
+        <!-- Right Section -->
+        <div class="section col-lg-9">
+            <h3>User Profiles</h3>
+            <hr>
+
+            <!-- Filters and Stuff -->
+            <div class="filters-container">
+                <div class="input-group input-group-lg">
+                    <label class="sr-only" for="myInputActive"></label>
+                    <input class="form-control" type="text" id="myInputActive" onkeyup="myFunction('activeProjectsTable', 'myInputActive')" placeholder="Find User">
+                </div>
+            </div>
+
+            <div class="section well">
+                <div class="row">
+                    {{#each users}}
+                        <div class="col-lg-4">
+                            <div class="profile-well">
+                                <div class="section">
+                                    <img class="img img-circle center-block" src="/images/lora.jpg">
+                                </div>
+
+                                <div class="section">
+                                    <h5 class="text-center">{{this.fullName}}</h5>
+                                    <p class="text-center">{{this.profession}}Designer</p>
+                                </div>
+
+                                <!--  <div class="well">
                             <p>E-mail: {{this.email}}</p>
                             <p>Phone: {{this.phone}}</p>
-                        </div>
+                        </div>-->
 
-                        <a href="/userViews/userProfile/{{this.id}}" class="btn btn-default center-block">View Profile</a>
-                    </div>
+                                <a href="/userViews/userProfile/{{this.id}}" class="btn btn-default center-block">View Profile</a>
+                            </div>
+                        </div>
+                    {{/each}}
                 </div>
-            {{/each}}
+            </div>
+
         </div>
+
     </div>
+
 </main>

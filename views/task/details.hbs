@@ -26,19 +26,15 @@
         <li><a href="#">Library</a></li>
         <li class="active">Data</li>
     </ol>
-    {{#if isAdmin}}
-        <!-- Add Content Buttons -->
-        <div class="container">
 
-            <a href="/project/create">
-                <button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span> New Project</button>
-            </a>
-            <a href="/customer/create">
-                <button class="btn btn-default btn-sm">New Customer</button>
-            </a>
-            <a href="/team/create">
-                <button class="btn btn-default btn-sm">Create Team</button>
-            </a>
+    <!-- Add Content Buttons -->
+    {{#if isAdmin}}
+        <div class="container">
+            <div class="row">
+                <a class="btn btn-default btn-sm" href="/project/create"><span class="glyphicon glyphicon-plus"></span> New Project</a>
+                <a class="btn btn-default btn-sm" href="/customer/create"><span class="glyphicon glyphicon-plus"></span>New Customer</a>
+                <a class="btn btn-default btn-sm" href="/team/create"><span class="glyphicon glyphicon-user"></span>Create Team</a>
+            </div>
         </div>
     {{/if}}
 
@@ -95,27 +91,69 @@
 
 
             </div>
-
         </div>
 
         <!-- Right Section -->
         <div class="col-lg-9 section">
+            <div class="row">
+                <!-- Task Name -->
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-9">
 
-            <!-- Task Name -->
-            <div class="">
-                <h3>{{task.taskName}}</h3>
-                <hr>
+                            <h3>{{task.taskName}}</h3>
+
+                        </div>
+                        <div class="col-lg-3">
+                            {{#if task.taskActive}}
+                                <button id="completeTask" class="btn btn-success" onclick="completeTask()" value="{{task.id}}">
+                                    <span class="glyphicon glyphicon-ok"></span>&nbsp Close Task
+                                </button>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Task Description -->
             <div class="section">
+                <hr>
                 <h5>Task Description</h5>
                 <p>{{task.taskDescription}}</p>
                 <!--<div class="btn btn-xs btn-default center">Show More</div>-->
-                <hr>
+
             </div>
 
-            <div>
+            <!--  New Commit -->
+            {{#if task.taskActive}}
+            <div class="section well">
+                <h4>New Task Commit</h4>
+                <hr>
+
+                <form action="/task/details/{{task.id}}" method="POST">
+
+                    <!--  Comment  -->
+                    <div class="form-group">
+                        <label class="sr-only" for="comment">Commit Description</label>
+                        <textarea rows="4" class="form-control form-control-tasks" id="comment" placeholder="Add your description here" name="comment"></textarea>
+                    </div>
+
+                    <!--  Hours spent  -->
+                    <div class="form-group">
+                        <label class="sr-only" for="hoursSpent">Hours spent</label>
+                        <input type="number" class="form-control-tasks" id="hoursSpent" placeholder="Add spent time" name="hoursSpent">
+                    </div>
+
+                    <!--  Submit / Discard  -->
+                    <div class="section text-center">
+                        <button type="submit" class="btn btn-primary btn-lg text-center">New Commit</button>
+                    </div>
+                </form>
+            </div>
+            {{/if}}
+
+            <!--  Task Commits  -->
+            <div class="section">
                 <h5>Commits:</h5>
                 {{#each task.taskComment}}
                     <div class="media well">
@@ -130,34 +168,35 @@
                 {{/each}}
             </div>
 
-            {{#if task.taskActive}}
-                <!--  Update Report  -->
+            <!--  Modal  -->
+            <!--{{#if task.taskActive}}
+                &lt;!&ndash;  Update Report  &ndash;&gt;
                 <div class="text-center" data-toggle="modal" data-target="#myModal">
                     <div class="btn btn-primary">
                         Update
                     </div>
                 </div>
 
-                <!-- Update Modal -->
+                &lt;!&ndash; Update Modal &ndash;&gt;
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog" role="document">
 
-                        <!--  Modal Content  -->
+                        &lt;!&ndash;  Modal Content  &ndash;&gt;
                         <div class="modal-content">
 
-                            <!--  Header  -->
+                            &lt;!&ndash;  Header  &ndash;&gt;
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="myModalLabel">User input</h4>
                             </div>
 
-                            <!--  Body  -->
+                            &lt;!&ndash;  Body  &ndash;&gt;
                             <div class="modal-body">
 
-                                <!--  Form  -->
+                                &lt;!&ndash;  Form  &ndash;&gt;
                                 <form class="form-horizontal" action="/task/details/{{task.id}}" method="POST">
 
-                                    <!--  Comment  -->
+                                    &lt;!&ndash;  Comment  &ndash;&gt;
                                     <div class="form-group">
                                         <label class="control-label col-sm-2" for="comment">Comment</label>
                                         <div class="col-sm-10">
@@ -165,7 +204,7 @@
                                         </div>
                                     </div>
 
-                                    <!--  Hours spent  -->
+                                    &lt;!&ndash;  Hours spent  &ndash;&gt;
                                     <div class="form-group">
                                         <label class="control-label col-sm-2" for="hoursSpent">Hours spent</label>
                                         <div class="col-sm-10">
@@ -174,7 +213,7 @@
                                     </div>
 
 
-                                    <!--  Submit / Discard  -->
+                                    &lt;!&ndash;  Submit / Discard  &ndash;&gt;
                                     <div class="modal-footer">
 
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -186,13 +225,16 @@
                         </div>
                     </div>
                 </div>
-            {{/if}}
+            {{/if}}-->
 
-            {{#if task.taskActive}}
-                <a><button id="completeTask" class="btn btn-success" onclick="completeTask()" value="{{task.id}}">Close Task</button></a>
-            {{/if}}
+            <!--  Back Button  -->
+            <a href="/project/details/{{task.taskProjectId._id}}">
+                <button class="btn btn-default pull-right">
+                    <span class="glyphicon glyphicon-menu-left"></span>
+                    Back to Project
+                </button>
+            </a>
 
-            <a href="/project/details/{{task.taskProjectId._id}}"><button class="btn btn-default">Back</button></a>
         </div>
     </div>
 </main>

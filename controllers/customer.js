@@ -3,6 +3,9 @@
  */
 
 const Customer = require('mongoose').model('Customer');
+const Role = require('mongoose').model('Role');
+const User = require('mongoose').model('User');
+const Project = require('mongoose').model('Project');
 
 module.exports = {
     customerCreateGet: (req, res) => {
@@ -15,5 +18,55 @@ module.exports = {
         Customer.create(customerArgs).then(customer => {
             res.redirect('/project/list')
         })
+    },
+
+    allCustomersGet:(req,res) =>{
+        Customer.find({}).sort('customerName').then(customers => {
+            let user = req.user;
+
+            let isAdmin = true;
+
+            Role.findOne({name: 'Admin'}).then(role => {
+
+                if(user.roles.indexOf(role._id) == -1) {
+                    isAdmin = false;
+                }
+
+                res.render('./customer/list', {customers: customers, isAdmin:isAdmin})
+            });
+            });
+    },
+
+    customerDetailsGet: (req, res)=> {
+        let id = req.params.id;
+
+        Customer.findOne({_id:id}).then(customer=>{
+
+            res.render('./customer/details', {customer:customer});
+        });
+    },
+
+    customerEditGet : (req,res)=>{
+        let id = req.params.id;
+
+        Customer.findOne({_id:id}).then(customer=>{
+            res.render('customer/edit', {customer:customer})
+        })
+    },
+
+    customerEditPost: (req,res)=>{
+        let id = req.params.id;
+
+        let customerArgs = req.body;
+
+        Customer.update({_id: id}, {$set: {
+            customerName: customerArgs.customerName,
+            customerPhone: customerArgs.customerPhone,
+            customerEmail: customerArgs.customerEmail,
+            customerAddress: customerArgs.customerAddress,
+        }}).then(customer=> {
+            res.redirect('/customer/list');
+
+            })
     }
 };
