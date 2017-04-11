@@ -22,19 +22,11 @@ module.exports = {
 
     allCustomersGet:(req,res) =>{
         Customer.find({}).sort('customerName').then(customers => {
-            let user = req.user;
 
-            let isAdmin = true;
 
-            Role.findOne({name: 'Admin'}).then(role => {
-
-                if(user.roles.indexOf(role._id) == -1) {
-                    isAdmin = false;
-                }
-
-                res.render('./customer/list', {customers: customers, isAdmin: isAdmin})
+                res.render('./customer/list', {customers: customers})
             });
-            });
+
     },
 
     customerDetailsGet: (req, res)=> {
@@ -42,7 +34,16 @@ module.exports = {
 
         Customer.findOne({_id:id}).then(customer=>{
 
-            res.render('./customer/details', {customer:customer});
+            let user = req.user;
+            let isAdmin = true;
+
+            Role.findOne({name: 'Admin'}).then(role => {
+
+                if(user.roles.indexOf(role._id) == -1) {
+                    isAdmin = false;
+                }
+                res.render('./customer/details', {customer:customer, isAdmin:isAdmin});
+            })
         });
     },
 
@@ -56,16 +57,16 @@ module.exports = {
 
     customerEditPost: (req,res)=>{
         let id = req.params.id;
-
+        let url = '/customer/details/'+id;
         let customerArgs = req.body;
 
         Customer.update({_id: id}, {$set: {
-            customerName: customerArgs.customerName,
+
             customerPhone: customerArgs.customerPhone,
             customerEmail: customerArgs.customerEmail,
             customerAddress: customerArgs.customerAddress,
         }}).then(customer=> {
-            res.redirect('/customer/list');
+            res.redirect(url);
 
             })
     }

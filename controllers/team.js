@@ -89,10 +89,21 @@ module.exports = {
     teamDetailsGet:(req,res)=>{
       let id = req.params.id;
       Team.findOne({_id:id}).populate('userID').then(team=>{
-          res.render('./team/details',{team:team});
+
+          let user = req.user;
+
+          let isAdmin = true;
+
+          Role.findOne({name: 'Admin'}).then(role => {
+
+              if(user.roles.indexOf(role._id) == -1) {
+                  isAdmin = false;
+              }
+
+              res.render('./team/details',{team:team, isAdmin:isAdmin});
+          });
       });
     },
-
 
     teamEditGet: (req,res) =>{
 
@@ -105,6 +116,7 @@ module.exports = {
 
     teamEditPost: ( req, res ) =>{
         let id = req.params.id;
+        let url = '/team/details/'+id;
         let teamArgs = req.body;
 
         Team.update({_id:id},{$set:{
@@ -112,9 +124,9 @@ module.exports = {
             userID: teamArgs.userID
         }}).then(team=>{
             console.log(id)
-            res.redirect('/team/list')
+
+            res.redirect(url);
         })
     }
-
 };
 
