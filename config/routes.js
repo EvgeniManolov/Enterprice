@@ -39,13 +39,13 @@ module.exports = (app) => {
     app.post('/user/register', userController.registerPost);
 
     /* list */
-    app.get('/userViews/allUsers', userController.usersGet);
+    app.get('/userViews/list', userController.usersGet);
 
     /* own profile */
-    app.get('/userViews/userProfile', userController.profileGet);
+    app.get('/userViews/details', userController.profileGet);
 
     /* details*/
-    app.get('/userViews/userProfile/:id', userController.userDetailsGet);
+    app.get('/userViews/details/:id', userController.userDetailsGet);
 
 
 
@@ -71,6 +71,8 @@ module.exports = (app) => {
     /* edit */
     app.get('/customer/edit/:id', customerController.customerEditGet);
     app.post('/customer/edit/:id', customerController.customerEditPost);
+
+
 
     /* TEAMS */
 

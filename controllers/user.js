@@ -97,7 +97,7 @@ module.exports = {
 
             /*TO DO: Error message*/
 
-            res.render('userViews/allUsers', {users: users});
+            res.render('userViews/list', {users: users});
 
         })
     },
@@ -108,7 +108,7 @@ module.exports = {
 
         User.findOne({_id : userID }).populate('team').then(userData => {
 
-            res.render('userViews/userProfile', {userData: userData})
+            res.render('userViews/details', {userData: userData})
         })
     },
 
@@ -118,7 +118,7 @@ module.exports = {
 
         User.findOne({_id: currentUser}).then(user => {
 
-            res.render('userViews/userProfile',{user: user} );
+            res.render('userViews/details',{user: user} );
         })
     }
 };

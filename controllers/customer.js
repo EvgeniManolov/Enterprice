@@ -32,7 +32,7 @@ module.exports = {
                     isAdmin = false;
                 }
 
-                res.render('./customer/list', {customers: customers, isAdmin:isAdmin})
+                res.render('./customer/list', {customers: customers, isAdmin: isAdmin})
             });
             });
     },
