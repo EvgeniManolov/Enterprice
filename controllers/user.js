@@ -19,7 +19,7 @@ module.exports = {
 
             if (errorMsg) {
                 registerArgs.error = errorMsg;
-                res.render('user/register', registerArgs)
+                res.render('home/index', registerArgs)
             } else {
                 let salt = encryption.generateSalt();
                 let passwordHash = encryption.hashPassword(registerArgs.password, salt);
@@ -68,7 +68,6 @@ module.exports = {
     loginGet: (req, res) => {
         Occupation.find({}).then(occupations => {
 
-            console.log(occupations);
             res.render('home/index', {occupations: occupations});
         });
     },

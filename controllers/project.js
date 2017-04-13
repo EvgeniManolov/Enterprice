@@ -169,7 +169,7 @@ module.exports = {
 
             project.commits = commits;
             project.actualHours = actualHours;
-            project.totalCost = project.projectLaborCost + project.projectExpenses;
+            project.totalCost = project.projectLaborCost + project.projectExpenses; //this should be actual expenses
 
             let progress = project.projectProgress;
             progress = Math.round(progress/5)*5;
@@ -179,41 +179,42 @@ module.exports = {
             shortDescription = shortDescription.substr(0, 250);
             project.projectDescriptionShort = shortDescription;
 
+            User.find().then(users => {
 
-/*            console.log(id);
+                let projectUsers = [];
+                for (let i = 0; i < users.length; i++) {
 
-            Project.findOne({_id: id}).then(project => {
+                    if(users[i].team.indexOf(project.projectTeam.id) != -1) {
+                        projectUsers.push(users[i]);
+                    }
+                }
 
-                let countTeamMembers = 0;
-                let totalRate = 0;
+                let usersCount = projectUsers.length;
 
-                project.projectTeam.userID.forEach(userID => {
-                    User.findOne({_id: userID}).then(user => {
-                        totalRate += user.rate;
-                    });
+                let tempRate = 0;
+                projectUsers.forEach(user => {
+                    tempRate += user.rate;
                 });
 
-                let labourRateAverage = totalRate / countTeamMembers;
-                let labourCostPlanned = labourRateAverage * project.projectWorkingHours;
-                project.labourCostPlanned = labourCostPlanned;
+                let averageRate = tempRate / usersCount;
+
+                project.labourCostPlanned = averageRate * project.projectWorkingHours;
+
+                let taskCount = project.projectTasks.length;
+                project.taskCount = taskCount;
+
+                let user = req.user;
+                let isAdmin = true;
+
+                Role.findOne({name: 'Admin'}).then(role => {
+
+                    if(user.roles.indexOf(role._id) == -1) {
+                        isAdmin = false;
+                    }
+                    res.render('project/details', {project: project, isAdmin: isAdmin});
+                });
+
             });
-
-            console.log(project.labourCostPlanned);*/
-
-            let taskCount = project.projectTasks.length;
-            project.taskCount = taskCount;
-
-            let user = req.user;
-            let isAdmin = true;
-
-            Role.findOne({name: 'Admin'}).then(role => {
-
-                if(user.roles.indexOf(role._id) == -1) {
-                    isAdmin = false;
-                }
-                res.render('project/details', {project: project, isAdmin: isAdmin});
-            });
-
         });
     },
 

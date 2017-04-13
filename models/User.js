@@ -69,7 +69,8 @@ module.exports.seedAdmin = () => {
                     passwordHash: passwordHash,
                     fullName: 'Admin',
                     salt: salt,
-                    roles: roles
+                    roles: roles,
+                    occupation: "Admin"
                 };
 
                 User.create(user).then(user => {
