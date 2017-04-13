@@ -35,6 +35,7 @@
                     <div class="navbar-header dropdown">
                         <a class="navbar-brand dropdown-toggle" data-toggle="dropdown" href="" id="">{{user.fullName}}<span class="caret"></span></a>
                         <ul class="dropdown-menu">
+                            <li><a id="dLabelActive" href="/userViews/details">My Profile</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a id="dLabelClosed" href="/user/logout">Logout</a></li>
                         </ul>
@@ -55,10 +56,28 @@
                         <!--<li class="active"><a href="/userViews/user">Projects</a></li>-->
                         <li><a href="/team/list">Teams</a></li>
                         <li><a href="/customer/list">Clients</a></li>
-                        <li id="usersView"><a href="/userViews/allUsers">Users</a></li>
+                        <li id="usersView"><a href="/userViews/list">Users</a></li>
                     </ul>
                 </div>
             </nav>
+
+            <ol class="container breadcrumb transparent" style="margin-top: 60px; margin-bottom: 0px">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Library</a></li>
+                <li class="active">Data</li>
+            </ol>
+
+            <!-- Add Content Buttons -->
+            {{#if isAdmin}}
+                <div class="container">
+                    <div class="row">
+                        <a class="btn btn-default btn-sm" href="/project/create"><span class="glyphicon glyphicon-plus"></span> New Project</a>
+                        <a class="btn btn-default btn-sm" href="/customer/create"><span class="glyphicon glyphicon-plus"></span> New Customer</a>
+                        <a class="btn btn-default btn-sm" href="/team/create"><span class="glyphicon glyphicon-user"></span> Create Team</a>
+                        <a class="btn btn-default btn-sm" href="/rate/list"><span class="glyphicon glyphicon glyphicon-usd"></span> Manage Rates</a>
+                    </div>
+                </div>
+            {{/if}}
         </header>
     {{/if}}
 
