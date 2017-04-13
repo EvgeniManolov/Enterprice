@@ -5,7 +5,6 @@ const Role = require('mongoose').model('Role');
 var workPerProject = {
     Project: mongoose.Schema.Types.ObjectId,
     Hours: Number, // total spent hours per project
-    Amount: Number, //hours per rate
 };
 
 let userSchema = mongoose.Schema(
@@ -19,7 +18,7 @@ let userSchema = mongoose.Schema(
         salt: {type: String, required: true},
         rate: {type: Number, default: 0},
         team: {type: [mongoose.Schema.Types.ObjectId], default: [], ref: 'Team'},
-        workedHours: {type: [workPerProject], default: []}, //array [project: spent hours]
+        workedHours: {type: [workPerProject], default: []}, //array [project: spent hours] //not yet implemented
         roles: [{type: mongoose.Schema.Types.ObjectId, ref: 'Role'}],
         profession: {type: String, required: true}
     }

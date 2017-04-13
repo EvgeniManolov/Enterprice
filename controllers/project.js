@@ -179,6 +179,30 @@ module.exports = {
             shortDescription = shortDescription.substr(0, 250);
             project.projectDescriptionShort = shortDescription;
 
+
+/*            console.log(id);
+
+            Project.findOne({_id: id}).then(project => {
+
+                let countTeamMembers = 0;
+                let totalRate = 0;
+
+                project.projectTeam.userID.forEach(userID => {
+                    User.findOne({_id: userID}).then(user => {
+                        totalRate += user.rate;
+                    });
+                });
+
+                let labourRateAverage = totalRate / countTeamMembers;
+                let labourCostPlanned = labourRateAverage * project.projectWorkingHours;
+                project.labourCostPlanned = labourCostPlanned;
+            });
+
+            console.log(project.labourCostPlanned);*/
+
+            let taskCount = project.projectTasks.length;
+            project.taskCount = taskCount;
+
             let user = req.user;
             let isAdmin = true;
 
@@ -204,6 +228,9 @@ module.exports = {
                     tasks[i].save();
                 };
             })
+
+            let today = new Date();
+            project.projectDueDate = today;
 
             project.projectActive = false;
             project.save();

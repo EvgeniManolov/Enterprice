@@ -6,6 +6,7 @@ const Task = require('mongoose').model('Task');
 const Project = require('mongoose').model('Project');
 const Team = require('mongoose').model('Team');
 const User = require('mongoose').model('User');
+const Role = require('mongoose').model('Role');
 
 module.exports = {
 
@@ -75,7 +76,16 @@ module.exports = {
 
             task.date = '' + date + '.' + month + '.' + year;
 
-            res.render('./task/details', {task: task, isThereComments: isThereComments})
+            let user = req.user;
+            let isAdmin = true;
+
+            Role.findOne({name: 'Admin'}).then(role => {
+
+                if(user.roles.indexOf(role._id) == -1) {
+                    isAdmin = false;
+                }
+                res.render('./task/details', {task: task, isThereComments: isThereComments, isAdmin: isAdmin})
+            });
         });
     },
 

@@ -1,0 +1,39 @@
+<main>
+    <div class="container">
+        <form class="form-horizontal" method="post" action="">
+            <fieldset>
+
+                <legend>Details Team</legend>
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="customerName">Team Name</label>
+                    <div class="col-sm-4 ">
+                        <input type="text" class="form-control" disabled id="customerName" placeholder="" value="{{team.teamName}}" name="customerName" required >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="customerPhone">Users </label>
+                    <div class="col-sm-4 ">
+                        <input type="text" class="form-control" disabled id="customerPhone" placeholder="" value="{{team.userID}}" name="customerPhone" required >
+                    </div>
+                </div>
+
+                {{#if isAdmin}}
+                <div class="pull-right">
+                    <a class="btn btn-default btn-xs" href="/team/edit/{{team.id}}">Edit Team &raquo;</a>
+                </div>
+                {{/if}}
+
+
+                <div class="form-group">
+                    <div class="col-sm-4 col-sm-offset-4">
+                        <a class="btn btn-default" href="/team/list">
+                            Back
+                        </a>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</main>

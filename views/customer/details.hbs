@@ -1,0 +1,52 @@
+<main>
+    <div class="container">
+        <form class="form-horizontal" method="post" action="">
+            <fieldset>
+
+                <legend>Details Customer</legend>
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="customerName">Customer Name</label>
+                    <div class="col-sm-4 ">
+                        <input type="text" class="form-control" disabled id="customerName" placeholder="" value="{{customer.customerName}}" name="customerName" required >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="customerPhone">Customer Phone</label>
+                    <div class="col-sm-4 ">
+                        <input type="text" class="form-control" disabled id="customerPhone" placeholder="" value="{{customer.customerPhone}}" name="customerPhone" required >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="customerEmail">Customer Email</label>
+                    <div class="col-sm-4 ">
+                        <input type="text" class="form-control" disabled id="customerEmail" placeholder="" value="{{customer.customerEmail}}" name="customerEmail">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="customerAddress">Customer Address</label>
+                    <div class="col-sm-4 ">
+                        <input type="text"  class="form-control" id="customerAddress" disabled placeholder="" value="{{customer.customerAddress}}" name="customerAddress">
+                    </div>
+                </div>
+
+                {{#if isAdmin}}
+                <div class="pull-right">
+                    <a class="btn btn-default btn-xs" href="/customer/edit/{{customer.id}}">Edit Customer &raquo</a>
+                </div>
+                {{/if}}
+
+                <div class="form-group">
+                    <div class="col-sm-4 col-sm-offset-4">
+                        <a class="btn btn-default" href="/customer/list">
+                            Back
+                        </a>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</main>

@@ -79,7 +79,7 @@
 
                 <a href="#tasksTable" class="list-group-item">
                     <span class="glyphicon glyphicon-pencil"></span>
-                    Project Tasks <span class="badge">3</span>
+                    Project Tasks <span class="badge">{{project.taskCount}}</span>
                 </a>
                 <a href="#" class="list-group-item">
                     <span class="glyphicon glyphicon-pencil"></span>
@@ -161,6 +161,8 @@
                             <p>{{project.projectCustomer.customerName}}  |  {{project.date}}</p>
                         </div>
 
+                        <div class="btn navbar-btn">Expenses</div>
+
                         <!-- Cancel Project Button -->
                         <div class="col-lg-3">
                             {{#if isAdmin}}
@@ -189,7 +191,7 @@
 
                         <div class="info-squares ">
                             Labour cost
-                            <h5>$ {{project.projectLaborCost}}</h5>
+                            <h5>$ {{project.labourCostPlanned}}</h5>
                         </div>
 
                         <div class="info-squares">
