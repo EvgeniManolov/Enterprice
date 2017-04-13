@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Enterprice</title>
+    <title>Enterprise</title>
     <!-- Latest compiled and minified CSS -->
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
     <link link rel='stylesheet' href='/stylesheets/theme_2.css'>
@@ -60,6 +60,25 @@
                 </div>
             </nav>
 
+
+            <ol class="container breadcrumb transparent" style="margin-top: 60px; margin-bottom: 0px">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Library</a></li>
+                <li class="active">Data</li>
+            </ol>
+
+            <!-- Add Content Buttons -->
+            {{#if isAdmin}}
+                <div class="container">
+                    <div class="row">
+                        <a class="btn btn-default btn-sm" href="/project/create"><span class="glyphicon glyphicon-plus"></span> New Project</a>
+                        <a class="btn btn-default btn-sm" href="/customer/create"><span class="glyphicon glyphicon-plus"></span> New Customer</a>
+                        <a class="btn btn-default btn-sm" href="/team/create"><span class="glyphicon glyphicon-user"></span> Create Team</a>
+                        <a class="btn btn-default btn-sm" href="/rate/list"><span class="glyphicon glyphicon glyphicon-usd"></span> Manage Rates</a>
+                    </div>
+                </div>
+            {{/if}}
+
         </header>
     {{/if}}
 
@@ -69,12 +88,8 @@
         </div>
     {{/if}}
 
-
     <!-- If Not User -->
-
     {{{body}}}
-
-
 
 </body>
 
