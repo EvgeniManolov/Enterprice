@@ -4,6 +4,7 @@ const customerController = require('./../controllers/customer');
 const teamController = require('./../controllers/team');
 const taskController = require('./../controllers/task');
 const rateController = require('./../controllers/rate');
+const occupationController = require('./../controllers/occupation');
 
 
 module.exports = (app) => {
@@ -24,6 +25,7 @@ module.exports = (app) => {
 
     /* cancel */
     app.post('/project/cancel/:id', projectController.projectCancel);
+
 
 
     /* USERS */
@@ -107,5 +109,17 @@ module.exports = (app) => {
     app.post('/task/complete/:id', taskController.taskCompletePost);
 
 
+
+    /* PROFESSION */
+
+    /* create */
+    app.get('/occupation/create', occupationController.occupationCreateGet);
+    app.post('/occupation/create', occupationController.occupationCreatePost);
+
+    /* list */
+    app.get('/occupation/list', occupationController.occupationsGet);
+
+    /* edit */
+    app.post('/occupation/edit/:id', occupationController.occupationEditPost);
 };
 

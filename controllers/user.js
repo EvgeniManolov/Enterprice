@@ -1,6 +1,7 @@
 const User = require('mongoose').model('User');
 const Role = require('mongoose').model('Role');
 const Team = require('mongoose').model('Team');
+const Occupation = require('mongoose').model('Occupation');
 const encryption = require('./../utilities/encryption');
 
 module.exports = {
@@ -31,7 +32,7 @@ module.exports = {
                     salt: salt,
                     phone: registerArgs.phone,
                     country: registerArgs.country,
-                    address: registerArgs.address
+                    address: registerArgs.address,
                 };
 
                 let roles = [];
@@ -41,25 +42,35 @@ module.exports = {
 
                     userObject.roles = roles;
 
-                    User.create(userObject).then(user => {
+                    Occupation.findOne({'occupationName': registerArgs.occupation}).then(occupation => {
 
-                        role.users.push(user.id);
-                        role.save(err => {
-                            if(err) {
-                                registerArgs.error = err.message;
-                                res.render('/home/index', registerArgs)
-                            } else {
-                                res.redirect('/')
-                            }
-                        })
-                    });
+                        userObject.occupation = occupation.id;
+                        userObject.rate = occupation.occupationRate;
+
+                        User.create(userObject).then(user => {
+
+                            role.users.push(user.id);
+                            role.save(err => {
+                                if(err) {
+                                    registerArgs.error = err.message;
+                                    res.render('/home/index', registerArgs)
+                                } else {
+                                    res.redirect('/')
+                                }
+                            })
+                        });
+                    })
                 })
             }
         })
     },
 
     loginGet: (req, res) => {
-        res.render('home/index');
+        Occupation.find({}).then(occupations => {
+
+            console.log(occupations);
+            res.render('home/index', {occupations: occupations});
+        });
     },
 
     loginPost: (req, res) => {

@@ -102,14 +102,13 @@
 
                         <!-- Profession -->
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="profession">Profession</label>
+                            <label class="control-label col-sm-2" for="occupation">Occupation</label>
                             <div class="col-sm-10">
-                                <select class="form-control center" id="profession" name="profession" required>
-                                    <option>Designer</option>
-                                    <option>Developer</option>
-                                    <option>CEO</option>
-                                    <option>Marketing</option>
-                                    <option>Illustrator</option>
+                                <select class="form-control center" id="occupation" name="occupation" required>
+                                    <option></option>
+                                    {{#each occupations}}
+                                    <option>{{this.occupationName}}</option>
+                                    {{/each}}
                                 </select>
                             </div>
                         </div>

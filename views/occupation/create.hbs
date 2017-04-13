@@ -1,0 +1,40 @@
+
+<main>
+    <div class="container">
+
+        <form class="form-horizontal" method="post" action="/occupation/create">
+            <fieldset>
+
+                <legend>Create occupation</legend>
+
+                <!-- Enter Name -->
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="occupationName">Name</label>
+                    <div class="col-sm-4 ">
+                        <input type="text" class="form-control" id="occupationName" placeholder="Enter occupation" name="occupationName" required >
+                    </div>
+                </div>
+
+                <!-- Enter rate -->
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="occupationRate">Rate</label>
+                    <div class="col-sm-4 ">
+                        <input type="number" step="0.01" class="form-control" id="occupationRate" placeholder="Enter rate" name="occupationRate" required >
+                    </div>
+                </div>
+
+                <!-- Submit / Discard -->
+                <div class="form-group">
+                    <div class="col-sm-4 col-sm-offset-4">
+                        <a class="btn btn-default" href="./../rate/list">
+                            Cancel
+                        </a>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+
+    </div>
+</main>
+
