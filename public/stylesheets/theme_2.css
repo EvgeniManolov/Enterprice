@@ -7622,8 +7622,8 @@ input[type="checkbox"]:disabled:checked:after,
  * ------------------------------------- */
 .progress-radial .overlay {
   position: absolute;
-  width: 80%;
-  background-color: #f0f0f0;
+  width: 95%;
+  background-color: #ffffff;
   border-radius: 50%;
   font-size: 30px;
   top:50%;
@@ -7676,8 +7676,8 @@ input[type="checkbox"]:disabled:checked:after,
 }
 
 .progress-30 {
-  background-image: -webkit-linear-gradient(0deg, #f0f0f0 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0)), -webkit-linear-gradient(252deg, #C2185B 50%, #f0f0f0 50%, #f0f0f0);
-  background-image: linear-gradient(90deg, #f0f0f0 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0)), linear-gradient(198deg, #C2185B 50%, #f0f0f0 50%, #f0f0f0);
+  background-image: -webkit-linear-gradient(0deg, #f0f0f0 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0)), -webkit-linear-gradient(252deg, #87ff7a 50%, #f0f0f0 50%, #f0f0f0);
+  background-image: linear-gradient(90deg, #f0f0f0 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0)), linear-gradient(198deg, #87ff7a 50%, #f0f0f0 50%, #f0f0f0);
 }
 
 .progress-35 {

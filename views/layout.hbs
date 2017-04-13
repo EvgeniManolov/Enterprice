@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-    <title>Enterprice</title>
+
+    <title>Enterprise</title>
     <!-- Latest compiled and minified CSS -->
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
     <link link rel='stylesheet' href='/stylesheets/theme_2.css'>
@@ -34,7 +35,6 @@
                     <div class="navbar-header dropdown">
                         <a class="navbar-brand dropdown-toggle" data-toggle="dropdown" href="" id="">{{user.fullName}}<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a id="dLabelActive" href="/userViews/details">My Profile</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a id="dLabelClosed" href="/user/logout">Logout</a></li>
                         </ul>
@@ -55,7 +55,7 @@
                         <!--<li class="active"><a href="/userViews/user">Projects</a></li>-->
                         <li><a href="/team/list">Teams</a></li>
                         <li><a href="/customer/list">Clients</a></li>
-                        <li id="usersView"><a href="/userViews/list">Users</a></li>
+                        <li id="usersView"><a href="/userViews/allUsers">Users</a></li>
                     </ul>
                 </div>
             </nav>
@@ -68,12 +68,8 @@
         </div>
     {{/if}}
 
-
     <!-- If Not User -->
-
     {{{body}}}
-
-
 
 </body>
 
