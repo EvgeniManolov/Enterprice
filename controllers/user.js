@@ -88,9 +88,7 @@ module.exports = {
         req.logOut();
         res.redirect('/');
     },
-
-
-
+    
     usersGet: (req, res) => {
 
         User.find({}).then(users => {
@@ -118,7 +116,7 @@ module.exports = {
 
         User.findOne({_id: currentUser}).then(user => {
 
-            res.render('userViews/details',{user: user} );
+            res.render('userViews/profile',{user: user} );
         })
     }
 };

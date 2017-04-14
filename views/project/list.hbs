@@ -47,17 +47,17 @@
     <div class="container">
 
         <!-- Left Section -->
-        <div class="container col-lg-3 section">
+        <div class=" col-sm-3 section">
             <div class="list-group">
                 <div class="list-group-item active">
                     Recent
                 </div>
                 <a href="#" class="list-group-item">
-                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="glyphicon glyphicon-star"></span>
                     Active Projects <span id="activeProjectsCount" class="badge" ></span>
                 </a>
                 <a href="#" class="list-group-item">
-                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="glyphicon glyphicon-ok"></span>
                     Closed Projects <span id="closedProjectsCount" class="badge"></span>
                 </a>
             </div>
@@ -65,9 +65,9 @@
         </div>
 
         <!-- Right Section -->
-        <div class="col-lg-9 section">
+        <div class="col-sm-9 section">
 
-            <h3>All Projects</h3>
+            <h3>My Projects</h3>
 
             <!-- Tab Names -->
             <ul class="nav nav-tabs ">
@@ -99,7 +99,7 @@
                     </div>
 
                     <!-- Table Active Projects -->
-                    <table class="table" id="activeProjectsTable">
+                    <table class="table table-responsive" id="activeProjectsTable">
 
                         <!-- Table Head -->
                         <tr>
@@ -151,7 +151,7 @@
 
                                     <!-- Details Button -->
                                     <td>
-                                        <a href="/project/details/{{this.id}}"><button class="btn btn-primary">More</button></a>
+                                        <a href="/project/details/{{this.id}}"><button class="btn-sm btn-primary">More</button></a>
                                     </td>
                                 </tr>
                             {{/if}}
@@ -171,7 +171,7 @@
                     </div>
 
                     <!-- Table Closed Projects -->
-                    <table class="table" id="closedProjectsTable">
+                    <table class="table table-responsive" id="closedProjectsTable">
 
                         <!-- Table Head -->
                         <tr>
@@ -208,7 +208,7 @@
 
                                     <!-- Details Button -->
                                     <td>
-                                        <a href="/project/details/{{this.id}}"><button class="btn btn-primary">More</button></a>
+                                        <a href="/project/details/{{this.id}}"><button class="btn-sm btn-primary">More</button></a>
                                     </td>
                                 </tr>
                             {{/unless}}

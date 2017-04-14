@@ -67,7 +67,7 @@ module.exports.seedAdmin = () => {
                 let user = {
                     email: email,
                     passwordHash: passwordHash,
-                    fullName: 'Admin',
+                    fullName: 'Administrator',
                     salt: salt,
                     roles: roles
                 };

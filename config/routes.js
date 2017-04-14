@@ -44,7 +44,7 @@ module.exports = (app) => {
     /* own profile */
     app.get('/userViews/details', userController.profileGet);
 
-    /* details*/
+    /* details */
     app.get('/userViews/details/:id', userController.userDetailsGet);
 
 

@@ -3,7 +3,7 @@
 
 <head>
 
-    <title>Enterprise</title>
+    <title>EnterPrice</title>
     <!-- Latest compiled and minified CSS -->
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
     <link link rel='stylesheet' href='/stylesheets/theme_2.css'>
@@ -17,15 +17,17 @@
 </head>
 
 <body>
-    <!--  If User  -->
-    {{#if user}}
-        <header>
-            <!--  Navigation line  -->
-            <nav class="navbar navbar-default navbar-fixed-top text-uppercase">
+<!--  If User  -->
+{{#if user}}
+    <header>
+        <!--  Navigation line  -->
+        <nav class="navbar navbar-default navbar-fixed-top text-uppercase">
 
-                <div class="container nav-container">
-                    <!--  Navbar Collapse  -->
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <div class="container-fluid nav-container">
+                <!--  Navbar Collapse  -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -33,6 +35,7 @@
 
                     <!--  Username Field  -->
                     <div class="navbar-header dropdown">
+                        <img src="/images/lora.jpg" class="navbar-header user-img">
                         <a class="navbar-brand dropdown-toggle" data-toggle="dropdown" href="" id="">{{user.fullName}}<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a id="dLabelActive" href="/userViews/details">My Profile</a></li>
@@ -40,55 +43,59 @@
                             <li><a id="dLabelClosed" href="/user/logout">Logout</a></li>
                         </ul>
                     </div>
+                </div>
 
-                    <!--  Navigation  -->
+                <!--  Navigation  -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav pull-right">
-                        <li class="dropdown active">
-                                <a class="dropdown-toggle active" data-toggle="dropdown" href="/project/list" id="projectsView">
-                                    Projects <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a id="dLabelActive" href="/project/list">Projects</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a id="dLabelClosed" href="/project/list#closedProjects">Statistics</a></li>
-                                </ul>
-                            </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="/project/list" id="projectsView">
+                                Projects <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a id="dLabelActive" href="/project/list">Projects</a></li>
+                                <div role="separator" class="divider"></div>
+                                <li><a id="dLabelClosed" href="/project/list#closedProjects">Statistics</a></li>
+                            </ul>
+                        </li>
                         <!--<li class="active"><a href="/userViews/user">Projects</a></li>-->
                         <li><a href="/team/list">Teams</a></li>
                         <li><a href="/customer/list">Clients</a></li>
                         <li id="usersView"><a href="/userViews/list">Users</a></li>
                     </ul>
+
+                </div><!-- /.navbar-collapse -->
+            </div>
+        </nav>
+
+        <ol class="container breadcrumb transparent" style="margin-top: 60px; margin-bottom: 0px">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Library</a></li>
+            <li class="active">Data</li>
+        </ol>
+
+        <!-- Add Content Buttons -->
+        {{#if isAdmin}}
+            <div class="container">
+                <div class="row">
+                    <a class="btn btn-default btn-sm" href="/project/create"><span class="glyphicon glyphicon-plus"></span> New Project</a>
+                    <a class="btn btn-default btn-sm" href="/customer/create"><span class="glyphicon glyphicon-plus"></span> New Customer</a>
+                    <a class="btn btn-default btn-sm" href="/team/create"><span class="glyphicon glyphicon-user"></span> Create Team</a>
+                    <a class="btn btn-default btn-sm" href="/rate/list"><span class="glyphicon glyphicon glyphicon-usd"></span> Manage Rates</a>
                 </div>
-            </nav>
+            </div>
+        {{/if}}
+    </header>
+{{/if}}
 
-            <ol class="container breadcrumb transparent" style="margin-top: 60px; margin-bottom: 0px">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Library</a></li>
-                <li class="active">Data</li>
-            </ol>
+{{#if error }}
+    <div class="text-center">
+        <h4>{{error}}</h4>
+    </div>
+{{/if}}
 
-            <!-- Add Content Buttons -->
-            {{#if isAdmin}}
-                <div class="container">
-                    <div class="row">
-                        <a class="btn btn-default btn-sm" href="/project/create"><span class="glyphicon glyphicon-plus"></span> New Project</a>
-                        <a class="btn btn-default btn-sm" href="/customer/create"><span class="glyphicon glyphicon-plus"></span> New Customer</a>
-                        <a class="btn btn-default btn-sm" href="/team/create"><span class="glyphicon glyphicon-user"></span> Create Team</a>
-                        <a class="btn btn-default btn-sm" href="/rate/list"><span class="glyphicon glyphicon glyphicon-usd"></span> Manage Rates</a>
-                    </div>
-                </div>
-            {{/if}}
-        </header>
-    {{/if}}
-
-    {{#if error }}
-        <div class="text-center">
-            <h4>{{error}}</h4>
-        </div>
-    {{/if}}
-
-    <!-- If Not User -->
-    {{{body}}}
+<!-- If Not User -->
+{{{body}}}
 
 </body>
 

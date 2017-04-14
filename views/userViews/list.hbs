@@ -11,21 +11,18 @@
     <div class="container">
 
         <!-- Left Section -->
-        <div class="container col-lg-3 section">
+        <div class="container col-md-3 section">
             <div class="list-group">
                 <div class="list-group-item active">
                     Filter by Profession
                 </div>
                 <a href="#" class="list-group-item">
-                    <span class="glyphicon glyphicon-pencil"></span>
                     Designers <span class="badge">23</span>
                 </a>
                 <a href="#" class="list-group-item">
-                    <span class="glyphicon glyphicon-pencil"></span>
                     Programers <span class="badge">64</span>
                 </a>
                 <a href="#" class="list-group-item">
-                    <span class="glyphicon glyphicon-pencil"></span>
                     Another One <span class="badge">64</span>
                 </a>
             </div>
@@ -33,7 +30,7 @@
         </div>
 
         <!-- Right Section -->
-        <div class="section col-lg-9">
+        <div class="section col-md-9">
             <h3>User Profiles</h3>
             <hr>
 
@@ -45,41 +42,19 @@
                 </div>
             </div>
 
-            <!--  User Profiles  -->
-           <!-- <div class="row">
-                {{#each users}}
-                    <div class="col-sm-6 col-md-4">
-                        <div class="thumbnail">
-
-                            <img class="img img-circle center-block" src="/images/lora.jpg">
-
-                            <div class="caption">
-                                <h5 class="text-center">{{this.fullName}}</h5>
-                                <p class="text-center">{{this.profession}}Designer</p>
-                            </div>
-
-                            <a href="/userViews/userProfile/{{this.id}}" class="btn btn-default center-block">View Profile</a>
-                        </div>
-                    </div>
-                {{/each}}
-            </div>-->
-
+            <!--  Users  -->
             <div class="row">
                 <form method="get">
                     {{#each users}}
-                        <div class="col-md-4">
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
                             <div class="thumbnail img-check">
-
                                 <img class="img-tumbnails" src="/images/lora.jpg">
-
                                 <div class="caption">
                                     <h5 class="text-center">{{this.fullName}}</h5>
                                     <p class="text-center">{{this.profession}}Designer</p>
                                 </div>
-
-                                <!--<input type="checkbox" name="chk1" id="item4" value="val1" class="hidden" autocomplete="off">-->
-
-                                <a href="/userViews/details/{{this.id}}" class="btn btn-default center-block">View Profile</a>
+                                <!--  View More Button  -->
+                                <!--<a href="/userViews/details/{{this.id}}" class="btn btn-default center-block">View Profile</a>-->
                             </div>
                         </div>
                     {{/each}}
@@ -89,42 +64,36 @@
                 </form>
             </div>
 
-            <!--  Check Gude  -->
-            <!--<div class="row">
-                <form method="get">
-                    <div class="form-group">
-                        <div class="col-md-3">
-                            <label class="btn btn-primary">
-                                <img src="/images/lora.jpg" alt="..." class="img-thumbnail img-check">
-                                <input type="checkbox" name="chk1" id="item4" value="val1" class="hidden" autocomplete="off">
-                            </label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="btn btn-primary">
-                                <img src="/images/lora.jpg" alt="..." class="img-thumbnail img-check">
-                                <input type="checkbox" name="chk2" id="item4" value="val2" class="hidden" autocomplete="off">
-                            </label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="btn btn-primary">
-                                <img src="/images/lora.jpg" alt="..." class="img-thumbnail img-check">
-                                <input type="checkbox" name="chk3" id="item4" value="val3" class="hidden" autocomplete="off">
-                            </label>
-                        </div>
-                        <div class="col-md-3"><label class="btn btn-primary">
-                            <img src="/images/lora.jpg" alt="..." class="img-thumbnail img-check">
-                            <input type="checkbox" name="chk4" id="item4" value="val4" class="hidden" autocomplete="off">
-                        </label>
-                        </div>
-                    </div>
-                    <input type="submit" value="Check Item" class="btn btn-success">
+            <!--  Users Two  -->
+            <div class="row">
+                    {{#each users}}
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                            <div class="thumbnail">
 
-                </form>
-            </div>-->
+                                <img class="img-tumbnails" src="/images/lora.jpg">
+                                <div class="caption">
+                                    <!--  Layer Over  -->
+                                    <a href="/userViews/details/{{this.id}}">
+                                        <div class="thumbnail-over">
+                                            <p>View Profile</p>
+                                        </div>
+                                    </a>
+                                    <h6 class="text-center">{{this.fullName}}</h6>
+                                    <p class="text-center">{{this.profession}}Designer</p>
+                                </div>
+
+
+                                <!--  View More Button  -->
+                                <!--<a href="/userViews/details/{{this.id}}" class="btn btn-default center-block">View Profile</a>-->
+                            </div>
+                        </div>
+                    {{/each}}
+
+            </div>
 
 
             <!--  All Users Old  -->
-           <!-- <div class="section well">
+            <!-- <div class="section well">
             <div class="row">
                 {{#each users}}
                     <div class="col-lg-4">

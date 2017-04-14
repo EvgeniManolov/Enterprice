@@ -13,11 +13,9 @@ main {
 	box-sizing: border-box;
 }
 
-/*Containers*/
-.home-login-container {
-	margin-top: 3%;
-	margin-bottom: 10%;
-}
+/* -------------------------------------
+ * Containers
+ * ------------------------------------- */
 .nav-container {
 	background-color: #ffffff;
 	margin-bottom: -10px !important;
@@ -35,6 +33,17 @@ main {
 	width: 100%;
 	padding: 10px;
 }
+.container-border {
+	padding: 12px;
+	border: 1px solid #ebebeb;
+	border-radius: 4px;
+	margin-bottom: 20px;
+	overflow: hidden;
+}
+
+/* -------------------------------------
+ * Project Info Squares
+ * ------------------------------------- */
 .info-squares {
 	display: inline-block;
 	width: 150px;
@@ -69,7 +78,9 @@ main {
 	color: #a8a8a8;
 }
 
-/*Users*/
+/* -------------------------------------
+ * User Profile Formatting
+ * ------------------------------------- */
 .profile-well {
 	padding: 20px;
 	border: 1px solid #f9f9f9;
@@ -98,26 +109,78 @@ main {
 	transition: .5s ease-out;
 }
 
+.user-img {
+	padding: 0px;
+	background-color: #ffffff;
+	-webkit-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	border-radius: 5%;
+	margin: 10px 10px 0 0;
+}
+
+/* -------------------------------------
+ * Thumbnails
+ * ------------------------------------- */
 .thumbnail {
-	padding: 15px;
-	border: 1px solid #cfcfcf;
+	padding: 12px;
+	border: 1px solid #ebebeb;
 	border-radius: 4px;
 	margin-bottom: 20px;
+	overflow: hidden;
+	height: 250px;
 }
 .thumbnail img {
 	width: 120px;
 	height: 120px;
 	border: 10px solid #ffffff;
 	margin-bottom: 20px;
-	border-radius: 6px;
+	border-radius: 100px;
+}
+.thumbnail hr {
+	margin-top: 12px;
+	margin-bottom: 12px;
+	border: 0;
+	border-top: 1px solid #eeeeee;
+}
+.thumbnail h5 {
+	margin-bottom: 20px;
+}
+.thumbnail .well {
+	margin-bottom: 15px;
 }
 .thumbnail:hover {
-	/*background-color: #fff;*/
-	border: 1px solid #eee;
-	border-bottom: 1px solid rgba(244, 56, 27, .8);
-	transition: .5s ease-in;
-	transition: .5s ease-out;
+	border: 1px solid #cfcfcf;
+	border-bottom: 3px solid rgba(244, 56, 27, .8);
+	/*background-color: #f9f9f9;*/
+	transition: .3s ease-in;
+	transition: .3s ease-out;
 }
+.thumbnail-over {
+	width: 90%;
+	height: 250px;
+	position: absolute;
+	top: 0;
+	left: 15px;
+	border-radius: 4px;
+	background-color: transparent;
+	color: transparent;
+	text-transform: uppercase;
+	text-align: center;
+	line-height: 20em;
+
+}
+
+.thumbnail-over:hover {
+	background-color: rgba(244, 56, 27, 1);
+	transition: .2s ease-in;
+	transition: .2s ease-out;
+	color: #fff;
+}
+
 .thumbnail:hover img {
 	transform: scale(1.05);
 	-moz-transform: scale(1.05);
@@ -125,7 +188,13 @@ main {
 	transition: .5s ease-in;
 	transition: .5s ease-out;
 }
+.thumbnail h6 {
+	color: #c30019;
+}
 
+.thumbnail .caption {
+	text-align: left !important;
+}
 .check {
 	opacity:0.8;
 	background-color: #c1e2b3;
@@ -133,8 +202,10 @@ main {
 	transition: .5s ease-out;
 }
 
-/*HomepageContainer*/
-.container-full {
+/* -------------------------------------
+ * Homepage Container
+ * ------------------------------------- */
+.container-fulsize {
 	/*background-image: url('../images/background.jpg');*/
 	background-color: #ffffff;
 	margin: 1%;
@@ -142,15 +213,23 @@ main {
 	width: 98%;
 	height: 100% !important;
 }
+.home-login-container {
+	margin-top: 3%;
+	margin-bottom: 10%;
+}
+
+/* -------------------------------------
+ * Caret & Glyphicon: Hoover
+ * ------------------------------------- */
 .caret {
 	margin-left: 8px;
 	color: #cfcfcf;
 }
 .caret:hover {
-	color: #d80641;
+	color: #c30019;
 }
 .btn:hover .glyphicon {
-	color: #d80641;
+	color: #c30019;
 	transition: .5s ease-in;
 	transition: .5s ease-out;
 }
@@ -161,7 +240,9 @@ main {
 	transition: .5s ease-out;
 }
 
-/*Buttons*/
+/* -------------------------------------
+ * Buttons & Links
+ * ------------------------------------- */
 .btn {
 	border-radius: 3px;
 	box-shadow: none;
@@ -174,8 +255,32 @@ main {
 .btn-default:hover {
 	background-color: #f9f9f9;
 }
+.btn:focus,
+.btn-sm:focus,
+.btn-lg:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus {
+	outline: none;
+	box-shadow: none;
+}
+a:hover {
+	color: #cfcfcf;
+	text-decoration: none;
+	transition: .5s ease-in;
+	transition: .5s ease-out;
+}
 
-/*Progress Bar*/
+.btn-sm:hover .glyphicon {
+	color: #c30019;
+	transition: .5s ease-in-out;
+}
+
+/* -------------------------------------
+ * Progress Bars
+ * ------------------------------------- */
 .progress {
 	max-width: 60%;
 	height: 3px;
@@ -184,13 +289,38 @@ main {
 	background-color: #dddddd !important;
 }
 
-/*Tabs and Navigation Control*/
+/* -------------------------------------
+ * Navs & Tabs
+ * ------------------------------------- */
+.navbar {
+	min-height: 50px !important;
+}
 .navbar-brand {
 	float: left;
-	padding: 20.5px 15px;
-	font-size: 17px;
-	line-height: 23px;
+	font-size: 14px;
+	line-height: 25px;
 }
+.navbar-brand:hover .caret{
+	color: #d80641;
+	transition: .5s ease-in-out;
+}
+li:hover .caret{
+	color: #d80641;
+	transition: .5s ease-in-out;
+}
+.navbar-nav > li > a, .navbar-brand {
+	padding-top:15px !important;
+	height: 50px;
+}
+.navbar-nav > li:hover {
+	background-color: #f9f9f9;
+	transition: 0.3s ease-in-out;
+	border-bottom: 3px solid #c30019;
+}
+.navbar-nav li{
+	border-bottom: 3px solid #fff;
+}
+
 .nav-tabs {
 	font-size: large;
 	margin-top: 5px;
@@ -204,43 +334,76 @@ main {
 	border: 1px solid #f9f9f9 ;
 }
 .nav-item:hover {
-	background-color: #f6f6f6;
+	/*background-color: #f6f6f6;*/
 	transition: 0.5s ease-in-out;
 	border: 1px solid #f9f9f9 !important;
 }
 .nav-item:hover {
-	transform: scale(1.02);
+	/*transform: scale(1.02);
 	-moz-transform: scale(1.02);
-	-webkit-transform: scale(1.02);
+	-webkit-transform: scale(1.02);*/
 	transition: .3s ease-in;
 	transition: .3s ease-out;
 }
-.navbar-nav > li > a, .navbar-brand {
-	padding-top:13px !important;
-	padding-bottom:0 !important;
-	height: 50px;
+
+/* -------------------------------------
+ * Drop-down
+ * ------------------------------------- */
+.dropdown-menu {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index: 1000;
+	display: none;
+	float: left;
+	min-width: 200px;
+	padding: 10px 0 6px 0;
+	margin: 2px 0 0 0 !important;
+	list-style: none;
+	font-size: 13px;
+	text-align: left;
+	background-color: #ffffff;
+	border: 1px solid #ebebeb;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	border-radius: 3px;
+	-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+	background-clip: padding-box;
 }
-.navbar-nav > li:hover {
-	background-color: #f9f9f9;
-	transition: 0.5s ease-in-out;
+.dropdown-menu .divider {
+	height: 1px;
+	margin: 8px 10px;
+	overflow: hidden;
+	background-color: #e5e5e5;
 }
-.navbar-nav > li:active {
-	background-color: #18bc9c;
+.dropdown-menu > li > a {
+	display: block;
+	padding: 3px 20px;
+	clear: both;
+	font-weight: normal;
+	line-height: 1.846;
+	color: #666666;
+	white-space: nowrap;
+}
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+	text-decoration: none;
+	color: #141414;
+	background-color: #eeeeee;
+}
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
 	color: #ffffff;
-	transition: 0.5s ease-in-out;
+	text-decoration: none;
+	outline: 0;
+	background-color: #c30019;
 }
 
-/*Main Navigation*/
-.navbar {
-	min-height: 28px !important;
-}
-li:hover .caret{
-	color: #d80641;
-	transition: .5s ease-in;
-	transition: .5s ease-out;
-}
 
-/*Typography*/
+/* -------------------------------------
+ * Typography
+ * ------------------------------------- */
 h1, h2, h3, h4, h5, h6{
 	margin-top: 0em;
 	margin: 0.1em 0 0.6em 0;
@@ -248,7 +411,9 @@ h1, h2, h3, h4, h5, h6{
 }
 
 
-/*Forms and Inputs*/
+/* -------------------------------------
+ * Forms & Inputs
+ * ------------------------------------- */
 .form-control {
 	display: block;
 	width: 100%;
@@ -296,14 +461,10 @@ select:focus,
 	box-shadow: inset 0 -1px 0 #b70635;
 	transition: .5s ease-in-out;
 }
-
-/*Filter Containers Input*/
 .filters-container {
 	padding: 0 0;
 	margin: 30px 0;
 }
-
-/*Search Control*/
 .filters-container input[type=text] {
 	width: 300px;
 	-webkit-transition: width .35s ease-in-out;
@@ -312,23 +473,25 @@ select:focus,
 	height: 60px;
 	background-color: transparent;
 }
-/*.filters-container input:hover {
-	border-bottom: 0px solid #0aa8a3;
-}*/
 .filters-container input[type=text]:focus {
 	font-size: 150%;
 	transition: .3s ease-in;
 	transition: .3s ease-out;
 	width: 100%;
 }
-
-.panel-footer {
-	background-color: transparent;
-	padding: 50px 15px;
-	border-bottom-right-radius: 2px;
-	border-bottom-left-radius: 2px;
+input[type="file"] {
+	display: inline-block;
+	padding: 10px 0;
+}
+input[type="file"]:focus,
+input[type="radio"]:focus,
+input[type="checkbox"]:focus {
+	outline: none;
 }
 
+/* -------------------------------------
+ * Tables
+ * ------------------------------------- */
 .table > thead > tr > th,
 .table > tbody > tr > th,
 .table > tfoot > tr > th,
@@ -348,8 +511,13 @@ th {
 	letter-spacing: 0.03em;
 	color: #a8a8a8;
 }
+.table p {
+	line-height: 1.5em;
+}
 
-/*Glyphicons*/
+/* -------------------------------------
+ * Glyphicons
+ * ------------------------------------- */
 .glyphicon {
 	color: #cfcfcf;
 	margin-right: 6px;
@@ -370,21 +538,14 @@ th {
 	margin: 0 6px;
 }
 
-
-.list-group {
-
-}
-
-.list-group .badge {
-
-}
-
-
 .panel .panel-heading {
 	background-color: #c30019;
 	color: #ffffff;
 }
 
+/* -------------------------------------
+ * Forms
+ * ------------------------------------- */
 .form-control {
 	width: 100%;
 	height: 60px;
@@ -405,7 +566,6 @@ th {
 	border-color: transparent;
 
 }
-
 .form-control-tasks {
 	width: 100%;
 	height: 60px;
@@ -426,34 +586,28 @@ th {
 	outline: 0;
 	background-color: #ffffff;
 }
-
 input[type=number],
 input[type=text],
 select {
 	border-radius: 2px;
 }
 
-.table p {
-	line-height: 1.5em;
-}
 
+/* -------------------------------------
+ * Elements
+ * ------------------------------------- */
 .badge {
 	/*background-color: #c1e2b3;*/
 	padding: 5px 8px;
 	letter-spacing: 0.03em;
 }
-
 .alert-warning {
 	color: #9f0014;
 }
 
-.modal-footer {
-	padding: 15px;
-	text-align: right;
-	background-color: #ffffff;
-	border-top: 1px solid transparent;
-}
-
+/* -------------------------------------
+ * Footer
+ * ------------------------------------- */
 footer {
 	padding-top: 12px;
 	background-color: #fff;
@@ -461,10 +615,16 @@ footer {
 	bottom: 0;
 	position: fixed;
 }
+.panel-footer {
+	background-color: transparent;
+	padding: 50px 15px;
+	border-bottom-right-radius: 2px;
+	border-bottom-left-radius: 2px;
+}
 
-
-/* STYLES FOR PROGRESSBARS */
-
+/* -------------------------------------
+ * Round Progressbar
+ * ------------------------------------- */
 .progress-radial, .progress-radial * {
 	-webkit-box-sizing: content-box;
 	-moz-box-sizing: content-box;

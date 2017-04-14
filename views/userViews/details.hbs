@@ -1,22 +1,21 @@
 <main>
     <div class="container">
 
-        <div class="row">
-            <div class="col-lg-12">
-                <img class="img img-circle center-block" src="/images/lora.jpg" width="150" height="150">
-                <h1>{{userData.fullName}}</h1>
-            </div>
+        <div class="col-md-3 col-sm-4 section well">
+            <img class="img-responsive img-thumbnail center-block" src="/images/lora.jpg">
+            <form>
+                <div class="form-group">
+                    <label for="addPicture">Change your account picture</label>
+                    <input type="file" id="addPicture">
+                </div>
+            </form>
+        </div>
 
-            <div class="">
-                <form>
-                    <div class="form-group">
-                        <label for="exampleInputFile">Change picture</label>
-                        <input type="file" id="exampleInputFile">
-                        <p class="help-block">Example block-level help text here.</p>
-                    </div>
-                </form>
-
-            </div>
+        <div class="col-md-9 col-sm-8 section ">
+            <h3>{{userData.fullName}}</h3>
+            <h1>{{userData.email}}</h1>
+            <h1>{{userData.phone}}</h1>
+            <h1>{{userData.address}}</h1>
         </div>
 
     </div>
