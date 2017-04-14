@@ -34,6 +34,7 @@ module.exports = {
 
         Customer.findOne({_id:id}).then(customer=>{
 
+            /* Check if user is Admin*/
             let user = req.user;
             let isAdmin = true;
 
