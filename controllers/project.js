@@ -11,34 +11,53 @@ const Task = require('mongoose').model('Task');
 module.exports = {
 
     mainGet: (req, res) => {
+
+        let userID = req.user.id;
+        let selectedProjects = []; //these are the projects for a specific user
+
         Project.find({}).sort('projectDueDate').populate('projectCustomer').populate('projectTeam').then(projects => {
 
-            /*Format projectDueDate property of project and add another property 'date' in format (dd.mm.yyyy)*/
-
-            projects.forEach(function (project) {
-
-                let date = project.projectDueDate.getDate();
-                if (date < 10)
-                    date = '0' + date;
-                let month = project.projectDueDate.getMonth()+1;
-                if (month < 10)
-                    month = '0' + month;
-                let year = project.projectDueDate.getFullYear();
-
-                project.date = '' + date + '.' + month + '.' + year;
-
-                let status = '';
-
-                if (project.projectActive == false) {
-                    if (project.projectProgress < 100) {
-                        status = 'Cancelled'
-                    } else {
-                        status = 'Completed'
+            /* filter only projects where current user is a member of the team */
+            for (let i=0; i<projects.length; i++) {
+                for (let j=0; j<projects[i].projectTeam.userID.length; j++) {
+                    if (projects[i].projectTeam.userID[j] == userID) {
+                        selectedProjects.push(projects[i]);
                     }
                 }
+            }
+            /* end */
 
-                project.projectStatus = status;
-            });
+            /* Format data for an array of projects and also introducing projectStatus property - either canceled or completed */
+            function formatData (projectsList) {
+                projectsList.forEach(function (project) {
+
+                    let date = project.projectDueDate.getDate();
+                    if (date < 10)
+                        date = '0' + date;
+                    let month = project.projectDueDate.getMonth()+1;
+                    if (month < 10)
+                        month = '0' + month;
+                    let year = project.projectDueDate.getFullYear();
+
+                    project.date = '' + date + '.' + month + '.' + year;
+
+                    let status = '';
+
+                    if (project.projectActive == false) {
+                        if (project.projectProgress < 100) {
+                            status = 'Cancelled'
+                        } else {
+                            status = 'Completed'
+                        }
+                    }
+
+                    project.projectStatus = status;
+                });
+            }
+            /* end */
+
+            formatData(projects);
+            formatData(selectedProjects);
 
             let user = req.user;
 
@@ -50,7 +69,7 @@ module.exports = {
                     isAdmin = false;
                 }
 
-                res.render('./project/list', {projects: projects, isAdmin: isAdmin});
+                res.render('./project/list', {projects: projects, isAdmin: isAdmin, selectedProjects: selectedProjects});
             })
 
 
