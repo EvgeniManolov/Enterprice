@@ -12,3 +12,17 @@ let occupationSchema = mongoose.Schema ({
 const Occupation = mongoose.model('Occupation', occupationSchema);
 
 module.exports = Occupation;
+
+module.exports.seedAdminOccupation = () => {
+    Occupation.findOne({occupationName: 'Admin'}).then(occupation => {
+        if (!occupation) {
+            let adminOccupation = {
+                occupationName: 'Admin',
+                occupationRate: 0
+            };
+            Occupation.create(adminOccupation).then(occupation => {
+                console.log('Admin occupation seeded successfully!')
+            })
+        }
+    })
+}

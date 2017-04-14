@@ -1,3 +1,32 @@
+<script>
+
+    $(document).ready(function () {
+        $('.editButton').click(function () {
+            $(this).closest('tr').find('#userRate').removeAttr('disabled');
+            $(this).closest('tr').find('#changeRate').removeAttr('hidden');
+            $('.editButton').attr('disabled', 'true');
+        })
+    });
+
+    $(document).ready(function () {
+        $('.changeButton').click(function () {
+            let userID = $(this).closest('tr').find('#userID').val();
+            let newRate = $(this).closest('tr').find('#userRate').val();
+
+            let url = '/rate/edit/';
+
+            $.post(url,
+                    {id: userID,
+                        rate: newRate,
+                    }, function () {
+                    });
+
+            window.location.replace('/rate/list/')
+        })
+    })
+
+</script>
+
 <main>
 
     <div class="container body-content">
@@ -13,6 +42,7 @@
             <tr>
                 <th>Picture</th>
                 <th>Username</th>
+                <th>Occupation</th>
                 <th>Rate</th>
                 <th>Action</th>
             </tr>
@@ -23,26 +53,52 @@
 
                 <div class="col-lg-12">
                     <tr>
-                        <!-- User Name -->
+                        <!-- User Picture -->
                         <td class="col-lg-2" id="userPicture">
                             <img class="img img-circle" src="/images/lora.jpg" width="60" height="60">
                         </td>
-                        <td class="col-lg-6" id="userPicture">
+
+                        <!-- User Name -->
+                        <td class="col-lg-4" id="userName">
                             <h6>{{this.fullName}}</h6>
                         </td>
 
+                        <!-- User Occupation -->
+                        <td class="col-lg-2" id="userOccupation">
+                            <h6>{{this.occupation.occupationName}}</h6>
+                        </td>
+
                         <!-- User Rate -->
-                        <td class="col-lg-2" id="projectTeam">{{this.rate}}</td>
+                        <td class="col-lg-2" id="">
+                            <input id="userRate" type="number" step="0.01" class="form-control" value="{{this.rate}}" disabled>
+                        </td>
+
+                        <!-- User ID -->
+                        <td hidden class="" id="">
+                            <input  id="userID" type="text" class="" value="{{this.id}}">
+                        </td>
+
+                        <!-- Edit Button -->
+                        <td class="" id="editRate">
+                            <div class="btn btn-primary editButton" id="editRateButton">Edit</div>
+                        </td>
 
                         <!-- Change Button -->
-                        <td class="col-lg-2">
-                            <a href="/project/details/{{this.id}}"><button class="btn-sm btn-primary">Change</button></a>
+                        <td class="" id="changeRate" hidden>
+                            <div class="btn btn-info changeButton" id="changeRateButton">Change</div>
                         </td>
+
+
                     </tr>
                 </div>
-
             {{/each}}
-
         </table>
+
+        <a href="/project/list">
+            <button class="btn btn-default pull-right">
+                <span class="glyphicon glyphicon-menu-left"></span>
+                Back to Projects
+            </button>
+        </a>
     </div>
 </main>

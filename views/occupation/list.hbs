@@ -1,15 +1,15 @@
 <script>
     
     $(document).ready(function () {
-        $('.btn-primary').click(function () {
+        $('.editButton').click(function () {
             $(this).closest('tr').find('#rate').removeAttr('disabled');
             $(this).closest('tr').find('#changeOccupation').removeAttr('hidden');
-            $('.btn-primary').attr('disabled', 'true');
+            $('.editButton').attr('disabled', 'true');
         })
     });
 
     $(document).ready(function () {
-        $('.btn-info').click(function () {
+        $('.changeButton').click(function () {
             let occupationID = $(this).closest('tr').find('#id').val();
             let occupationNewRate = $(this).closest('tr').find('#rate').val();
 
@@ -49,7 +49,7 @@
                     <tr>
 
                         <!-- Occupation Name -->
-                        <form class="form-horizontal" method="post" action="/project/create">
+                        <form class="form-horizontal" method="post" action="/occupation/edit">
                         <td class="form-group" id="occupationName">
                             <h6 class="form-control-static"><strong>{{this.occupationName}}</strong></h6>
                         </td>
@@ -58,7 +58,7 @@
                         <td  hidden class="form-group" id="occupationID">
                             <input id="id" type="text" disabled class="form-control" value="{{this.id}}">
                         </td>
-                        </form>
+
 
                         <!-- Occupation Rate -->
                         <td class="form-group" id="occupationRate">
@@ -68,12 +68,12 @@
 
                         <!-- Edit -->
                         <td class="" id="occupationEdit">
-                            <div class="btn btn-primary" id="editOccupationButton">Edit</div>
+                            <div class="btn btn-primary editButton" id="editOccupationButton">Edit</div>
                         </td>
 
                         <!-- Edit -->
                         <td class="" id="changeOccupation" hidden>
-                            <div  class="btn btn-info" id="changeOccupationButton">Change</div>
+                            <div  class="btn btn-info changeButton" id="changeOccupationButton">Change</div>
                         </td>
 
                     </tr>

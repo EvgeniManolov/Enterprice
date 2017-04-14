@@ -16,13 +16,13 @@ module.exports = (config) => {
 });
 
 
+    require('./../models/Occupation').seedAdminOccupation();
     require('./../models/Role').initialize();
     require('./../models/User').seedAdmin();
     require('./../models/Project');
     require('./../models/Customer');
     require('./../models/Team');
     require('./../models/Task');
-    require('./../models/Occupation');
 
 };
 

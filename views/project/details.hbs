@@ -132,11 +132,15 @@
                                 <span class="glyphicon glyphicon-remove"></span>
                                 Cancel Project
                             </button>
+                        {{/if}}
+                    {{/if}}
+                    {{#if project.projectActive}}
+                        <a href="/project/expenses/{{project.id}}">
                             <button class="btn btn-default">
                                 <span class="glyphicon glyphicon-usd"></span>
-                                Add Expenses
+                                Manage Expenses
                             </button>
-                        {{/if}}
+                        </a>
                     {{/if}}
                 </div>
                 <!-- Project Description Short-->
@@ -207,7 +211,7 @@
 
                             <div class="info-squares">
                                 Actual expenses
-                                <h5>$ {{project.projectExpenses}}</h5>
+                                <h5>$ {{project.actualExpenses}}</h5>
                             </div>
 
                             <div class="info-squares white">

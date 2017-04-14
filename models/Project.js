@@ -10,7 +10,7 @@ let projectSchema = mongoose.Schema ({
     projectCustomer: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Customer'},
     projectPrice: {type: Number, required: true},
     projectExpenses: {type: Number, default: 0},
-    projectExpensesActual: {type: {comment: String, amount: Number}, default: null}, //not yet implemented
+    projectExpensesActual: {type: [{date: Date, description: String, amount: Number}]},
     projectWorkingHours: {type: Number, required: true},
     projectLaborCost: {type: Number, default: 0},
     projectProgress: {type: Number, default: 0},

@@ -26,6 +26,10 @@ module.exports = (app) => {
     /* cancel */
     app.post('/project/cancel/:id', projectController.projectCancel);
 
+    /* add expenses */
+    app.get('/project/expenses/:id', projectController.expensesGet);
+    app.post('/project/expenses/create/:id', projectController.expensesCreate);
+
 
 
     /* USERS */
@@ -55,6 +59,9 @@ module.exports = (app) => {
 
     /* list */
     app.get('/rate/list', rateController.ratesGet);
+
+    /* edit */
+    app.post('/rate/edit', rateController.rateEdit);
 
 
 
@@ -110,7 +117,7 @@ module.exports = (app) => {
 
 
 
-    /* PROFESSION */
+    /* OCCUPATIONS */
 
     /* create */
     app.get('/occupation/create', occupationController.occupationCreateGet);

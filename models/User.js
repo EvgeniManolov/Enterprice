@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const encryption = require('./../utilities/encryption');
 const Role = require('mongoose').model('Role');
+const Occupation = require('mongoose').model('Occupation');
 
 var workPerProject = {
     Project: mongoose.Schema.Types.ObjectId,
@@ -20,7 +21,7 @@ let userSchema = mongoose.Schema(
         team: {type: [mongoose.Schema.Types.ObjectId], default: [], ref: 'Team'},
         workedHours: {type: [workPerProject], default: []}, //array [project: spent hours] //not yet implemented
         roles: [{type: mongoose.Schema.Types.ObjectId, ref: 'Role'}],
-        occupation: {type: String, required: true, ref: 'Occupation'}
+        occupation: {type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Occupation'}
     }
 );
 
@@ -32,21 +33,7 @@ userSchema.method ({
        return isSamePasswordHash;
    },
 
-    isAdmin: function (roles) {
-        Role.findOne({name: 'Admin'}).then(role => {
-
-            let isAdmin = true;
-
-            if(roles.indexOf(role._id) == -1) {
-                isAdmin = false; }
-
-            return isAdmin;
-        })
-    }
-
 });
-
-
 
 const User = mongoose.model('User', userSchema);
 
@@ -64,24 +51,26 @@ module.exports.seedAdmin = () => {
                 let roles = [];
                 roles.push(role.id);
 
-                let user = {
-                    email: email,
-                    passwordHash: passwordHash,
-                    fullName: 'Administrator',
-                    salt: salt,
-                    roles: roles,
-                    occupation: "Admin"
-                };
+                Occupation.findOne({occupationName: "Admin"}).then(occupation => {
+                    let user = {
+                        email: email,
+                        passwordHash: passwordHash,
+                        fullName: 'Administrator',
+                        salt: salt,
+                        roles: roles,
+                        occupation: occupation
+                    };
 
-                User.create(user).then(user => {
-                    role.users.push(user.id);
-                    role.save(err => {
-                        if(err) {
-                            console.log(err.message)
-                        } else {
-                            console.log('Admin seeded successfully!')
-                        }
+                    User.create(user).then(user => {
+                        role.users.push(user.id);
+                        role.save(err => {
+                            if(err) {
+                                console.log(err.message)
+                            } else {
+                                console.log('Admin seeded successfully!')
+                            }
 
+                        })
                     })
                 })
             })

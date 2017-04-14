@@ -169,7 +169,6 @@ module.exports = {
 
             project.commits = commits;
             project.actualHours = actualHours;
-            project.totalCost = project.projectLaborCost + project.projectExpenses; //this should be actual expenses
 
             let progress = project.projectProgress;
             progress = Math.round(progress/5)*5;
@@ -203,6 +202,14 @@ module.exports = {
                 let taskCount = project.projectTasks.length;
                 project.taskCount = taskCount;
 
+                project.actualExpenses = 0;
+                for (let j=0; j < project.projectExpensesActual.length; j++) {
+                    console.log(project.projectExpensesActual[j].amount);
+                    project.actualExpenses += project.projectExpensesActual[j].amount;
+                }
+
+                project.totalCost = project.projectLaborCost + project.actualExpenses;
+
                 let user = req.user;
                 let isAdmin = true;
 
@@ -227,8 +234,8 @@ module.exports = {
                 for (var i=0; i < tasks.length; i++) {
                     tasks[i].taskActive = false;
                     tasks[i].save();
-                };
-            })
+                }
+            });
 
             let today = new Date();
             project.projectDueDate = today;
@@ -236,5 +243,36 @@ module.exports = {
             project.projectActive = false;
             project.save();
         })
+    },
+
+    expensesGet: (req, res) => {
+
+        let projectId = req.params.id;
+
+        Project.findOne({_id: projectId}).then(project => {
+
+            res.render('project/expenses', {project: project})
+        });
+
+    },
+
+    expensesCreate: (req, res) => {
+        let expenseArgs = req.body;
+        let projectId = req.params.id;
+
+        let newExpense = {
+            date: expenseArgs.date,
+            description: expenseArgs.description,
+            amount: expenseArgs.amount
+        };
+
+        Project.findOne({_id: projectId}).then(project => {
+
+            project.projectExpensesActual.push(newExpense);
+            project.save();
+
+            res.render('project/expenses', {project: project})
+        });
+
     }
 };
