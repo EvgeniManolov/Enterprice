@@ -22,6 +22,7 @@ module.exports = (config) => {
     require('./../models/Customer');
     require('./../models/Team');
     require('./../models/Task');
+    require('./../models/Occupation');
 
 };
 

@@ -1,3 +1,17 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+
+        $('#userName').multiselect();
+
+    });
+
+</script>
+
+
 <main>
     <div class="container">
         <form class="form-horizontal" method="post" action="">
@@ -12,10 +26,19 @@
                     </div>
                 </div>
 
+                <!-- Select User -->
                 <div class="form-group">
-                    <label class="col-sm-4 control-label" for="customerPhone">Users </label>
+                    <label class="col-sm-4 control-label " for="userName">User</label>
                     <div class="col-sm-4 ">
-                        <input type="text" class="form-control" disabled id="customerPhone" placeholder="" value="{{team.userID}}" name="customerPhone" required >
+                        <div class="row-fluid">
+                            <select  class="selectpicker form-control" multiple="multiple" id="userName" name="userName"  required data-live-search="true">
+                                {{#each team.userID}}
+                                    <option>
+                                        <div aria-checked="true">{{this.fullName}}</div>
+                                    </option>
+                                {{/each}}
+                            </select>
+                        </div>
                     </div>
                 </div>
 

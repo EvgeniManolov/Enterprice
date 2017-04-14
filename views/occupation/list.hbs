@@ -1,0 +1,91 @@
+<script>
+    
+    $(document).ready(function () {
+        $('.btn-primary').click(function () {
+            $(this).closest('tr').find('#rate').removeAttr('disabled');
+            $(this).closest('tr').find('#changeOccupation').removeAttr('hidden');
+            $('.btn-primary').attr('disabled', 'true');
+        })
+    });
+
+    $(document).ready(function () {
+        $('.btn-info').click(function () {
+            let occupationID = $(this).closest('tr').find('#id').val();
+            let occupationNewRate = $(this).closest('tr').find('#rate').val();
+
+            let url = '/occupation/edit/' + occupationID;
+
+            $.post(url,
+                    {occupationID: occupationID,
+                        occupationRate: occupationNewRate,
+                    }, function () {
+                    });
+
+            window.location.replace('/occupation/list/')
+        })
+    })
+    
+</script>
+
+
+<div class="container body-content">
+
+    <legend>All occupations</legend>
+
+    <!-- List with All Occupations -->
+    <div class="row">
+        <table class="table" id="occupations">
+
+            <!-- Table Head -->
+            <tr>
+                <th>Occupation</th>
+                <th>Rate</th>
+                <th></th>
+                <th></th>
+            </tr>
+
+            <!-- Table Data -->
+            {{#each occupations}}
+                    <tr>
+
+                        <!-- Occupation Name -->
+                        <form class="form-horizontal" method="post" action="/project/create">
+                        <td class="form-group" id="occupationName">
+                            <h6 class="form-control-static"><strong>{{this.occupationName}}</strong></h6>
+                        </td>
+
+                        <!-- Occupation ID - hidden -->
+                        <td  hidden class="form-group" id="occupationID">
+                            <input id="id" type="text" disabled class="form-control" value="{{this.id}}">
+                        </td>
+                        </form>
+
+                        <!-- Occupation Rate -->
+                        <td class="form-group" id="occupationRate">
+                            <input id="rate" type="number" step="0.01" disabled class="form-control" value="{{this.occupationRate}}">
+                        </td>
+                        </form>
+
+                        <!-- Edit -->
+                        <td class="" id="occupationEdit">
+                            <div class="btn btn-primary" id="editOccupationButton">Edit</div>
+                        </td>
+
+                        <!-- Edit -->
+                        <td class="" id="changeOccupation" hidden>
+                            <div  class="btn btn-info" id="changeOccupationButton">Change</div>
+                        </td>
+
+                    </tr>
+            {{/each}}
+        </table>
+    </div>
+
+    <a href="/rate/list">
+        <button class="btn btn-default pull-right">
+            <span class="glyphicon glyphicon-menu-left"></span>
+            Back to Users
+        </button>
+    </a>
+
+</div>

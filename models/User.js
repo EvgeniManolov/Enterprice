@@ -20,7 +20,7 @@ let userSchema = mongoose.Schema(
         team: {type: [mongoose.Schema.Types.ObjectId], default: [], ref: 'Team'},
         workedHours: {type: [workPerProject], default: []}, //array [project: spent hours] //not yet implemented
         roles: [{type: mongoose.Schema.Types.ObjectId, ref: 'Role'}],
-        profession: {type: String, required: true}
+        occupation: {type: String, required: true, ref: 'Occupation'}
     }
 );
 
@@ -69,7 +69,8 @@ module.exports.seedAdmin = () => {
                     passwordHash: passwordHash,
                     fullName: 'Administrator',
                     salt: salt,
-                    roles: roles
+                    roles: roles,
+                    occupation: "Admin"
                 };
 
                 User.create(user).then(user => {

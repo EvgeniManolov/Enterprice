@@ -90,6 +90,10 @@ module.exports = {
       let id = req.params.id;
       Team.findOne({_id:id}).populate('userID').then(team=>{
 
+          console.log(team);
+          console.log(team.userID)
+          console.log(team.userID.fullName);
+
           let user = req.user;
 
           let isAdmin = true;
