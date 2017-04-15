@@ -101,13 +101,34 @@ module.exports = {
     
     usersGet: (req, res) => {
 
-        User.find({}).populate('occupation').then(users => {
+        let professionsCount = [];
 
-            /*TO DO: Error message*/
+        Occupation.find({}).then(occupations => {
 
-            res.render('userViews/list', {users: users});
+            for ( let i = 1; i < occupations.length; i++) {
+                let currentOccupation = {profession: occupations[i].occupationName, count: 0};
+                professionsCount.push(currentOccupation);
+            }
 
-        })
+            User.find({}).populate('occupation').then(users => {
+
+                /*TO DO: Error message*/
+
+                for ( let i = 0; i < users.length; i++ ){
+
+                    for (let j = 0; j < professionsCount.length; j++ ) {
+
+                        if (users[i].occupation.occupationName == professionsCount[j].profession){
+
+                            professionsCount[j].count++;
+                        }
+
+                    };
+                }
+
+                res.render('userViews/list', {users: users, professionsCount: professionsCount});
+            })
+        });
     },
 
     userDetailsGet: (req, res) => {

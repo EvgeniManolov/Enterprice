@@ -89,6 +89,9 @@ module.exports = (app) => {
     app.get('/team/create', teamController.teamCreateGet);
     app.post('/team/create', teamController.teamCreatePost);
 
+    /* create new*/
+    app.post('/team/create/createNew', teamController.teamCreateNewPost);
+
     /* list */
     app.get('/team/list', teamController.allTeamsGet);
 
