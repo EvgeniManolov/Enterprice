@@ -11,11 +11,28 @@
             </form>
         </div>
 
-        <div class="col-md-9 col-sm-8 section ">
-            <h3>{{user.fullName}}</h3>
-            <h1>{{user.email}}</h1>
-            <h1>{{user.phone}}</h1>
-            <h1>{{user.address}}</h1>
+
+        <div class="col-md-9 col-sm-8 section">
+            <div class="container-border well">
+                <h3>{{user.fullName}}</h3>
+                <hr>
+                <div class="col-xs-12">
+                    <p>
+                        <span class="glyphicon glyphicon-earphone"></span>
+                        {{user.phone}}<button class="btn-sm btn-default pull-right">Edit</button><hr>
+
+                        <span class="glyphicon glyphicon-envelope"></span>
+                        {{user.email}}<button class="btn-sm btn-default pull-right">Edit</button><hr>
+
+                        <span class="glyphicon glyphicon-map-marker"></span>
+                        {{user.address}}<button class="btn-sm btn-default pull-right">Edit</button>
+                    </p>
+                </div>
+
+
+
+            </div>
+
         </div>
     </div>
 </main>
