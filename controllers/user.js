@@ -101,7 +101,7 @@ module.exports = {
     
     usersGet: (req, res) => {
 
-        User.find({}).then(users => {
+        User.find({}).populate('occupation').then(users => {
 
             /*TO DO: Error message*/
 
@@ -126,7 +126,7 @@ module.exports = {
 
         User.findOne({_id: currentUser}).then(user => {
 
-            res.render('userViews/profile',{user: user} );
+            res.render('userViews/details',{user: user} );
         })
     }
 };

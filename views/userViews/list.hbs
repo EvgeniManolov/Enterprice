@@ -44,14 +44,14 @@
 
             <!--  Users  -->
             <div class="row">
-                <form method="get">
+                <form method="post" action="/">
                     {{#each users}}
                         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
                             <div class="thumbnail img-check">
                                 <img class="img-tumbnails" src="/images/lora.jpg">
                                 <div class="caption">
                                     <h5 class="text-center">{{this.fullName}}</h5>
-                                    <p class="text-center">{{this.profession}}Designer</p>
+                                    <p class="text-center">{{this.occupation.occupationName}}</p>
                                 </div>
                                 <!--  View More Button  -->
                                 <!--<a href="/userViews/details/{{this.id}}" class="btn btn-default center-block">View Profile</a>-->
@@ -79,7 +79,7 @@
                                         </div>
                                     </a>
                                     <h6 class="text-center">{{this.fullName}}</h6>
-                                    <p class="text-center">{{this.profession}}Designer</p>
+                                    <p class="text-center">{{this.occupation.occupationName}}</p>
                                 </div>
 
 
