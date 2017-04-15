@@ -86,35 +86,7 @@ main {
 /* -------------------------------------
  * User Profile Formatting
  * ------------------------------------- */
-.profile-well {
-	padding: 20px;
-	border: 1px solid #f9f9f9;
-	border-radius: 4px;
-	margin-bottom: 5px;
-}
-.profile-well img {
-	width: 120px;
-	height: 120px;
-	border: 10px solid #ffffff;
-	margin-bottom: 20px;
-}
-.profile-well:hover {
-	background-color: #fff;
-	border: 1px solid #eee;
-	border-bottom: 4px solid rgba(244, 56, 27, .8);
-	transition: .5s ease-in;
-	transition: .5s ease-out;
-	margin-bottom: 1px;
-}
-.profile-well:hover img{
-	transform: scale(1.05);
-	-moz-transform: scale(1.05);
-	-webkit-transform: scale(1.05);
-	transition: .5s ease-in;
-	transition: .5s ease-out;
-}
-
-.user-img {
+.img-logged {
 	padding: 0px;
 	background-color: #ffffff;
 	-webkit-transition: all 0.2s ease-in-out;
@@ -125,6 +97,20 @@ main {
 	height: 30px;
 	border-radius: 5%;
 	margin: 10px 10px 0 0;
+}
+
+.img-responsive {
+	border-radius: 2px;
+	margin-bottom: 10%;
+	border: 10px solid #fff;
+}
+
+.img-user {
+	width: 100%;
+	border-radius: 2px;
+	margin-bottom: 10%;
+	border: 0px solid #fff;
+	border-radius: 2px;
 }
 
 /* -------------------------------------

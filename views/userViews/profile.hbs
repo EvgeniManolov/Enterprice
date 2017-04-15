@@ -1,22 +1,31 @@
 <main>
     <div class="container">
 
-        <div class="col-md-3 col-sm-4 section well">
-            <img class="img-responsive img-thumbnail center-block" src="/images/lora.jpg">
-            <form>
-                <div class="form-group">
-                    <label for="addPicture">Change your account picture</label>
-                    <input type="file" id="addPicture">
-                </div>
-            </form>
-        </div>
+        <!--  User Picture - Left Side -->
+        <!--<div class="col-md-3 col-sm-4 section">
+            <img class="img-responsive" src="/images/lora.jpg">
+            <hr>
+            <div class="section">
+                <form>
+                    <div class="form-group">
+                        <label for="addPicture"><p>Change account picture</p></label>
+                        <input type="file" id="addPicture">
+                    </div>
+                </form>
+            </div>
 
+        </div>-->
 
-        <div class="col-md-9 col-sm-8 section">
-            <div class="container-border well">
-                <h3>{{user.fullName}}</h3>
-                <hr>
-                <div class="col-xs-12">
+        <!--  User Data - Left Side -->
+        <div class="col-sm-6 section">
+            <div class="container-border section">
+                <div class="well">
+                    <img class="img-responsive" src="/images/lora.jpg">
+
+                    <!--  Name  -->
+                    <h3>{{user.fullName}}</h3><hr>
+
+                    <!--  User Info  -->
                     <p>
                         <span class="glyphicon glyphicon-earphone"></span>
                         {{user.phone}}<button class="btn-sm btn-default pull-right">Edit</button><hr>
@@ -28,11 +37,48 @@
                         {{user.address}}<button class="btn-sm btn-default pull-right">Edit</button>
                     </p>
                 </div>
+            </div>
+        </div>
 
+        <!--  User Additional - Right Side -->
+        <div class="col-sm-6 section">
 
+            <!--  User Projects  -->
+            <div class="container-border section">
+                <div class="well">
+                    <h3>My Projects</h3>
+                    <hr>
 
+                    <!--  Projects List  -->
+                    <p>
+                        <span class="glyphicon glyphicon-star"></span>
+                        Project Name One<button class="btn-sm btn-default pull-right">View</button><hr>
+
+                    <span class="glyphicon glyphicon-ok"></span>
+                    Some Kind of Project Name<button class="btn-sm btn-default pull-right">View</button><hr>
+
+                    <span class="glyphicon glyphicon-star"></span>
+                    Another Testing Headline<button class="btn-sm btn-default pull-right">View</button><hr>
+                    </p>
+                </div>
             </div>
 
+            <!--  User Teams  -->
+            <div class="container-border section">
+                <div class="well">
+                    <h3>My Teams</h3>
+                    <hr>
+
+                    <!--  Teams List  -->
+                    <p>
+                        <span class="glyphicon glyphicon-user"></span>
+                        First Team Name<button class="btn-sm btn-default pull-right">View</button><hr>
+
+                    <span class="glyphicon glyphicon-user"></span>
+                    Another Team Name<button class="btn-sm btn-default pull-right">View</button><hr>
+
+                </div>
+            </div>
         </div>
     </div>
 </main>

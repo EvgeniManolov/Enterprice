@@ -1,22 +1,74 @@
+
 <main>
     <div class="container">
 
-        <div class="col-md-3 col-sm-4 section well">
-            <img class="img-responsive img-thumbnail center-block" src="/images/lora.jpg">
-            <form>
-                <div class="form-group">
-                    <label for="addPicture">Change your account picture</label>
-                    <input type="file" id="addPicture">
+        <!--  User Picture - Right Side -->
+        <div class="col-md-4 col-sm-5 section">
+
+            <div class="container-border section">
+                <div class="well">
+
+                    <img class="img-user" src="/images/lora.jpg">
+
+
+
+                    <!--  Name  -->
+                    <h3>{{userData.fullName}}</h3><hr>
+
+                    <!--  User Info  -->
+                    <p>
+                        <span class="glyphicon glyphicon-earphone"></span>
+                    {{userData.phone}}<hr>
+
+                    <span class="glyphicon glyphicon-envelope"></span>
+                    {{userData.email}}<hr>
+
+                    <span class="glyphicon glyphicon-map-marker"></span>
+                    {{userData.address}}
+                    </p>
                 </div>
-            </form>
+            </div>
         </div>
 
-        <div class="col-md-9 col-sm-8 section ">
-            <h3>{{userData.fullName}}</h3>
-            <h1>{{userData.email}}</h1>
-            <h1>{{userData.phone}}</h1>
-            <h1>{{userData.address}}</h1>
-        </div>
+        <!--  User Additional - Right Side -->
+        <div class="col-sm-8 section">
 
+            <!--  User Projects  -->
+            <div class="container-border section">
+                <div class="well">
+                    <h3>My Projects</h3>
+                    <hr>
+
+                    <!--  Projects List  -->
+                    <p>
+                        <span class="glyphicon glyphicon-star"></span>
+                        Project Name One<button class="btn-sm btn-default pull-right">View</button><hr>
+
+                    <span class="glyphicon glyphicon-ok"></span>
+                    Some Kind of Project Name<button class="btn-sm btn-default pull-right">View</button><hr>
+
+                    <span class="glyphicon glyphicon-star"></span>
+                    Another Testing Headline<button class="btn-sm btn-default pull-right">View</button><hr>
+                    </p>
+                </div>
+            </div>
+
+            <!--  User Teams  -->
+            <div class="container-border section">
+                <div class="well">
+                    <h3>My Teams</h3>
+                    <hr>
+
+                    <!--  Teams List  -->
+                    <p>
+                        <span class="glyphicon glyphicon-user"></span>
+                        First Team Name<button class="btn-sm btn-default pull-right">View</button><hr>
+
+                    <span class="glyphicon glyphicon-user"></span>
+                    Another Team Name<button class="btn-sm btn-default pull-right">View</button><hr>
+
+                </div>
+            </div>
+        </div>
     </div>
 </main>
