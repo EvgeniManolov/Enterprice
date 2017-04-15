@@ -131,6 +131,12 @@ module.exports = {
 
             res.redirect(url);
         })
+    },
+
+    teamCreateNewPost: (req, res) => {
+        let usersArray = req.body;
+
+        console.log(usersArray);
     }
 };
 

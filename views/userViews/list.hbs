@@ -2,6 +2,7 @@
     $(document).ready(function(e){
         $(".img-check").click(function(){
             $(this).toggleClass("check");
+            $(this).find("#checkbox").attr('checked');
         });
     });
 </script>
@@ -16,15 +17,13 @@
                 <div class="list-group-item active">
                     Filter by Profession
                 </div>
-                <a href="#" class="list-group-item">
-                    Designers <span class="badge">23</span>
-                </a>
-                <a href="#" class="list-group-item">
-                    Programers <span class="badge">64</span>
-                </a>
-                <a href="#" class="list-group-item">
-                    Another One <span class="badge">64</span>
-                </a>
+
+                {{#each professionsCount}}
+                    <a href="#" class="list-group-item">
+                        {{this.profession}}s <span class="badge">{{this.count}}</span>
+                    </a>
+                {{/each}}
+
             </div>
 
         </div>
@@ -42,80 +41,52 @@
                 </div>
             </div>
 
-            <!--  Users  -->
-            <div class="row">
-                <form method="get">
+            <!--  Users Check -->
+<!--            <div class="row">
+                <form method="post" action="/team/create/createNew">
                     {{#each users}}
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                            <div class="thumbnail img-check">
-                                <img class="img-tumbnails" src="/images/lora.jpg">
-                                <div class="caption">
-                                    <h5 class="text-center">{{this.fullName}}</h5>
-                                    <p class="text-center">{{this.profession}}Designer</p>
+                        <div class="form-group">
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                                <div class="thumbnail img-check">
+                                    <img class="img-thumbnail" src="/images/lora.jpg">
+                                    <div class="caption">
+                                        <h5 class="text-center">{{this.fullName}}</h5>
+                                        <p class="text-center">{{this.profession}}Designer</p>
+                                    </div>
+
+                                    <input type="checkbox" id="checkbox" name="users" value="{{this.id}}" hidden>
                                 </div>
-                                <!--  View More Button  -->
-                                <!--<a href="/userViews/details/{{this.id}}" class="btn btn-default center-block">View Profile</a>-->
                             </div>
                         </div>
+
                     {{/each}}
-                    <div class="col-lg-12">
-                        <input type="submit" value="Done" class="btn btn-success pull-right">
+                    <div class="col-xs-12">
+                        <input type="submit" value="Create Team" class="btn btn-success pull-right">
                     </div>
                 </form>
-            </div>
+            </div>-->
 
-            <!--  Users Two  -->
-            <div class="row">
-                    {{#each users}}
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
-                            <div class="thumbnail">
-
-                                <img class="img-tumbnails" src="/images/lora.jpg">
-                                <div class="caption">
-                                    <!--  Layer Over  -->
-                                    <a href="/userViews/details/{{this.id}}">
-                                        <div class="thumbnail-over">
-                                            <p>View Profile</p>
-                                        </div>
-                                    </a>
-                                    <h6 class="text-center">{{this.fullName}}</h6>
-                                    <p class="text-center">{{this.profession}}Designer</p>
-                                </div>
-
-
-                                <!--  View More Button  -->
-                                <!--<a href="/userViews/details/{{this.id}}" class="btn btn-default center-block">View Profile</a>-->
-                            </div>
-                        </div>
-                    {{/each}}
-
-            </div>
-
-
-            <!--  All Users Old  -->
-            <!-- <div class="section well">
+            <!--  All Users List  -->
             <div class="row">
                 {{#each users}}
-                    <div class="col-lg-4">
-                        <div class="profile-well">
-                            <div class="section">
-                                <img class="img img-circle center-block" src="/images/lora.jpg">
-                            </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                        <div class="thumbnail">
 
-                            <div class="section">
-                                <h5 class="text-center">{{this.fullName}}</h5>
-                                <p class="text-center">{{this.profession}}Designer</p>
+                            <img class="img-tumbnails" src="/images/lora.jpg">
+                            <div class="caption">
+                                <!--  Layer Over  -->
+                                <a href="/userViews/details/{{this.id}}">
+                                    <div class="thumbnail-over">
+                                        <p>View Profile</p>
+                                    </div>
+                                </a>
+                                <h6 class="text-center">{{this.fullName}}</h6>
+                                <p class="text-center">{{this.occupation.occupationName}}</p>
                             </div>
-
-                            <a href="/userViews/userProfile/{{this.id}}" class="btn btn-default center-block">View Profile</a>
                         </div>
                     </div>
                 {{/each}}
             </div>
-        </div>-->
-
         </div>
-
     </div>
-
 </main>
