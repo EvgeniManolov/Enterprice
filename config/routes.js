@@ -48,7 +48,7 @@ module.exports = (app) => {
     app.get('/userViews/list', userController.usersGet);
 
     /* own profile */
-    app.get('/userViews/details', userController.profileGet);
+    app.get('/userViews/profile', userController.profileGet); //TO BE DELETED
 
     /* details */
     app.get('/userViews/details/:id', userController.userDetailsGet);

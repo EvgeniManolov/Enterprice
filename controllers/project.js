@@ -78,12 +78,25 @@ module.exports = {
 
     createGet: (req, res) => {
 
-        Team.find({}).sort('teamName').then(teams => {
+        let user = req.user;
+        let isAdmin = true;
 
-            Customer.find({}).sort('customerName').then(customers => {
+        Role.findOne({name: 'Admin'}).then(role => {
 
-                res.render('project/create', {customers: customers, teams: teams})
-            });
+            if(user.roles.indexOf(role._id) == -1) {
+                isAdmin = false;
+            }
+            if (isAdmin) {
+                Team.find({}).sort('teamName').then(teams => {
+
+                    Customer.find({}).sort('customerName').then(customers => {
+
+                        res.render('project/create', {customers: customers, teams: teams})
+                    });
+                })
+            } else {
+                res.render('home/index', {error: 'Access denied!'})
+            }
         })
     },
 
@@ -253,22 +266,37 @@ module.exports = {
     },
 
     projectCancel: (req, res) => {
-        let projectId = req.params.id;
 
-        Project.findOne({_id: projectId}).then(project => {
-            Task.find({taskProjectId: projectId}).then(tasks => {
 
-                for (var i=0; i < tasks.length; i++) {
-                    tasks[i].taskActive = false; // Sets all tasks part of the project inactive
-                    tasks[i].save();
-                }
-            });
+        let user = req.user;
+        let isAdmin = true;
 
-            let today = new Date();
-            project.projectDueDate = today; //set projectDueDate for a cancelled project to be current date
+        Role.findOne({name: 'Admin'}).then(role => {
 
-            project.projectActive = false; //sets project inactive
-            project.save();
+            if(user.roles.indexOf(role._id) == -1) {
+                isAdmin = false;
+            }
+            if (isAdmin) {
+                let projectId = req.params.id;
+
+                Project.findOne({_id: projectId}).then(project => {
+                    Task.find({taskProjectId: projectId}).then(tasks => {
+
+                        for (var i=0; i < tasks.length; i++) {
+                            tasks[i].taskActive = false; // Sets all tasks part of the project inactive
+                            tasks[i].save();
+                        }
+                    });
+
+                    let today = new Date();
+                    project.projectDueDate = today; //set projectDueDate for a cancelled project to be current date
+
+                    project.projectActive = false; //sets project inactive
+                    project.save();
+                })
+            } else {
+                res.render('home/index', {error: 'Access denied!'})
+            }
         })
     },
 

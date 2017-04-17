@@ -4,10 +4,25 @@
 
 const Occupation = require('mongoose').model('Occupation');
 const User = require('mongoose').model('User');
+const Role = require('mongoose').model('Role');
 
 module.exports = {
     occupationCreateGet: (req, res) => {
-        res.render('occupation/create')
+
+        let user = req.user;
+        let isAdmin = true;
+
+        Role.findOne({name: 'Admin'}).then(role => {
+
+            if(user.roles.indexOf(role._id) == -1) {
+                isAdmin = false;
+            }
+            if (isAdmin) {
+                res.render('occupation/create')
+            } else {
+                res.render('home/index', {error: 'Access denied!'})
+            }
+        })
     },
 
     occupationCreatePost: (req, res) => {
@@ -30,28 +45,45 @@ module.exports = {
 
     occupationEditPost: (req, res) => {
 
-        let occupationParams = req.body;
-        let id = occupationParams.occupationID;
-        let newRate = occupationParams.occupationRate;
+        let user = req.user;
+        let isAdmin = true;
 
-        Occupation.findOne({_id: id}).then(occupation => {
-            occupation.occupationRate = newRate;
-            occupation.save();
+        Role.findOne({name: 'Admin'}).then(role => {
 
-            User.find().then(users => {
+            if (user.roles.indexOf(role._id) == -1) {
+                isAdmin = false;
+            }
 
-                let wantedUsers = [];
+            if (isAdmin) {
+                let occupationParams = req.body;
+                let id = occupationParams.occupationID;
+                let newRate = occupationParams.occupationRate;
 
-                users.forEach(function (user) {
-                    if(user.occupation == occupation.id) {
-                        wantedUsers.push(user)
-                    }
-                });
+                Occupation.findOne({_id: id}).then(occupation => {
+                    occupation.occupationRate = newRate;
+                    occupation.save();
 
-                wantedUsers.forEach(function (user) {
-                    user.rate = occupation.occupationRate;
-                    user.save();
+                    User.find().then(users => {
+
+                        let wantedUsers = [];
+
+                        users.forEach(function (user) {
+                            if (user.occupation == occupation.id) {
+                                wantedUsers.push(user)
+                            }
+                        });
+
+                        wantedUsers.forEach(function (user) {
+                            user.rate = occupation.occupationRate;
+                            user.save();
+                        })
+                    })
                 })
-            })
-    })
-}};
+            }
+
+            else {
+                res.render('home/index', {error: 'Access denied!'})
+            }
+        })
+    }
+};

@@ -126,6 +126,9 @@ module.exports = {
                     };
                 }
 
+                users.splice(0, 1); // remove Administrator
+                users.count = users.length;
+
                 res.render('userViews/list', {users: users, professionsCount: professionsCount});
             })
         });
@@ -141,13 +144,13 @@ module.exports = {
         })
     },
 
-    profileGet: (req, res) => {
+    profileGet: (req, res) => {           // TO BE DELETED
 
         let currentUser = req.user.id;
 
         User.findOne({_id: currentUser}).then(userData => {
 
-            res.render('userViews/details',{userData: userData} );
+            res.render('userViews/profile',{userData: userData} );
         })
     },
 
@@ -166,7 +169,7 @@ module.exports = {
                     User.findOne({_id: userID}).then(user => {
                         user.picture = pictureName;
                         user.save();
-                        res.redirect('/userViews/details')
+                        res.redirect('/userViews/details/' + userID)
                     })
                 }
             })
