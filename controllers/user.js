@@ -125,8 +125,6 @@ module.exports = {
 
                     };
                 }
-
-                users.splice(0, 1); // remove Administrator
                 users.count = users.length;
 
                 res.render('userViews/list', {users: users, professionsCount: professionsCount});
