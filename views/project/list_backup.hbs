@@ -43,7 +43,7 @@
 </script>
 
 <main>
-{{#if user}}
+
     <div class="container">
 
         <div class="col-lg-12">
@@ -67,20 +67,21 @@
                     Closed Projects <span id="closedProjectsCount" class="badge"></span>
                 </a>
             </div>
-            
+
         </div>
 
+        <!-- Right Section -->
         <div class="col-md-9 section">
 
             <!-- Tab Names -->
-            <ul class="nav nav-tabs">
-                <li class="active">
+            <ul class="nav nav-tabs ">
+                <li class="nav-item active">
                     <a href="#activeProject" aria-controls="activeProject" role="tab" data-toggle="tab">
                         <h5>Active Projects</h5>
                     </a>
                 </li>
 
-                <li class="">
+                <li class="nav nav-item">
                     <a href="#closedProjects" aria-controls="closedProjects" role="tab" data-toggle="tab">
                         <h5>Closed Projects</h5>
                     </a>
@@ -299,5 +300,4 @@
             </div>
         </div>
     </div>
-{{/if}}
 </main>

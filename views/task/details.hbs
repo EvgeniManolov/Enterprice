@@ -25,12 +25,18 @@
     {{#if user}}
     <div class="container">
 
+        <div class="col-xs-12">
+            <h2>{{task.taskProjectId.projectName}}</h2>
+            <hr>
+        </div>
+
         <!-- Left Section -->
-        <div class="col-md-3 col-sm-6 section">
+        <div class="col-lg-3 col-md-4 col-sm-5 section">
 
             <!--  Project Info  -->
+            <h6>Project Details</h6>
             <div class="section well ">
-                <h4>{{task.taskProjectId.projectName}}</h4>
+                <h5>{{task.taskProjectId.projectName}}</h5>
                 <p>Project Progress: {{this.projectProgress}}%
                     <div class="progress" style="width: 100%">
                         <div class="progress-bar"
@@ -56,11 +62,10 @@
             </div>
 
             <!--  Task Info  -->
-            <div class="section well ">
-                <h4>{{task.taskName}}</h4>
-                <hr>
+            <h6>Task Details</h6>
+            <div class="section well">
 
-                <p>Status: <span class="glyphicon glyphicon-alert glyphicon-cool"></span></p>
+                <p>Status: <span class="glyphicon glyphicon-star glyphicon-active"></span></p>
                 <hr>
 
                 <span class="glyphicon glyphicon-hourglass"></span>
@@ -74,40 +79,34 @@
                 <span class="glyphicon glyphicon-pencil"></span>
                 <a href="#">Task Commits <span class="badge pull-right">29</span></a>
 
-
             </div>
         </div>
 
         <!-- Right Section -->
-        <div class="col-md-9 col-sm-6 section">
+        <div class="col-lg-9 col-md-8 col-sm-7 section">
             <div class="row">
+
                 <!-- Task Name -->
-                <div class="col-lg-12">
-                    <div class="row">
-                        <div class="col-lg-9">
-
-                            <h3>{{task.taskName}}</h3>
-
-                        </div>
-                        <div class="col-lg-3">
-                            {{#if task.taskActive}}
-                                <button id="completeTask" class="btn btn-success" onclick="completeTask()" value="{{task.id}}">
-                                    <span class="glyphicon glyphicon-ok"></span>&nbsp Close Task
-                                </button>
-                            {{/if}}
-                        </div>
-                    </div>
+                <div class="col-md-8 col-lg-9">
+                    <h3>{{task.taskName}}</h3>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                    {{#if task.taskActive}}
+                        <button id="completeTask" class="btn btn-success" onclick="completeTask()" value="{{task.id}}">
+                            <span class="glyphicon glyphicon-ok"></span>&nbsp Close Task
+                        </button>
+                    {{/if}}
                 </div>
             </div>
 
             <!-- Task Description -->
+            <hr>
+
             <div class="section">
-                <hr>
                 <h5>Task Description</h5>
                 <p>{{task.taskDescription}}</p>
-                <!--<div class="btn btn-xs btn-default center">Show More</div>-->
-
             </div>
+
 
             <!--  New Commit -->
             {{#if task.taskActive}}
@@ -130,8 +129,8 @@
                     </div>
 
                     <!--  Submit / Discard  -->
-                    <div class="section text-center">
-                        <button type="submit" class="btn btn-primary btn-lg text-center">New Commit</button>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-lg text-center">Commit</button>
                     </div>
                 </form>
             </div>
@@ -219,7 +218,6 @@
                     Back to Project
                 </button>
             </a>
-
         </div>
     </div>
     {{/if}}

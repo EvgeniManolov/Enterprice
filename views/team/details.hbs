@@ -15,50 +15,42 @@
 <main>
     {{#if user}}
     <div class="container">
-        <form class="form-horizontal" method="post" action="">
-            <fieldset>
 
-                <legend>Details Team</legend>
+        <div class="col-lg-12">
+            <h2>Teams</h2>
+            <hr>
+        </div>
 
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="customerName">Team Name</label>
-                    <div class="col-sm-4 ">
-                        <input type="text" class="form-control" disabled id="customerName" placeholder="" value="{{team.teamName}}" name="customerName" required >
-                    </div>
-                </div>
+        <div class="container-border">
+            <div class="well">
 
-                <!-- Select User -->
-                <div class="form-group">
-                    <label class="col-sm-4 control-label " for="userName">User</label>
-                    <div class="col-sm-4 ">
-                        <div class="row-fluid">
-                            <select  class="selectpicker form-control" multiple="multiple" id="userName" name="userName"  required data-live-search="true">
-                                {{#each team.userID}}
-                                    <option>
-                                        <div aria-checked="true">{{this.fullName}}</div>
-                                    </option>
-                                {{/each}}
-                            </select>
+                <h5>{{team.teamName}}</h5>
+                <hr>
+                    {{#each team.userID}}
+                        <img class="img-team" src="/images/lora.jpg">
+                            {{this.fullName}}
+                        <hr>
+                    {{/each}}
+                {{#if isAdmin}}
+                    <div class="pull-right">
+                        <div class="pull-right">
+                            <a class="btn btn-default btn-xs" href="/team/edit/{{team.id}}">Edit Team &raquo;</a>
                         </div>
                     </div>
-                </div>
-
-                {{#if isAdmin}}
-                <div class="pull-right">
-                    <a class="btn btn-default btn-xs" href="/team/edit/{{team.id}}">Edit Team &raquo;</a>
-                </div>
                 {{/if}}
 
+            </div>
+        </div>
 
-                <div class="form-group">
-                    <div class="col-sm-4 col-sm-offset-4">
-                        <a class="btn btn-default" href="/team/list">
-                            Back
-                        </a>
-                    </div>
-                </div>
-            </fieldset>
-        </form>
+        <!--  Back Button -->
+        <div class="section">
+            <a href="/team/list">
+                <button class="btn btn-default pull-right">
+                    <span class="glyphicon glyphicon-menu-left"></span>
+                    Back to All Teams
+                </button>
+            </a>
+        </div>
     </div>
     {{/if}}
 </main>
