@@ -9,9 +9,13 @@
     $(document).ready(function(){
         $(".occupation").click(function(){
             let occupation = $(this).text().trim();
-            $(".row").children().hide();
-            $(".row").find("p:contains(" + occupation + ")").parent().parent().parent().show();
 
+            if (occupation == "All") {
+                $(".row").children().show();
+            } else {
+                $(".row").children().hide();
+                $(".row").find("p:contains(" + occupation + ")").parent().parent().parent().parent().show();
+            }
         })
     });
 </script>
@@ -90,9 +94,8 @@
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 profileCard">
                         <div class="thumbnail">
                             <div class="caption well">
-                                <img class="center-block" src="/images/lora.jpg">
+                                <img class="center-block" src="/images/userProfilePictures/{{this.picture}}">
 
-                            <img class="img-tumbnails" src="/images/userProfilePictures/{{this.picture}}">
                             <div class="caption">
                                 <!--  Layer Over  -->
                                 <a href="/userViews/details/{{this.id}}">
@@ -102,13 +105,14 @@
                                 </a>
                                 <h6 class="text-center">{{this.fullName}}</h6>
                                 <p class="text-center">{{this.occupation.occupationName}}</p>
-
                             </div>
                         </div>
+                    </div>
                     </div>
                 {{/each}}
             </div>
         </div>
+    </div>
     </div>
     {{/if}}
 </main>
