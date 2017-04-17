@@ -53,6 +53,8 @@ module.exports = (app) => {
     /* details */
     app.get('/userViews/details/:id', userController.userDetailsGet);
 
+    /* upload picture */
+    app.post('/picture/upload', userController.pictureUpload)
 
 
     /* RATES */

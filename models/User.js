@@ -21,7 +21,8 @@ let userSchema = mongoose.Schema(
         team: {type: [mongoose.Schema.Types.ObjectId], default: [], ref: 'Team'},
         workedHours: {type: [workPerProject], default: []}, //array [project: spent hours] //not yet implemented
         roles: [{type: mongoose.Schema.Types.ObjectId, ref: 'Role'}],
-        occupation: {type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Occupation'}
+        occupation: {type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Occupation'},
+        picture: {type: String, default: ''}
     }
 );
 
