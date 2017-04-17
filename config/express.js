@@ -4,8 +4,13 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
+const fileUpload = require('express-fileupload');
 
 module.exports = (app, config) => {
+
+    // USe fileUpload to handle file upload
+    app.use(fileUpload());
+
     // View engine setup.
     app.set('views', path.join(config.rootFolder, '/views'));
     app.set('view engine', 'hbs');

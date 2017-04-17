@@ -145,9 +145,31 @@ module.exports = {
 
         let currentUser = req.user.id;
 
-        User.findOne({_id: currentUser}).then(user => {
+        User.findOne({_id: currentUser}).then(userData => {
 
-            res.render('userViews/details',{user: user} );
+            res.render('userViews/details',{userData: userData} );
         })
-    }
+    },
+
+    pictureUpload: (req, res) => {
+        let picture = req.files.image;
+        let userID = req.user.id;
+
+        if (picture) {
+            let pictureName = userID + '_picture';
+            let url = './public/images/userProfilePictures/' + pictureName;
+
+            picture.mv(url, err => {
+                if (err) {
+                    console.log(err.message)
+                } else {
+                    User.findOne({_id: userID}).then(user => {
+                        user.picture = pictureName;
+                        user.save();
+                        res.redirect('/userViews/details')
+                    })
+                }
+            })
+        }
+        }
 };
