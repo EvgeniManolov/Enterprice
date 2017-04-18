@@ -167,7 +167,7 @@ module.exports = {
                     User.findOne({_id: userID}).then(user => {
                         user.picture = pictureName;
                         user.save();
-                        res.redirect('/userViews/details/' + userID)
+                        res.redirect('/userViews/profile/')
                     })
                 }
             })
