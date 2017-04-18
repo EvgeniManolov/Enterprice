@@ -101,12 +101,11 @@ module.exports = {
 
     teamDetailsGet:(req,res)=>{
         let id = req.params.id;
-        Team.findOne({_id:id}).populate('userID').then(team=>{
+        Team.findOne({_id : id}).populate('userID').then(team=>{
 
           console.log(team);
-          console.log(team.userID);
-          console.log(team.userID.fullName);
 
+            let user = req.user;
             let isAdmin = true;
 
             Role.findOne({name: 'Admin'}).then(role => {
@@ -117,12 +116,10 @@ module.exports = {
 
                 for ( let i = 0; i < team.userID.length; i++){
 
-                    console.log(team);
-
                     team.userID[i].isAdmin = isAdmin;
                 }
 
-              res.render('./team/details',{team:team, isAdmin:isAdmin});
+              res.render('./team/details',{team:team, isAdmin : isAdmin});
           });
       });
     },
