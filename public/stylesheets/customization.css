@@ -157,7 +157,7 @@ main {
 	width: 120px;
 	height: 120px;
 	border: 10px solid #ffffff;
-	margin-bottom: 20px;
+	margin: 5px auto 0px auto;
 	border-radius: 100px;
 }
 .thumbnail .img-team {
@@ -190,7 +190,7 @@ main {
 }
 .thumbnail-over {
 	width: 90%;
-	height: 93%;
+	height: 94%;
 	position: absolute;
 	top: 0;
 	left: 15px;
@@ -218,17 +218,22 @@ main {
 	color: #c30019;
 	transition: .5s ease-in-out;
 }
+
+.thumbnail:hover a {
+	color: #b3b3b3;
+	transition: .5s ease-in-out;
+}
 .thumbnail h6 {
 	/*color: #c30019;*/
 	margin-bottom: 10px;
-	font-weight: 600;
+	font-weight: 400;
 }
 
 .thumbnail h5 {
 	font-size: 16px;
 	/*color: #c30019;*/
 	margin-bottom: 18px;
-	font-weight: 600;
+	font-weight: 400;
 }
 .thumbnail .caption {
 	text-align: left !important;
@@ -545,14 +550,35 @@ input[type="checkbox"]:focus {
 	outline: none;
 }
 
+/* -------------------------------------
+ * Upload File Control
+ * ------------------------------------- */
 label {
 	cursor: pointer;
 	/* Style as you please, it will become the visible UI component. */
 }
-
 #upload-photo {
 	opacity: 0;
 }
+
+/* -------------------------------------
+ * List Groups
+ * ------------------------------------- */
+.list-group-item a {
+	text-decoration: none;
+}
+
+.list-group-item.active {
+	color: #fff;
+	text-transform: uppercase;
+}
+
+.list-group-item.active a {
+	color: #fff;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+
 
 /* -------------------------------------
  * Tables

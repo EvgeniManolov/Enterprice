@@ -21,24 +21,41 @@
             <hr>
         </div>
 
-        <div class="container-border">
-            <div class="well">
 
-                <h5>{{team.teamName}}</h5>
-                <hr>
+        <div class="col-sm-6">
+            <div class="thumbnail">
 
-                {{#each team.userID}}
 
-                    <img class="img-team" src="/images/userProfilePictures/{{this.picture}}">
+                    <h4>{{team.teamName}}</h4>
 
-                    {{this.fullName}}
+
+                <div class="container-border well">
+
+                    {{#each team.userID}}
+
+                        <img class="img-team" src="/images/userProfilePictures/{{this.picture}}">
+
+                        {{this.fullName}}
+
+                        {{#if isAdmin}}
+                            <a class="btn btn-default pull-right" href="/team/edit/{{team.id}}">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </a>
+                        {{/if}}
+                        <hr>
+                    {{/each}}
 
                     {{#if isAdmin}}
-                        <a class="btn btn-default btn-xs pull-right" href="/team/edit/{{team.id}}">Delete User</a>
+                        <button class="btn btn-default pull-right" href="/team/edit/{{team.id}}">
+                            <span class="glyphicon glyphicon-plus"></span> Add User
+                        </button>
                     {{/if}}
-                    <hr>
-                {{/each}}
+                </div>
+
+
+
             </div>
+
         </div>
 
         <!--  Back Button -->

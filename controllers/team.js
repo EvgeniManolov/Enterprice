@@ -127,7 +127,7 @@ module.exports = {
       });
     },
 
-    teamEditGet: (req,res) =>{
+    teamEditGet: (req,res) => {
 
         let user = req.user;
         let isAdmin = true;
