@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-/*const Role = require('mongoose').model('Role');*/
 mongoose.Promise = global.Promise;
 
 module.exports = (config) => {

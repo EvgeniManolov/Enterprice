@@ -1,13 +1,27 @@
-<script>
+<script>0
     $(document).ready(function(e){
         $(".img-check").click(function(){
             $(this).toggleClass("check");
             $(this).find("#checkbox").attr('checked');
         });
     });
+
+    $(document).ready(function(){
+        $(".occupation").click(function(){
+            let occupation = $(this).text().trim();
+
+            if (occupation == "All") {
+                $(".row").children().show();
+            } else {
+                $(".row").children().hide();
+                $(".row").find("p:contains(" + occupation + ")").parent().parent().parent().parent().show();
+            }
+        })
+    });
 </script>
 
 <main>
+    {{#if user}}
     <!--  Body  -->
     <div class="container">
 
@@ -24,13 +38,17 @@
                 <div class="list-group-item active">
                     Filter by Profession
                 </div>
+                <div class="list-group-item">
+                    <a href="" onclick="return false" id="filter" class="occupation">
+                        All</a> <span class="badge">{{users.count}}</span>
+                </div>
                 {{#each professionsCount}}
-                    <a href="#" class="list-group-item">
-                        {{this.profession}}s <span class="badge">{{this.count}}</span>
-                    </a>
+                    <div class="list-group-item">
+                        <a href="" onclick="return false" id="filter" class="occupation">
+                            {{this.profession}}</a>s <span class="badge">{{this.count}}</span>
+                    </div>
                 {{/each}}
             </div>
-
         </div>
 
         <!-- Right Section -->
@@ -73,12 +91,13 @@
             <div class="row">
 
                 {{#each users}}
-                    <div class="col-md-4 col-xs-6">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 profileCard">
                         <div class="thumbnail">
                             <div class="caption well">
                                 <img class="center-block" src="/images/userProfilePictures/{{this.picture}}">
 
-                                <!--  Layer Hover  -->
+                            <div class="caption">
+                                <!--  Layer Over  -->
                                 <a href="/userViews/details/{{this.id}}">
                                     <div class="thumbnail-over">
                                         <p>View Profile</p>
@@ -86,12 +105,14 @@
                                 </a>
                                 <h6 class="text-center">{{this.fullName}}</h6>
                                 <p class="text-center">{{this.occupation.occupationName}}</p>
-
                             </div>
                         </div>
+                    </div>
                     </div>
                 {{/each}}
             </div>
         </div>
     </div>
+    </div>
+    {{/if}}
 </main>

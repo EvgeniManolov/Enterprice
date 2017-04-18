@@ -1,5 +1,6 @@
 
 <main>
+    {{#if user}}
     <div class="container">
 
         <!--  User Picture - Right Side -->
@@ -23,6 +24,8 @@
                     <span class="glyphicon glyphicon-map-marker"></span>
                     {{userData.address}}
                     </p>
+
+                    <div class="btn btn-primary">Edit profile</div>
                 </div>
             </div>
         </div>
@@ -68,4 +71,5 @@
             </div>
         </div>
     </div>
+    {{/if}}
 </main>

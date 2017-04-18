@@ -9,7 +9,21 @@ const Project = require('mongoose').model('Project');
 
 module.exports = {
     customerCreateGet: (req, res) => {
-        res.render('customer/create')
+        let user = req.user;
+        let isAdmin = true;
+
+        Role.findOne({name: 'Admin'}).then(role => {
+
+                if(user.roles.indexOf(role._id) == -1) {
+                    isAdmin = false;
+                }
+
+        if (isAdmin) {
+            res.render('customer/create')
+
+        } else {
+            res.render('home/index', {error: 'Access denied!'})
+        }})
     },
 
     customerCreatePost: (req, res) => {
@@ -49,11 +63,25 @@ module.exports = {
     },
 
     customerEditGet : (req,res)=>{
-        let id = req.params.id;
+        let user = req.user;
+        let isAdmin = true;
 
-        Customer.findOne({_id:id}).then(customer=>{
-            res.render('customer/edit', {customer:customer})
-        })
+        Role.findOne({name: 'Admin'}).then(role => {
+
+            if(user.roles.indexOf(role._id) == -1) {
+                isAdmin = false;
+            }
+
+            if (isAdmin) {
+                let id = req.params.id;
+
+                Customer.findOne({_id:id}).then(customer=>{
+                    res.render('customer/edit', {customer:customer})
+                })
+
+            } else {
+                res.render('home/index', {error: 'Access denied!'})
+        }})
     },
 
     customerEditPost: (req,res)=>{

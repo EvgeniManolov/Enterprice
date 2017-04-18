@@ -8,8 +8,22 @@ const Role = require('mongoose').model('Role');
 
 module.exports = {
     teamCreateGet: ( req, res ) => {
-        User.find({}).then(users=>{
-            res.render('team/create', {users:users})
+
+        let user = req.user;
+        let isAdmin = true;
+
+        Role.findOne({name: 'Admin'}).then(role => {
+
+            if(user.roles.indexOf(role._id) == -1) {
+                isAdmin = false;
+            }
+            if (isAdmin) {
+                User.find({}).then(users=>{
+                    res.render('team/create', {users:users})
+                })
+            } else {
+                res.render('home/index', {error: 'Access denied!'})
+            }
         })
     },
 
@@ -89,7 +103,9 @@ module.exports = {
         let id = req.params.id;
         Team.findOne({_id:id}).populate('userID').then(team=>{
 
-            let user = req.user;
+          console.log(team);
+          console.log(team.userID);
+          console.log(team.userID.fullName);
 
             let isAdmin = true;
 
@@ -113,13 +129,25 @@ module.exports = {
 
     teamEditGet: (req,res) =>{
 
-        let id = req.params.id;
+        let user = req.user;
+        let isAdmin = true;
 
-        Team.findOne({'_id' : id }).then(team =>{
-            res.render('team/edit', {team:team});
-        });
+        Role.findOne({name: 'Admin'}).then(role => {
+
+            if(user.roles.indexOf(role._id) == -1) {
+                isAdmin = false;
+            }
+            if (isAdmin) {
+                let id = req.params.id;
+
+                Team.findOne({'_id' : id }).then(team =>{
+                    res.render('team/edit', {team:team});
+                });
+            } else {
+                res.render('home/index', {error: 'Access denied!'})
+            }
+        })
     },
-
     teamEditPost: ( req, res ) =>{
         let id = req.params.id;
         let url = '/team/details/'+id;

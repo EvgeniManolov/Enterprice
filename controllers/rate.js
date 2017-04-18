@@ -5,16 +5,30 @@
 const mongoose = require('mongoose');
 const User = require('mongoose').model('User');
 const Occupation = require('mongoose').model('Occupation');
+const Role = require('mongoose').model('Role');
 
 module.exports = {
 
     ratesGet: (req, res) => {
 
-        User.find({}).populate('occupation').then(users => {
+        let user = req.user;
+        let isAdmin = true;
 
-            /*TO DO: Error message*/
+        Role.findOne({name: 'Admin'}).then(role => {
 
-            res.render('rate/list', {users: users});
+            if(user.roles.indexOf(role._id) == -1) {
+                isAdmin = false;
+            }
+            if (isAdmin) {
+                User.find({}).populate('occupation').then(users => {
+
+                    /*TO DO: Error message*/
+
+                    res.render('rate/list', {users: users});
+                })
+            } else {
+                res.render('home/index', {error: 'Access denied!'})
+            }
         })
     },
 

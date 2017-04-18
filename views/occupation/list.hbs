@@ -27,65 +27,68 @@
     
 </script>
 
+<main>
+    {{#if user}}
+    <div class="container body-content">
 
-<div class="container body-content">
+        <legend>All occupations</legend>
 
-    <legend>All occupations</legend>
+        <!-- List with All Occupations -->
+        <div class="row">
+            <table class="table" id="occupations">
 
-    <!-- List with All Occupations -->
-    <div class="row">
-        <table class="table" id="occupations">
+                <!-- Table Head -->
+                <tr>
+                    <th>Occupation</th>
+                    <th>Rate</th>
+                    <th></th>
+                    <th></th>
+                </tr>
 
-            <!-- Table Head -->
-            <tr>
-                <th>Occupation</th>
-                <th>Rate</th>
-                <th></th>
-                <th></th>
-            </tr>
+                <!-- Table Data -->
+                {{#each occupations}}
+                        <tr>
 
-            <!-- Table Data -->
-            {{#each occupations}}
-                    <tr>
+                            <!-- Occupation Name -->
+                            <form class="form-horizontal" method="post" action="/occupation/edit">
+                            <td class="form-group" id="occupationName">
+                                <h6 class="form-control-static"><strong>{{this.occupationName}}</strong></h6>
+                            </td>
 
-                        <!-- Occupation Name -->
-                        <form class="form-horizontal" method="post" action="/occupation/edit">
-                        <td class="form-group" id="occupationName">
-                            <h6 class="form-control-static"><strong>{{this.occupationName}}</strong></h6>
-                        </td>
-
-                        <!-- Occupation ID - hidden -->
-                        <td  hidden class="form-group" id="occupationID">
-                            <input id="id" type="text" disabled class="form-control" value="{{this.id}}">
-                        </td>
+                            <!-- Occupation ID - hidden -->
+                            <td  hidden class="form-group" id="occupationID">
+                                <input id="id" type="text" disabled class="form-control" value="{{this.id}}">
+                            </td>
 
 
-                        <!-- Occupation Rate -->
-                        <td class="form-group" id="occupationRate">
-                            <input id="rate" type="number" step="0.01" disabled class="form-control" value="{{this.occupationRate}}">
-                        </td>
-                        </form>
+                            <!-- Occupation Rate -->
+                            <td class="form-group" id="occupationRate">
+                                <input id="rate" type="number" step="0.01" disabled class="form-control" value="{{this.occupationRate}}">
+                            </td>
+                            </form>
 
-                        <!-- Edit -->
-                        <td class="" id="occupationEdit">
-                            <div class="btn btn-primary editButton" id="editOccupationButton">Edit</div>
-                        </td>
+                            <!-- Edit -->
+                            <td class="" id="occupationEdit">
+                                <div class="btn btn-primary editButton" id="editOccupationButton">Edit</div>
+                            </td>
 
-                        <!-- Edit -->
-                        <td class="" id="changeOccupation" hidden>
-                            <div  class="btn btn-info changeButton" id="changeOccupationButton">Change</div>
-                        </td>
+                            <!-- Edit -->
+                            <td class="" id="changeOccupation" hidden>
+                                <div  class="btn btn-info changeButton" id="changeOccupationButton">Change</div>
+                            </td>
 
-                    </tr>
-            {{/each}}
-        </table>
+                        </tr>
+                {{/each}}
+            </table>
+        </div>
+
+        <a href="/rate/list">
+            <button class="btn btn-default pull-right">
+                <span class="glyphicon glyphicon-menu-left"></span>
+                Back to Users
+            </button>
+        </a>
+
     </div>
-
-    <a href="/rate/list">
-        <button class="btn btn-default pull-right">
-            <span class="glyphicon glyphicon-menu-left"></span>
-            Back to Users
-        </button>
-    </a>
-
-</div>
+    {{/if}}
+</main>

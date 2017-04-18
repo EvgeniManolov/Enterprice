@@ -125,6 +125,7 @@ module.exports = {
 
                     };
                 }
+                users.count = users.length;
 
                 res.render('userViews/list', {users: users, professionsCount: professionsCount});
             })
@@ -141,7 +142,7 @@ module.exports = {
         })
     },
 
-    profileGet: (req, res) => {
+    profileGet: (req, res) => {           // TO BE DELETED
 
         let currentUser = req.user.id;
 
@@ -166,7 +167,7 @@ module.exports = {
                     User.findOne({_id: userID}).then(user => {
                         user.picture = pictureName;
                         user.save();
-                        res.redirect('/userViews/profile')
+                        res.redirect('/userViews/details/' + userID)
                     })
                 }
             })

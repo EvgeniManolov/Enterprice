@@ -34,6 +34,13 @@ userSchema.method ({
        return isSamePasswordHash;
    },
 
+    isAdmin: function (roleID) {
+       return Role.findOne({_id: roleID}).then(role => {
+           let isAdmin = role.name == "Admin";
+           return isAdmin;
+       })
+    }
+
 });
 
 const User = mongoose.model('User', userSchema);

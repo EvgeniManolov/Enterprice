@@ -20,6 +20,7 @@
 </script>
 
 <main>
+    {{#if user}}
     <div class="container">
         <form class="form-horizontal" method="post" action="/project/create">
             <fieldset>
@@ -117,6 +118,7 @@
             </fieldset>
         </form>
     </div>
+        {{/if}}
 </main>
 
 

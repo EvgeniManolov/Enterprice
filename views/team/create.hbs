@@ -12,6 +12,7 @@ $('#userName').multiselect();
 </script>
 
 <main>
+    {{#if user}}
     <div class="container">
 
         <form class="form-horizontal" method="post" action="/team/create">
@@ -57,5 +58,6 @@ $('#userName').multiselect();
         </form>
 
     </div>
+    {{/if}}
 </main>
 
