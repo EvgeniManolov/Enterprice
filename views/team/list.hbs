@@ -15,8 +15,8 @@
                         <h4>{{this.teamName}}</h4>
                         {{#each userID}}
                             <hr>
-                            <img class="img-team" src="/images/lora.jpg">
-                            {{userID.fullName}}
+                            <img class="img-team" src="/images/userProfilePictures/{{this.picture}}">
+                            {{this.fullName}}
 
                         {{/each}}
                     </div>

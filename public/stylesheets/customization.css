@@ -142,7 +142,6 @@ main {
 	margin: 10px 10px 0 0;
 }
 
-
 /* -------------------------------------
  * Thumbnails
  * ------------------------------------- */
@@ -536,13 +535,23 @@ select:focus,
 	width: 350px;
 }
 input[type="file"] {
-	display: inline-block;
 	padding: 10px 0;
+	max-width: 100px;
+	overflow: hidden;
 }
 input[type="file"]:focus,
 input[type="radio"]:focus,
 input[type="checkbox"]:focus {
 	outline: none;
+}
+
+label {
+	cursor: pointer;
+	/* Style as you please, it will become the visible UI component. */
+}
+
+#upload-photo {
+	opacity: 0;
 }
 
 /* -------------------------------------

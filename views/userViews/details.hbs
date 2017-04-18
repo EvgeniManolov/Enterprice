@@ -5,16 +5,9 @@
         <!--  User Picture - Right Side -->
         <div class="col-sm-4 section">
 
-            <div class="">
+            <div class="section">
                 <div class="well white">
-
                     <img class="img-user" src="/images/userProfilePictures/{{userData.picture}}">
-
-                    <form action="/picture/upload" method="POST" enctype="multipart/form-data">
-                        Select an image to upload:
-                        <input type="file" name="image">
-                        <input type="submit" value="Upload Image">
-                    </form>
 
                     <!--  Name  -->
                     <h3>{{userData.fullName}}</h3><hr>
@@ -38,7 +31,7 @@
         <div class="col-sm-8 section">
 
             <!--  User Projects  -->
-            <div class="">
+            <div class="container-border section">
                 <div class="well">
                     <h3>Assigned Projects</h3>
                     <hr>

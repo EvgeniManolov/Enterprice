@@ -1,3 +1,4 @@
+
 <main>
     <div class="container">
 
@@ -18,10 +19,28 @@
 
         <!--  User Data - Left Side -->
         <div class="col-sm-6 section">
-            <div class="container-border section">
-                <div class="well">
-                    <img class="img-responsive" src="/images/lora.jpg">
 
+
+            <div class="container-border col-xs-12 section">
+
+                <!--  Picture  -->
+                <img class="img-user" src="/images/userProfilePictures/{{userData.picture}}">
+
+                <form class="form-inline" action="/picture/upload" method="POST" enctype="multipart/form-data">
+
+                    <div class="col-xs-8">
+                        <label for="upload-photo">Change account picture</label>
+                        <input type="file" name="image" id="upload-photo">
+                    </div>
+                    <div class="col-xs-4">
+                        <button type="submit" class="btn-sm btn-primary pull-right">Upload</button>
+                    </div>
+
+                </form>
+
+                <!--  Profile Info  -->
+
+                <div class=" col-xs-12 section">
                     <!--  Name  -->
                     <h3>{{user.fullName}}</h3><hr>
 
@@ -39,6 +58,7 @@
                 </div>
             </div>
         </div>
+
 
         <!--  User Additional - Right Side -->
         <div class="col-sm-6 section">
