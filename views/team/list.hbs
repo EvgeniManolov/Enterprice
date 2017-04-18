@@ -6,27 +6,28 @@
             <h2>Teams</h2>
             <hr>
         </div>
+
         {{#each teams}}
-                <div class="col-md-3 col-sm-6">
-                    <div class="thumbnail">
+            <div class="col-md-3 col-sm-6">
+                <div class="thumbnail">
 
-                        <div class="well">
-                            <h4>{{this.teamName}}</h4>
-                            {{#each this.userID}}
-                                <hr>
-                                <img class="img-team" src="/images/lora.jpg">
-                                {{this.fullName}}
+                    <div class="well">
+                        <h4>{{this.teamName}}</h4>
+                        {{#each userID}}
+                            <hr>
+                            <img class="img-team" src="/images/lora.jpg">
+                            {{userID.fullName}}
 
-                            {{/each}}
-                        </div>
+                        {{/each}}
+                    </div>
 
-                        <div class="">
-                            <a class="btn btn-default btn-sm center-block" href="/team/details/{{this.id}}">
-                                Details&nbsp<span class="glyphicon glyphicon-chevron-right"></span>
-                            </a>
-                        </div>
+                    <div class="">
+                        <a class="btn btn-default btn-sm center-block" href="/team/details/{{this.id}}">
+                            Details&nbsp<span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
                     </div>
                 </div>
+            </div>
         {{/each}}
 
     </div>

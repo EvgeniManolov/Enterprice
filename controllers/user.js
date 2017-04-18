@@ -147,7 +147,7 @@ module.exports = {
 
         User.findOne({_id: currentUser}).then(userData => {
 
-            res.render('userViews/details',{userData: userData} );
+            res.render('userViews/profile',{userData: userData} );
         })
     },
 

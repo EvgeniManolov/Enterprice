@@ -25,19 +25,18 @@
 
                 <h5>{{team.teamName}}</h5>
                 <hr>
-                    {{#each team.userID}}
-                        <img class="img-team" src="/images/lora.jpg">
-                            {{this.fullName}}
-                        <hr>
-                    {{/each}}
-                {{#if isAdmin}}
-                    <div class="pull-right">
-                        <div class="pull-right">
-                            <a class="btn btn-default btn-xs" href="/team/edit/{{team.id}}">Edit Team &raquo;</a>
-                        </div>
-                    </div>
-                {{/if}}
 
+                {{#each team.userID}}
+
+                    <img class="img-team" src="/images/lora.jpg">
+
+                    {{this.fullName}}
+
+                    {{#if isAdmin}}
+                        <a class="btn btn-default btn-xs pull-right" href="/team/edit/{{team.id}}">Delete User</a>
+                    {{/if}}
+                    <hr>
+                {{/each}}
             </div>
         </div>
 

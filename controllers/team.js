@@ -67,8 +67,9 @@ module.exports = {
 
         res.redirect('/project/list')
     },
-    allTeamsGet:(req,res) =>{
-        Team.find({}).sort('teamName').then(teams=>{
+
+    allTeamsGet:(req,res) => {
+        Team.find({}).populate('userID').sort('teamName').then(teams=>{
             let user = req.user;
 
             let isAdmin = true;
@@ -81,28 +82,29 @@ module.exports = {
 
                 res.render('team/list', {teams:teams, isAdmin:isAdmin});
             });
-
-
         })
     },
 
     teamDetailsGet:(req,res)=>{
-      let id = req.params.id;
-      Team.findOne({_id:id}).populate('userID').then(team=>{
+        let id = req.params.id;
+        Team.findOne({_id:id}).populate('userID').then(team=>{
 
-          console.log(team);
-          console.log(team.userID)
-          console.log(team.userID.fullName);
+            let user = req.user;
 
-          let user = req.user;
+            let isAdmin = true;
 
-          let isAdmin = true;
+            Role.findOne({name: 'Admin'}).then(role => {
 
-          Role.findOne({name: 'Admin'}).then(role => {
+                if(user.roles.indexOf(role._id) == -1) {
+                    isAdmin = false;
+                }
 
-              if(user.roles.indexOf(role._id) == -1) {
-                  isAdmin = false;
-              }
+                for ( let i = 0; i < team.userID.length; i++){
+
+                    console.log(team);
+
+                    team.userID[i].isAdmin = isAdmin;
+                }
 
               res.render('./team/details',{team:team, isAdmin:isAdmin});
           });
