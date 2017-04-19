@@ -72,7 +72,7 @@
 
                     <!--  Projects List  -->
                     <p>
-                    {{#each selectedProjects}}
+                    {{#each projects}}
                         <span class="glyphicon glyphicon-star"></span>
                         {{this.projectName}}<button class="btn-sm btn-default pull-right">View</button><hr>
                     {{/each}}
@@ -88,11 +88,10 @@
 
                     <!--  Teams List  -->
                     <p>
-                        <span class="glyphicon glyphicon-user"></span>
-                        First Team Name<button class="btn-sm btn-default pull-right">View</button><hr>
-
-                    <span class="glyphicon glyphicon-user"></span>
-                    Another Team Name<button class="btn-sm btn-default pull-right">View</button><hr>
+                    {{#each teams}}
+                        <span class="glyphicon glyphicon-star"></span>
+                        {{this.teamName}}<button class="btn-sm btn-default pull-right">View</button><hr>
+                    {{/each}}
 
                 </div>
             </div>

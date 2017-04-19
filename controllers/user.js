@@ -147,9 +147,11 @@ module.exports = {
 
         let userID = req.user.id;
         let selectedProjects = []; //these are the projects for a specific user
+        let selectedTeams = []; //these are the teams for a specific user
+
         Project.find({}).populate('projectTeam').then(projects => {
 
-            /* filter only projects where current user is a member of the team */
+                /* filter only projects where current user is a member of the team */
             for (let i = 0; i < projects.length; i++) {
                 for (let j = 0; j < projects[i].projectTeam.userID.length; j++) {
                     if (projects[i].projectTeam.userID[j] == userID) {
@@ -158,10 +160,37 @@ module.exports = {
                 }
             }
 
+        Team.find({}).then(teams => {
+
+                /* filter only projects where current user is a member of the team */
+        for (let i = 0; i < teams.length; i++) {
+
+            for (let j = 0; j < teams[i].userID.length; j++) {
+                if (teams[i].userID[j] == userID) {
+
+                    selectedTeams.push(teams[i])
+                }
+            }
+        }
+
         User.findOne({_id: userID}).then(userData => {
 
-            res.render('userViews/profile',{userData: userData, selectedProjects:selectedProjects} );
-        })})
+            let user = req.user;
+            let isAdmin = true;
+
+            Role.findOne({name: 'Admin'}).then(role => {
+
+                if(user.roles.indexOf(role._id) == -1) {
+                    isAdmin = false;
+                }
+                if (!isAdmin){
+                    teams=selectedTeams;
+                    projects=selectedProjects;
+                }
+                res.render('userViews/profile',{userData: userData, projects:projects,selectedProjects, teams:teams} );
+            })
+
+        })})})
     },
 
     pictureUpload: (req, res) => {
