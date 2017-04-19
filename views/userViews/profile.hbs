@@ -61,7 +61,6 @@
             </div>
         </div>
 
-
         <!--  User Additional - Right Side -->
         <div class="col-sm-6 section">
 
@@ -73,14 +72,10 @@
 
                     <!--  Projects List  -->
                     <p>
+                    {{#each selectedProjects}}
                         <span class="glyphicon glyphicon-star"></span>
-                        Project Name One<button class="btn-sm btn-default pull-right">View</button><hr>
-
-                    <span class="glyphicon glyphicon-ok"></span>
-                    Some Kind of Project Name<button class="btn-sm btn-default pull-right">View</button><hr>
-
-                    <span class="glyphicon glyphicon-star"></span>
-                    Another Testing Headline<button class="btn-sm btn-default pull-right">View</button><hr>
+                        {{this.projectName}}<button class="btn-sm btn-default pull-right">View</button><hr>
+                    {{/each}}
                     </p>
                 </div>
             </div>
