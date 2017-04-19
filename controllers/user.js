@@ -4,6 +4,7 @@ const formatDate = require('./../utilities/formatDate');
 const User = require('mongoose').model('User');
 const Role = require('mongoose').model('Role');
 const Team = require('mongoose').model('Team');
+const Project = require('mongoose').model('Project');
 const Occupation = require('mongoose').model('Occupation');
 
 module.exports = {
@@ -146,12 +147,23 @@ module.exports = {
 
     profileGet: (req, res) => {           // TO BE DELETED
 
-        let currentUser = req.user.id;
+        let userID = req.user.id;
+        let selectedProjects = []; //these are the projects for a specific user
+        Project.find({}).populate('projectTeam').then(projects => {
 
-        User.findOne({_id: currentUser}).then(userData => {
+            /* filter only projects where current user is a member of the team */
+            for (let i = 0; i < projects.length; i++) {
+                for (let j = 0; j < projects[i].projectTeam.userID.length; j++) {
+                    if (projects[i].projectTeam.userID[j] == userID) {
+                        selectedProjects.push(projects[i])
+                    }
+                }
+            }
 
-            res.render('userViews/profile',{userData: userData} );
-        })
+        User.findOne({_id: userID}).then(userData => {
+
+            res.render('userViews/profile',{userData: userData, selectedProjects:selectedProjects} );
+        })})
     },
 
     pictureUpload: (req, res) => {
