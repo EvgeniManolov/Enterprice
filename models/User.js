@@ -22,7 +22,7 @@ let userSchema = mongoose.Schema(
         workedHours: {type: [workPerProject], default: []}, //array [project: spent hours] //not yet implemented
         roles: [{type: mongoose.Schema.Types.ObjectId, ref: 'Role'}],
         occupation: {type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Occupation'},
-        picture: {type: String, default: ''}
+        picture: {type: String, default: 'default.png'}
     }
 );
 
