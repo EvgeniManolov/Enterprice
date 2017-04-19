@@ -37,20 +37,20 @@
             <h6>Project Details</h6>
             <div class="section well ">
                 <h5>{{task.taskProjectId.projectName}}</h5>
-                <p>Project Progress: {{this.projectProgress}}%
+                <p>Project Progress: {{task.taskProjectId.projectProgress}}%
                     <div class="progress" style="width: 100%">
                         <div class="progress-bar"
                              role="progressbar"
-                             aria-valuenow="{{this.projectProgress}}"
+                             aria-valuenow="{{task.taskProjectId.projectProgress}}"
                              aria-valuemin="0"
                              aria-valuemax="100"
-                             style="width: {{this.projectProgress}}%;">
+                             style="width: {{task.taskProjectId.projectProgress}}%;">
                         </div>
                     </div>
                 </p>
 
                 <span class="glyphicon glyphicon-hourglass"></span>
-                {{task.date}}
+                {{task.taskProjectId.date}}
                 <hr>
 
                 <span class="glyphicon glyphicon-user"></span>

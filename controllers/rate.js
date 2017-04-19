@@ -2,7 +2,9 @@
  * Created by Marian on 7.4.2017 г..
  */
 
+const formatDate = require('./../utilities/formatDate');
 const mongoose = require('mongoose');
+
 const User = require('mongoose').model('User');
 const Occupation = require('mongoose').model('Occupation');
 const Role = require('mongoose').model('Role');

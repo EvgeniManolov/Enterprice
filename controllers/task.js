@@ -1,6 +1,7 @@
 /**
  * Created by Marian on 1.4.2017 г..
  */
+const formatDate = require('./../utilities/formatDate');
 
 const Task = require('mongoose').model('Task');
 const Project = require('mongoose').model('Project');
@@ -66,15 +67,9 @@ module.exports = {
                 isThereComments = true;
             }
 
-            let date = task.taskDeadline.getDate();
-            if (date < 10)
-                date = '0' + date;
-            let month = task.taskDeadline.getMonth()+1;
-            if (month < 10)
-                month = '0' + month;
-            let year = task.taskDeadline.getFullYear();
+            task.date = formatDate.formatDate(task.taskDeadline); //uses function formatDate to convert date to dd/MM/yyyy
 
-            task.date = '' + date + '.' + month + '.' + year;
+            task.taskProjectId.date = formatDate.formatDate(task.taskProjectId.projectDueDate); //uses function formatDate to convert date to dd/MM/yyyy
 
             let user = req.user;
             let isAdmin = true;
@@ -96,17 +91,7 @@ module.exports = {
         let comment = taskArgs.comment;
         let hoursSpent = Number(taskArgs.hoursSpent);
 
-        let tempDate = new Date();
-
-        let date = tempDate.getDate();
-        if (date < 10)
-            date = '0' + date;
-        let month = tempDate.getMonth()+1;
-        if (month < 10)
-            month = '0' + month;
-        let year = tempDate.getFullYear();
-
-        let currentDate = '' + date + '.' + month + '.' + year;
+        let currentDate = formatDate.formatDate(new Date());
 
         User.findOne({_id: currentUser}).then(user => {
             Task.findOne({_id: currentTaskID}).then(task => {
