@@ -1,9 +1,11 @@
+const encryption = require('./../utilities/encryption');
+const formatDate = require('./../utilities/formatDate');
+
 const User = require('mongoose').model('User');
 const Role = require('mongoose').model('Role');
 const Team = require('mongoose').model('Team');
 const Project = require('mongoose').model('Project');
 const Occupation = require('mongoose').model('Occupation');
-const encryption = require('./../utilities/encryption');
 
 module.exports = {
 

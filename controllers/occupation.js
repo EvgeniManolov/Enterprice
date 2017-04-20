@@ -1,6 +1,7 @@
 /**
  * Created by Marian on 13.4.2017 г..
  */
+const formatDate = require('./../utilities/formatDate');
 
 const Occupation = require('mongoose').model('Occupation');
 const User = require('mongoose').model('User');

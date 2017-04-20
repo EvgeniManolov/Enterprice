@@ -1,6 +1,8 @@
 /**
  * Created by Marian on 27.3.2017 г..
  */
+const formatDate = require('./../utilities/formatDate');
+
 const Project = require('mongoose').model('Project');
 const Customer = require('mongoose').model('Customer');
 const Team = require('mongoose').model('Team');
@@ -27,19 +29,11 @@ module.exports = {
             }
             /* end */
 
-            /* Format data for an array of projects and also introducing projectStatus property - either canceled or completed */
+            /* Format date for an array of projects and also introducing projectStatus property - either canceled or completed */
             function formatData (projectsList) {
                 projectsList.forEach(function (project) {
 
-                    let date = project.projectDueDate.getDate();
-                    if (date < 10)
-                        date = '0' + date;
-                    let month = project.projectDueDate.getMonth()+1;
-                    if (month < 10)
-                        month = '0' + month;
-                    let year = project.projectDueDate.getFullYear();
-
-                    project.date = '' + date + '.' + month + '.' + year;
+                    project.date = formatDate.formatDate(project.projectDueDate);
 
                     let status = '';
 
@@ -71,7 +65,6 @@ module.exports = {
 
                 res.render('./project/list', {projects: projects, isAdmin: isAdmin, selectedProjects: selectedProjects});
             })
-
 
         })
     },
@@ -151,33 +144,11 @@ module.exports = {
         Project.findOne({'_id' : id }).populate('projectTeam').populate('projectCustomer').populate('projectTasks').then(project => {
 
             /* Format projectDueDate dd.mm.yyyy*/
-            let date = project.projectDueDate.getDate();
-            if (date < 10)
-                date = '0' + date;
-            let month = project.projectDueDate.getMonth()+1;
-            if (month < 10)
-                month = '0' + month;
-            let year = project.projectDueDate.getFullYear();
-            
-            project.date = '' + date + '.' + month + '.' + year;
-            project.day = '' + date;
-            project.month = '' + month;
-            project.year = '' + year;
+            project.date = formatDate.formatDate(project.projectDueDate);
 
             /* Format taskDeadline date dd.mm.yyyy*/
             project.projectTasks.forEach(function (task) {
-                let date = task.taskDeadline.getDate();
-                if (date < 10)
-                    date = '0' + date;
-                let month = task.taskDeadline.getMonth()+1;
-                if (month < 10)
-                    month = '0' + month;
-                let year = task.taskDeadline.getFullYear();
-
-                task.date = '' + date + '.' + month + '.' + year;
-                task.day = '' + date;
-                task.month = '' + month;
-                task.year = '' + year;
+                task.date = formatDate.formatDate(task.taskDeadline);
             });
 
             /* New temp properties for taskOverdue or not*/
