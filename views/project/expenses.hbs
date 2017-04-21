@@ -8,6 +8,13 @@
 
 
 <main>
+
+    <ol class="container breadcrumb transparent" style="margin-top: 40px; margin-bottom: 0px">
+        <li><a href="/project/list">My projects</a></li>
+        <li><a href="/project/details/{{project.id}}">Project details</a></li>
+        <li class="active">Manage expenses</li>
+    </ol>
+
     {{#if user}}
     <div class="container">
         <div class="col-lg-10">
@@ -33,7 +40,7 @@
 
                         <!-- Expense Date -->
                         <td class="" id="expenseDate">
-                            {{this.date}}
+                            {{this.formattedDate}}
                         </td>
 
                         <!-- Expense Amount -->

@@ -71,8 +71,31 @@ module.exports = {
 
             task.taskProjectId.date = formatDate.formatDate(task.taskProjectId.projectDueDate); //uses function formatDate to convert date to dd/MM/yyyy
 
+            /* New property project status - cancelled or completed*/
+            let status = '';
+            if (task.taskProjectId.projectActive == false) {
+                if (task.taskProjectId.projectProgress < 100) {
+                    status = 'Cancelled'
+                } else {
+                    status = 'Completed'
+                }
+            }
+            task.taskProjectId.projectStatus = status;
+
+
+            /* Calculate project total commits */
+            task.taskProjectId.commits = 0;
+
+            for (let j = 0; j < task.taskProjectId.projectTasks.length; j++) {
+                Task.findOne({_id:task.taskProjectId.projectTasks[j]}).then(currentTask => {
+                    task.taskProjectId.commits += Number(currentTask.taskComment.length);
+                });
+            }
+
             let user = req.user;
             let isAdmin = true;
+
+            task.commits = task.taskComment.length;
 
             Role.findOne({name: 'Admin'}).then(role => {
 
@@ -99,6 +122,7 @@ module.exports = {
                     let currentComment = {
                         user: user,
                         name: user.fullName,
+                        picture: user.picture,
                         comment: comment,
                         date: currentDate
                     };

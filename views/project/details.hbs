@@ -43,6 +43,12 @@
 </script>
 
 <main>
+
+    <ol class="container breadcrumb transparent" style="margin-top: 40px; margin-bottom: 0px">
+        <li><a href="/project/list">My projects</a></li>
+        <li class="active">Project details</li>
+    </ol>
+
 {{#if user}}
     <!-- Content -->
     <div class="container">
@@ -101,10 +107,17 @@
                             Project Details
                         </div>
 
+                        {{#if project.projectActive}}
                         <a href="#" class="list-group-item">
                             <span class="glyphicon glyphicon-hourglass"></span>
                             {{project.date}}
                         </a>
+                        {{else}}
+                            <a href="#" class="list-group-item">
+                                <span class="glyphicon glyphicon-ok"></span>
+                                {{project.projectStatus}} on {{project.date}}
+                            </a>
+                        {{/if}}
 
                         <a href="#" class="list-group-item">
                             <span class="glyphicon glyphicon-user"></span>
@@ -140,7 +153,7 @@
                         </div>
                     </div>
 
-                    <a href="/userViews/details/{{this.id}}" class="btn-sm pull-right">
+                    <a href="/customer/details/{{project.projectCustomer.id}}" class="btn-sm pull-right">
                         More&nbsp<span class="glyphicon glyphicon-chevron-right"></span>
                     </a>
                 </div>
@@ -293,12 +306,14 @@
 
                         <!-- Task Deadline -->
                         {{#if this.isOverdue}}
-                            <td class="col-xs-2 alert-warning" id="taskDeadline" >{{this.date}}</td>
-                        {{/if}}
-
-                        {{#unless this.isOverdue}}
+                            {{#if this.taskActive}}
+                                <td class="col-xs-2 alert-warning" id="taskDeadline" >{{this.date}}</td>
+                            {{else}}
+                                <td class="col-xs-1" id="taskDeadline" >{{this.date}}</td>
+                            {{/if}}
+                        {{else}}
                             <td class="col-xs-1" id="taskDeadline" >{{this.date}}</td>
-                        {{/unless}}
+                        {{/if}}
 
                         <!-- Update Button -->
 
