@@ -30,6 +30,9 @@ module.exports = (app) => {
     app.get('/project/expenses/:id', projectController.expensesGet);
     app.post('/project/expenses/create/:id', projectController.expensesCreate);
 
+    /* discard project */
+    app.get('/project/discard', projectController.projectDiscard);
+
 
 
     /* USERS */

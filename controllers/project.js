@@ -2,6 +2,7 @@
  * Created by Marian on 27.3.2017 г..
  */
 const formatDate = require('./../utilities/formatDate');
+const deleteEmptyProjects = require('./../utilities/deleteEmptyProjects');
 
 const Project = require('mongoose').model('Project');
 const Customer = require('mongoose').model('Customer');
@@ -18,6 +19,10 @@ module.exports = {
         let selectedProjects = []; //these are the projects for a specific user
 
         Project.find({}).sort('projectDueDate').populate('projectCustomer').populate('projectTeam').then(projects => {
+
+            if (projects.length > 0) {
+                deleteEmptyProjects.deleteEmptyProjects();
+            }
 
             /* filter only projects where current user is a member of the team */
             for (let i=0; i<projects.length; i++) {
@@ -84,7 +89,7 @@ module.exports = {
 
                     Customer.find({}).sort('customerName').then(customers => {
 
-                        res.render('project/create', {customers: customers, teams: teams})
+                        res.render('project/create', {customers: customers, teams: teams, isAdmin: isAdmin})
                     });
                 })
             } else {
@@ -127,8 +132,17 @@ module.exports = {
                                 else {
                                     project.dateAsNumber = Number(project.projectDueDate); //Convert projectDueDate to a number in order to check if task date is later or earlier than projectDueDate
 
-                                    res.render('./task/create', {project: project});
-                                }
+                                    let user = req.user;
+                                    let isAdmin = true;
+
+                                    Role.findOne({name: 'Admin'}).then(role => {
+
+                                        if(user.roles.indexOf(role._id) == -1) {
+                                            isAdmin = false;
+                                        }
+
+                                    res.render('./task/create', {project: project, isAdmin: isAdmin});
+                                })}
                             });
                         }
                     });
@@ -184,6 +198,17 @@ module.exports = {
             let shortDescription = project.projectDescription;
             shortDescription = shortDescription.substr(0, 250);
             project.projectDescriptionShort = shortDescription;
+
+            /* New property project status - cancelled or completed*/
+            let status = '';
+            if (project.projectActive == false) {
+                if (project.projectProgress < 100) {
+                    status = 'Cancelled'
+                } else {
+                    status = 'Completed'
+                }
+            }
+            project.projectStatus = status;
 
             /* Calculate labour cost planned which is derived by multiplying average rate for the team and planned working hours*/
             User.find().then(users => {
@@ -272,15 +297,28 @@ module.exports = {
     },
 
     expensesGet: (req, res) => {
+        let user = req.user;
+
+        let isAdmin = true;
+
+        Role.findOne({name: 'Admin'}).then(role => {
+
+                if(user.roles.indexOf(role._id) == -1) {
+                    isAdmin = false;
+                }
 
         let projectId = req.params.id;
 
         Project.findOne({_id: projectId}).then(project => {
 
-            res.render('project/expenses', {project: project})
+            for (let i = 0; i < project.projectExpensesActual.length; i++) {
+                project.projectExpensesActual[i].formattedDate = formatDate.formatDate(project.projectExpensesActual[i].date);
+            }
+
+            res.render('project/expenses', {project: project, isAdmin: isAdmin})
         });
 
-    },
+    })},
 
     expensesCreate: (req, res) => {
         let expenseArgs = req.body;
@@ -297,8 +335,29 @@ module.exports = {
             project.projectExpensesActual.push(newExpense);
             project.save();
 
-            res.render('project/expenses', {project: project})
+            let url = '/project/expenses/' + project.id;
+
+            res.redirect(url)
         });
 
-    }
+    },
+
+    projectDiscard: (req, res) => {
+        let user = req.user;
+        let isAdmin = true;
+
+        Role.findOne({name: 'Admin'}).then(role => {
+
+            if(user.roles.indexOf(role._id) == -1) {
+                isAdmin = false;
+            }
+
+        if (isAdmin) {
+            deleteEmptyProjects.deleteEmptyProjects();
+            res.redirect('/project/list')
+
+        } else {
+            res.render('home/index', {error: 'Access denied!'})
+        }
+    })}
 };

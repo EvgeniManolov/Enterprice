@@ -22,6 +22,13 @@
 </script>
 
 <main>
+
+    <ol class="container breadcrumb transparent" style="margin-top: 40px; margin-bottom: 0px">
+        <li><a href="/project/list">My projects</a></li>
+        <li><a href="/project/details/{{task.taskProjectId.id}}">Project details</a></li>
+        <li class="active">Task details</li>
+    </ol>
+
     {{#if user}}
     <div class="container">
 
@@ -49,8 +56,13 @@
                     </div>
                 </p>
 
+                {{#if task.taskProjectId.projectActive}}
                 <span class="glyphicon glyphicon-hourglass"></span>
                 {{task.taskProjectId.date}}
+                {{else}}
+                    <span class="glyphicon glyphicon-ok"></span>
+                    {{task.taskProjectId.projectStatus}} on {{task.taskProjectId.date}}
+                {{/if}}
                 <hr>
 
                 <span class="glyphicon glyphicon-user"></span>
@@ -58,14 +70,18 @@
                 <hr>
 
                 <span class="glyphicon glyphicon-pencil"></span>
-                <a href="#">Project Commits <span class="badge pull-right">200</span></a>
+                <a href="#">Project Commits <span class="badge pull-right">{{task.taskProjectId.commits}}</span></a>
             </div>
 
             <!--  Task Info  -->
             <h6>Task Details</h6>
             <div class="section well">
 
+                {{#if taskActive}}
                 <p>Status: <span class="glyphicon glyphicon-star glyphicon-active"></span></p>
+                {{else}}
+                    <p>Status: <span class="glyphicon glyphicon-ok glyphicon-done"></span></p>
+                {{/if}}
                 <hr>
 
                 <span class="glyphicon glyphicon-hourglass"></span>
@@ -77,7 +93,7 @@
                 <hr>
 
                 <span class="glyphicon glyphicon-pencil"></span>
-                <a href="#">Task Commits <span class="badge pull-right">29</span></a>
+                <a href="#">Task Commits <span class="badge pull-right">{{task.commits}}</span></a>
 
             </div>
         </div>
@@ -136,21 +152,23 @@
             </div>
             {{/if}}
 
+            {{#if isThereComments}}
             <!--  Task Commits  -->
             <div class="section">
                 <h5>Commits:</h5>
                 {{#each task.taskComment}}
                     <div class="media well">
                         <div class="media-left">
-                            <img src="/images/lora.jpg" class="media-object" style="width:60px">
+                            <img src="/images/userProfilePictures/{{this.picture}}" class="media-object" style="width:60px">
                         </div>
                         <div class="media-body">
-                            <h5 class="media-heading">{{this.name}} posted on {{this.date}}</h5>
+                            <h6 class="media-heading">{{this.name}} posted on {{this.date}}</h6>
                             <p>{{this.comment}}</p>
                         </div>
                     </div>
                 {{/each}}
             </div>
+            {{/if}}
 
             <!--  Modal  -->
             <!--{{#if task.taskActive}}

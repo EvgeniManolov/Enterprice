@@ -187,12 +187,22 @@
 </script>
 
 <main>
+
+    <ol class="container breadcrumb transparent" style="margin-top: 40px; margin-bottom: 0px">
+        <li><a href="/project/list">My projects</a></li>
+        <li><a href="/project/details/{{task.taskProjectId.id}}">Project details</a></li>
+        <li class="active">Task details</li>
+    </ol>
+
     {{#if user}}
     <div class="container">
         <form class="form-horizontal" method="post" action="/task/create" id="tasksForm">
             <fieldset>
 
-                <legend>Add Project Tasks</legend>
+                <div class="col-xs-12">
+                    <h2>Add project tasks</h2>
+                    <hr>
+                </div>
                 <!--<div class="form-group      ">
 
                     &lt;!&ndash;  Admin Pass Field  &ndash;&gt;
@@ -276,14 +286,18 @@
                         </tr>
 
                     </table>
-                    <div class="pull-right"><h4>Total weight:</h4><h4 id="totalWeight"></h4> </div>
+                    <hr/>
+
+                    <div class="pull-right visible-lg-inline-block">
+                        <span style="font-size: 25px">Total weight: </span><span id="totalWeight" style="font-size: 25px"></span>
+                    </div>
 
                 </div>
 
                 <!--  Submit / Cancel  -->
                 <div class="form-group">
                     <div class="col-sm-4 col-sm-offset-4">
-                        <button type="reset" class="btn btn-default">Cancel</button>
+                        <a href="/project/discard"><div class="btn btn-default">Discard project</div></a>
                         <button id="doneButton" type="button" class="btn btn-primary" onclick="sendData()">Done</button>
                     </div>
                 </div>
