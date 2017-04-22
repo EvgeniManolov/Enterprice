@@ -1,3 +1,39 @@
+<script>
+
+    $(document).ready(function () {
+        $('.editButton').click(function () {
+            $('.saveButton').removeAttr('disabled');
+            $('#inputAddress').removeAttr('disabled');
+            $('#inputEmail').removeAttr('disabled');
+            $('#inputPhone').removeAttr('disabled');
+        })
+    });
+
+    $(document).ready(function () {
+        $('.saveButton').click(function () {
+
+            let phone = $('#inputPhone').val();
+            let email = $('#inputEmail').val();
+            let address = $('#inputAddress').val();
+
+
+            let url = '/user/edit/';
+
+            $.post(url,
+                    {
+                        phone : phone,
+                        email: email,
+                        address: address
+                    }, function () {
+                    });
+
+            window.location.replace('/userViews/profile/')
+        })
+    })
+
+</script>
+
+
 
 <main>
     {{#if user}}
@@ -48,14 +84,28 @@
 
                     <!--  User Info  -->
                     <p>
-                        <span class="glyphicon glyphicon-earphone"></span>
-                        {{user.phone}}<button class="btn-sm btn-default pull-right">Edit</button><hr>
+                        <div class="form-inline">
+                            <span class="glyphicon glyphicon-earphone " ></span>
+                            <input id="inputPhone" class="form-control" type="text" disabled value="{{user.phone}}"/>
+                        </div>
 
-                        <span class="glyphicon glyphicon-envelope"></span>
-                        {{user.email}}<button class="btn-sm btn-default pull-right">Edit</button><hr>
+                        <div class="form-inline">
+                             <span class="glyphicon glyphicon-envelope"></span>
+                            <input id="inputEmail" class="form-control" type="text" disabled value="{{user.email}}"/>
+                        </div>
 
-                        <span class="glyphicon glyphicon-map-marker"></span>
-                        {{user.address}}<button class="btn-sm btn-default pull-right">Edit</button>
+                        <div class="form-inline">
+                            <span class="glyphicon glyphicon-map-marker"></span>
+                            <input id="inputAddress" class="form-control" type="text" disabled value="{{user.address}}"/>
+
+                        </div>
+                        <br/>
+                        <div >
+                            <span class="align"> <!--  To be center  -->
+                                <button class="btn-sm btn-default pull-right saveButton" disabled>Save</button>
+                                <button class="btn-sm btn-default pull-right editButton">Edit</button>
+                            </span>
+                        </div>
                     </p>
                 </div>
             </div>
