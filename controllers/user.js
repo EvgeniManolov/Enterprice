@@ -276,7 +276,7 @@ module.exports = {
         let userID = req.user.id;
         let userArgs = req.body;
 
-        User.findOne({ _id:userID }).then( user => {
+        User.findOne({ _id : userID }).then( user => {
 
             user.phone = userArgs.phone;
             user.email = userArgs.email;

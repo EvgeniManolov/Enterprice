@@ -27,7 +27,7 @@
                     }, function () {
                     });
 
-            window.location.replace('/userViews/profile/')
+            location.href = '/userViews/profile/';
         })
     })
 
@@ -74,28 +74,30 @@
 
                     <!--  User Info  -->
                     <p>
-                        <div class="form-inline">
+                    <div class="form-group form-inline">
+                        <div class="">
                             <span class="glyphicon glyphicon-earphone " ></span>
                             <input id="inputPhone" class="form-control" type="text" disabled value="{{user.phone}}"/>
                         </div>
 
-                        <div class="form-inline">
+                        <div class="">
                              <span class="glyphicon glyphicon-envelope"></span>
                             <input id="inputEmail" class="form-control" type="text" disabled value="{{user.email}}"/>
                         </div>
 
-                        <div class="form-inline">
+                        <div class="">
                             <span class="glyphicon glyphicon-map-marker"></span>
                             <input id="inputAddress" class="form-control" type="text" disabled value="{{user.address}}"/>
 
                         </div>
                         <br/>
                         <div >
-                            <span class="align"> <!--  To be center  -->
+                            <span class="pull-left"> <!--  To be center  -->
                                 <button class="btn-sm btn-default pull-right saveButton" disabled>Save</button>
                                 <button class="btn-sm btn-default pull-right editButton">Edit</button>
                             </span>
                         </div>
+                    </div>
                     </p>
                 </div>
             </div>
