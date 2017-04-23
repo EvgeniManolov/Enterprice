@@ -1,74 +1,72 @@
 
 <main>
-
-    <ol class="container breadcrumb transparent">
-        <li><a href="/project/list">Home</a></li>
-        <li class="active">All Customers</li>
-    </ol>
-
     {{#if user}}
-    <!--  Body  -->
-    <div class="container">
+        <ol class="container breadcrumb transparent">
+            <li><a href="/project/list">Home</a></li>
+            <li class="active">All Customers</li>
+        </ol>
 
-        <div class="page-header">
-            <h1>Customers</h1>
-        </div>
+        <!--  Body  -->
+        <div class="container">
 
-        <!-- Left Section -->
-        <div class="container col-md-3 section">
-            <div class="list-group">
-                <div class="list-group-item active">
-                    Something
-                </div>
-                <a href="#" class="list-group-item">
-                    All Clients <span class="badge">23</span>
-                </a>
-                <a href="#" class="list-group-item">
-                    Active Clients <span class="badge">64</span>
-                </a>
-                <a href="#" class="list-group-item">
-                    Another One <span class="badge">64</span>
-                </a>
+            <div class="page-header">
+                <h1>Customers</h1>
             </div>
 
-        </div>
-
-        <!-- Right Section -->
-        <div class="section col-md-9 ">
-
-            <!-- Filters and Stuff -->
-            <div class="filters-container">
-                <div class="input-group input-group-lg">
-                    <label class="sr-only" for="myInputActive"></label>
-                    <input class="form-control" type="text" id="myInputActive" onkeyup="myFunction('activeProjectsTable', 'myInputActive')" placeholder="Search">
-                </div>
-            </div>
-
-            <div class="row">
-
-                {{#each customers}}
-                    <div class="col-lg-4 col-xs-6">
-                        <div class="thumbnail">
-                            <div class="caption">
-                                <h5>{{this.customerName}}</h5>
-                                <div class="well"><span class="glyphicon glyphicon-earphone"></span>
-                                {{this.customerPhone}}<hr>
-                                <span class="glyphicon glyphicon-envelope"></span>
-                                {{this.customerEmail}}<hr>
-                                <span class="glyphicon glyphicon-map-marker"></span>
-                                {{this.customerAddress}}</div>
-                            </div>
-
-                            <a href="/customer/details/{{this.id}}" class="btn-sm pull-right">
-                                More&nbsp<span class="glyphicon glyphicon-chevron-right"></span>
-                            </a>
-
-                        </div>
+            <!-- Left Section -->
+            <div class="container col-md-3 section">
+                <div class="list-group">
+                    <div class="list-group-item active">
+                        Something
                     </div>
-                {{/each}}
+                    <a href="#" class="list-group-item">
+                        All Clients <span class="badge">23</span>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        Active Clients <span class="badge">64</span>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        Another One <span class="badge">64</span>
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Right Section -->
+            <div class="section col-md-9 ">
+
+                <!-- Filters and Stuff -->
+                <div class="filters-container">
+                    <div class="input-group input-group-lg">
+                        <label class="sr-only" for="myInputActive"></label>
+                        <input class="form-control" type="text" id="myInputActive" onkeyup="myFunction('activeProjectsTable', 'myInputActive')" placeholder="Search">
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    {{#each customers}}
+                        <div class="col-lg-4 col-xs-6">
+                            <div class="thumbnail">
+                                <div class="caption">
+                                    <h5>{{this.customerName}}</h5>
+                                    <div class="well"><span class="glyphicon glyphicon-earphone"></span>
+                                    {{this.customerPhone}}<hr>
+                                    <span class="glyphicon glyphicon-envelope"></span>
+                                    {{this.customerEmail}}<hr>
+                                    <span class="glyphicon glyphicon-map-marker"></span>
+                                    {{this.customerAddress}}</div>
+                                </div>
+
+                                <a href="/customer/details/{{this.id}}" class="btn-sm pull-right">
+                                    More&nbsp<span class="glyphicon glyphicon-chevron-right"></span>
+                                </a>
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
             </div>
         </div>
-    </div>
     {{/if}}
 </main>
 

@@ -22,159 +22,159 @@
 </script>
 
 <main>
-
-    <ol class="container breadcrumb transparent">
-        <li><a href="/project/list">Home</a></li>
-        <li><a href="/project/details/{{task.taskProjectId.id}}">{{task.taskProjectId.projectName}}</a></li>
-        <li class="active">Tasks &nbsp;/ &nbsp; {{task.taskName}}</li>
-    </ol>
-
     {{#if user}}
-    <div class="container">
 
-        <div class="page-header">
-            <h1>{{task.taskProjectId.projectName}}</h1>
-        </div>
+        <ol class="container breadcrumb transparent">
+            <li><a href="/project/list">Home</a></li>
+            <li><a href="/project/details/{{task.taskProjectId.id}}">{{task.taskProjectId.projectName}}</a></li>
+            <li class="active">Tasks &nbsp;/ &nbsp; {{task.taskName}}</li>
+        </ol>
 
-        <!-- Left Section -->
-        <div class="col-lg-3 col-md-4 col-sm-5 section">
+        <div class="container">
 
-            <!--  Project Info  -->
-            <h6>Project Details</h6>
-            <div class="section well ">
-                <h5>{{task.taskProjectId.projectName}}</h5>
-                <p>Project Progress: {{task.taskProjectId.projectProgress}}%
-                    <div class="progress" style="width: 100%">
-                        <div class="progress-bar"
-                             role="progressbar"
-                             aria-valuenow="{{task.taskProjectId.projectProgress}}"
-                             aria-valuemin="0"
-                             aria-valuemax="100"
-                             style="width: {{task.taskProjectId.projectProgress}}%;">
+            <div class="page-header">
+                <h1>{{task.taskProjectId.projectName}}</h1>
+            </div>
+
+            <!-- Left Section -->
+            <div class="col-lg-3 col-md-4 col-sm-5 section">
+
+                <!--  Project Info  -->
+                <h6>Project Details</h6>
+                <div class="section well ">
+                    <h5>{{task.taskProjectId.projectName}}</h5>
+                    <p>Project Progress: {{task.taskProjectId.projectProgress}}%
+                        <div class="progress" style="width: 100%">
+                            <div class="progress-bar"
+                                 role="progressbar"
+                                 aria-valuenow="{{task.taskProjectId.projectProgress}}"
+                                 aria-valuemin="0"
+                                 aria-valuemax="100"
+                                 style="width: {{task.taskProjectId.projectProgress}}%;">
+                            </div>
                         </div>
-                    </div>
-                </p>
+                    </p>
 
-                {{#if task.taskProjectId.projectActive}}
-                <span class="glyphicon glyphicon-hourglass"></span>
-                {{task.taskProjectId.date}}
-                {{else}}
-                    <span class="glyphicon glyphicon-ok"></span>
-                    {{task.taskProjectId.projectStatus}} on {{task.taskProjectId.date}}
-                {{/if}}
-                <hr>
-
-                <span class="glyphicon glyphicon-user"></span>
-                {{task.taskTeamId.teamName}}
-                <hr>
-
-                <span class="glyphicon glyphicon-pencil"></span>
-                <a href="#">Project Commits <span class="badge pull-right">{{task.taskProjectId.commits}}</span></a>
-            </div>
-
-            <!--  Task Info  -->
-            <h6>Task Details</h6>
-            <div class="section well">
-
-                {{#if taskActive}}
-                <p>Status: <span class="glyphicon glyphicon-star glyphicon-active"></span></p>
-                {{else}}
-                    <p>Status: <span class="glyphicon glyphicon-ok glyphicon-done"></span></p>
-                {{/if}}
-                <hr>
-
-                <span class="glyphicon glyphicon-hourglass"></span>
-                {{task.date}}
-                <hr>
-
-                <span class="glyphicon glyphicon-user"></span>
-                {{task.taskTeamId.teamName}}
-                <hr>
-
-                <span class="glyphicon glyphicon-pencil"></span>
-                <a href="#">Task Commits <span class="badge pull-right">{{task.commits}}</span></a>
-
-            </div>
-        </div>
-
-        <!-- Right Section -->
-        <div class="col-lg-9 col-md-8 col-sm-7 section">
-            <div class="row">
-
-                <!-- Task Name -->
-                <div class="col-md-8 col-lg-9">
-                    <h3>{{task.taskName}}</h3>
-                </div>
-                <div class="col-md-4 col-lg-3">
-                    {{#if task.taskActive}}
-                        <button id="completeTask" class="btn btn-success" onclick="completeTask()" value="{{task.id}}">
-                            <span class="glyphicon glyphicon-ok"></span>&nbsp Close Task
-                        </button>
+                    {{#if task.taskProjectId.projectActive}}
+                    <span class="glyphicon glyphicon-hourglass"></span>
+                    {{task.taskProjectId.date}}
+                    {{else}}
+                        <span class="glyphicon glyphicon-ok"></span>
+                        {{task.taskProjectId.projectStatus}} on {{task.taskProjectId.date}}
                     {{/if}}
+                    <hr>
+
+                    <span class="glyphicon glyphicon-user"></span>
+                    {{task.taskTeamId.teamName}}
+                    <hr>
+
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <a href="#">Project Commits <span class="badge pull-right">{{task.taskProjectId.commits}}</span></a>
+                </div>
+
+                <!--  Task Info  -->
+                <h6>Task Details</h6>
+                <div class="section well">
+
+                    {{#if taskActive}}
+                    <p>Status: <span class="glyphicon glyphicon-star glyphicon-active"></span></p>
+                    {{else}}
+                        <p>Status: <span class="glyphicon glyphicon-ok glyphicon-done"></span></p>
+                    {{/if}}
+                    <hr>
+
+                    <span class="glyphicon glyphicon-hourglass"></span>
+                    {{task.date}}
+                    <hr>
+
+                    <span class="glyphicon glyphicon-user"></span>
+                    {{task.taskTeamId.teamName}}
+                    <hr>
+
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <a href="#">Task Commits <span class="badge pull-right">{{task.commits}}</span></a>
+
                 </div>
             </div>
 
-            <!-- Task Description -->
-            <hr>
+            <!-- Right Section -->
+            <div class="col-lg-9 col-md-8 col-sm-7 section">
+                <div class="row">
 
-            <div class="section">
-                <p>{{task.taskDescription}}</p>
-            </div>
-
-            <!--  New Commit -->
-            {{#if task.taskActive}}
-
-            <div class="section well">
-                <h4 class="text-center">New Commit</h4>
-                <form action="/task/details/{{task.id}}" method="POST">
-
-                    <!--  Comment  -->
-                    <div class="form-group">
-                        <label class="sr-only" for="comment">Commit Description</label>
-                        <textarea rows="4" class="form-control form-control-tasks" id="comment" placeholder="Add your description here" name="comment" required></textarea>
+                    <!-- Task Name -->
+                    <div class="col-md-8 col-lg-9">
+                        <h3>{{task.taskName}}</h3>
                     </div>
-
-                    <!--  Hours spent  -->
-                    <div class="form-group">
-                        <label class="sr-only" for="hoursSpent">Hours spent</label>
-                        <input type="number" class="form-control-tasks" id="hoursSpent" placeholder="Add spent time" name="hoursSpent" required>
+                    <div class="col-md-4 col-lg-3">
+                        {{#if task.taskActive}}
+                            <button id="completeTask" class="btn btn-success" onclick="completeTask()" value="{{task.id}}">
+                                <span class="glyphicon glyphicon-ok"></span>&nbsp Close Task
+                            </button>
+                        {{/if}}
                     </div>
+                </div>
 
-                    <!--  Submit / Discard  -->
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-primary btn-lg text-center">Commit</button>
-                    </div>
-                </form>
-            </div>
-            {{/if}}
+                <!-- Task Description -->
+                <hr>
 
-            {{#if isThereComments}}
-            <!--  Task Commits  -->
-            <div class="section">
-                <h5>Task Commits:</h5>
-                {{#each task.taskComment}}
-                    <div class="media well">
-                        <div class="media-left">
-                            <img src="/images/userProfilePictures/{{this.picture}}" class="media-object" style="width:60px">
+                <div class="section">
+                    <p>{{task.taskDescription}}</p>
+                </div>
+
+                <!--  New Commit -->
+                {{#if task.taskActive}}
+
+                <div class="section well">
+                    <h4 class="text-center">New Commit</h4>
+                    <form action="/task/details/{{task.id}}" method="POST">
+
+                        <!--  Comment  -->
+                        <div class="form-group">
+                            <label class="sr-only" for="comment">Commit Description</label>
+                            <textarea rows="4" class="form-control form-control-tasks" id="comment" placeholder="Add your description here" name="comment" required></textarea>
                         </div>
-                        <div class="media-body">
-                            <h6 class="media-heading">{{this.name}} posted on {{this.date}}</h6>
-                            <p>{{this.comment}}</p>
+
+                        <!--  Hours spent  -->
+                        <div class="form-group">
+                            <label class="sr-only" for="hoursSpent">Hours spent</label>
+                            <input type="number" class="form-control-tasks" id="hoursSpent" placeholder="Add spent time" name="hoursSpent" required>
                         </div>
-                    </div>
-                {{/each}}
+
+                        <!--  Submit / Discard  -->
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-lg text-center">Commit</button>
+                        </div>
+                    </form>
+                </div>
+                {{/if}}
+
+                {{#if isThereComments}}
+                <!--  Task Commits  -->
+                <div class="section">
+                    <h5>Task Commits:</h5>
+                    {{#each task.taskComment}}
+                        <div class="media well">
+                            <div class="media-left">
+                                <img src="/images/userProfilePictures/{{this.picture}}" class="media-object" style="width:60px">
+                            </div>
+                            <div class="media-body">
+                                <h6 class="media-heading">{{this.name}} posted on {{this.date}}</h6>
+                                <p>{{this.comment}}</p>
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+                {{/if}}
+
+
+                <!--  Back Button  -->
+                <a href="/project/details/{{task.taskProjectId._id}}">
+                    <button class="btn btn-default pull-right">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        Back to Project
+                    </button>
+                </a>
             </div>
-            {{/if}}
-
-
-            <!--  Back Button  -->
-            <a href="/project/details/{{task.taskProjectId._id}}">
-                <button class="btn btn-default pull-right">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                    Back to Project
-                </button>
-            </a>
         </div>
-    </div>
     {{/if}}
 </main>

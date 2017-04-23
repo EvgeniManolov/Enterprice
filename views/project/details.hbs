@@ -43,311 +43,329 @@
 </script>
 
 <main>
+    {{#if user}}
+        <ol class="container breadcrumb transparent">
+            <li><a href="/project/list">Home</a></li>
+            <li class="active">{{project.projectName}}</li>
+        </ol>
 
-    <ol class="container breadcrumb transparent">
-        <li><a href="/project/list">Home</a></li>
-        <li class="active">{{project.projectName}}</li>
-    </ol>
+        <!-- Content -->
+        <div class="container">
 
-{{#if user}}
-    <!-- Content -->
-    <div class="container">
+            <!-- Project Name + Client -->
+            <div class="col-sm-12">
+                <div class="page-header">
+                    <div class="col-xs-3 pull-right">
+                        <div class="row">
+                            {{#if isAdmin}}
+                                {{#if project.projectActive}}
+                                    <a id="cancelProject" class="btn btn-success pull-right" onclick="cancelProject()" value="{{project.id}}">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                        Cancel Project
+                                    </a>
+                                {{/if}}
+                            {{/if}}
 
-        <!-- Project Name + Client -->
-        <div class="col-sm-12">
-            <div class="page-header">
-                <div class="col-xs-3 pull-right">
-                    <div class="row">
-                        {{#if isAdmin}}
                             {{#if project.projectActive}}
-                                <a id="cancelProject" class="btn btn-success pull-right" onclick="cancelProject()" value="{{project.id}}">
-                                    <span class="glyphicon glyphicon-remove"></span>
-                                    Cancel Project
+                                <a href="/project/expenses/{{project.id}}">
+                                    <a class="btn btn-default pull-right">
+                                        <span class="glyphicon glyphicon-usd"></span>
+                                        Manage Expenses
+                                    </a>
                                 </a>
                             {{/if}}
-                        {{/if}}
+                        </div>
 
-                        {{#if project.projectActive}}
-                            <a href="/project/expenses/{{project.id}}">
-                                <a class="btn btn-default pull-right">
-                                    <span class="glyphicon glyphicon-usd"></span>
-                                    Manage Expenses
-                                </a>
-                            </a>
-                        {{/if}}
                     </div>
+                    <h1>{{project.projectName}}</h1>
+                    <p>{{project.projectCustomer.customerName}} &nbsp; <span class="glyphicon glyphicon-menu-right"></span> &nbsp; {{project.date}}</p>
 
                 </div>
-                <h1>{{project.projectName}}</h1>
-                <p>{{project.projectCustomer.customerName}} &nbsp; <span class="glyphicon glyphicon-menu-right"></span> &nbsp; {{project.date}}</p>
-
             </div>
-        </div>
 
-        <!-- Left Section -->
-        <div class="col-lg-3 col-md-12 col-sm-12 disappear">
+            <!-- Left Section -->
+            <div class="col-lg-3 col-md-12 col-sm-12 disappear">
 
-            <!--  Circle Progress  -->
-            <div class="row">
+                <!--  Circle Progress  -->
+                <div class="row">
 
-                <div class="col-lg-12 col-md-6 col-xs-6">
-                    <div class="container-border progress-radial progress-{{project.projectProgressRounded}} setsize">
-                        <div class="overlay setsize">
-                            <p>{{project.projectProgress}}%</p>
+                    <div class="col-lg-12 col-md-6 col-xs-6">
+                        <div class="container-border progress-radial progress-{{project.projectProgressRounded}} setsize">
+                            <div class="overlay setsize">
+                                <p>{{project.projectProgress}}%</p>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!--  Project Details List Group -->
-                <div class="col-lg-12 col-md-6 col-xs-6 ">
+                    <!--  Project Details List Group -->
+                    <div class="col-lg-12 col-md-6 col-xs-6 ">
 
-                    <div class="list-group">
-                        <div class="list-group-item active">
-                            Project Details
-                        </div>
+                        <div class="list-group">
+                            <div class="list-group-item active">
+                                Project Details
+                            </div>
 
-                        {{#if project.projectActive}}
-                        <a href="#" class="list-group-item">
-                            <span class="glyphicon glyphicon-hourglass"></span>
-                            {{project.date}}
-                        </a>
-                        {{else}}
+                            {{#if project.projectActive}}
                             <a href="#" class="list-group-item">
-                                <span class="glyphicon glyphicon-ok"></span>
-                                {{project.projectStatus}} on {{project.date}}
+                                <span class="glyphicon glyphicon-hourglass"></span>
+                                {{project.date}}
                             </a>
-                        {{/if}}
+                            {{else}}
+                                <a href="#" class="list-group-item">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                    {{project.projectStatus}} on {{project.date}}
+                                </a>
+                            {{/if}}
 
-                        <a href="#" class="list-group-item">
-                            <span class="glyphicon glyphicon-user"></span>
-                            {{project.projectTeam.teamName}}
-                        </a>
+                            <a href="#" class="list-group-item">
+                                <span class="glyphicon glyphicon-user"></span>
+                                {{project.projectTeam.teamName}}
+                            </a>
 
-                        <a href="#tasksTable" class="list-group-item">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                            Project Tasks <span class="badge">{{project.taskCount}}</span>
-                        </a>
-                        <a href="#" class="list-group-item">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                            Project Commits <span class="badge">{{project.commits}}</span>
-                        </a>
-                    </div>
-
-                </div>
-
-                <!--  Client Details  -->
-                <div class="col-lg-12 col-md-6 col-xs-6 ">
-                <div class="thumbnail">
-                    <div class="caption well">
-                        <h5>{{project.projectCustomer.customerName}}</h5>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <span class="glyphicon glyphicon-earphone"></span>
-                                {{project.projectCustomer.customerPhone}}<hr>
-                                <span class="glyphicon glyphicon-envelope"></span>
-                                {{project.projectCustomer.customerEmail}}<hr>
-                                <span class="glyphicon glyphicon-map-marker"></span>
-                                {{project.projectCustomer.customerAddress}}
-                            </div>
+                            <a href="#tasksTable" class="list-group-item">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                Project Tasks <span class="badge">{{project.taskCount}}</span>
+                            </a>
+                            <a href="#" class="list-group-item">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                Project Commits <span class="badge">{{project.commits}}</span>
+                            </a>
                         </div>
+
                     </div>
 
-                    <a href="/customer/details/{{project.projectCustomer.id}}" class="btn-sm pull-right">
-                        More&nbsp<span class="glyphicon glyphicon-chevron-right"></span>
-                    </a>
-                </div>
-            </div>
-            </div>
-        </div>
-
-        <!-- Right Section -->
-        <div class="col-lg-9 col-md-12">
-            <div class="row">
-                <!-- Project Description Short-->
-                <div id="shortDescription" class="col-sm-12">
-
-                    <h5>Description</h5>
-                    <p>{{project.projectDescriptionShort}}</p>
-                    <button id="showMoreButton" class="btn btn-xs btn-default center">Show More</button>
-                </div>
-
-                <!-- Project Description Long-->
-                <div id="longDescription" class="col-sm-12" hidden>
-                    <h5>Description</h5>
-                    <p>{{project.projectDescription}}</p>
-                    <button id="showLessButton" class="btn btn-xs btn-default center">Show less</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Data Squares -->
-        <div class="col-lg-9 col-md-12 section">
-            {{#if isAdmin}}
-                <div class="section text-uppercase">
-                    <hr>
-                    <!--  First Row  -->
-                    <div class="row section">
-                        <div class="col-sm-12">
-                            <p>Declared Budget</p>
-
-                            <div class="col-xs-2 info-squares">
-                                Time Planned
-                                <h5>{{project.projectWorkingHours}} <span class="small">/ hrs</span></h5>
-                            </div>
-
-                            <div class="col-xs-2 info-squares">
-                                Labour cost
-                                <h5>$ {{project.labourCostPlanned}}</h5>
-                            </div>
-
-                            <div class="col-xs-2 info-squares">
-                                Planned expenses
-                                <h5>$ {{project.projectExpenses}}</h5>
-                            </div>
-
-                            <div class="col-xs-2 info-squares">
-
-                            </div>
-
-                            <div class="col-xs-2 info-squares">
-                                Project Price
-                                <h5>$</span> {{project.projectPrice}}</h5>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!--  Second Row  -->
-                    <div class="row section">
-                        <div class="col-sm-12">
-
-                            <p>Actual Project Cost</p>
-
-                            <div class="col-xs-2 info-squares">
-                                Actual Time
-                                <h5>{{project.actualHours}}  <span class="small">/ hrs</span></h5>
-                            </div>
-
-                            <div class="col-xs-2 info-squares">
-                                Current Labour Cost
-                                <h5>$ {{project.projectLaborCost}}</h5>
-                            </div>
-
-                            <div class="col-xs-2 info-squares">
-                                Actual expenses
-                                <h5>$ {{project.actualExpenses}}</h5>
-                            </div>
-
-                            <div class="col-xs-2 info-squares white">
-                                Progress
-                                <div class="progress" style="width: 100%">
-                                    <div class="progress-bar"
-                                         role="progressbar"
-                                         aria-valuenow=""
-                                         aria-valuemin="0"
-                                         aria-valuemax="100"
-                                         style="width: {{project.projectProgress}}%;">
-                                    </div>
+                    <!--  Client Details Old  -->
+                    <!--<h6>Client Info</h6>
+                    <div class="thumbnail">
+                        <div class="caption well">
+                            <h5>{{project.projectCustomer.customerName}}</h5>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <span class="glyphicon glyphicon-earphone"></span>
+                                    {{project.projectCustomer.customerPhone}}<hr>
+                                    <span class="glyphicon glyphicon-envelope"></span>
+                                    {{project.projectCustomer.customerEmail}}<hr>
+                                    <span class="glyphicon glyphicon-map-marker"></span>
+                                    {{project.projectCustomer.customerAddress}}
                                 </div>
-                                <h5>{{project.projectProgress}}%</h5>
                             </div>
+                        </div>
+                    </div>-->
 
-                            <div class="col-xs-2 info-squares red">
-                                Total Cost
-                                <h5>$ {{project.totalCost}}</h5>
+                    <!--  Client Details  -->
+                    <div class="col-lg-12 col-md-6 col-xs-6 ">
+                    <div class="thumbnail">
+                        <div class="caption well">
+                            <h5>{{project.projectCustomer.customerName}}</h5>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <span class="glyphicon glyphicon-earphone"></span>
+                                    {{project.projectCustomer.customerPhone}}<hr>
+                                    <span class="glyphicon glyphicon-envelope"></span>
+                                    {{project.projectCustomer.customerEmail}}<hr>
+                                    <span class="glyphicon glyphicon-map-marker"></span>
+                                    {{project.projectCustomer.customerAddress}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="/customer/details/{{project.projectCustomer.id}}" class="btn-sm pull-right">
+                            More&nbsp<span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <!-- Right Section -->
+            <div class="col-lg-9 col-md-12">
+                <div class="row">
+                    <!-- Project Description Short-->
+                    <div id="shortDescription" class="col-sm-12">
+
+                        <h5>Description</h5>
+                        <p>{{project.projectDescriptionShort}}</p>
+                        <button id="showMoreButton" class="btn btn-xs btn-default center">Show More</button>
+                    </div>
+
+                    <!-- Project Description Long-->
+                    <div id="longDescription" class="col-sm-12" hidden>
+                        <h5>Description</h5>
+                        <p>{{project.projectDescription}}</p>
+                        <button id="showLessButton" class="btn btn-xs btn-default center">Show less</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Squares -->
+            <div class="col-lg-9 col-md-12 section">
+                {{#if isAdmin}}
+                    <div class="section text-uppercase">
+                        <hr>
+                        <!--  First Row  -->
+                        <div class="row section">
+                            <div class="col-sm-12">
+                                <p>Declared Budget</p>
+
+                                <div class="col-xs-2 info-squares">
+                                    Time Planned
+                                    <h5>{{project.projectWorkingHours}} <span class="small">/ hrs</span></h5>
+                                </div>
+
+                                <div class="col-xs-2 info-squares">
+                                    Labour cost
+                                    <h5>$ {{project.labourCostPlanned}}</h5>
+                                </div>
+
+                                <div class="col-xs-2 info-squares">
+                                    Planned expenses
+                                    <h5>$ {{project.projectExpenses}}</h5>
+                                </div>
+
+                                <div class="col-xs-2 info-squares">
+
+                                </div>
+
+                                <div class="col-xs-2 info-squares">
+                                    Project Price
+                                    <h5>$</span> {{project.projectPrice}}</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--  Second Row  -->
+                        <div class="row section">
+                            <div class="col-sm-12">
+
+                                <p>Actual Project Cost</p>
+
+                                <div class="col-xs-2 info-squares">
+                                    Actual Time
+                                    <h5>{{project.actualHours}}  <span class="small">/ hrs</span></h5>
+                                </div>
+
+                                <div class="col-xs-2 info-squares">
+                                    Current Labour Cost
+                                    <h5>$ {{project.projectLaborCost}}</h5>
+                                </div>
+
+                                <div class="col-xs-2 info-squares">
+                                    Actual expenses
+                                    <h5>$ {{project.actualExpenses}}</h5>
+                                </div>
+
+                                <div class="col-xs-2 info-squares white">
+                                    Progress
+                                    <div class="progress" style="width: 100%">
+                                        <div class="progress-bar"
+                                             role="progressbar"
+                                             aria-valuenow=""
+                                             aria-valuemin="0"
+                                             aria-valuemax="100"
+                                             style="width: {{project.projectProgress}}%;">
+                                        </div>
+                                    </div>
+                                    <h5>{{project.projectProgress}}%</h5>
+                                </div>
+
+                                <div class="col-xs-2 info-squares red">
+                                    Total Cost
+                                    <h5>$ {{project.totalCost}}</h5>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            {{/if}}
-        </div>
+                {{/if}}
+            </div>
 
-        <!--  Tasks Table + Back Button -->
-        <div class="col-lg-9 col-sm-12 section">
-            <h5>Project Tasks</h5>
-            <table class="table table-responsive" id="tasksTable">
+            <!--  Tasks Table + Back Button -->
+            <div class="col-lg-9 col-sm-12 section">
+                <h5>Project Tasks</h5>
+                <table class="table table-responsive" id="tasksTable">
 
-                <!-- Table Head -->
-                <tr>
-                    <th>Status</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Deadline</th>
-                    <th>Details</th>
-                </tr>
-
-                <!-- Table Data -->
-                {{#each project.projectTasks}}
+                    <!-- Table Head -->
                     <tr>
+                        <th>Status</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Deadline</th>
+                        <th>Details</th>
+                    </tr>
 
-                        <!-- Task Status -->
-                        {{#if this.taskActive}}
-                            <td class="col-xs-1" id="taskActive">
-                                <span class="glyphicon glyphicon-star glyphicon-active"></span>
-                                <!--<h6><small>ative</small></h6>-->
-                            </td>
-                        {{/if}}
+                    <!-- Table Data -->
+                    {{#each project.projectTasks}}
+                        <tr>
 
-                        {{#unless this.taskActive}}
-                            <td class="col-xs-1" id="taskActive">
-                                <span class="glyphicon glyphicon-ok glyphicon-done"></span>
-                            </td>
-                        {{/unless}}
-
-                        <!-- Task Name -->
-                        <td class="col-xs-3" id="taskName"><h6>{{this.taskName}}</h6></td>
-
-                        <!-- Task Description -->
-                        <td class="col-xs-5" id="taskDescription">
-                            <p>{{this.taskDescription}}</p>
-                        </td>
-
-                        <!-- Task Deadline -->
-                        {{#if this.isOverdue}}
+                            <!-- Task Status -->
                             {{#if this.taskActive}}
-                                <td class="col-xs-2 alert-warning" id="taskDeadline" >{{this.date}}</td>
+                                <td class="col-xs-1" id="taskActive">
+                                    <span class="glyphicon glyphicon-star glyphicon-active"></span>
+                                    <!--<h6><small>ative</small></h6>-->
+                                </td>
+                            {{/if}}
+
+                            {{#unless this.taskActive}}
+                                <td class="col-xs-1" id="taskActive">
+                                    <span class="glyphicon glyphicon-ok glyphicon-done"></span>
+                                </td>
+                            {{/unless}}
+
+                            <!-- Task Name -->
+                            <td class="col-xs-3" id="taskName"><h6>{{this.taskName}}</h6></td>
+
+                            <!-- Task Description -->
+                            <td class="col-xs-5" id="taskDescription">
+                                <p>{{this.taskDescription}}</p>
+                            </td>
+
+                            <!-- Task Deadline -->
+                            {{#if this.isOverdue}}
+                                {{#if this.taskActive}}
+                                    <td class="col-xs-2 alert-warning" id="taskDeadline" >{{this.date}}</td>
+                                {{else}}
+                                    <td class="col-xs-1" id="taskDeadline" >{{this.date}}</td>
+                                {{/if}}
                             {{else}}
                                 <td class="col-xs-1" id="taskDeadline" >{{this.date}}</td>
                             {{/if}}
-                        {{else}}
-                            <td class="col-xs-1" id="taskDeadline" >{{this.date}}</td>
-                        {{/if}}
 
-                        <!-- Update Button -->
+                            <!-- Update Button -->
 
-                        {{#if this.taskActive}}
-                            <td class="col-xs-1" id="taskActive">
-                                <a href="/task/details/{{this.id}}">
-                                    <button class="btn-sm btn-primary">
-                                        Update
-                                    </button>
-                                </a>
-                            </td>
-                        {{/if}}
+                            {{#if this.taskActive}}
+                                <td class="col-xs-1" id="taskActive">
+                                    <a href="/task/details/{{this.id}}">
+                                        <button class="btn-sm btn-primary">
+                                            Update
+                                        </button>
+                                    </a>
+                                </td>
+                            {{/if}}
 
-                        {{#unless this.taskActive}}
-                            <td class="col-xs-1" id="taskActive">
-                                <a href="/task/details/{{this.id}}">
-                                    <button class="btn-sm btn-success">
-                                        View
-                                    </button>
-                                </a>
-                            </td>
-                            </td>
-                        {{/unless}}
-                    </tr>
-                {{/each}}
-            </table>
+                            {{#unless this.taskActive}}
+                                <td class="col-xs-1" id="taskActive">
+                                    <a href="/task/details/{{this.id}}">
+                                        <button class="btn-sm btn-success">
+                                            View
+                                        </button>
+                                    </a>
+                                </td>
+                                </td>
+                            {{/unless}}
+                        </tr>
+                    {{/each}}
+                </table>
 
-            <!--  Back Button -->
-            <div class="section">
-                <a href="/project/list">
-                    <button class="btn btn-default pull-right">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-                        Back to All Projects
-                    </button>
-                </a>
+                <!--  Back Button -->
+                <div class="section">
+                    <a href="/project/list">
+                        <button class="btn btn-default pull-right">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                            Back to All Projects
+                        </button>
+                    </a>
+                </div>
             </div>
-        </div>
 
-{{/if}}
+    {{/if}}
+    {{/if}}
 </main>

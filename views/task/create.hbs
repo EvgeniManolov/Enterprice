@@ -135,15 +135,12 @@
                             var cell3 = row.insertCell(2);
                             var cell4 = row.insertCell(3);
                             var cell5 = row.insertCell(4);
-                            var cell6 = row.insertCell(5);
-                            var cell7 = row.insertCell(6);
-                            cell1.innerHTML = '<button id="remove" type="button" class="remove">-</button>';
-                            cell2.innerHTML = document.getElementsByName("taskProject")[0].value;
-                            cell3.innerHTML = document.getElementsByName("taskTeam")[0].value;
-                            cell4.innerHTML = document.getElementsByName("taskName")[0].value;
-                            cell5.innerHTML = document.getElementsByName("taskDescription")[0].value;
-                            cell6.innerHTML = document.getElementsByName("taskDeadline")[0].value;
-                            cell7.innerHTML = document.getElementsByName("taskWeight")[0].value;
+
+                            cell1.innerHTML = document.getElementsByName("taskName")[0].value;
+                            cell2.innerHTML = document.getElementsByName("taskDescription")[0].value;
+                            cell3.innerHTML = document.getElementsByName("taskDeadline")[0].value;
+                            cell4.innerHTML = document.getElementsByName("taskWeight")[0].value + '%';
+                            cell5.innerHTML = '<btn id="remove" type="button" class="btn btn-default remove"><span class="glyphicon glyphicon-trash"></span></btn>';
 
                             $("#taskName").val('').focus();
                             $("#taskDescription").val('');
@@ -187,129 +184,120 @@
 </script>
 
 <main>
+    {{#if user}}
+        <ol class="container breadcrumb transparent">
+            <li><a href="/project/list">Home</a></li>
+            <li><a href="/project/create">Create New Project</a></li>
+            <li class="active">Add Project Tasks</li>
+        </ol>
 
-    <ol class="container breadcrumb transparent">
-        <li><a href="/project/list">Home</a></li>
-        <li><a href="/project/create">Create New Project</a></li>
-        <li class="active">Add Project Tasks</li>
-    </ol>
+        <div class="container">
+
+            <div class="page-header">
+                <h1>{{task.taskProjectId.projectName}}Add project tasks</h1>
+            </div>
+
+            <form class="form-horizontal" method="post" action="/task/create" id="tasksForm">
+                <fieldset>
+
+                    <div class="col-sm-5">
+                        <div class="form-group" hidden>
+                            <label class="col-md-3 control-label" for="taskProject">Project</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" id="taskProject" placeholder="{{project.projectName}}" name="taskProject" required value="{{project.projectName}}">
+                            </div>
+                        </div>
+
+                        <div class="form-group" hidden>
+                            <label class="col-md-3 control-label" for="taskTeam">Team</label>
+                            <div class="col-md-9 ">
+                                <input type="text" class="form-control" id="taskTeam" placeholder="{{project.projectTeamName}}" name="taskTeam" required value="{{project.projectTeamName}}">
+                            </div>
+                        </div>
+
+                        <div class="form-group" hidden>
+                            <label class="col-md-3 control-label" for="projectDueDate">Project Due Date</label>
+                            <div class="col-md-9 ">
+                                <input type="text" class="form-control" id="projectDueDate" placeholder="{{project.dateAsNumber}}" name="projectDueDate" required value="{{project.dateAsNumber}}">
+                            </div>
+                        </div>
+
+                        <!--  Task Name  -->
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="taskName">Task Name</label>
+                            <div class="col-md-9 ">
+                                <input type="text" class="form-control" id="taskName" placeholder="Task name" name="taskName" required >
+                            </div>
+                        </div>
+
+                        <!--  Task Description  -->
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="taskDescription">Task Description</label>
+                            <div class="col-md-9" >
+                                <textarea class="form-control" rows="4" id="taskDescription" placeholder="Task Description" name="taskDescription" required ></textarea>
+                            </div>
+                        </div>
+
+                        <!--  Deadline  -->
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="taskDeadline">Deadline</label>
+                            <div class="col-md-9 ">
+                                <input type="date" min="" class="form-control" id="taskDeadline" placeholder="" name="taskDeadline" required >
+                            </div>
+                        </div>
+
+                        <!--  Weight  -->
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="taskWeight">Weight</label>
+                            <div class="col-md-9 ">
+                                <input type="number" class="form-control" id="taskWeight" placeholder="" name="taskWeight" required >
+                            </div>
+                        </div>
+
+                        <!--  Add task  -->
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <button onclick="addToTable()" type="button" class="btn btn-primary pull-right">Add task</button>
+                            </div>
+                        </div>
+                    </div>
 
 
-    <div class="container">
+                    <div class="col-md-7">
+                        <div class="well">
 
-        <div class="page-header">
-            <h1>{{task.taskProjectId.projectName}}</h1>
+                            <h4>Tasks Added</h4>
+
+                            <table class="table" id="tasks" width="100%">
+                                <!-- Table Head -->
+                                <tr>
+                                    <th>Task Name</th>
+                                    <th>Description</th>
+                                    <th>Deadline</th>
+                                    <th>Weight</th>
+                                    <th>Remove</th>
+                                </tr>
+                            </table>
+
+                            <div class="section text-right" style="margin-bottom: 20px">
+
+                                <h6>Total weight: <span id="totalWeight">0%</span></h6>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!--  Submit / Cancel  -->
+                    <div class="col-sm-12">
+                        <div class="modal-footer section">
+                            <a href="/project/discard"><div class="btn btn-default">Discard project</div></a>
+                            <button id="doneButton" type="button" class="btn btn-primary" onclick="sendData()">Done</button>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
         </div>
-
-        <form class="form-horizontal" method="post" action="/task/create" id="tasksForm">
-            <fieldset>
-
-                <div class="col-xs-12">
-                    <h2>Add project tasks</h2>
-                    <hr>
-                </div>
-                <!--<div class="form-group      ">
-
-                    &lt;!&ndash;  Admin Pass Field  &ndash;&gt;
-                    <div class="collapse" id="collapseExample">
-
-                    </div>
-                </div>-->
-
-                <div class="form-group" hidden>
-                    <label class="col-sm-4 control-label" for="taskProject">Project</label>
-                    <div class="col-sm-4 ">
-                        <input type="text" class="form-control" id="taskProject" placeholder="{{project.projectName}}" name="taskProject" required value="{{project.projectName}}">
-                    </div>
-                </div>
-
-                <div class="form-group" hidden>
-                    <label class="col-sm-4 control-label" for="taskTeam">Team</label>
-                    <div class="col-sm-4 ">
-                        <input type="text" class="form-control" id="taskTeam" placeholder="{{project.projectTeamName}}" name="taskTeam" required value="{{project.projectTeamName}}">
-                    </div>
-                </div>
-
-                <div class="form-group" hidden>
-                    <label class="col-sm-4 control-label" for="projectDueDate">Project Due Date</label>
-                    <div class="col-sm-4 ">
-                        <input type="text" class="form-control" id="projectDueDate" placeholder="{{project.dateAsNumber}}" name="projectDueDate" required value="{{project.dateAsNumber}}">
-                    </div>
-                </div>
-
-                <!--  Task Name  -->
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="taskName">Task Name</label>
-                    <div class="col-sm-4 ">
-                        <input type="text" class="form-control" id="taskName" placeholder="Task name" name="taskName" required >
-                    </div>
-                </div>
-
-                <!--  Task Description  -->
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="taskDescription">Task Description</label>
-                    <div class="col-sm-4" >
-                        <textarea class="form-control" rows="4" id="taskDescription" placeholder="Task Description" name="taskDescription" required ></textarea>
-                    </div>
-                </div>
-
-                <!--  Deadline  -->
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="taskDeadline">Deadline</label>
-                    <div class="col-sm-4 ">
-                        <input type="date" min="" class="form-control" id="taskDeadline" placeholder="" name="taskDeadline" required >
-                    </div>
-                </div>
-
-                <!--  Weight  -->
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="taskWeight">Weight</label>
-                    <div class="col-sm-4 ">
-                        <input type="number" class="form-control" id="taskWeight" placeholder="" name="taskWeight" required >
-                    </div>
-                </div>
-
-                <!--  Add task  -->
-                <div class="form-group">
-                    <div class="col-sm-4 col-sm-offset-4">
-                        <button onclick="addToTable()" type="button" class="btn btn-primary">Add task</button>
-                    </div>
-                </div>
-
-                <div class="container">
-                    <table class="table" id="tasks" width="100%">
-
-                        <!-- Table Head -->
-                        <tr>
-                            <th>Remove task</th>
-                            <th>Project name</th>
-                            <th>Team</th>
-                            <th>Task</th>
-                            <th>Description</th>
-                            <th>Deadline</th>
-                            <th>Weight</th>
-                        </tr>
-
-                    </table>
-                    <hr/>
-
-                    <div class="pull-right visible-lg-inline-block">
-                        <span style="font-size: 25px">Total weight: </span><span id="totalWeight" style="font-size: 25px"></span>
-                    </div>
-
-                </div>
-
-                <!--  Submit / Cancel  -->
-                <div class="form-group">
-                    <div class="col-sm-4 col-sm-offset-4">
-                        <a href="/project/discard"><div class="btn btn-default">Discard project</div></a>
-                        <button id="doneButton" type="button" class="btn btn-primary" onclick="sendData()">Done</button>
-                    </div>
-                </div>
-
-            </fieldset>
-
-        </form>
-    </div>
-
+    {{/if}}
 </main>

@@ -245,7 +245,8 @@ h6 {
 	transition: .5s ease-in-out;
 
 }
-.thumbnail:hover .btn-sm .glyphicon {
+.thumbnail:hover .btn-sm .glyphicon,
+.glyphicon {
 	color: #c30019;
 	transition: .5s ease-in-out;
 }

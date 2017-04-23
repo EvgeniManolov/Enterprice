@@ -20,82 +20,43 @@
 </script>
 
 <main>
+    {{#if user}}
+        <ol class="container breadcrumb transparent">
+            <li><a href="/project/list">Home</a></li>
+            <li class="active">Create New Project</li>
+        </ol>
 
-    <ol class="container breadcrumb transparent">
-        <li><a href="/project/list">Home</a></li>
-        <li class="active">Create New Project</li>
-    </ol>
+        <div class="container">
+
+            <div class="page-header">
+                <h1>New Project</h1>
+            </div>
 
 
-    <div class="container">
-
-        <div class="page-header">
-            <h1>New Project</h1>
-        </div>
-
-        <div class="col-sm-6">
             <form class="form-horizontal" method="post" action="/project/create">
-                <fieldset>
 
+                <!--  Left Section  -->
+                <div class="col-sm-6">
                     <!-- Name -->
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="projectName">Name</label>
-                        <div class="col-sm-10">
+                        <label class="col-md-3 control-label" for="projectName">Project Name</label>
+                        <div class="col-md-9">
                             <input type="text" class="form-control" id="projectName" name="projectName" required >
                         </div>
                     </div>
 
                     <!-- Description -->
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="projectDescription">Description</label>
-                        <div class="col-sm-10" >
-                            <textarea class="form-control" rows="5" id="projectDescription" placeholder="" name="projectDescription" required ></textarea>
-                        </div>
-                    </div>
-
-                    <!-- Customer -->
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label" for="projectCustomer">Customer</label>
-                        <div class="col-sm-10">
-                            <div class="row-fluid">
-                                <select class="form-control" id="projectCustomer" name="projectCustomer" required data-live-search="true">
-                                    <option ></option>
-                                    {{#each customers}}
-                                        <option >{{this.customerName}}</option>
-                                    {{/each}}each}}
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project Price -->
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label" for="projectPrice">Price</label>
-                        <div class="col-sm-4 ">
-                            <input type="number" min="0" class="form-control" id="projectPrice" placeholder="" name="projectPrice" required >
-                        </div>
-                    </div>
-
-                    <!-- Expences -->
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label" for="projectExpenses">Expenses</label>
-                        <div class="col-sm-4 ">
-                            <input type="number" min="0" class="form-control" id="projectExpenses" placeholder="" name="projectExpenses" required >
-                        </div>
-                    </div>
-
-                    <!-- Workin Hours Provision -->
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label" for="projectWorkingHours">Working hours provision</label>
-                        <div class="col-sm-4 ">
-                            <input type="number" min="0" class="form-control" id="projectWorkingHours" placeholder="" name="projectWorkingHours" required >
+                        <label class="col-md-3 control-label" for="projectDescription">Project Description</label>
+                        <div class="col-md-9" >
+                            <textarea class="form-control" rows="4" id="projectDescription" placeholder="" name="projectDescription" required ></textarea>
                         </div>
                     </div>
 
                     <!-- Team -->
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" for="projectTeam">Team</label>
-                        <div class="col-sm-4">
+                        <label class="col-md-3 control-label" for="projectTeam">Select Team</label>
+                        <div class="col-md-9">
                             <div class="row-fluid">
                                 <select class="selectpicker form-control" id="projectTeam" name="projectTeam" required data-live-search="true">
                                     <option ></option>
@@ -109,26 +70,70 @@
 
                     <!-- Due Date -->
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" for="projectDueDate">Due date</label>
-                        <div class="col-sm-4 ">
+                        <label class="col-md-3 control-label" for="projectDueDate">Due date</label>
+                        <div class="col-md-9 ">
                             <input type="date" min="" class="form-control" id="projectDueDate" placeholder="" name="projectDueDate" required >
                         </div>
                     </div>
+                </div>
 
-                    <!-- Buttons -->
+                <!--  Right Section  -->
+
+                <div class="col-sm-6">
+
+                    <!-- Customer -->
                     <div class="form-group">
-                        <div class="col-sm-4 col-sm-offset-4">
-                            <a class="btn btn-default" href="./../project/list">
-                                Cancel
-                            </a>
-                            <button type="submit" class="btn btn-primary" id="projectCreated">Add Project Tasks</button>
-
+                        <label class="col-md-3 control-label" for="projectCustomer">Customer</label>
+                        <div class="col-md-9">
+                            <div class="row-fluid">
+                                <select class="form-control" id="projectCustomer" name="projectCustomer" required data-live-search="true">
+                                    <option ></option>
+                                    {{#each customers}}
+                                        <option >{{this.customerName}}</option>
+                                    {{/each}}each}}
+                                </select>
+                            </div>
                         </div>
                     </div>
-                </fieldset>
+
+                    <!-- Project Price -->
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="projectPrice">Price</label>
+                        <div class="col-md-9 ">
+                            <input type="number" min="0" class="form-control" id="projectPrice" placeholder="" name="projectPrice" required >
+                        </div>
+                    </div>
+
+                    <!-- Expenses -->
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="projectExpenses">Expenses</label>
+                        <div class="col-md-9 ">
+                            <input type="number" min="0" class="form-control" id="projectExpenses" placeholder="" name="projectExpenses" required >
+                        </div>
+                    </div>
+
+                    <!-- Workin Hours Provision -->
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="projectWorkingHours">Working hours provision</label>
+                        <div class="col-md-9 ">
+                            <input type="number" min="0" class="form-control" id="projectWorkingHours" placeholder="" name="projectWorkingHours" required >
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <!-- Buttons -->
+                <div class="col-sm-12">
+                    <div class="modal-footer section">
+                        <button class="btn btn-default" href="./../project/list">Cancel</button>
+                        <button type="submit" class="btn btn-primary" id="projectCreated">Add Project Tasks</button>
+                    </div>
+                </div>
+
             </form>
         </div>
-    </div>
+    {{/if}}
 </main>
 
 

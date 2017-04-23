@@ -21,102 +21,78 @@
 </script>
 
 <main>
-
-    <ol class="container breadcrumb transparent">
-        <li><a href="/project/list">Home</a></li>
-        <li class="active">All Users</li>
-    </ol>
-
     {{#if user}}
-    <!--  Body  -->
-    <div class="container">
+        <!--  Breadcrumbs  -->
+        <ol class="container breadcrumb transparent">
+            <li><a href="/project/list">Home</a></li>
+            <li class="active">All Users</li>
+        </ol>
 
-        <div class="page-header">
-            <h1>User Profiles</h1>
-        </div>
 
-        <!-- Left Section -->
-        <div class="col-sm-3 section">
+            <!--  Body  -->
+            <div class="container">
 
-            <!--  Filter  -->
-            <div class="list-group">
-
-                <div class="list-group-item active">
-                    <a href="" onclick="return false" id="filter" class="occupation">
-                        All Users</a> <span class="badge">{{users.count}}</span>
+                <div class="page-header">
+                    <h1>User Profiles</h1>
                 </div>
-                {{#each professionsCount}}
-                    <div class="list-group-item">
-                        <a href="" onclick="return false" id="filter" class="occupation">
-                            {{this.profession}}
-                        </a> <span class="badge">{{this.count}}</span>
+
+                <!-- Left Section -->
+                <div class="col-sm-3 section">
+
+                    <!--  Filter  -->
+                    <div class="list-group">
+
+                        <div class="list-group-item active">
+                            <a href="" onclick="return false" id="filter" class="occupation">
+                                All Users</a> <span class="badge">{{users.count}}</span>
+                        </div>
+                        {{#each professionsCount}}
+                            <div class="list-group-item">
+                                <a href="" onclick="return false" id="filter" class="occupation">
+                                    {{this.profession}}
+                                </a> <span class="badge">{{this.count}}</span>
+                            </div>
+                        {{/each}}
                     </div>
-                {{/each}}
-            </div>
-        </div>
-
-        <!-- Right Section -->
-        <div class="col-sm-9 section">
-
-            <!-- Filters and Stuff -->
-            <div class="filters-container">
-                <div class="input-group input-group-lg">
-                    <label class="sr-only" for="myInputActive"></label>
-                    <input class="form-control" type="text" id="myInputActive" onkeyup="myFunction('activeProjectsTable', 'myInputActive')" placeholder="Find User">
                 </div>
-            </div>
 
-            <!--  Users Check -->
-<!--            <div class="row">
-                <form method="post" action="/team/create/createNew">
-                    {{#each users}}
-                        <div class="form-group">
-                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                                <div class="thumbnail img-check">
-                                    <img class="img-thumbnail" src="/images/lora.jpg">
+                <!-- Right Section -->
+                <div class="col-sm-9 section">
+
+                    <!-- Filters and Stuff -->
+                    <div class="filters-container">
+                        <div class="input-group input-group-lg">
+                            <label class="sr-only" for="myInputActive"></label>
+                            <input class="form-control" type="text" id="myInputActive" onkeyup="myFunction('activeProjectsTable', 'myInputActive')" placeholder="Find User">
+                        </div>
+                    </div>
+
+                    <!--  All Users List  -->
+                    <div class="row">
+
+                        {{#each users}}
+                            <div class="col-lg-4 col-md-4 col-xs-6 profileCard">
+                                <div class="thumbnail">
+                                    <div class="caption well">
+                                        <img class="center-block" src="/images/userProfilePictures/{{this.picture}}">
+
                                     <div class="caption">
-                                        <h5 class="text-center">{{this.fullName}}</h5>
-                                        <p class="text-center">{{this.profession}}Designer</p>
+                                        <!--  Layer Over  -->
+                                        <a href="/userViews/details/{{this.id}}">
+                                            <div class="thumbnail-over">
+                                                <p>View Profile</p>
+                                            </div>
+                                        </a>
+                                        <h6 class="text-center">{{this.fullName}}</h6>
+                                        <p class="text-center">{{this.occupation.occupationName}}</p>
                                     </div>
-
-                                    <input type="checkbox" id="checkbox" name="users" value="{{this.id}}" hidden>
                                 </div>
                             </div>
-                        </div>
-
-                    {{/each}}
-                    <div class="col-xs-12">
-                        <input type="submit" value="Create Team" class="btn btn-success pull-right">
-                    </div>
-                </form>
-            </div>-->
-
-            <!--  All Users List  -->
-            <div class="row">
-
-                {{#each users}}
-                    <div class="col-lg-4 col-md-4 col-xs-6 profileCard">
-                        <div class="thumbnail">
-                            <div class="caption well">
-                                <img class="center-block" src="/images/userProfilePictures/{{this.picture}}">
-
-                            <div class="caption">
-                                <!--  Layer Over  -->
-                                <a href="/userViews/details/{{this.id}}">
-                                    <div class="thumbnail-over">
-                                        <p>View Profile</p>
-                                    </div>
-                                </a>
-                                <h6 class="text-center">{{this.fullName}}</h6>
-                                <p class="text-center">{{this.occupation.occupationName}}</p>
                             </div>
-                        </div>
+                        {{/each}}
                     </div>
-                    </div>
-                {{/each}}
+                </div>
             </div>
         </div>
-    </div>
-    </div>
     {{/if}}
 </main>
