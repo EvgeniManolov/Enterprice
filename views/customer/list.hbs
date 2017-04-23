@@ -1,3 +1,17 @@
+<script>
+    function myFunction(inputType) {
+
+        // Declare variables
+        var input;
+        input = document.getElementById(inputType); //search item
+/*        filter = input.value.toUpperCase();*/ //search item toUpperCase
+
+/*        $('.row').children().hide();*/
+        $('.row').find("h5:contains(" + input + ")").parent().parent().parent().hide();
+
+    }
+</script>
+
 
 <main>
     {{#if user}}
@@ -35,17 +49,17 @@
             <div class="filters-container">
                 <div class="input-group input-group-lg">
                     <label class="sr-only" for="myInputActive"></label>
-                    <input class="form-control" type="text" id="myInputActive" onkeyup="myFunction('activeProjectsTable', 'myInputActive')" placeholder="Search">
+                    <input class="form-control" type="text" id="myInput" onkeyup="myFunction('myInput')" placeholder="Search">
                 </div>
             </div>
 
-            <div class="row">
+            <div id="customersList" class="row">
 
                 {{#each customers}}
                     <div class="col-lg-4 col-xs-6">
                         <div class="thumbnail">
                             <div class="caption">
-                                <h5>{{this.customerName}}</h5>
+                                <h5 id="customerName">{{this.customerName}}</h5>
                                 <div class="well"><span class="glyphicon glyphicon-earphone"></span>
                                 {{this.customerPhone}}<hr>
                                 <span class="glyphicon glyphicon-envelope"></span>
