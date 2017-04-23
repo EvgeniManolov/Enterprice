@@ -269,25 +269,9 @@ module.exports = {
                 }
             })
         }
-<<<<<<< .mine
-    }
+    },
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
-        },
     editUserData:(req,res) =>{
         let userID = req.user.id;
         let userArgs = req.body;
@@ -299,9 +283,5 @@ module.exports = {
             user.address = userArgs.address;
             user.save()
         })
-
-
-
     }
->>>>>>> .theirs
 };
