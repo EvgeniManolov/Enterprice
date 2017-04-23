@@ -130,7 +130,6 @@ module.exports = {
                                 }
 
                                 else {
-                                    project.dateAsNumber = Number(project.projectDueDate); //Convert projectDueDate to a number in order to check if task date is later or earlier than projectDueDate
 
                                     let user = req.user;
                                     let isAdmin = true;
