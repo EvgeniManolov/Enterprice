@@ -1,10 +1,16 @@
 <main>
-    {{#if user}}
+
+    <ol class="container breadcrumb transparent">
+        <li><a href="/project/list">Home</a></li>
+        <li><a href="/customer/list">All Customers</a></li>
+        <li class="active">{{customer.customerName}}</li>
+    </ol>
+
+
     <div class="container">
+
         <form class="form-horizontal" method="post" action="">
             <fieldset>
-
-                <legend>Edit Customer</legend>
 
                 <div class="form-group">
                     <label class="col-sm-4 control-label"  for="customerName">Customer Name</label>
@@ -45,5 +51,4 @@
             </fieldset>
         </form>
     </div>
-    {{/if}}
 </main>

@@ -1,5 +1,12 @@
 
 <main>
+
+    <ol class="container breadcrumb transparent">
+        <li><a href="/project/list">Home</a></li>
+        <li><a href="/userViews/list">All Users</a></li>
+        <li class="active">{{userData.fullName}}</li>
+    </ol>
+
     {{#if user}}
     <div class="container">
 
@@ -16,15 +23,14 @@
                     <!--  User Info  -->
                     <p>
                         <span class="glyphicon glyphicon-earphone"></span>
-                    {{userData.phone}}<hr>
+                        {{userData.phone}}<hr>
 
-                    <span class="glyphicon glyphicon-envelope"></span>
-                    {{userData.email}}<hr>
+                        <span class="glyphicon glyphicon-envelope"></span>
+                        {{userData.email}}<hr>
 
-                    <span class="glyphicon glyphicon-map-marker"></span>
-                    {{userData.address}}
+                        <span class="glyphicon glyphicon-map-marker"></span>
+                        {{userData.address}}
                     </p>
-
                 </div>
             </div>
         </div>

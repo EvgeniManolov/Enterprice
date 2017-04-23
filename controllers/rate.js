@@ -26,7 +26,7 @@ module.exports = {
 
                     /*TO DO: Error message*/
 
-                    res.render('rate/list', {users: users});
+                    res.render('rate/list', {users: users, isAdmin: isAdmin});
                 })
             } else {
                 res.render('home/index', {error: 'Access denied!'})

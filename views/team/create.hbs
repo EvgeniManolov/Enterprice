@@ -12,13 +12,21 @@ $('#userName').multiselect();
 </script>
 
 <main>
+
+    <ol class="container breadcrumb transparent">
+        <li><a href="/project/list">Home</a></li>
+        <li class="active">Create New Team</li>
+    </ol>
+
     {{#if user}}
     <div class="container">
 
+        <div class="page-header">
+            <h1>New Team</h1>
+        </div>
+
         <form class="form-horizontal" method="post" action="/team/create">
             <fieldset>
-
-                <legend>Create team</legend>
 
                 <!-- Enter teamName -->
                 <div class="form-group">
@@ -51,7 +59,6 @@ $('#userName').multiselect();
                             Cancel
                         </a>
                         <button type="submit" class="btn btn-primary">Submit</button>
-                        <a class="btn btn-success btn-xs" href="/team/edit">Edit &raquo;</a>
                     </div>
                 </div>
             </fieldset>

@@ -14,10 +14,10 @@ const Occupation = mongoose.model('Occupation', occupationSchema);
 module.exports = Occupation;
 
 module.exports.seedAdminOccupation = () => {
-    Occupation.findOne({occupationName: 'Admin'}).then(occupation => {
+    Occupation.findOne({occupationName: 'Manager'}).then(occupation => {
         if (!occupation) {
             let adminOccupation = {
-                occupationName: 'Admin',
+                occupationName: 'Manager',
                 occupationRate: 0
             };
             Occupation.create(adminOccupation).then(occupation => {

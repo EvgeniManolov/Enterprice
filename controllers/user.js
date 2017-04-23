@@ -108,7 +108,7 @@ module.exports = {
 
         Occupation.find({}).then(occupations => {
 
-            for ( let i = 1; i < occupations.length; i++) {
+            for ( let i = 0; i < occupations.length; i++) {
                 let currentOccupation = {profession: occupations[i].occupationName, count: 0};
                 professionsCount.push(currentOccupation);
             }
@@ -128,9 +128,19 @@ module.exports = {
 
                     };
                 }
-                users.count = users.length;
+                users.count = users.length - 1;
 
-                res.render('userViews/list', {users: users, professionsCount: professionsCount});
+                let user = req.user;
+                let isAdmin = true;
+
+                Role.findOne({name: 'Admin'}).then(role => {
+
+                    if (user.roles.indexOf(role._id) == -1) {
+                        isAdmin = false;
+                    }
+
+                    res.render('userViews/list', {users: users, professionsCount: professionsCount, isAdmin: isAdmin});
+                });
             })
         });
     },
@@ -141,8 +151,18 @@ module.exports = {
 
         User.findOne({_id : userID }).populate('team').then(userData => {
 
-            res.render('userViews/details', {userData: userData})
-        })
+            let user = req.user;
+            let isAdmin = true;
+
+            Role.findOne({name: 'Admin'}).then(role => {
+
+                if (user.roles.indexOf(role._id) == -1) {
+                    isAdmin = false;
+                }
+
+                res.render('userViews/details', {userData: userData, isAdmin: isAdmin})
+            })
+        });
     },
 
     profileGet: (req, res) => {           // TO BE DELETED
@@ -189,10 +209,12 @@ module.exports = {
                     teams=selectedTeams;
                     projects=selectedProjects;
                 }
-                res.render('userViews/profile',{userData: userData, projects:projects,selectedProjects, teams:teams} );
+                res.render('userViews/profile',{userData: userData, projects:projects,selectedProjects, teams:teams, isAdmin: isAdmin} );
             })
 
-        })})})
+        })
+        })
+        })
     },
 
     pictureUpload: (req, res) => {
@@ -215,5 +237,5 @@ module.exports = {
                 }
             })
         }
-        }
+    }
 };

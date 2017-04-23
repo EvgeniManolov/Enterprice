@@ -13,60 +13,55 @@
 
 
 <main>
-    {{#if user}}
+
+    <ol class="container breadcrumb transparent">
+        <li><a href="/project/list">Home</a></li>
+        <li><a href="/team/list">All Teams</a></li>
+        <li class="active">{{team.teamName}}</li>
+    </ol>
+
+
     <div class="container">
 
-        <div class="col-lg-12">
-            <h2>Teams</h2>
-            <hr>
+        <div class="page-header">
+            <h1>{{team.teamName}}</h1>
         </div>
 
-
-        <div class="col-sm-6">
-            <div class="thumbnail">
-
-
-                    <h4>{{team.teamName}}</h4>
-
-
-                <div class="container-border well">
-
+        {{#if user}}
+            <div class="col-sm-12">
+                <div class="well">
                     {{#each team.userID}}
 
                         <img class="img-team" src="/images/userProfilePictures/{{this.picture}}">
-
                         {{this.fullName}}
 
                         {{#if isAdmin}}
                             <a class="btn btn-default pull-right" href="/team/edit/{{team.id}}">
-                                <span class="glyphicon glyphicon-trash"></span>
+                                <span class="glyphicon glyphicon-trash"></span> Remove
                             </a>
                         {{/if}}
                         <hr>
                     {{/each}}
 
                     {{#if isAdmin}}
-                        <button class="btn btn-default pull-right" href="/team/edit/{{team.id}}">
+                        <button class="btn btn-default " href="/team/edit/{{team.id}}">
                             <span class="glyphicon glyphicon-plus"></span> Add User
                         </button>
                     {{/if}}
                 </div>
-
-
-
             </div>
-
-        </div>
+        {{/if}}
 
         <!--  Back Button -->
-        <div class="section">
+
+        <div class="col-sm-12">
             <a href="/team/list">
-                <button class="btn btn-default pull-right">
-                    <span class="glyphicon glyphicon-menu-left"></span>
+                <button class="btn btn-default pull-right" style="margin-bottom: 20px">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
                     Back to All Teams
                 </button>
             </a>
         </div>
+
     </div>
-    {{/if}}
 </main>

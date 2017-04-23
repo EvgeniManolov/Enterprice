@@ -44,9 +44,9 @@
 
 <main>
 
-    <ol class="container breadcrumb transparent" style="margin-top: 40px; margin-bottom: 0px">
-        <li><a href="/project/list">My projects</a></li>
-        <li class="active">Project details</li>
+    <ol class="container breadcrumb transparent">
+        <li><a href="/project/list">Home</a></li>
+        <li class="active">{{project.projectName}}</li>
     </ol>
 
 {{#if user}}
@@ -54,35 +54,34 @@
     <div class="container">
 
         <!-- Project Name + Client -->
-        <div class="col-xs-12">
-            <div class="col-lg-9 col-md-8 col-sm-7 section">
-                <h2>{{project.projectName}}</h2>
-                <p>{{project.projectCustomer.customerName}}  |  {{project.date}}</p>
-            </div>
-
-            <!-- Cancel Project Button -->
-            <div class="col-lg-3 col-md-4 col-sm-5 section">
-                <div class="row">
-                    <br>
-                    {{#if isAdmin}}
-                        {{#if project.projectActive}}
-                            <button id="cancelProject" class="btn btn-success pull-right" onclick="cancelProject()" value="{{project.id}}">
-                                <span class="glyphicon glyphicon-remove"></span>
-                                Cancel Project
-                            </button>
+        <div class="col-sm-12">
+            <div class="page-header">
+                <div class="col-xs-3 pull-right">
+                    <div class="row">
+                        {{#if isAdmin}}
+                            {{#if project.projectActive}}
+                                <a id="cancelProject" class="btn btn-success pull-right" onclick="cancelProject()" value="{{project.id}}">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                    Cancel Project
+                                </a>
+                            {{/if}}
                         {{/if}}
-                    {{/if}}
-                    {{#if project.projectActive}}
-                        <a href="/project/expenses/{{project.id}}">
-                            <button class="btn btn-default pull-right">
-                                <span class="glyphicon glyphicon-usd"></span>
-                                Manage Expenses
-                            </button>
-                        </a>
-                    {{/if}}
-                </div>
-            </div>
 
+                        {{#if project.projectActive}}
+                            <a href="/project/expenses/{{project.id}}">
+                                <a class="btn btn-default pull-right">
+                                    <span class="glyphicon glyphicon-usd"></span>
+                                    Manage Expenses
+                                </a>
+                            </a>
+                        {{/if}}
+                    </div>
+
+                </div>
+                <h1>{{project.projectName}}</h1>
+                <p>{{project.projectCustomer.customerName}} &nbsp; <span class="glyphicon glyphicon-menu-right"></span> &nbsp; {{project.date}}</p>
+
+            </div>
         </div>
 
         <!-- Left Section -->
@@ -164,7 +163,6 @@
         <!-- Right Section -->
         <div class="col-lg-9 col-md-12">
             <div class="row">
-                <hr>
                 <!-- Project Description Short-->
                 <div id="shortDescription" class="col-sm-12">
 
@@ -175,7 +173,6 @@
 
                 <!-- Project Description Long-->
                 <div id="longDescription" class="col-sm-12" hidden>
-                    <hr>
                     <h5>Description</h5>
                     <p>{{project.projectDescription}}</p>
                     <button id="showLessButton" class="btn btn-xs btn-default center">Show less</button>
@@ -345,7 +342,7 @@
             <div class="section">
                 <a href="/project/list">
                     <button class="btn btn-default pull-right">
-                        <span class="glyphicon glyphicon-menu-left"></span>
+                        <span class="glyphicon glyphicon-chevron-left"></span>
                         Back to All Projects
                     </button>
                 </a>

@@ -1,26 +1,17 @@
 
 <main>
+
+    <ol class="container breadcrumb transparent">
+        <li><a href="/project/list">Home</a></li>
+        <li class="active">My Profile</li>
+    </ol>
+
+
     {{#if user}}
     <div class="container">
 
-        <!--  User Picture - Left Side -->
-        <!--<div class="col-md-3 col-sm-4 section">
-            <img class="img-responsive" src="/images/lora.jpg">
-            <hr>
-            <div class="section">
-                <form>
-                    <div class="form-group">
-                        <label for="addPicture"><p>Change account picture</p></label>
-                        <input type="file" id="addPicture">
-                    </div>
-                </form>
-            </div>
-
-        </div>-->
-
         <!--  User Data - Left Side -->
-        <div class="col-sm-6 section">
-
+        <div class="col-sm-4 section">
 
             <div class="container-border col-xs-12 section">
 
@@ -30,8 +21,8 @@
                 <form class="form-inline" action="/picture/upload" method="POST" enctype="multipart/form-data">
 
                     <div class="col-xs-8">
-                        <span class="glyphicon glyphicon-folder-open"></span>
-                        <label for="upload-photo">Change account picture</label>
+                        <!--<span class="glyphicon glyphicon-folder-open"></span>
+                        <label for="upload-photo">Change account picture</label>-->
                         <input type="file" name="image" id="upload-photo">
                     </div>
                     <div class="col-xs-4">
@@ -62,7 +53,7 @@
         </div>
 
         <!--  User Additional - Right Side -->
-        <div class="col-sm-6 section">
+        <div class="col-sm-8 section">
 
             <!--  User Projects  -->
             <div class="container-border section">

@@ -20,7 +20,7 @@ module.exports = {
             }
             if (isAdmin) {
                 User.find({}).then(users=>{
-                    res.render('team/create', {users:users})
+                    res.render('team/create', {users:users, isAdmin: isAdmin})
                 })
             } else {
                 res.render('home/index', {error: 'Access denied!'})

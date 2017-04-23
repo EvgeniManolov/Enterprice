@@ -21,113 +21,114 @@
 
 <main>
 
-    <ol class="container breadcrumb transparent" style="margin-top: 40px; margin-bottom: 0px">
-        <li><a href="/project/list">My projects</a></li>
-        <li class="active">Create project</li>
+    <ol class="container breadcrumb transparent">
+        <li><a href="/project/list">Home</a></li>
+        <li class="active">Create New Project</li>
     </ol>
 
-    {{#if user}}
+
     <div class="container">
-        <form class="form-horizontal" method="post" action="/project/create">
-            <fieldset>
 
-                <div class="col-lg-12">
-                    <h2>Create project</h2>
-                    <hr>
-                </div>
+        <div class="page-header">
+            <h1>New Project</h1>
+        </div>
 
-                <!-- Name -->
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="projectName">Name</label>
-                    <div class="col-sm-4 ">
-                        <input type="text" class="form-control" id="projectName" name="projectName" required >
-                    </div>
-                </div>
+        <div class="col-sm-6">
+            <form class="form-horizontal" method="post" action="/project/create">
+                <fieldset>
 
-                <!-- Description -->
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="projectDescription">Description</label>
-                    <div class="col-sm-4" >
-                        <textarea class="form-control" rows="5" id="projectDescription" placeholder="" name="projectDescription" required ></textarea>
-                    </div>
-                </div>
-
-                <!-- Customer -->
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="projectCustomer">Customer</label>
-                    <div class="col-sm-4 ">
-                        <div class="row-fluid">
-                            <select class="form-control" id="projectCustomer" name="projectCustomer" required data-live-search="true">
-                                <option ></option>
-                                {{#each customers}}
-                                    <option >{{this.customerName}}</option>
-                                {{/each}}each}}
-                            </select>
+                    <!-- Name -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="projectName">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="projectName" name="projectName" required >
                         </div>
                     </div>
-                </div>
 
-                <!-- Project Price -->
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="projectPrice">Price</label>
-                    <div class="col-sm-4 ">
-                        <input type="number" min="0" class="form-control" id="projectPrice" placeholder="" name="projectPrice" required >
-                    </div>
-                </div>
-
-                <!-- Expences -->
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="projectExpenses">Expenses</label>
-                    <div class="col-sm-4 ">
-                        <input type="number" min="0" class="form-control" id="projectExpenses" placeholder="" name="projectExpenses" required >
-                    </div>
-                </div>
-
-                <!-- Workin Hours Provision -->
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="projectWorkingHours">Working hours provision</label>
-                    <div class="col-sm-4 ">
-                        <input type="number" min="0" class="form-control" id="projectWorkingHours" placeholder="" name="projectWorkingHours" required >
-                    </div>
-                </div>
-
-                <!-- Team -->
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="projectTeam">Team</label>
-                    <div class="col-sm-4">
-                        <div class="row-fluid">
-                            <select class="selectpicker form-control" id="projectTeam" name="projectTeam" required data-live-search="true">
-                                <option ></option>
-                                {{#each teams}}
-                                    <option >{{this.teamName}}</option>
-                                {{/each}}each}}
-                            </select>
+                    <!-- Description -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="projectDescription">Description</label>
+                        <div class="col-sm-10" >
+                            <textarea class="form-control" rows="5" id="projectDescription" placeholder="" name="projectDescription" required ></textarea>
                         </div>
                     </div>
-                </div>
 
-                <!-- Due Date -->
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="projectDueDate">Due date</label>
-                    <div class="col-sm-4 ">
-                        <input type="date" min="" class="form-control" id="projectDueDate" placeholder="" name="projectDueDate" required >
+                    <!-- Customer -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="projectCustomer">Customer</label>
+                        <div class="col-sm-10">
+                            <div class="row-fluid">
+                                <select class="form-control" id="projectCustomer" name="projectCustomer" required data-live-search="true">
+                                    <option ></option>
+                                    {{#each customers}}
+                                        <option >{{this.customerName}}</option>
+                                    {{/each}}each}}
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Buttons -->
-                <div class="form-group">
-                    <div class="col-sm-4 col-sm-offset-4">
-                        <a class="btn btn-default" href="./../project/list">
-                            Cancel
-                        </a>
-                        <button type="submit" class="btn btn-primary" id="projectCreated">Create project</button>
-
+                    <!-- Project Price -->
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="projectPrice">Price</label>
+                        <div class="col-sm-4 ">
+                            <input type="number" min="0" class="form-control" id="projectPrice" placeholder="" name="projectPrice" required >
+                        </div>
                     </div>
-                </div>
-            </fieldset>
-        </form>
+
+                    <!-- Expences -->
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="projectExpenses">Expenses</label>
+                        <div class="col-sm-4 ">
+                            <input type="number" min="0" class="form-control" id="projectExpenses" placeholder="" name="projectExpenses" required >
+                        </div>
+                    </div>
+
+                    <!-- Workin Hours Provision -->
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="projectWorkingHours">Working hours provision</label>
+                        <div class="col-sm-4 ">
+                            <input type="number" min="0" class="form-control" id="projectWorkingHours" placeholder="" name="projectWorkingHours" required >
+                        </div>
+                    </div>
+
+                    <!-- Team -->
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="projectTeam">Team</label>
+                        <div class="col-sm-4">
+                            <div class="row-fluid">
+                                <select class="selectpicker form-control" id="projectTeam" name="projectTeam" required data-live-search="true">
+                                    <option ></option>
+                                    {{#each teams}}
+                                        <option >{{this.teamName}}</option>
+                                    {{/each}}each}}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Due Date -->
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="projectDueDate">Due date</label>
+                        <div class="col-sm-4 ">
+                            <input type="date" min="" class="form-control" id="projectDueDate" placeholder="" name="projectDueDate" required >
+                        </div>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-4">
+                            <a class="btn btn-default" href="./../project/list">
+                                Cancel
+                            </a>
+                            <button type="submit" class="btn btn-primary" id="projectCreated">Add Project Tasks</button>
+
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
     </div>
-        {{/if}}
 </main>
 
 

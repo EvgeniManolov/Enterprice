@@ -188,14 +188,19 @@
 
 <main>
 
-    <ol class="container breadcrumb transparent" style="margin-top: 40px; margin-bottom: 0px">
-        <li><a href="/project/list">My projects</a></li>
-        <li><a href="/project/details/{{task.taskProjectId.id}}">Project details</a></li>
-        <li class="active">Task details</li>
+    <ol class="container breadcrumb transparent">
+        <li><a href="/project/list">Home</a></li>
+        <li><a href="/project/create">Create New Project</a></li>
+        <li class="active">Add Project Tasks</li>
     </ol>
 
-    {{#if user}}
+
     <div class="container">
+
+        <div class="page-header">
+            <h1>{{task.taskProjectId.projectName}}</h1>
+        </div>
+
         <form class="form-horizontal" method="post" action="/task/create" id="tasksForm">
             <fieldset>
 
@@ -306,5 +311,5 @@
 
         </form>
     </div>
-        {{/if}}
+
 </main>

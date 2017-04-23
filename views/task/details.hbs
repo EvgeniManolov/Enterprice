@@ -23,18 +23,17 @@
 
 <main>
 
-    <ol class="container breadcrumb transparent" style="margin-top: 40px; margin-bottom: 0px">
-        <li><a href="/project/list">My projects</a></li>
-        <li><a href="/project/details/{{task.taskProjectId.id}}">Project details</a></li>
-        <li class="active">Task details</li>
+    <ol class="container breadcrumb transparent">
+        <li><a href="/project/list">Home</a></li>
+        <li><a href="/project/details/{{task.taskProjectId.id}}">{{task.taskProjectId.projectName}}</a></li>
+        <li class="active">Tasks &nbsp;/ &nbsp; {{task.taskName}}</li>
     </ol>
 
     {{#if user}}
     <div class="container">
 
-        <div class="col-xs-12">
-            <h2>{{task.taskProjectId.projectName}}</h2>
-            <hr>
+        <div class="page-header">
+            <h1>{{task.taskProjectId.projectName}}</h1>
         </div>
 
         <!-- Left Section -->
@@ -119,17 +118,14 @@
             <hr>
 
             <div class="section">
-                <h5>Task Description</h5>
                 <p>{{task.taskDescription}}</p>
             </div>
 
-
             <!--  New Commit -->
             {{#if task.taskActive}}
-            <div class="section well">
-                <h4>New Task Commit</h4>
-                <hr>
 
+            <div class="section well">
+                <h4 class="text-center">New Commit</h4>
                 <form action="/task/details/{{task.id}}" method="POST">
 
                     <!--  Comment  -->
@@ -155,7 +151,7 @@
             {{#if isThereComments}}
             <!--  Task Commits  -->
             <div class="section">
-                <h5>Commits:</h5>
+                <h5>Task Commits:</h5>
                 {{#each task.taskComment}}
                     <div class="media well">
                         <div class="media-left">
@@ -170,69 +166,11 @@
             </div>
             {{/if}}
 
-            <!--  Modal  -->
-            <!--{{#if task.taskActive}}
-                &lt;!&ndash;  Update Report  &ndash;&gt;
-                <div class="text-center" data-toggle="modal" data-target="#myModal">
-                    <div class="btn btn-primary">
-                        Update
-                    </div>
-                </div>
-
-                &lt;!&ndash; Update Modal &ndash;&gt;
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog" role="document">
-
-                        &lt;!&ndash;  Modal Content  &ndash;&gt;
-                        <div class="modal-content">
-
-                            &lt;!&ndash;  Header  &ndash;&gt;
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">User input</h4>
-                            </div>
-
-                            &lt;!&ndash;  Body  &ndash;&gt;
-                            <div class="modal-body">
-
-                                &lt;!&ndash;  Form  &ndash;&gt;
-                                <form class="form-horizontal" action="/task/details/{{task.id}}" method="POST">
-
-                                    &lt;!&ndash;  Comment  &ndash;&gt;
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-2" for="comment">Comment</label>
-                                        <div class="col-sm-10">
-                                            <textarea rows="4" class="form-control center" id="comment" placeholder="..." name="comment"></textarea>
-                                        </div>
-                                    </div>
-
-                                    &lt;!&ndash;  Hours spent  &ndash;&gt;
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-2" for="hoursSpent">Hours spent</label>
-                                        <div class="col-sm-10">
-                                            <input type="number" class="form-control center" id="hoursSpent" placeholder="..." name="hoursSpent">
-                                        </div>
-                                    </div>
-
-
-                                    &lt;!&ndash;  Submit / Discard  &ndash;&gt;
-                                    <div class="modal-footer">
-
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Add comment</button>
-
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {{/if}}-->
 
             <!--  Back Button  -->
             <a href="/project/details/{{task.taskProjectId._id}}">
                 <button class="btn btn-default pull-right">
-                    <span class="glyphicon glyphicon-menu-left"></span>
+                    <span class="glyphicon glyphicon-chevron-left"></span>
                     Back to Project
                 </button>
             </a>

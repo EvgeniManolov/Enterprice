@@ -9,10 +9,10 @@
 
 <main>
 
-    <ol class="container breadcrumb transparent" style="margin-top: 40px; margin-bottom: 0px">
-        <li><a href="/project/list">My projects</a></li>
-        <li><a href="/project/details/{{project.id}}">Project details</a></li>
-        <li class="active">Manage expenses</li>
+    <ol class="container breadcrumb transparent">
+        <li><a href="/project/list">Home</a></li>
+        <li><a href="/project/details/{{project.id}}">{{project.projectName}}</a></li>
+        <li class="active">Manage Expenses</li>
     </ol>
 
     {{#if user}}

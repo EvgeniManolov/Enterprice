@@ -1,4 +1,11 @@
 <main>
+
+    <ol class="container breadcrumb transparent">
+        <li><a href="/project/list">Home</a></li>
+        <li><a href="/team/list">All Teams</a></li>
+        <li class="active">{{team.teamName}}</li>
+    </ol>
+
     {{#if user}}
     <div class="container">
         <form class="form-horizontal" method="post" action="">

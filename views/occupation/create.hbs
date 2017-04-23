@@ -1,12 +1,21 @@
 
 <main>
+
+    <ol class="container breadcrumb transparent">
+        <li><a href="/project/list">Home</a></li>
+        <li><a href="/rate/list">Manage rates</a></li>
+        <li class="active">New Occupation</li>
+    </ol>
+
     {{#if user}}
         <div class="container">
 
+            <div class="page-header">
+                <h1>New occupation</h1>
+            </div>
+
             <form class="form-horizontal" method="post" action="/occupation/create">
                 <fieldset>
-
-                    <legend>Create occupation</legend>
 
                     <!-- Enter Name -->
                     <div class="form-group">

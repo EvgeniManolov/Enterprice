@@ -1,12 +1,17 @@
 
 <main>
+
+    <ol class="container breadcrumb transparent">
+        <li><a href="/project/list">Home</a></li>
+        <li class="active">All Customers</li>
+    </ol>
+
     {{#if user}}
     <!--  Body  -->
     <div class="container">
 
-        <div class="col-lg-12">
-            <h2>Customers</h2>
-            <hr>
+        <div class="page-header">
+            <h1>Customers</h1>
         </div>
 
         <!-- Left Section -->
@@ -54,7 +59,7 @@
                                 {{this.customerAddress}}</div>
                             </div>
 
-                            <a href="/userViews/details/{{this.id}}" class="btn-sm pull-right">
+                            <a href="/customer/details/{{this.id}}" class="btn-sm pull-right">
                                 More&nbsp<span class="glyphicon glyphicon-chevron-right"></span>
                             </a>
 
