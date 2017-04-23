@@ -1,35 +1,42 @@
 <main>
+
     {{#if user}}
-    <div class="container">
-        <form class="form-horizontal" method="post" action="">
-            <fieldset>
+        <ol class="container breadcrumb transparent">
+            <li><a href="/project/list">Home</a></li>
+            <li><a href="/team/list">All Teams</a></li>
+            <li class="active">{{team.teamName}}</li>
+        </ol>
 
-                <legend>Edit Team</legend>
+        <div class="container">
+            <form class="form-horizontal" method="post" action="">
+                <fieldset>
 
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="customerName">Team Name</label>
-                    <div class="col-sm-4 ">
-                        <input type="text" class="form-control" disabled id="customerName" placeholder="" value="{{team.teamName}}" name="customerName" required >
+                    <legend>Edit Team</legend>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="customerName">Team Name</label>
+                        <div class="col-sm-4 ">
+                            <input type="text" class="form-control" disabled id="customerName" placeholder="" value="{{team.teamName}}" name="customerName" required >
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="customerPhone">Users </label>
-                    <div class="col-sm-4 ">
-                        <input type="text" class="form-control" id="customerPhone" placeholder="" value="{{team.userID.fullName}}" name="customerPhone" required >
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="customerPhone">Users </label>
+                        <div class="col-sm-4 ">
+                            <input type="text" class="form-control" id="customerPhone" placeholder="" value="{{team.userID.fullName}}" name="customerPhone" required >
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <div class="col-sm-4 col-sm-offset-4">
-                        <a class="btn btn-default" href="/team/list">
-                            Back
-                        </a>
-                        <button type="submit" href="/team/edit/{{id}}" class="btn btn-success">Edit</button>
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-4">
+                            <a class="btn btn-default" href="/team/list">
+                                Back
+                            </a>
+                            <button type="submit" href="/team/edit/{{id}}" class="btn btn-success">Edit</button>
+                        </div>
                     </div>
-                </div>
-            </fieldset>
-        </form>
-    </div>
+                </fieldset>
+            </form>
+        </div>
     {{/if}}
 </main>

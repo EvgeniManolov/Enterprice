@@ -1,45 +1,60 @@
 
 <main>
     {{#if user}}
-    <div class="container">
 
-        <!--  User Picture - Right Side -->
-        <div class="col-sm-4 section">
+        <ol class="container breadcrumb transparent">
+            <li><a href="/project/list">Home</a></li>
+            <li><a href="/userViews/list">All Users</a></li>
+            <li class="active">{{userData.fullName}}</li>
+        </ol>
 
-            <div class="section">
-                <div class="well white">
-                    <img class="img-user" src="/images/userProfilePictures/{{userData.picture}}">
+        <div class="container">
 
-                    <!--  Name  -->
-                    <h3>{{userData.fullName}}</h3><hr>
+            <!--  User Picture - Right Side -->
+            <div class="col-sm-4 section">
 
-                    <!--  User Info  -->
-                    <p>
-                        <span class="glyphicon glyphicon-earphone"></span>
-                    {{userData.phone}}<hr>
+                <div class="section">
+                    <div class="well white">
+                        <img class="img-user" src="/images/userProfilePictures/{{userData.picture}}">
 
-                    <span class="glyphicon glyphicon-envelope"></span>
-                    {{userData.email}}<hr>
+                        <!--  Name  -->
+                        <h3>{{userData.fullName}}</h3><hr>
 
-                    <span class="glyphicon glyphicon-map-marker"></span>
-                    {{userData.address}}
-                    </p>
+                        <!--  User Info  -->
+                        <p>
+                            <span class="glyphicon glyphicon-earphone"></span>
+                            {{userData.phone}}<hr>
 
+                            <span class="glyphicon glyphicon-envelope"></span>
+                            {{userData.email}}<hr>
+
+                            <span class="glyphicon glyphicon-map-marker"></span>
+                            {{userData.address}}
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!--  User Additional - Right Side -->
-        <div class="col-sm-8 section">
+            <!--  User Additional - Right Side -->
+            <div class="col-sm-8 section">
 
-            <!--  User Projects  -->
-            <div class="container-border section">
-                <div class="well">
-                    <h3>Assigned Projects</h3>
-                    <hr>
+                <!--  User Projects  -->
+                <div class="container-border section">
+                    <div class="well">
+                        <h3>Assigned Projects</h3>
+                        <hr>
 
                     <!--  Projects List  -->
                     <p>
+<<<<<<< .mine
+                        {{#each projects}}
+                            <span class="glyphicon glyphicon-star"></span>
+                            {{this.projectName}}<button class="btn-sm btn-default pull-right">View</button><hr>
+                        {{/each}}
+                        </p>
+                    </div>
+
+=======
                     {{#each projects}}
                         <span class="glyphicon glyphicon-star"></span>
                         {{this.projectName}}<a href="/project/details/{{this.id}}" class="btn-sm pull-right">
@@ -47,14 +62,14 @@
                     <hr>
                     </p>
                     {{/each}}
+>>>>>>> .theirs
                 </div>
-            </div>
 
-            <!--  User Teams  -->
-            <div class="">
-                <div class="well">
-                    <h3>Assigned Teams</h3>
-                    <hr>
+                <!--  User Teams  -->
+                <div class="">
+                    <div class="well">
+                        <h3>Assigned Teams</h3>
+                        <hr>
 
                     <!--  Teams List  -->
                     <p>
@@ -68,6 +83,5 @@
                 </div>
             </div>
         </div>
-    </div>
     {{/if}}
 </main>

@@ -8,9 +8,8 @@ body {
 	src: url(sansation_light.woff);
 }
 main {
-	margin-top: 20px;
+	margin-top: 70px;
 }
-
 
 @media (max-width: 1199px) {
 	.disappear {
@@ -34,8 +33,37 @@ main {
 }
 
 /* -------------------------------------
+ * Typography
+ * ------------------------------------- */
+h1 {
+	font-size: 36px;
+
+}
+h2{
+	margin: 0.8em 0 0.3em 0;
+	line-height: 1.2em;
+}
+h4{
+	margin: 0.3em 0 0.8em 0;
+	line-height: 1.2em;
+}
+
+h6 {
+	margin: 2em 0 1em 0em;
+	line-height: 1.2em;
+}
+
+
+/* -------------------------------------
  * Containers
  * ------------------------------------- */
+
+.page-header {
+	padding: 5px 0 15px 0;
+	margin: 15px 15px 40px 15px;
+	border-bottom: 1px solid #eeeeee;
+}
+
 .nav-container {
 	background-color: #ffffff;
 	margin-bottom: -10px !important;
@@ -45,8 +73,7 @@ main {
 	margin-bottom: 20px;
 }
 .section {
-	margin-top: 1%;
-		margin-bottom: 5%;
+	margin: 15px 0 30px 0;
 }
 .center {
 	margin: auto;
@@ -59,6 +86,10 @@ main {
 	border-radius: 4px;
 	margin-bottom: 20px;
 	overflow: hidden;
+}
+.breadcrumb {
+	margin-top: 40px;
+	margin-bottom: 0px;
 }
 
 /* -------------------------------------
@@ -214,7 +245,8 @@ main {
 	transition: .5s ease-in-out;
 
 }
-.thumbnail:hover .btn-sm .glyphicon {
+.thumbnail:hover .btn-sm .glyphicon,
+.glyphicon {
 	color: #c30019;
 	transition: .5s ease-in-out;
 }
@@ -451,47 +483,29 @@ li:hover .caret{
 
 
 /* -------------------------------------
- * Typography
- * ------------------------------------- */
-h1 {
-	margin: 0.6em 0 1em 0;
-	line-height: 1.2em;
-}
-
-h6 {
-	margin: 2em 0 1em 0.5em;
-	line-height: 1.2em;
-}
-
-h2{
-	margin: 0.8em 0 0.3em 0;
-	line-height: 1.2em;
-}
-
-
-/* -------------------------------------
  * Forms & Inputs
  * ------------------------------------- */
-.form-control {
+.form-control,
+.form-control-tasks {
 	display: block;
 	width: 100%;
-	height: 50px;
+	height: 60px !important;
 	padding: 6px 16px;
 	font-size: 14px;
 	line-height: 1.846;
 	color: #666666;
-	background-color: transparent;
-	background-image: none;
-	border: 1px solid transparent;
-	border-radius: 3px;
-	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-	-webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+	border: 1px solid #e5e5e5 !important;
+	border-radius: 3px !important;
 }
 .form-group {
-	margin-bottom: 25px;
+	margin-bottom: 20px;
+}
+select,
+select.form-control {
+	-webkit-box-shadow: inset 0 0px 0 #dddddd;
+	box-shadow: inset 0 0px 0 #dddddd;
+	font-size: 16px;
+	line-height: 1.5;
 }
 .input[type=text]  {
 	width: 100px;
@@ -502,31 +516,28 @@ h2{
 	background-color: #f9f9f9;
 }
 textarea:focus,
-select.form-control:focus,
 textarea.form-control:focus,
+select.form-control:focus,
 input.form-control:focus,
 input[type=text]:focus,
 input[type=password]:focus,
 input[type=email]:focus,
 input[type=number]:focus,
-select:focus,
 [type=text].form-control:focus,
 [type=password].form-control:focus,
 [type=email].form-control:focus,
 [type=tel].form-control:focus,
 [contenteditable].form-control:focus {
-	-webkit-box-shadow: inset 0 -2px 0 #c30019;
-	box-shadow: inset 0 -1px 0 #c30019;
-	transition: .5s ease-in-out;
+	-webkit-box-shadow: inset 0 -1px 0 #4dc370;
+	box-shadow: inset 0 -1px 0 #4dc370;
+	background-color: #fff;
 }
 .filters-container {
 	padding: 0 0;
 	margin: 0 0 2% 0;
 }
 .filters-container input {
-	background-color: #fff;
 	border-radius: 4px;
-	border: 1px solid #f1f1f1 !important;
 	width: auto;
 	-webkit-transition: width .35s ease-in-out;
 	transition: width .35s ease-in-out;
@@ -541,13 +552,15 @@ select:focus,
 }
 input[type="file"] {
 	padding: 10px 0;
-	max-width: 100px;
-	overflow: hidden;
 }
 input[type="file"]:focus,
 input[type="radio"]:focus,
 input[type="checkbox"]:focus {
 	outline: none;
+}
+
+input[type="file"] .btn {
+	padding: 10px 0;
 }
 
 /* -------------------------------------
@@ -558,7 +571,7 @@ label {
 	/* Style as you please, it will become the visible UI component. */
 }
 #upload-photo {
-	opacity: 0;
+	opacity: 1;
 }
 
 /* -------------------------------------
@@ -646,7 +659,6 @@ th {
  * ------------------------------------- */
 .form-control {
 	width: 100%;
-	height: 60px;
 	padding: 10px 16px !important;
 	font-size: 13px;
 	line-height: 1.846;
@@ -666,7 +678,6 @@ th {
 }
 .form-control-tasks {
 	width: 100%;
-	height: 60px;
 	padding: 6px 16px !important;
 	font-size: 13px;
 	line-height: 1.846;
@@ -690,6 +701,9 @@ select {
 	border-radius: 2px;
 }
 
+textarea.form-control {
+	height: auto !important;
+}
 
 /* -------------------------------------
  * Elements

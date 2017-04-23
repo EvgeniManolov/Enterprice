@@ -20,7 +20,7 @@ module.exports = {
                 }
 
         if (isAdmin) {
-            res.render('customer/create')
+            res.render('customer/create', {isAdmin: isAdmin})
 
         } else {
             res.render('home/index', {error: 'Access denied!'})
@@ -37,11 +37,18 @@ module.exports = {
 
     allCustomersGet:(req,res) =>{
         Customer.find({}).sort('customerName').then(customers => {
+            let user = req.user;
+            let isAdmin = true;
 
+            Role.findOne({name: 'Admin'}).then(role => {
 
-                res.render('./customer/list', {customers: customers})
+                if (user.roles.indexOf(role._id) == -1) {
+                    isAdmin = false;
+                }
+
+                res.render('./customer/list', {customers: customers, isAdmin: isAdmin})
             });
-
+        });
     },
 
     customerDetailsGet: (req, res)=> {
@@ -77,7 +84,7 @@ module.exports = {
                 let id = req.params.id;
 
                 Customer.findOne({_id:id}).then(customer=>{
-                    res.render('customer/edit', {customer:customer})
+                    res.render('customer/edit', {customer:customer, isAdmin: isAdmin})
                 })
 
             } else {

@@ -19,7 +19,7 @@ module.exports = {
                 isAdmin = false;
             }
             if (isAdmin) {
-                res.render('occupation/create')
+                res.render('occupation/create', {isAdmin: isAdmin})
             } else {
                 res.render('home/index', {error: 'Access denied!'})
             }
@@ -38,9 +38,18 @@ module.exports = {
     occupationsGet: (req, res) => {
 
         Occupation.find({}).then(occupations => {
+            let user = req.user;
+            let isAdmin = true;
 
-            res.render('occupation/list', {occupations: occupations})
-        })
+            Role.findOne({name: 'Admin'}).then(role => {
+
+                if (user.roles.indexOf(role._id) == -1) {
+                    isAdmin = false;
+                }
+
+                res.render('occupation/list', {occupations: occupations, isAdmin: isAdmin})
+            })
+        });
 
     },
 

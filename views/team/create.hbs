@@ -12,52 +12,60 @@ $('#userName').multiselect();
 </script>
 
 <main>
+
     {{#if user}}
-    <div class="container">
 
-        <form class="form-horizontal" method="post" action="/team/create">
-            <fieldset>
+        <ol class="container breadcrumb transparent">
+            <li><a href="/project/list">Home</a></li>
+            <li class="active">Create New Team</li>
+        </ol>
 
-                <legend>Create team</legend>
 
-                <!-- Enter teamName -->
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="customerPhone">Team Name</label>
-                    <div class="col-sm-4 ">
-                        <input type="text" class="form-control" id="teamName" placeholder="Enter team" name="teamName" required >
-                    </div>
-                </div>
+        <div class="container">
 
-                <!-- Select User -->
-                <div class="form-group">
-                    <label class="col-sm-4 control-label " for="userName">User</label>
-                    <div class="col-sm-4 ">
-                        <div class="row-fluid">
-                            <select class="selectpicker form-control" multiple="multiple" id="userName" name="userName"  required data-live-search="true">
-                                {{#each users}}
-                                    <option >
-                                        <div >{{this.fullName}}</div>
-                                    </option>
-                                {{/each}}
-                            </select>
+            <div class="page-header">
+                <h1>New Team</h1>
+            </div>
+
+            <form class="form-horizontal" method="post" action="/team/create">
+                <fieldset>
+
+                    <!-- Enter teamName -->
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="customerPhone">Team Name</label>
+                        <div class="col-sm-4 ">
+                            <input type="text" class="form-control" id="teamName" placeholder="Enter team" name="teamName" required >
                         </div>
                     </div>
-                </div>
 
-                <!-- Submit / Discard -->
-                <div class="form-group">
-                    <div class="col-sm-4 col-sm-offset-4">
-                        <a class="btn btn-default" href="./../project/list">
-                            Cancel
-                        </a>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        <a class="btn btn-success btn-xs" href="/team/edit">Edit &raquo;</a>
+                    <!-- Select User -->
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label " for="userName">User</label>
+                        <div class="col-sm-4 ">
+                            <div class="row-fluid">
+                                <select class="selectpicker form-control" multiple="multiple" id="userName" name="userName"  required data-live-search="true">
+                                    {{#each users}}
+                                        <option >
+                                            <div >{{this.fullName}}</div>
+                                        </option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </fieldset>
-        </form>
 
-    </div>
+                    <!-- Submit / Discard -->
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-4">
+                            <a class="btn btn-default" href="./../project/list">
+                                Cancel
+                            </a>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
     {{/if}}
 </main>
 
