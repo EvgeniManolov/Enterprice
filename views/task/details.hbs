@@ -83,8 +83,12 @@
                     {{/if}}
                     <hr>
 
+                    {{#if task.taskActive}}
                     <span class="glyphicon glyphicon-hourglass"></span>
                     {{task.date}}
+                    {{else}}
+                    <p>Completed on {{task.date}}</p>
+                    {{/if}}
                     <hr>
 
                     <span class="glyphicon glyphicon-user"></span>

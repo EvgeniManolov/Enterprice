@@ -372,6 +372,10 @@ a:hover {
 	margin-bottom: 10px;
 }
 
+.label-warning {
+	padding: 3px 3px !important;
+	font-size: 14px;
+}
 
 /* -------------------------------------
  * Progress Bars
