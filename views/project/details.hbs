@@ -68,10 +68,10 @@
 
                             {{#if project.projectActive}}
                                 <a href="/project/expenses/{{project.id}}">
-                                    <a class="btn btn-default pull-right">
+                                    <button class="btn btn-default pull-right">
                                         <span class="glyphicon glyphicon-usd"></span>
                                         Manage Expenses
-                                    </a>
+                                    </button>
                                 </a>
                             {{/if}}
                         </div>
@@ -321,7 +321,7 @@
                             <!-- Task Deadline -->
                             {{#if this.isOverdue}}
                                 {{#if this.taskActive}}
-                                    <td class="col-xs-2 alert-warning" id="taskDeadline" >{{this.date}}</td>
+                                    <td class="col-xs-2" id="taskDeadline" ><span class="label label-warning">{{this.date}}</span></td>
                                 {{else}}
                                     <td class="col-xs-1" id="taskDeadline" >{{this.date}}</td>
                                 {{/if}}
@@ -365,7 +365,6 @@
                     </a>
                 </div>
             </div>
-
-    {{/if}}
+        </div>
     {{/if}}
 </main>
