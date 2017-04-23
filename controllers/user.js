@@ -149,20 +149,52 @@ module.exports = {
 
         let userID = req.params.id; //take user id, then populate 'team (as object => this.team.name)'
 
-        User.findOne({_id : userID }).populate('team').then(userData => {
+        let selectedProjects = []; //these are the projects for a specific user
+        let selectedTeams = []; //these are the teams for a specific user
 
-            let user = req.user;
-            let isAdmin = true;
+        Project.find({}).populate('projectTeam').then(projects => {
 
-            Role.findOne({name: 'Admin'}).then(role => {
+            /* filter only projects where current user is a member of the team */
+            for (let i = 0; i < projects.length; i++) {
+                for (let j = 0; j < projects[i].projectTeam.userID.length; j++) {
+                    if (projects[i].projectTeam.userID[j] == userID) {
+                        selectedProjects.push(projects[i])
+                    }
+                }
+            }
 
-                if (user.roles.indexOf(role._id) == -1) {
-                    isAdmin = false;
+            Team.find({}).then(teams => {
+
+                /* filter only projects where current user is a member of the team */
+                for (let i = 0; i < teams.length; i++) {
+
+                    for (let j = 0; j < teams[i].userID.length; j++) {
+                        if (teams[i].userID[j] == userID) {
+
+                            selectedTeams.push(teams[i])
+                        }
+                    }
                 }
 
-                res.render('userViews/details', {userData: userData, isAdmin: isAdmin})
-            })
-        });
+                User.findOne({_id: userID}).populate('team').then(userData => {
+
+                    let user = req.user;
+                    let isAdmin = true;
+
+                    Role.findOne({name: 'Admin'}).then(role => {
+
+                        if(user.roles.indexOf(role._id) == -1) {
+                            isAdmin = false;
+                        }
+                        if (!isAdmin){
+                            teams=selectedTeams;
+                            projects=selectedProjects;
+                        }
+                        res.render('userViews/details',{userData: userData, projects:projects,selectedProjects, teams:teams, isAdmin: isAdmin} );
+                    })
+
+                })})})
+
     },
 
     profileGet: (req, res) => {           // TO BE DELETED
@@ -237,5 +269,39 @@ module.exports = {
                 }
             })
         }
+<<<<<<< .mine
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=======
+        },
+    editUserData:(req,res) =>{
+        let userID = req.user.id;
+        let userArgs = req.body;
+
+        User.findOne({ _id:userID }).then( user => {
+
+            user.phone = userArgs.phone;
+            user.email = userArgs.email;
+            user.address = userArgs.address;
+            user.save()
+        })
+
+
+
+    }
+>>>>>>> .theirs
 };
