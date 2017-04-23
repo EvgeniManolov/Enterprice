@@ -44,14 +44,25 @@
                         <h3>Assigned Projects</h3>
                         <hr>
 
-                        <!--  Projects List  -->
-                        <p>
+                    <!--  Projects List  -->
+                    <p>
+<<<<<<< .mine
                         {{#each projects}}
                             <span class="glyphicon glyphicon-star"></span>
                             {{this.projectName}}<button class="btn-sm btn-default pull-right">View</button><hr>
                         {{/each}}
                         </p>
                     </div>
+
+=======
+                    {{#each projects}}
+                        <span class="glyphicon glyphicon-star"></span>
+                        {{this.projectName}}<a href="/project/details/{{this.id}}" class="btn-sm pull-right">
+                        View&nbsp<span class="glyphicon glyphicon-chevron-right"></span></a>
+                    <hr>
+                    </p>
+                    {{/each}}
+>>>>>>> .theirs
                 </div>
 
                 <!--  User Teams  -->
@@ -60,13 +71,15 @@
                         <h3>Assigned Teams</h3>
                         <hr>
 
-                        <!--  Teams List  -->
-                        <p>
-                        {{#each teams}}
-                            <span class="glyphicon glyphicon-star"></span>
-                            {{this.teamName}}<button class="btn-sm btn-default pull-right">View</button><hr>
-                        {{/each}}
-                    </div>
+                    <!--  Teams List  -->
+                    <p>
+                    {{#each teams}}
+                        <span class="glyphicon glyphicon-star"></span>
+                        {{this.teamName}}<a href="/team/details/{{this.id}}" class="btn-sm pull-right">
+                        View&nbsp<span class="glyphicon glyphicon-chevron-right"></span></a>
+                    <hr>
+                    </p>
+                    {{/each}}
                 </div>
             </div>
         </div>
