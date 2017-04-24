@@ -44,16 +44,19 @@ h2{
 	line-height: 1.2em;
 }
 h4{
-	font-size: 20px;
+	font-size: 18px;
 	margin: 0.3em 0 0.6em 0;
 	line-height: 1.2em;
 }
-
 h6 {
+	font-size: 14px;
 	margin: 2em 0 1em 0em;
 	line-height: 1.2em;
 }
-
+label  {
+	font-size: 13px;
+	line-height: 1.4em;
+}
 
 /* -------------------------------------
  * Containers
@@ -86,7 +89,6 @@ h6 {
 	border: 1px solid #ebebeb;
 	border-radius: 4px;
 	margin-bottom: 20px;
-	overflow: hidden;
 }
 .breadcrumb {
 	margin-top: 40px;
@@ -110,6 +112,11 @@ h6 {
 .info-squares .small {
 	font-size: 12px;
 }
+
+.info-squares h5 {
+	font-size: 20px;
+	color: #808080;
+}
 .well {
 	background-color: #f9f9f9;
 }
@@ -121,13 +128,15 @@ h6 {
 	color: #ffffff;
 }
 .red {
-	/*background-color: #d80641;*/
 	background-color: #c30019;
-	color: #ffffff;
+	color: #ffffff !important;
+}
+.red h5 {
+	color: #ffffff !important;
 }
 .white {
 	background-color: #fff;
-	color: #a8a8a8;
+	color: #808080;
 }
 
 /* -------------------------------------
@@ -330,10 +339,10 @@ h6 {
 	margin: 5px 5px;
 }
 .btn-default {
-	border: 0px solid #f9f9f9;
+	border: 0px solid #ededed;
 }
 .btn-default:hover {
-	background-color: #f9f9f9;
+	background-color: #f2f2f2;
 }
 .btn:focus,
 .btn-sm:focus,
@@ -371,7 +380,6 @@ a:hover {
 	margin-top: 30px;
 	margin-bottom: 10px;
 }
-
 
 /* -------------------------------------
  * Progress Bars
@@ -449,13 +457,13 @@ li:hover .caret{
 	float: left;
 	min-width: 200px;
 	padding: 10px 0 6px 0;
-	margin: 2px 0 0 0 !important;
+	margin: 3px 0 0 0 !important;
 	list-style: none;
 	font-size: 13px;
 	text-align: left;
 	background-color: #ffffff;
 	border: 1px solid #ebebeb;
-	border: 1px solid rgba(0, 0, 0, 0.15);
+	/*border: 1px solid rgba(0, 0, 0, 0.15);*/
 	border-radius: 3px;
 	-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
@@ -501,7 +509,7 @@ li:hover .caret{
 	width: 100%;
 	height: 40px !important;
 	padding: 6px 16px;
-	font-size: 14px;
+	font-size: 16	px !important;
 	line-height: 1.846;
 	color: #666666;
 	border: 1px solid #e5e5e5 !important;
@@ -568,7 +576,6 @@ input[type="radio"]:focus,
 input[type="checkbox"]:focus {
 	outline: none;
 }
-
 input[type="file"] .btn {
 	padding: 10px 0;
 }
@@ -576,24 +583,19 @@ input[type="file"] .btn {
 	height: 60px !important;
 	max-width: 50%;
 }
-
 .has-success input {
-
 	-webkit-box-shadow: none !important;
 	box-shadow: none !important;
-	background-color: #f9f9f9;
+	background-color: #fff;
 }
-
 .has-success .form-control:focus {
-	border-color: #038a64;
 	-webkit-box-shadow: inset 0 -1px 0 #4dc370 !important;
 	box-shadow: inset 0 -1px 0 #4dc370 !important;
 }
-
 .input-no-border {
+	font-size: 14px !important;
 	border: none !important;
 }
-
 
 /* -------------------------------------
  * Upload File Control
@@ -634,14 +636,15 @@ label {
 .table > thead > tr > td,
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
-	padding: 20px 16px;
+	padding: 15px 20px;
 	line-height: 1.846;
-	vertical-align: top;
+	vertical-align: middle;
 	border-bottom: 1px solid #dddddd;
 }
 .table {
 	border: 1px solid #dddddd ;
 	background-color: #fff;
+	font-size: 13px;
 }
 th {
 	text-transform: uppercase;
@@ -649,13 +652,20 @@ th {
 	font-size: 11px;
 	letter-spacing: 0.03em;
 	color: #a8a8a8;
+	background-color: #f8f8f8;
 }
 .table p {
 	line-height: 1.5em;
 }
-.table h6 {
-	margin: 0.2em 0 0.5em 0;
+.table h4 {
+	margin: 0.2em 0 0.3em 0;
 	line-height: 1.2em;
+}
+.table h6 {
+	font-size: 13px;
+	margin: 0.2em 0 0.3em 0;
+	line-height: 1.2em;
+	color: #b1b1b1;
 }
 
 /* -------------------------------------
@@ -666,23 +676,23 @@ th {
 	margin-right: 6px;
 }
 .glyphicon-done {
-	font-size: 18px;
+	font-size: 16px;
 	color: #18bc9c;
 	margin: 0 6px;
 }
 .glyphicon-danger {
-	font-size: 18px;
+	font-size: 16px;
 	color: #c30019;
 	margin: 0 6px;
 }
 .glyphicon-active {
-	font-size: 18px;
+	font-size: 16px;
 	color: #c30019;
 	margin: 0 6px;
 }
 .glyphicon-bigger {
 	padding-top: 7px;
-	font-size: 25px;
+	font-size: 16px;
 	margin: 0 6px;
 }
 .panel .panel-heading {

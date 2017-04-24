@@ -51,10 +51,14 @@
 
     <div class="container">
 
-        <!--  User Data - Left Side -->
-        <div class="col-sm-6 col-md-5 section">
+        <div class="page-header">
+            <h1>{{user.fullName}}</h1>
+        </div>
 
-            <div class="container-border col-xs-12 section">
+        <!--  User Data - Left Side -->
+        <div class="col-lg-4 col-md-5 col-sm-6">
+
+            <div class="col-xs-12 col-sm-12 col-md-12 container-border section">
 
                 <!--  Picture  -->
                 <img class="img-user" src="/images/userProfilePictures/{{userData.picture}}">
@@ -67,43 +71,42 @@
                         <input type="file" name="image" id="upload-photo">
                     </div>
                     <div class="col-xs-4">
-                        <button type="submit" class="btn-sm btn-primary pull-right">Upload</button>
+                        <div class="pull-right">
+                            <button type="submit" class="btn-sm btn-primary pull-right">Upload</button>
+                        </div>
+
                     </div>
 
                 </form>
 
                 <!--  Profile Info  -->
-
-                <div class=" col-xs-12 section">
-                    <!--  Name  -->
-                    <h3>{{user.fullName}}</h3><hr>
-
+                <div class="col-xs-12 col-sm-12 col-md-12 section">
                     <!--  User Info  -->
-                    <form class="form-horizontal">
+                    <form class="form-horizontal well">
 
                         <div class="form-group">
-                            <div for="inputPhone" class="col-xs-1 col-sm-2"><span class="glyphicon glyphicon-earphone glyphicon-bigger"></span></div>
+                            <div for="inputPhone" class="col-xs-1 "><span class="glyphicon glyphicon-earphone glyphicon-bigger"></span></div>
                             <div class="col-xs-11 col-sm-10">
                                 <input id="inputPhone" class="form-control input-no-border" type="text" disabled value="{{user.phone}}"/>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <div for="inputEmail" class="col-xs-1 col-sm-2"><span class="glyphicon glyphicon-envelope glyphicon-bigger"></span></div>
+                            <div for="inputEmail" class="col-xs-1 "><span class="glyphicon glyphicon-envelope glyphicon-bigger"></span></div>
                             <div class="col-xs-11 col-sm-10">
                                 <input id="inputEmail" class="form-control input-no-border" type="text" disabled value="{{user.email}}"/>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <div for="inputAddress" class="col-xs-1 col-sm-2"><span class="glyphicon glyphicon-map-marker glyphicon-bigger"></span></div>
+                            <div for="inputAddress" class="col-xs-1 "><span class="glyphicon glyphicon-map-marker glyphicon-bigger"></span></div>
                             <div class="col-xs-11 col-sm-10">
                                 <input id="inputAddress" class="form-control input-no-border" type="text" disabled value="{{user.address}}"/>
                             </div>
                         </div>
                     </form>
 
-                    <div class="form-group pull-right">
+                    <div class="pull-right">
                         <button class="btn-sm btn-default saveButton" disabled>Save</button>
                         <button class="btn-sm btn-primary editButton">Edit</button>
                     </div>
@@ -112,43 +115,50 @@
         </div>
 
         <!--  User Additional - Right Side -->
-        <div class="col-sm-6 col-md-7 section">
+        <div class="col-lg-8 col-md-7 col-sm-6 col-xs-12">
+            <div class="row">
 
-            <!--  User Projects  -->
-            <div class="container-border section">
-                <div class="well">
-                    <h3>My Projects</h3>
-                    <hr>
+                <!--  User Projects  -->
+                <div class="col-sm-12 ">
+                    <h4>My Projects</h4>
+                    <div class="container-border ">
+                        <div class="well white">
 
-                    <!--  Projects List  -->
-                    <p>
-                    {{#each projects}}
-                        <span class="glyphicon glyphicon-star"></span>
-                        {{this.projectName}}<a href="/project/details/{{this.id}}" class="btn-sm pull-right">
-                        View&nbsp<span class="glyphicon glyphicon-chevron-right"></span></a>
-                    <hr>
-                    </p>
-                    {{/each}}
+                            {{#each projects}}
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    {{this.projectName}}<a href="/project/details/{{this.id}}" class="btn-sm pull-right">
+                                    View&nbsp<span class="glyphicon glyphicon-chevron-right"></span></a>
+                                    <hr>
+                                </p>
+                            {{/each}}
+                        </div>
+                    </div>
                 </div>
+
+
+                <!--  User Teams  -->
+                <div class="col-sm-12">
+                    <h4>My Teams</h4>
+
+                    <div class="container-border ">
+                        <div class="well white">
+
+                            {{#each teams}}
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    {{this.teamName}}<a href="/team/details/{{this.id}}" class="btn-sm pull-right">
+                                    View&nbsp<span class="glyphicon glyphicon-chevron-right"></span></a>
+                                    <hr>
+                                </p>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
-            <!--  User Teams  -->
-            <div class="container-border section">
-                <div class="well">
-                    <h3>My Teams</h3>
-                    <hr>
 
-                    <!--  Teams List  -->
-                    <p>
-                    {{#each teams}}
-                        <span class="glyphicon glyphicon-star"></span>
-                        {{this.teamName}}<a href="/team/details/{{this.id}}" class="btn-sm pull-right">
-                        View&nbsp<span class="glyphicon glyphicon-chevron-right"></span></a>
-                    <hr>
-                    </p>
-                    {{/each}}
-                </div>
-            </div>
         </div>
     </div>
     {{/if}}
