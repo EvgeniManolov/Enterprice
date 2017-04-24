@@ -24,8 +24,10 @@ module.exports = {
                 deleteEmptyProjects.deleteEmptyProjects();
             }
 
+
             /* filter only projects where current user is a member of the team */
             for (let i=0; i<projects.length; i++) {
+
                 for (let j=0; j<projects[i].projectTeam.userID.length; j++) {
                     if (projects[i].projectTeam.userID[j] == userID) {
                         selectedProjects.push(projects[i]);
@@ -111,41 +113,41 @@ module.exports = {
 
                 Project.create(projectArgs).then(project => {
 
-                Team.findOne({_id: project.projectTeam}).then(team => {
+                    Team.findOne({_id: project.projectTeam}).then(team => {
 
-                    project.projectTeamName = team.teamName; //A new local temp property with teamName
+                        project.projectTeamName = team.teamName; //A new local temp property with teamName
 
-                    customer.customerProjects.push(project.id); //Add current project to customer's list with projects
-                    customer.save(err => {
-                        if (err) {
-                            res.redirect('/project/list', {error: err.message});
-                        }
+                        customer.customerProjects.push(project.id); //Add current project to customer's list with projects
+                        customer.save(err => {
+                            if (err) {
+                                res.redirect('/project/list', {error: err.message});
+                            }
 
-                        else {
+                            else {
 
-                            team.projects.push(project.id); //Add current project to team's list with projects
-                            team.save(err => {
-                                if (err) {
-                                    res.redirect('/project/list', {error: err.message});
-                                }
+                                team.projects.push(project.id); //Add current project to team's list with projects
+                                team.save(err => {
+                                    if (err) {
+                                        res.redirect('/project/list', {error: err.message});
+                                    }
 
-                                else {
+                                    else {
 
-                                    let user = req.user;
-                                    let isAdmin = true;
+                                        let user = req.user;
+                                        let isAdmin = true;
 
-                                    Role.findOne({name: 'Admin'}).then(role => {
+                                        Role.findOne({name: 'Admin'}).then(role => {
 
-                                        if(user.roles.indexOf(role._id) == -1) {
-                                            isAdmin = false;
-                                        }
+                                            if(user.roles.indexOf(role._id) == -1) {
+                                                isAdmin = false;
+                                            }
 
-                                    res.render('./task/create', {project: project, isAdmin: isAdmin});
-                                })}
-                            });
-                        }
-                    });
-                })
+                                            res.render('./task/create', {project: project, isAdmin: isAdmin});
+                                        })}
+                                });
+                            }
+                        });
+                    })
                 });
             });
         })
@@ -303,22 +305,22 @@ module.exports = {
 
         Role.findOne({name: 'Admin'}).then(role => {
 
-                if(user.roles.indexOf(role._id) == -1) {
-                    isAdmin = false;
-                }
-
-        let projectId = req.params.id;
-
-        Project.findOne({_id: projectId}).then(project => {
-
-            for (let i = 0; i < project.projectExpensesActual.length; i++) {
-                project.projectExpensesActual[i].formattedDate = formatDate.formatDate(project.projectExpensesActual[i].date);
+            if(user.roles.indexOf(role._id) == -1) {
+                isAdmin = false;
             }
 
-            res.render('project/expenses', {project: project, isAdmin: isAdmin})
-        });
+            let projectId = req.params.id;
 
-    })},
+            Project.findOne({_id: projectId}).then(project => {
+
+                for (let i = 0; i < project.projectExpensesActual.length; i++) {
+                    project.projectExpensesActual[i].formattedDate = formatDate.formatDate(project.projectExpensesActual[i].date);
+                }
+
+                res.render('project/expenses', {project: project, isAdmin: isAdmin})
+            });
+
+        })},
 
     expensesCreate: (req, res) => {
         let expenseArgs = req.body;
@@ -352,12 +354,12 @@ module.exports = {
                 isAdmin = false;
             }
 
-        if (isAdmin) {
-            deleteEmptyProjects.deleteEmptyProjects();
-            res.redirect('/project/list')
+            if (isAdmin) {
+                deleteEmptyProjects.deleteEmptyProjects();
+                res.redirect('/project/list')
 
-        } else {
-            res.render('home/index', {error: 'Access denied!'})
-        }
-    })}
+            } else {
+                res.render('home/index', {error: 'Access denied!'})
+            }
+        })}
 };
