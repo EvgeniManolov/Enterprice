@@ -151,6 +151,8 @@ module.exports = {
 
         Task.findOne({_id: taskId}).then(task => {
             task.taskActive = false;
+            var today = new Date;
+            task.taskDeadline = today;
             task.save();
 
             Project.findOne({_id: task.taskProjectId}).then(project => {

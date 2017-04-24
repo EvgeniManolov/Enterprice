@@ -319,15 +319,17 @@
                             </td>
 
                             <!-- Task Deadline -->
-                            {{#if this.isOverdue}}
-                                {{#if this.taskActive}}
+                            {{#if this.taskActive}}
+                                {{#if this.isOverdue}}
                                     <td class="col-xs-2" id="taskDeadline" ><span class="label label-warning">{{this.date}}</span></td>
                                 {{else}}
-                                    <td class="col-xs-1" id="taskDeadline" >{{this.date}}</td>
+                                    <td class="col-xs-2" id="taskDeadline" >{{this.date}}</td>
                                 {{/if}}
-                            {{else}}
-                                <td class="col-xs-1" id="taskDeadline" >{{this.date}}</td>
                             {{/if}}
+
+                            {{#unless this.taskActive}}
+                                <td class="col-xs-2" id="taskDeadline" >Completed</td>
+                            {{/unless}}
 
                             <!-- Update Button -->
 

@@ -130,7 +130,6 @@ module.exports = {
                                 }
 
                                 else {
-                                    project.dateAsNumber = Number(project.projectDueDate); //Convert projectDueDate to a number in order to check if task date is later or earlier than projectDueDate
 
                                     let user = req.user;
                                     let isAdmin = true;
@@ -154,7 +153,6 @@ module.exports = {
 
     projectDetails: (req, res) => {
 
-        console.log('hello')
         let id = req.params.id; //take user id, then populate 'team (as object => this.team.name)'
 
         Project.findOne({'_id' : id }).populate('projectTeam').populate('projectCustomer').populate('projectTasks').then(project => {
