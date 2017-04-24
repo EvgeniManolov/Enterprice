@@ -100,11 +100,9 @@ module.exports = {
         })
     },
 
-    teamDetailsGet:(req,res)=>{
+    teamDetailsGet: (req,res) => {
         let id = req.params.id;
         Team.findOne({_id : id}).populate('userID').then(team=>{
-
-          console.log(team);
 
             let user = req.user;
             let isAdmin = true;
@@ -125,46 +123,32 @@ module.exports = {
       });
     },
 
-    teamEditGet: (req,res) => {
+    teamEditPost: (req, res) => {
 
-        let user = req.user;
-        let isAdmin = true;
+        console.log('here');
 
-        Role.findOne({name: 'Admin'}).then(role => {
+        let teamId = req.params.id;
+        let userParams = req.body;
+        let userId = userParams.userId;
 
-            if(user.roles.indexOf(role._id) == -1) {
-                isAdmin = false;
+        Team.findOne({_id: teamId}).then(team => {
+            var index = team.userID.indexOf(userId);
+
+            if(index != -1) {
+                team.userID.splice(index, 1);
+
+                team.save();
             }
-            if (isAdmin) {
-                let id = req.params.id;
 
-                Team.findOne({'_id' : id }).then(team =>{
-                    res.render('team/edit', {team:team});
-                });
-            } else {
-                res.render('home/index', {error: 'Access denied!'})
-            }
+            User.findOne({_id: userId}).then(user => {
+                index = user.team.indexOf(teamId);
+
+                if(index != -1) {
+                    user.team.splice(index, 1);
+                    user.save();
+                }
+            })
         })
-    },
-    teamEditPost: ( req, res ) =>{
-        let id = req.params.id;
-        let url = '/team/details/'+id;
-        let teamArgs = req.body;
-
-        Team.update({_id:id},{$set:{
-            teamName: teamArgs.teamName,
-            userID: teamArgs.userID
-        }}).then(team=>{
-            console.log(id)
-
-            res.redirect(url);
-        })
-    },
-
-    teamCreateNewPost: (req, res) => {
-        let usersArray = req.body;
-
-        console.log(usersArray);
     }
 };
 
