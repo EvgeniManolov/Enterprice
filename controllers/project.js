@@ -95,6 +95,7 @@ module.exports = {
                     });
                 })
             } else {
+
                 res.render('home/index', {error: 'Access denied!'})
             }
         })
@@ -264,7 +265,6 @@ module.exports = {
     },
 
     projectCancel: (req, res) => {
-
 
         let user = req.user;
         let isAdmin = true;

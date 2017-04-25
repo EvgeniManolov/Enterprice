@@ -59,10 +59,10 @@
                         <div class="row">
                             {{#if isAdmin}}
                                 {{#if project.projectActive}}
-                                    <a id="cancelProject" class="btn btn-success pull-right" onclick="cancelProject()" value="{{project.id}}">
+                                    <button id="cancelProject" class="btn btn-success pull-right" onclick="cancelProject()" value="{{project.id}}">
                                         <span class="glyphicon glyphicon-remove"></span>
                                         Cancel Project
-                                    </a>
+                                    </button>
                                 {{/if}}
                             {{/if}}
 
