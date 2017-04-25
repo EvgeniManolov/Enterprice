@@ -24,5 +24,5 @@ module.exports.seedAdminOccupation = () => {
                 console.log('Admin occupation seeded successfully!')
             })
         }
-    })
+    });
 }

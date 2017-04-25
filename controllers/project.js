@@ -215,6 +215,8 @@ module.exports = {
             /* Calculate labour cost planned which is derived by multiplying average rate for the team and planned working hours*/
             User.find().then(users => {
 
+                console.log(users);
+
                 let projectUsers = [];
                 for (let i = 0; i < users.length; i++) {
 
@@ -223,6 +225,7 @@ module.exports = {
                     }
                 }
 
+                console.log(projectUsers);
                 let usersCount = projectUsers.length;
 
                 let tempRate = 0;
@@ -232,7 +235,11 @@ module.exports = {
 
                 let averageRate = tempRate / usersCount;
 
+    console.log(tempRate);
+    console.log(usersCount);
+    console.log(averageRate);
                 project.labourCostPlanned = averageRate * project.projectWorkingHours;
+    console.log(project.labourCostPlanned);
 
                 /* Introducing a new temp property taskCount*/
                 let taskCount = project.projectTasks.length;
