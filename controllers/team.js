@@ -193,7 +193,7 @@ module.exports = {
         let teamId = req.params.id;
         let users = req.body;
 
-        if (users.userName.length == 1) {
+        if (!Array.isArray(users.userName)) {
             addTeamMember.addTeamMember(users.userName, teamId)
         } else {
             for (let i = 0; i < users.userName.length; i++) {
