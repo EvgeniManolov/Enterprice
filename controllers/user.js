@@ -255,7 +255,7 @@ module.exports = {
                     teams=selectedTeams;
                     projects=selectedProjects;
                 }
-                res.render('userViews/profile',{userData: userData, projects:projects,selectedProjects, teams:teams, isAdmin: isAdmin} );
+                res.render('userViews/profile',{userData: userData, projects:projects, teams:teams, isAdmin: isAdmin} );
             })
 
         })
