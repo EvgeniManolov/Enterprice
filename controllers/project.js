@@ -69,8 +69,6 @@ module.exports = {
                 if(user.roles.indexOf(role._id) == -1) {
                     isAdmin = false;
                 }
-
-                console.log(selectedProjects);
                 res.render('./project/list', {projects: projects, isAdmin: isAdmin, selectedProjects: selectedProjects});
             })
 
