@@ -64,9 +64,9 @@
                         <li><a href="/customer/list">Customers</a></li>
                         <li id="usersView"><a href="/userViews/list">Users</a></li>
                     </ul>
-
                 </div><!-- /.navbar-collapse -->
             </div>
+            <h4 class="text-center" style="color: #6c000e; font-weight: bold">{{error}}<h4>
         </nav>
 
         <!-- Add Content Buttons -->
@@ -79,11 +79,13 @@
                     <a class="btn btn-default" href="/rate/list"><span class="glyphicon glyphicon glyphicon-usd"></span> User Rates</a>
                 </div>
             </div>
+
+
         {{/if}}
     </header>
 {{/if}}
 
-{{#if error }}
+{{#if error}}
     <div class="text-center">
         <h4>{{error}}</h4>
     </div>

@@ -2,6 +2,7 @@
  * Created by User on 01/04/2017.
  */
 const formatDate = require('./../utilities/formatDate');
+const addTeamMember = require('./../utilities/addTeamMember');
 
 const Team = require('mongoose').model('Team');
 const User = require('mongoose').model('User');
@@ -117,29 +118,49 @@ module.exports = {
                 }
             })
 
-        Team.findOne({_id : id}).populate('userID').then(team=>{
 
-            let user = req.user;
-            let isAdmin = true;
+        User.find().then(users => {
+            Team.findOne({_id : id}).populate('userID').then(team=>{
 
-            Role.findOne({name: 'Admin'}).then(role => {
+                let user = req.user;
+                let isAdmin = true;
 
-                if(user.roles.indexOf(role._id) == -1) {
-                    isAdmin = false;
-                }
+                Role.findOne({name: 'Admin'}).then(role => {
 
-                for ( let i = 0; i < team.userID.length; i++){
+                    if(user.roles.indexOf(role._id) == -1) {
+                        isAdmin = false;
+                    }
 
-                    team.userID[i].isAdmin = isAdmin;
-                }
 
+                    for (let i = 0; i < users.length; i++) {
+                        let currentUser = users[i];
+                        for (let j=0; j<team.userID.length; j++) {
+                            let currentMember = team.userID[j];
+                            if (currentUser.fullName == currentMember.fullName) {
+                                let index = users.indexOf(currentUser);
+                                users.splice(index, 1);
+                                i--;
+                            }
+                        }
+                    }
+
+
+                    for ( let i = 0; i < team.userID.length; i++){
+
+                        team.userID[i].isAdmin = isAdmin;
+                    }
+
+                    res.render('./team/details',{team: team, isAdmin: isAdmin, users: users});
+                });
+            });
+        })
               res.render('./team/details',{team:team, isAdmin : isAdmin, selectedProjects:selectedProjects});
           });
       });
     },
 
-    teamEditPost: (req, res) => {
-        
+    teamRemovePost: (req, res) => {
+
         let teamId = req.params.id;
         let userParams = req.body;
         let userId = userParams.userId;
@@ -162,6 +183,23 @@ module.exports = {
                 }
             })
         })
+    },
+
+    teamAddPost: (req, res) => {
+
+        let teamId = req.params.id;
+        let users = req.body;
+
+        if (users.userName.length = 1) {
+            addTeamMember.addTeamMember(users.userName, teamId)
+        } else {
+            for (let i = 0; i < users.userName.length; i++) {
+                addTeamMember.addTeamMember(users.userName[i], teamId)
+            }
+        }
+
+        let url = '/team/details/' + teamId;
+        res.redirect(url);
     }
 
 };

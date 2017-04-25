@@ -70,6 +70,7 @@ module.exports = {
                     isAdmin = false;
                 }
 
+                console.log(selectedProjects);
                 res.render('./project/list', {projects: projects, isAdmin: isAdmin, selectedProjects: selectedProjects});
             })
 
@@ -95,6 +96,7 @@ module.exports = {
                     });
                 })
             } else {
+
                 res.render('home/index', {error: 'Access denied!'})
             }
         })
@@ -264,7 +266,6 @@ module.exports = {
     },
 
     projectCancel: (req, res) => {
-
 
         let user = req.user;
         let isAdmin = true;
