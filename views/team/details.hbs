@@ -1,9 +1,18 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+
 <script type="text/javascript">
+
+    $(document).ready(function() {
+
+        $('#userName').multiselect();
+
+    });
 
     $(document).ready(function () {
         $('.removeButton').click(function () {
             var userId = $(this).parent().find('#userId').text();
-            var url = '/team/edit/' + $('#teamId').text();
+            var url = '/team/remove/' + $('#teamId').text();
             $.post(url,
                     {userId: userId
                     }, function () {
@@ -62,7 +71,7 @@
 
 
                         {{#if isAdmin}}
-                            <button class="btn btn-default center" href="/team/edit/{{team.id}}">
+                            <button class="btn btn-link center" data-toggle="modal" data-target="#myModal">
                                 <span class="glyphicon glyphicon-plus"></span> Add User
                             </button>
                         {{/if}}
@@ -78,7 +87,7 @@
                             <h4>Team Projects</h4>
                             <div class="container-border section">
                                 <div class="well white">
-                                    {{#each projects}}
+                                    {{#each selectedProjects}}
                                         <p>
                                             <span class="glyphicon glyphicon-star"></span>
                                             {{this.projectName}}<a href="/project/details/{{this.id}}" class="btn-sm pull-right">
@@ -89,28 +98,7 @@
                                 </div>
                             </div>
                         </div>
-
-
-                        <!--  User Teams  -->
-                        <div class="col-sm-12">
-                            <h4>Team Tasks</h4>
-                            <div class="container-border section">
-                                <div class="well white">
-                                {{#each teams}}
-                                    <p>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        {{this.teamName}}<a href="/team/details/{{this.id}}" class="btn-sm pull-right">
-                                        View&nbsp<span class="glyphicon glyphicon-chevron-right"></span></a>
-                                        <hr>
-                                    </p>
-                                {{/each}}
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
-
-
                 </div>
 
             {{/if}}
@@ -123,6 +111,54 @@
                         Back to All Teams
                     </button>
                 </a>
+            </div>
+        </div>
+
+        <!-- Modal Register -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+
+                <!--  Modal Content  -->
+                <div class="modal-content">
+
+                    <!--  Header  -->
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Add team members</h4>
+                    </div>
+
+                    <!--  Body  -->
+                    <div class="modal-body">
+
+                        <!--  Form  -->
+                        <form class="form-horizontal" action="/team/add/{{team.id}}" method="POST">
+
+                            <!-- Select User -->
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label " for="userName">User</label>
+                                <div class="col-sm-4 ">
+                                    <div class="row-fluid">
+                                        <select class="selectpicker form-control" multiple="multiple" id="userName" name="userName"  required data-live-search="true">
+                                            {{#each users}}
+                                                <option >
+                                                    <div >{{this.fullName}}</div>
+                                                </option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--  Submit / Discard  -->
+                            <div class="modal-footer">
+
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Add</button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     {{/if}}

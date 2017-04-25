@@ -12,59 +12,73 @@ module.exports = {
     registerPost:(req, res) => {
         let registerArgs = req.body;
 
-        User.findOne({email: registerArgs.email}).then(user => {
-            let errorMsg = '';
-            if (user) {
-                errorMsg = 'User with the same username exists!';
-            } else if (registerArgs.password !== registerArgs.repeatedPassword) {
-                errorMsg = 'Passwords do not match!'
-            }
+        Occupation.find({}).then(occupations => {
 
-            if (errorMsg) {
-                registerArgs.error = errorMsg;
-                res.render('home/index', registerArgs)
-            } else {
-                let salt = encryption.generateSalt();
-                let passwordHash = encryption.hashPassword(registerArgs.password, salt);
+            User.findOne({email: registerArgs.email}).then(user => {
+                let errorMsg = '';
+                if (user) {
+                    errorMsg = 'User with the same e-mail exists!';
+                    registerArgs.error = errorMsg;
+                    res.render('home/index', {error: registerArgs.error, occupations: occupations})
+
+                } else {
+                    User.findOne({fullName: registerArgs.fullName}).then(user => {
+                        if (user) {
+                            errorMsg = 'User with the same name exists!';
+                        } else if (registerArgs.password !== registerArgs.repeatedPassword) {
+                            errorMsg = 'Passwords do not match!'
+                        }
+
+                        if (errorMsg) {
+                            registerArgs.error = errorMsg;
+                            res.render('home/index', {error: registerArgs.error, occupations: occupations})
+                        } else {
+
+                            let salt = encryption.generateSalt();
+                            let passwordHash = encryption.hashPassword(registerArgs.password, salt);
 
 
-                let userObject = {
-                    email: registerArgs.email,
-                    passwordHash: passwordHash,
-                    fullName: registerArgs.fullName,
-                    salt: salt,
-                    phone: registerArgs.phone,
-                    country: registerArgs.country,
-                    address: registerArgs.address,
-                };
+                            let userObject = {
+                                email: registerArgs.email,
+                                passwordHash: passwordHash,
+                                fullName: registerArgs.fullName,
+                                salt: salt,
+                                phone: registerArgs.phone,
+                                country: registerArgs.country,
+                                address: registerArgs.address,
+                            };
 
-                let roles = [];
+                            let roles = [];
 
-                Role.findOne({name: 'User'}).then(role => {
-                    roles.push(role.id);
+                            Role.findOne({name: 'User'}).then(role => {
+                                roles.push(role.id);
 
-                    userObject.roles = roles;
+                                userObject.roles = roles;
 
-                    Occupation.findOne({'occupationName': registerArgs.occupation}).then(occupation => {
+                                Occupation.findOne({'occupationName': registerArgs.occupation}).then(occupation => {
 
-                        userObject.occupation = occupation.id;
-                        userObject.rate = occupation.occupationRate;
+                                    userObject.occupation = occupation.id;
+                                    userObject.rate = occupation.occupationRate;
 
-                        User.create(userObject).then(user => {
+                                    User.create(userObject).then(user => {
 
-                            role.users.push(user.id);
-                            role.save(err => {
-                                if(err) {
-                                    registerArgs.error = err.message;
-                                    res.render('/home/index', registerArgs)
-                                } else {
-                                    res.redirect('/')
-                                }
+                                        role.users.push(user.id);
+                                        role.save(err => {
+                                            if (err) {
+                                                registerArgs.error = err.message;
+
+                                                res.render('/home/index', {error: registerArgs.error, occupations: occupations})
+                                            } else {
+                                                res.redirect('/')
+                                            }
+                                        })
+                                    });
+                                })
                             })
-                        });
-                    })
-                })
-            }
+                        }
+                    }
+                )}
+            })
         })
     },
 
@@ -128,7 +142,7 @@ module.exports = {
 
                     };
                 }
-                users.count = users.length - 1;
+                users.count = users.length;
 
                 let user = req.user;
                 let isAdmin = true;
@@ -241,7 +255,7 @@ module.exports = {
                     teams=selectedTeams;
                     projects=selectedProjects;
                 }
-                res.render('userViews/profile',{userData: userData, projects:projects,selectedProjects, teams:teams, isAdmin: isAdmin} );
+                res.render('userViews/profile',{userData: userData, projects:projects, teams:teams, isAdmin: isAdmin} );
             })
 
         })
@@ -250,7 +264,7 @@ module.exports = {
     },
 
     pictureUpload: (req, res) => {
-        let picture = req.files.image;
+        let picture = req.files.image; //upload file
         let userID = req.user.id;
 
         if (picture) {

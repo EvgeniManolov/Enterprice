@@ -31,6 +31,15 @@
         let closedProjects = $("#closedProjectsTable tr").length - 1;
         $("#closedProjectsCount").text(closedProjects);
     })
+
+    $(document).ready(function() {
+        $('#closedProjectsTable > tbody  > tr').each(function () {
+            var status = $(this).find('#projectStatus').text();
+            if(status == "Cancelled") {
+                $(this).find('#glyphiconStatus').removeClass('glyphicon-ok glyphicon-done').addClass('glyphicon-remove glyphicon-danger');
+            }
+        })
+    })
 </script>
 
 <main>
@@ -234,8 +243,8 @@
                                             <td class="" id="projectTeam">{{this.projectTeam.teamName}}</td>
 
                                             <!-- Status -->
-                                            <td class="" id="projectStatus">
-                                                <span class="glyphicon glyphicon-ok glyphicon-done"></span>{{this.projectStatus}}
+                                            <td class="">
+                                                <span id="glyphiconStatus" class="glyphicon glyphicon-ok glyphicon-done"></span><span class="" id="projectStatus">{{this.projectStatus}}</span>
                                             </td>
 
 
@@ -265,7 +274,7 @@
                                             <td class="" id="projectTeam">{{this.projectTeam.teamName}}</td>
 
                                             <!-- Status -->
-                                            <td class="" id="projectStatus"><span class="glyphicon glyphicon-ok"></span>{{this.projectStatus}}</td>
+                                            <td class="" id="projectStatus"><span id="glyphiconStatus" class="glyphicon glyphicon-ok glyphicon-done"></span>{{this.projectStatus}}</td>
 
                                             <!-- Date Closed -->
                                             <td class="" id="projectDueDate">

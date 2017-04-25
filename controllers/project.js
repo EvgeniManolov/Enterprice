@@ -69,7 +69,6 @@ module.exports = {
                 if(user.roles.indexOf(role._id) == -1) {
                     isAdmin = false;
                 }
-
                 res.render('./project/list', {projects: projects, isAdmin: isAdmin, selectedProjects: selectedProjects});
             })
 
@@ -95,6 +94,7 @@ module.exports = {
                     });
                 })
             } else {
+
                 res.render('home/index', {error: 'Access denied!'})
             }
         })
@@ -264,7 +264,6 @@ module.exports = {
     },
 
     projectCancel: (req, res) => {
-
 
         let user = req.user;
         let isAdmin = true;

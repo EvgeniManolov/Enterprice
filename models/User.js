@@ -3,23 +3,17 @@ const encryption = require('./../utilities/encryption');
 const Role = require('mongoose').model('Role');
 const Occupation = require('mongoose').model('Occupation');
 
-var workPerProject = {
-    Project: mongoose.Schema.Types.ObjectId,
-    Hours: Number, // total spent hours per project
-};
-
 let userSchema = mongoose.Schema(
     {
         email: {type: String, required: true, unique: true},
         passwordHash: {type: String, required: true},
-        fullName: {type: String, required: true},
+        fullName: {type: String, required: true, unique: true},
         phone: {type: String, default: ''},
         country: {type: String, default: ''},
         address: {type: String, default: ''},
         salt: {type: String, required: true},
         rate: {type: Number, default: 0},
         team: {type: [mongoose.Schema.Types.ObjectId], default: [], ref: 'Team'},
-        workedHours: {type: [workPerProject], default: []}, //array [project: spent hours] //not yet implemented
         roles: [{type: mongoose.Schema.Types.ObjectId, ref: 'Role'}],
         occupation: {type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Occupation'},
         picture: {type: String, default: 'default.png'}
@@ -33,13 +27,6 @@ userSchema.method ({
 
        return isSamePasswordHash;
    },
-
-    isAdmin: function (roleID) {
-       return Role.findOne({_id: roleID}).then(role => {
-           let isAdmin = role.name == "Admin";
-           return isAdmin;
-       })
-    }
 
 });
 
