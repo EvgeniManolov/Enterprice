@@ -78,7 +78,7 @@
                             <h4>Team Projects</h4>
                             <div class="container-border section">
                                 <div class="well white">
-                                    {{#each projects}}
+                                    {{#each selectedProjects}}
                                         <p>
                                             <span class="glyphicon glyphicon-star"></span>
                                             {{this.projectName}}<a href="/project/details/{{this.id}}" class="btn-sm pull-right">
@@ -89,28 +89,7 @@
                                 </div>
                             </div>
                         </div>
-
-
-                        <!--  User Teams  -->
-                        <div class="col-sm-12">
-                            <h4>Team Tasks</h4>
-                            <div class="container-border section">
-                                <div class="well white">
-                                {{#each teams}}
-                                    <p>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        {{this.teamName}}<a href="/team/details/{{this.id}}" class="btn-sm pull-right">
-                                        View&nbsp<span class="glyphicon glyphicon-chevron-right"></span></a>
-                                        <hr>
-                                    </p>
-                                {{/each}}
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
-
-
                 </div>
 
             {{/if}}

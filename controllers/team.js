@@ -6,6 +6,7 @@ const formatDate = require('./../utilities/formatDate');
 const Team = require('mongoose').model('Team');
 const User = require('mongoose').model('User');
 const Role = require('mongoose').model('Role');
+const Project = require('mongoose').model('Project');
 
 module.exports = {
     teamCreateGet: ( req, res ) => {
@@ -101,7 +102,21 @@ module.exports = {
     },
 
     teamDetailsGet: (req,res) => {
-        let id = req.params.id;
+            let id = req.params.id;
+            let selectedProjects = []; //these are the projects for a specific user
+
+
+            Project.find({}).populate('projectTeam').then(projects => {
+
+                /* filter only projects where current user is a member of the team */
+                for (let i = 0; i < projects.length; i++) {
+
+                    if (projects[i].projectTeam.id == id) {
+                        selectedProjects.push(projects[i])
+                    }
+                }
+            })
+
         Team.findOne({_id : id}).populate('userID').then(team=>{
 
             let user = req.user;
@@ -118,7 +133,7 @@ module.exports = {
                     team.userID[i].isAdmin = isAdmin;
                 }
 
-              res.render('./team/details',{team:team, isAdmin : isAdmin});
+              res.render('./team/details',{team:team, isAdmin : isAdmin, selectedProjects:selectedProjects});
           });
       });
     },
@@ -148,5 +163,6 @@ module.exports = {
             })
         })
     }
+
 };
 
