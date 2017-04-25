@@ -124,9 +124,7 @@ module.exports = {
     },
 
     teamEditPost: (req, res) => {
-
-        console.log('here');
-
+        
         let teamId = req.params.id;
         let userParams = req.body;
         let userId = userParams.userId;

@@ -128,7 +128,7 @@ module.exports = {
 
                     };
                 }
-                users.count = users.length - 1;
+                users.count = users.length;
 
                 let user = req.user;
                 let isAdmin = true;

@@ -37,12 +37,8 @@ module.exports = {
     rateEdit: (req, res) => {
         let rateParams = req.body;
 
-        console.log(rateParams.id);
-        console.log(rateParams.rate);
-
         User.findOne({_id: rateParams.id}).then(user => {
 
-            console.log(user);
             user.rate = rateParams.rate;
             user.save();
         })
