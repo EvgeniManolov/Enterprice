@@ -264,7 +264,7 @@ module.exports = {
     },
 
     pictureUpload: (req, res) => {
-        let picture = req.files.image;
+        let picture = req.files.image; //upload file
         let userID = req.user.id;
 
         if (picture) {
