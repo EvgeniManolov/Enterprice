@@ -103,38 +103,38 @@ module.exports = {
     },
 
     teamDetailsGet: (req,res) => {
-            let id = req.params.id;
-            let selectedProjects = []; //these are the projects for a specific user
+        let id = req.params.id;
+        let selectedProjects = []; //these are the projects for a specific user
 
 
-            Project.find({}).populate('projectTeam').then(projects => {
+        Project.find({}).populate('projectTeam').then(projects => {
 
-                /* filter only projects where current user is a member of the team */
-                for (let i = 0; i < projects.length; i++) {
+            /* filter only projects where current user is a member of the team */
+            for (let i = 0; i < projects.length; i++) {
 
-                    if (projects[i].projectTeam.id == id) {
-                        selectedProjects.push(projects[i])
-                    }
+                if (projects[i].projectTeam.id == id) {
+                    selectedProjects.push(projects[i])
                 }
-            })
+            }
+        });
 
 
         User.find().then(users => {
-            Team.findOne({_id : id}).populate('userID').then(team=>{
+            Team.findOne({_id: id}).populate('userID').then(team => {
 
                 let user = req.user;
                 let isAdmin = true;
 
                 Role.findOne({name: 'Admin'}).then(role => {
 
-                    if(user.roles.indexOf(role._id) == -1) {
+                    if (user.roles.indexOf(role._id) == -1) {
                         isAdmin = false;
                     }
 
 
                     for (let i = 0; i < users.length; i++) {
                         let currentUser = users[i];
-                        for (let j=0; j<team.userID.length; j++) {
+                        for (let j = 0; j < team.userID.length; j++) {
                             let currentMember = team.userID[j];
                             if (currentUser.fullName == currentMember.fullName) {
                                 let index = users.indexOf(currentUser);
@@ -145,19 +145,22 @@ module.exports = {
                     }
 
 
-                    for ( let i = 0; i < team.userID.length; i++) {
+                    for (let i = 0; i < team.userID.length; i++) {
 
                         team.userID[i].isAdmin = isAdmin;
                     }
 
-                    res.render('./team/details',{team: team, isAdmin: isAdmin, users: users});
+                    res.render('./team/details', {
+                        team: team,
+                        isAdmin: isAdmin,
+                        users: users,
+                        selectedProjects: selectedProjects
+                    });
                 });
             });
         })
-              res.render('./team/details',{team:team, isAdmin : isAdmin, selectedProjects:selectedProjects});
-          });
-      });
     },
+
 
     teamRemovePost: (req, res) => {
 
@@ -190,7 +193,7 @@ module.exports = {
         let teamId = req.params.id;
         let users = req.body;
 
-        if (users.userName.length = 1) {
+        if (users.userName.length == 1) {
             addTeamMember.addTeamMember(users.userName, teamId)
         } else {
             for (let i = 0; i < users.userName.length; i++) {
