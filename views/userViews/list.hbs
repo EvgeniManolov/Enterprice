@@ -1,10 +1,4 @@
 <script>0
-    $(document).ready(function(e){
-        $(".img-check").click(function(){
-            $(this).toggleClass("check");
-            $(this).find("#checkbox").attr('checked');
-        });
-    });
 
     $(document).ready(function(){
         $(".occupation").click(function(){
@@ -63,27 +57,50 @@
                     <div class="row">
 
                         {{#each users}}
+                            <div class="col-lg-4 col-md-4 col-xs-6">
+                                <div>
+                                    <div class="container-user">
+                                        <img class="img-user" src="/images/userProfilePictures/{{this.picture}}">
+
+                                        <div class="footer">
+                                            <!--  Layer Over  -->
+                                            <a href="/userViews/details/{{this.id}}">
+                                                <div class="thumbnail-over">
+                                                    <p>View Profile</p>
+                                                </div>
+                                            </a>
+                                            <h6 class="text-center">{{this.fullName}}</h6>
+                                            <p class="text-center">{{this.occupation.occupationName}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {{/each}}
+
+
+                        <!--  Old Users  -->
+ <!--                       {{#each users}}
                             <div class="col-lg-4 col-md-4 col-xs-6 profileCard">
                                 <div class="thumbnail">
                                     <div class="caption well">
                                         <img class="center-block" src="/images/userProfilePictures/{{this.picture}}">
 
-                                    <div class="caption">
-                                        <!--  Layer Over  -->
-                                        <a href="/userViews/details/{{this.id}}">
-                                            <div class="thumbnail-over">
-                                                <p>View Profile</p>
-                                            </div>
-                                        </a>
-                                        <h6 class="text-center">{{this.fullName}}</h6>
-                                        <p class="text-center">{{this.occupation.occupationName}}</p>
+                                        <div class="caption">
+                                            &lt;!&ndash;  Layer Over  &ndash;&gt;
+                                            <a href="/userViews/details/{{this.id}}">
+                                                <div class="thumbnail-over">
+                                                    <p>View Profile</p>
+                                                </div>
+                                            </a>
+                                            <h6 class="text-center">{{this.fullName}}</h6>
+                                            <p class="text-center">{{this.occupation.occupationName}}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            </div>
-                        {{/each}}
-                    </div>
-                </div>
+                        {{/each}}-->
+
+                 </div>
             </div>
         </div>
     {{/if}}

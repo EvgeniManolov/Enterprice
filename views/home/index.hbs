@@ -1,160 +1,160 @@
-<main>
-        <!--  Login / Index View -->
-            <div class="container-fulsize">
 
-            <!--  Company Logo  -->
-            <div class="home-login-container text-center">
-                <img src="/images/logo.png" width="100px">
-                <h5>Enterprise</h5>
-            </div>
+<!--  Login / Index View -->
+<div class="container-fullsize">
 
-            <!--  Login Form  -->
-            <form  class="form center-block" style="width: 60%" action="/" method="POST">
+    <!--  Company Logo  -->
+    <div class="home-login-container">
+        <img src="/images/logo_4.png" >
+        <!--<h1 style="font-weight: 100; font-size: 50px; color: #9f0014;">e</h1>
+        <h5 style="letter-spacing: 10px;">ENTERPRISE</h5>-->
+    </div>
 
-                <!--  Username / mail  -->
-                <div class="form-group">
-                    <label class="sr-only" for="email" >Enter your email</label>
-                    <div class="control-label">
-                        <input type="text" class="form-control input-lg" id="inputEmail" placeholder="Email" name="email" required>
-                    </div>
-                </div>
+    <!--  Login Form  -->
+    <form  class="form"  style="width: 50%; margin: 0 auto;" action="/" method="POST">
 
-                <!--  Password  -->
-                <div class="form-group ">
-                    <label class="sr-only" for="password" >Enter your password</label>
-                    <div class="control-label">
-                        <input type="password" class="form-control input-lg" id="inputPassword" placeholder="Password" name="password" required>
-                    </div>
-                </div>
+    <!--  Username / mail  -->
+    <div class="form-group">
+        <label class="sr-only" for="email" >Enter your email</label>
+        <div class="control-label">
+            <input type="text" class="form-control input-lg" id="inputEmail" placeholder="Email" name="email" required>
+        </div>
+    </div>
 
-                <!--  Submit Button  -->
-                <div class="panel-footer">
-                    <div class="form-group">
-                        <div class="col-sm-12 text-center">
-                            <button type="submit" class="btn btn-primary btn-lg ">Login</button>
-                        </div>
-                    </div>
-                </div>
+    <!--  Password  -->
+    <div class="form-group ">
+        <label class="sr-only" for="password" >Enter your password</label>
+        <div class="control-label">
+            <input type="password" class="form-control input-lg" id="inputPassword" placeholder="Password" name="password" required>
+        </div>
+    </div>
 
-            </form>
-
-            <!--  New Account Link / Trigger Modal   -->
-            <div class="text-center">
-                <div class="btn btn-link" data-toggle="modal" data-target="#myModal">
-                    Create new account
-                </div>
-            </div>
-
-
-
-            <!-- Modal Register -->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-
-                    <!--  Modal Content  -->
-                    <div class="modal-content">
-
-                        <!--  Header  -->
-                        <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Register</h4>
-                            </div>
-
-                        <!--  Body  -->
-                        <div class="modal-body">
-
-                            <!--  Form  -->
-                            <form class="form-horizontal" action="/user/register" method="POST">
-
-                                <!--  Full name  -->
-                                <div class="form-group">
-                                    <label class="control-label col-lg-3" for="fullName">Full Name</label>
-                                    <div class="col-lg-9">
-                                        <input type="text" class="form-control center" id="fullName" placeholder="Full Name" name="fullName" required>
-                                    </div>
-                                </div>
-
-                                <!--  Email  -->
-                                <div class="form-group">
-                                    <label class="control-label col-lg-3" for="email">Email</label>
-                                    <div class="col-lg-9">
-                                        <input type="email" class="form-control center" id="email" placeholder="Email" name="email" required>
-                                    </div>
-                                </div>
-
-                                <!--  Password  -->
-                                <div class="form-group">
-                                    <label class="control-label col-lg-3" for="password">Password</label>
-                                    <div class="col-lg-9">
-                                        <input type="password" class="form-control center" id="password" placeholder="Password" name="password" required>
-                                    </div>
-                                </div>
-
-                                <!--  Re-enter Password  -->
-                                <div class="form-group">
-                                    <label class="control-label col-lg-3" for="reenterPasswors">Re-enter Password</label>
-                                    <div class="col-lg-9">
-                                        <input type="password" class="form-control center" id="reenterPasswors" placeholder="Re-enter Password"
-                                               name="repeatedPassword">
-                                    </div>
-                                </div>
-
-                                <!-- Profession -->
-                                <div class="form-group">
-                                    <label class="control-label col-lg-3" for="profession">Profession</label>
-                                    <div class="col-lg-9">
-                                        <select class="form-control center" id="occupation" name="occupation" required>
-                                            <option></option>
-                                            {{#each occupations}}
-                                            <option>{{this.occupationName}}</option>
-                                            {{/each}}
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <!--  Phone Number  -->
-                                <div class="form-group ">
-                                    <label class="control-label col-lg-3" for="phone">Phone</label>
-                                    <div class="col-lg-9">
-                                        <input type="text" class="form-control center" id="phone" placeholder="Phone Number"name="phone">
-                                    </div>
-                                </div>
-
-                                <!--  Country  -->
-                                <div class="form-group">
-                                    <label class="control-label col-lg-3" for="country">Country</label>
-                                    <div class="col-lg-9">
-                                        <select class="form-control center" id="country" name="country">
-                                            <option>Bulgaria</option>
-                                            <option>India</option>
-                                            <option>Sweden</option>
-                                            <option>Nepal</option>
-                                            <option>Bolivia</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <!--  Address  -->
-                                <div class="form-group">
-                                    <label class="control-label col-lg-3" for="address">Address</label>
-                                    <div class="col-lg-9">
-                                        <input type="text" class="form-control " id="address" placeholder="Address" name="address">
-                                    </div>
-                                </div>
-
-                                <!--  Submit / Discard  -->
-                                <div class="modal-footer">
-
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Create account</button>
-
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+    <!--  Submit Button  -->
+    <div class="panel-footer">
+        <div class="form-group">
+            <div class="col-sm-12 text-center">
+                <button type="submit" class="btn btn-lg home-btn">Login</button>
             </div>
         </div>
-</main>
+    </div>
+
+    </form>
+
+    <!--  New Account Link / Trigger Modal   -->
+    <div class="text-center">
+        <div class="btn btn-link home-btn home-btn-link" data-toggle="modal" data-target="#myModal">
+            Create new account
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal Register -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+
+        <!--  Modal Content  -->
+        <div class="modal-content">
+
+            <!--  Header  -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Register</h4>
+            </div>
+
+            <!--  Body  -->
+            <div class="modal-body">
+
+                <!--  Form  -->
+                <form class="form-horizontal" action="/user/register" method="POST">
+
+                    <!--  Full name  -->
+                    <div class="form-group">
+                        <label class="control-label col-lg-3" for="fullName">Full Name</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control center" id="fullName" placeholder="Full Name" name="fullName" required>
+                        </div>
+                    </div>
+
+                    <!--  Email  -->
+                    <div class="form-group">
+                        <label class="control-label col-lg-3" for="email">Email</label>
+                        <div class="col-lg-8">
+                            <input type="email" class="form-control center" id="email" placeholder="Email" name="email" required>
+                        </div>
+                    </div>
+
+                    <!--  Password  -->
+                    <div class="form-group">
+                        <label class="control-label col-lg-3" for="password">Password</label>
+                        <div class="col-lg-8">
+                            <input type="password" class="form-control center" id="password" placeholder="Password" name="password" required>
+                        </div>
+                    </div>
+
+                    <!--  Re-enter Password  -->
+                    <div class="form-group">
+                        <label class="control-label col-lg-3" for="reenterPasswors">Re-enter Password</label>
+                        <div class="col-lg-8">
+                            <input type="password" class="form-control center" id="reenterPasswors" placeholder="Re-enter Password"
+                                   name="repeatedPassword">
+                        </div>
+                    </div>
+
+                    <!-- Profession -->
+                    <div class="form-group">
+                        <label class="control-label col-lg-3" for="profession">Profession</label>
+                        <div class="col-lg-8">
+                            <select class="form-control center" id="occupation" name="occupation" required>
+                                <option></option>
+                                {{#each occupations}}
+                                    <option>{{this.occupationName}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                    </div>
+
+                    <!--  Phone Number  -->
+                    <div class="form-group ">
+                        <label class="control-label col-lg-3" for="phone">Phone</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control center" id="phone" placeholder="Phone Number"name="phone">
+                        </div>
+                    </div>
+
+                    <!--  Country  -->
+                    <div class="form-group">
+                        <label class="control-label col-lg-3" for="country">Country</label>
+                        <div class="col-lg-8">
+                            <select class="form-control center" id="country" name="country">
+                                <option>Bulgaria</option>
+                                <option>India</option>
+                                <option>Sweden</option>
+                                <option>Nepal</option>
+                                <option>Bolivia</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!--  Address  -->
+                    <div class="form-group">
+                        <label class="control-label col-lg-3" for="address">Address</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control " id="address" placeholder="Address" name="address">
+                        </div>
+                    </div>
+
+                    <!--  Submit / Discard  -->
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Create account</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 

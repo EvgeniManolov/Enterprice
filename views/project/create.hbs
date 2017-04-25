@@ -39,24 +39,24 @@
                 <div class="col-sm-6">
                     <!-- Name -->
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="projectName">Project Name</label>
-                        <div class="col-md-9">
+                        <label class="col-lg-3 control-label" for="projectName">Project Name</label>
+                        <div class="col-lg-9">
                             <input type="text" class="form-control" id="projectName" name="projectName" required >
                         </div>
                     </div>
 
                     <!-- Description -->
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="projectDescription">Project Description</label>
-                        <div class="col-md-9" >
+                        <label class="col-lg-3 control-label" for="projectDescription">Project Description</label>
+                        <div class="col-lg-9" >
                             <textarea class="form-control" rows="4" id="projectDescription" placeholder="" name="projectDescription" required ></textarea>
                         </div>
                     </div>
 
                     <!-- Team -->
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="projectTeam">Select Team</label>
-                        <div class="col-md-9">
+                        <label class="col-lg-3 control-label" for="projectTeam">Select Team</label>
+                        <div class="col-lg-9">
                             <div class="row-fluid">
                                 <select class="selectpicker form-control" id="projectTeam" name="projectTeam" required data-live-search="true">
                                     <option ></option>
@@ -70,8 +70,8 @@
 
                     <!-- Due Date -->
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="projectDueDate">Due date</label>
-                        <div class="col-md-9 ">
+                        <label class="col-lg-3 control-label" for="projectDueDate">Due date</label>
+                        <div class="col-lg-9 ">
                             <input type="date" min="" class="form-control" id="projectDueDate" placeholder="" name="projectDueDate" required >
                         </div>
                     </div>
@@ -83,43 +83,40 @@
 
                     <!-- Customer -->
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="projectCustomer">Customer</label>
-                        <div class="col-md-9">
-                            <div class="row-fluid">
-                                <select class="form-control" id="projectCustomer" name="projectCustomer" required data-live-search="true">
-                                    <option ></option>
-                                    {{#each customers}}
-                                        <option >{{this.customerName}}</option>
-                                    {{/each}}each}}
-                                </select>
-                            </div>
+                        <label class="col-lg-3 control-label" for="projectCustomer">Customer</label>
+                        <div class="col-lg-9">
+                            <select class="form-control" id="projectCustomer" name="projectCustomer" required data-live-search="true">
+                                <option ></option>
+                                {{#each customers}}
+                                    <option >{{this.customerName}}</option>
+                                {{/each}}each}}
+                            </select>
                         </div>
                     </div>
 
                     <!-- Project Price -->
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="projectPrice">Price</label>
-                        <div class="col-md-9 ">
+                        <label class="col-lg-3 control-label" for="projectPrice">Price</label>
+                        <div class="col-lg-9 ">
                             <input type="number" min="0" class="form-control" id="projectPrice" placeholder="" name="projectPrice" required >
                         </div>
                     </div>
 
                     <!-- Expenses -->
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="projectExpenses">Expenses</label>
-                        <div class="col-md-9 ">
+                        <label class="col-lg-3 control-label" for="projectExpenses">Expenses</label>
+                        <div class="col-lg-9 ">
                             <input type="number" min="0" class="form-control" id="projectExpenses" placeholder="" name="projectExpenses" required >
                         </div>
                     </div>
 
                     <!-- Workin Hours Provision -->
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="projectWorkingHours">Working hours provision</label>
-                        <div class="col-md-9 ">
+                        <label class="col-lg-3 control-label" for="projectWorkingHours">Working hours provision</label>
+                        <div class="col-lg-9">
                             <input type="number" min="0" class="form-control" id="projectWorkingHours" placeholder="" name="projectWorkingHours" required >
                         </div>
                     </div>
-
 
                 </div>
 
