@@ -145,7 +145,7 @@ module.exports = {
                     }
 
 
-                    for ( let i = 0; i < team.userID.length; i++){
+                    for ( let i = 0; i < team.userID.length; i++) {
 
                         team.userID[i].isAdmin = isAdmin;
                     }
