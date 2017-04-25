@@ -70,6 +70,7 @@ module.exports = {
                     isAdmin = false;
                 }
 
+                console.log(selectedProjects);
                 res.render('./project/list', {projects: projects, isAdmin: isAdmin, selectedProjects: selectedProjects});
             })
 
