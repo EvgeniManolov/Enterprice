@@ -54,6 +54,19 @@ module.exports = {
     customerDetailsGet: (req, res)=> {
         let id = req.params.id;
 
+        let selectedProjects = []; //these are the projects for a specific customer
+
+
+        Project.find({}).populate('projectCustomer').then(projects => {
+
+                /* filter only projects where current customer is assigned of the project */
+                for (let i = 0; i < projects.length; i++) {
+                        if (projects[i].projectCustomer.id == id) {
+                            selectedProjects.push(projects[i])
+                        }
+                }});
+
+
         Customer.findOne({_id:id}).then(customer=>{
 
             /* Check if user is Admin*/
@@ -65,7 +78,7 @@ module.exports = {
                 if(user.roles.indexOf(role._id) == -1) {
                     isAdmin = false;
                 }
-                res.render('./customer/details', {customer:customer, isAdmin:isAdmin});
+                res.render('./customer/details', {customer:customer, isAdmin:isAdmin, selectedProjects:selectedProjects});
             })
         });
     },

@@ -159,6 +159,8 @@ module.exports = {
 
         Project.findOne({'_id' : id }).populate('projectTeam').populate('projectCustomer').populate('projectTasks').then(project => {
 
+
+
             /* Format projectDueDate dd.mm.yyyy*/
             project.date = formatDate.formatDate(project.projectDueDate);
 
@@ -212,8 +214,12 @@ module.exports = {
             }
             project.projectStatus = status;
 
+
+
             /* Calculate labour cost planned which is derived by multiplying average rate for the team and planned working hours*/
             User.find().then(users => {
+
+
 
                 let projectUsers = [];
                 for (let i = 0; i < users.length; i++) {

@@ -75,7 +75,7 @@ module.exports = {
 
                             User.findOne ({_id: teamArgs.userID}).then(user =>{
 
-                                user.team = teamArgs.userID;
+                                user.team.push(team.id);
 
                                 user.save()
                             })
