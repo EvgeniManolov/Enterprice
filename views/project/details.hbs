@@ -84,21 +84,48 @@
             </div>
 
             <!-- Left Section -->
-            <div class="col-lg-3 col-md-12 col-sm-12 disappear">
+            <div class="col-lg-3 col-md-8 col-sm-12 ">
 
                 <!--  Circle Progress  -->
-                <div class="row">
-
-                    <div class="col-lg-12 col-md-6 col-xs-6">
-                        <div class="container-border progress-radial progress-{{project.projectProgressRounded}} setsize">
-                            <div class="overlay setsize">
-                                <p>{{project.projectProgress}}%</p>
-                            </div>
+                <div class="col-lg-12 col-md-6 col-xs-6 disappear">
+                    <div class="container-border progress-radial progress-{{project.projectProgressRounded}} setsize">
+                        <div class="overlay setsize">
+                            <p>{{project.projectProgress}}%</p>
                         </div>
                     </div>
+                </div>
+
+                <!--  Project Info  -->
+                <h6>Project Details</h6>
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 section well">
+
+                    {{#if task.taskProjectId.projectActive}}
+                        <span class="glyphicon glyphicon-hourglass"></span>
+                        {{task.taskProjectId.date}}
+                    {{else}}
+                        <h5><span class="glyphicon glyphicon-star glyphicon-active"></span>
+                        {{task.taskProjectId.projectStatus}} ON {{task.taskProjectId.date}}</h5>
+                    {{/if}}
+                    <hr>
+
+                    <span class="glyphicon glyphicon-hourglass"></span>
+                    {{project.date}}
+                    <hr>
+
+                    <span class="glyphicon glyphicon-user"></span>
+                    {{project.projectTeam.teamName}}
+                    <hr>
+
+                    <span class="glyphicon glyphicon-th-list"></span>
+                    Project Tasks <span class="badge pull-right">{{project.taskCount}}</span>
+                    <hr>
+
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <a href="#">Project Commits <span class="badge pull-right">{{project.commits}}</span></a>
+                </div>
 
                     <!--  Project Details List Group -->
-                    <div class="col-lg-12 col-md-6 col-xs-6 ">
+                    <!--<div class="col-lg-12 col-md-6 col-xs-6 ">
 
                         <div class="list-group">
                             <div class="list-group-item active">
@@ -132,48 +159,26 @@
                             </a>
                         </div>
 
-                    </div>
-
-                    <!--  Client Details Old  -->
-                    <!--<h6>Client Info</h6>
-                    <div class="thumbnail">
-                        <div class="caption well">
-                            <h5>{{project.projectCustomer.customerName}}</h5>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <span class="glyphicon glyphicon-earphone"></span>
-                                    {{project.projectCustomer.customerPhone}}<hr>
-                                    <span class="glyphicon glyphicon-envelope"></span>
-                                    {{project.projectCustomer.customerEmail}}<hr>
-                                    <span class="glyphicon glyphicon-map-marker"></span>
-                                    {{project.projectCustomer.customerAddress}}
-                                </div>
-                            </div>
-                        </div>
                     </div>-->
 
-                    <!--  Client Details  -->
-                    <div class="col-lg-12 col-md-6 col-xs-6 ">
-                    <div class="thumbnail">
-                        <div class="caption well">
-                            <h5>{{project.projectCustomer.customerName}}</h5>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <span class="glyphicon glyphicon-earphone"></span>
-                                    {{project.projectCustomer.customerPhone}}<hr>
-                                    <span class="glyphicon glyphicon-envelope"></span>
-                                    {{project.projectCustomer.customerEmail}}<hr>
-                                    <span class="glyphicon glyphicon-map-marker"></span>
-                                    {{project.projectCustomer.customerAddress}}
-                                </div>
-                            </div>
-                        </div>
+                <!--  Client Details  -->
+                <div class="col-lg-12 col-md-12 col-xs-12 section">
 
-                        <a href="/customer/details/{{project.projectCustomer.id}}" class="btn-sm pull-right">
-                            More&nbsp<span class="glyphicon glyphicon-chevron-right"></span>
-                        </a>
+                    <a href="/customer/details/{{project.projectCustomer.id}}">
+                        <h5>{{project.projectCustomer.customerName}}</h5>
+                    </a>
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <span class="glyphicon glyphicon-earphone"></span>
+                            {{project.projectCustomer.customerPhone}}<br>
+                            <span class="glyphicon glyphicon-envelope"></span>
+                            {{project.projectCustomer.customerEmail}}<br>
+                            <span class="glyphicon glyphicon-map-marker"></span>
+                            {{project.projectCustomer.customerAddress}}<hr>
+                        </div>
                     </div>
-                </div>
                 </div>
             </div>
 
@@ -183,14 +188,14 @@
                     <!-- Project Description Short-->
                     <div id="shortDescription" class="col-sm-12">
 
-                        <h5>Description</h5>
+                        <h3>Description</h3>
                         <p>{{project.projectDescriptionShort}}</p>
                         <button id="showMoreButton" class="btn btn-xs btn-default center">Show More</button>
                     </div>
 
                     <!-- Project Description Long-->
                     <div id="longDescription" class="col-sm-12" hidden>
-                        <h5>Description</h5>
+                        <h3>Description</h3>
                         <p>{{project.projectDescription}}</p>
                         <button id="showLessButton" class="btn btn-xs btn-default center">Show less</button>
                     </div>
@@ -280,7 +285,7 @@
 
             <!--  Tasks Table + Back Button -->
             <div class="col-lg-9 col-sm-12 section">
-                <h5>Project Tasks</h5>
+                <h3>Project Tasks</h3>
                 <table class="table table-responsive" id="tasksTable">
 
                     <!-- Table Head -->

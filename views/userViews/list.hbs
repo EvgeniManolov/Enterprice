@@ -19,7 +19,7 @@
         <!--  Breadcrumbs  -->
         <ol class="container breadcrumb transparent">
             <li><a href="/project/list">Home</a></li>
-            <li class="active">All Users</li>
+            <li class="active">Users</li>
         </ol>
 
 
@@ -31,14 +31,16 @@
                 </div>
 
                 <!-- Left Section -->
-                <div class="col-sm-3 section">
+                <div class="col-xs-6 col-sm-4 col-md-3 section">
 
                     <!--  Filter  -->
                     <div class="list-group">
 
-                        <div class="list-group-item">
+                        <div class="list-group-item active">
                             <a href="" onclick="return false" id="filter" class="occupation">
-                                All Users</a> <span class="badge">{{users.count}}</span>
+                                All Occupations
+                            </a>
+                            <span class="badge">{{users.count}}</span>
                         </div>
                         {{#each professionsCount}}
                             <div class="list-group-item">
@@ -51,41 +53,18 @@
                 </div>
 
                 <!-- Right Section -->
-                <div class="col-sm-9 section">
+                <div class="col-sm-8 col-md-9 section">
 
                     <!--  All Users List  -->
                     <div class="row">
 
-                        {{#each users}}
+    <!--                    {{#each users}}
                             <div class="col-lg-4 col-md-4 col-xs-6">
                                 <div>
                                     <div class="container-user">
                                         <img class="img-user" src="/images/userProfilePictures/{{this.picture}}">
 
                                         <div class="footer">
-                                            <!--  Layer Over  -->
-                                            <a href="/userViews/details/{{this.id}}">
-                                                <div class="thumbnail-over">
-                                                    <p>View Profile</p>
-                                                </div>
-                                            </a>
-                                            <h6 class="text-center">{{this.fullName}}</h6>
-                                            <p class="text-center">{{this.occupation.occupationName}}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        {{/each}}
-
-
-                        <!--  Old Users  -->
- <!--                       {{#each users}}
-                            <div class="col-lg-4 col-md-4 col-xs-6 profileCard">
-                                <div class="thumbnail">
-                                    <div class="caption well">
-                                        <img class="center-block" src="/images/userProfilePictures/{{this.picture}}">
-
-                                        <div class="caption">
                                             &lt;!&ndash;  Layer Over  &ndash;&gt;
                                             <a href="/userViews/details/{{this.id}}">
                                                 <div class="thumbnail-over">
@@ -98,7 +77,30 @@
                                     </div>
                                 </div>
                             </div>
-                        {{/each}}-->
+                        {{/each}}
+-->
+
+                        <!--  Old Users  -->
+                    {{#each users}}
+                        <div class="col-lg-4 col-md-4 col-xs-6 profileCard">
+                            <div class="thumbnail">
+                                <div class="caption ">
+                                    <img class="center-block" src="/images/userProfilePictures/{{this.picture}}">
+
+                                    <div class="caption">
+                                        <!--  Layer Over  -->
+                                        <a href="/userViews/details/{{this.id}}">
+                                            <div class="thumbnail-over">
+                                                <p>View Profile</p>
+                                            </div>
+                                        </a>
+                                        <h6 class="text-center">{{this.fullName}}</h6>
+                                        <p class="text-center">{{this.occupation.occupationName}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {{/each}}
 
                  </div>
             </div>

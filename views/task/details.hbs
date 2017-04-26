@@ -33,7 +33,7 @@
         <div class="container">
 
             <div class="page-header">
-                <h1>{{task.taskProjectId.projectName}}</h1>
+                <h1>{{task.taskProjectId.projectName}}<label class="label-tasks">Tasks</label></h1>
             </div>
 
             <!-- Left Section -->
@@ -42,7 +42,7 @@
                 <!--  Project Info  -->
                 <h6>Project Details</h6>
                 <div class="section well">
-                    <h5>{{task.taskProjectId.projectName}}</h5>
+                    <!--<h5>{{task.taskProjectId.projectName}}</h5>-->
                     <p>Project Progress: {{task.taskProjectId.projectProgress}}%
                         <div class="progress" style="width: 100%">
                             <div class="progress-bar"
@@ -119,8 +119,6 @@
                 </div>
 
                 <!-- Task Description -->
-                <hr>
-
                 <div class="section">
                     <p>{{task.taskDescription}}</p>
                 </div>
@@ -155,7 +153,7 @@
                 {{#if isThereComments}}
                 <!--  Task Commits  -->
                 <div class="section">
-                    <h5>Task Commits:</h5>
+                    <h4>Task Commits:</h4>
                     {{#each task.taskComment}}
                         <div class="media well">
                             <div class="media-left">
