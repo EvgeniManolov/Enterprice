@@ -105,19 +105,19 @@ module.exports = {
         }})
     },
 
-    customerEditPost: (req,res)=>{
+    customerEditPost: (req,res)=> {
         let id = req.params.id;
-        let url = '/customer/details/'+id;
+        let url = '/customer/details/' + id;
         let customerArgs = req.body;
 
-        Customer.update({_id: id}, {$set: {
+        Customer.update({_id: id}, {
 
-            customerPhone: customerArgs.customerPhone,
-            customerEmail: customerArgs.customerEmail,
-            customerAddress: customerArgs.customerAddress,
-        }}).then(customer=> {
-            res.redirect(url);
+            $set: {
 
-            })
+                customerPhone: customerArgs.customerPhone,
+                customerEmail: customerArgs.customerEmail,
+                customerAddress: customerArgs.customerAddress,
+            }
+        })
     }
 };

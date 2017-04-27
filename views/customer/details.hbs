@@ -23,18 +23,18 @@
             let address = $('#inputAddress').val();
 
 
-            let url = '/user/edit/';
+            let url = '/customer/edit/';
 
             $.post(url,
                     {
-                        phone : phone,
-                        email: email,
-                        address: address
+                        customerPhone : phone,
+                        customerEmail: email,
+                        customerAddress: address
                     }, function () {
                     });
 
-            location.href = '/userViews/list/';
-            location.href = '/userViews/profile/';
+            location.href = '/customer/list/';
+            location.href = '/customer/list/';
         });
     })
 
@@ -85,10 +85,12 @@
                         </div>
                     </form>
 
+                {{#if isAdmin}}
                     <div class="pull-right">
                         <button class="btn-sm btn-default saveButton invisible" disabled>Save</button>
                         <button class="btn-sm btn-primary editButton">Edit</button>
                     </div>
+                {{/if}}
                 </div>
 
                 <!--  Team Projects - Right Side -->
