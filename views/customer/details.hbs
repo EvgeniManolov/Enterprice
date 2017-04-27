@@ -102,7 +102,7 @@
                             <h4>Customer Projects</h4>
                             <div class="container-border section">
                                 <div class="well white">
-                                    {{#each customer.projects}}
+                                    {{#each selectedProjects}}
                                         <p>
                                             <span class="glyphicon glyphicon-star"></span>
                                             {{this.projectName}}<a href="/project/details/{{this.id}}" class="btn-sm pull-right">

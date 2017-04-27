@@ -168,7 +168,7 @@ module.exports = {
 
         Project.find({}).populate('projectTeam').then(projects => {
 
-            /* filter only projects where current user is a member of the team */
+            /* filter only projects where current user is  a member of the team */
             for (let i = 0; i < projects.length; i++) {
                 for (let j = 0; j < projects[i].projectTeam.userID.length; j++) {
                     if (projects[i].projectTeam.userID[j] == userID) {
