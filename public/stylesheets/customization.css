@@ -68,8 +68,30 @@ label {
 	border-radius: 3px;
 	color: #fff;
 }
+
 hr {
 	margin: 10px 0;
+}
+
+.error-msg {
+	position: absolute;
+	width: 500px;
+	height: 200px;
+	z-index: 15;
+	top: 50%;
+	left: 50%;
+	padding: 40px 20px 20px 20px;
+	text-align: center;
+	vertical-align: middle;
+	border-radius: 6px;
+	margin: -100px -100px 0 -250px;
+	background: rgba(255, 255, 255, 1)
+}
+.error-msg h4 {
+	line-height: 1.5em;
+}
+.error-msg .btn-link {
+	margin-top: 30px;
 }
 
 

@@ -78,7 +78,7 @@
 
                     </div>
                     <h1>{{project.projectName}}</h1>
-                    <p>{{project.projectCustomer.customerName}} &nbsp; <span class="glyphicon glyphicon-menu-right"></span> &nbsp; {{project.date}}</p>
+                    <a href="/customer/details/{{project.projectCustomer.id}}">{{project.projectCustomer.customerName}}</a> <span class="glyphicon glyphicon-menu-right"></span>  {{project.date}}</p>
 
                 </div>
             </div>
@@ -113,15 +113,15 @@
                     <hr>
 
                     <span class="glyphicon glyphicon-user"></span>
-                    {{project.projectTeam.teamName}}
+                    <a href="team/details/{{project.projectTeam.id}}">{{project.projectTeam.teamName}}</a>
                     <hr>
 
                     <span class="glyphicon glyphicon-th-list"></span>
-                    Project Tasks <span class="badge pull-right">{{project.taskCount}}</span>
+                    <a href="#tasksTable">Project Tasks </a> <span class="badge pull-right">{{project.taskCount}}</span>
                     <hr>
 
                     <span class="glyphicon glyphicon-pencil"></span>
-                    <a href="#">Project Commits <span class="badge pull-right">{{project.commits}}</span></a>
+                    Project Commits <span class="badge pull-right">{{project.commits}}</span>
                 </div>
 
                     <!--  Project Details List Group -->
