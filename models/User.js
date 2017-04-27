@@ -46,11 +46,11 @@ module.exports.seedAdmin = () => {
                 let roles = [];
                 roles.push(role.id);
 
-                Occupation.findOne({occupationName: "Manager"}).then(occupation => {
+                Occupation.findOne({occupationName: "Admin"}).then(occupation => {
                     let user = {
                         email: email,
                         passwordHash: passwordHash,
-                        fullName: 'Manager',
+                        fullName: 'Admin',
                         salt: salt,
                         roles: roles,
                         occupation: occupation

@@ -31,7 +31,6 @@
         let closedProjects = $("#closedProjectsTable tr").length - 1;
         $("#closedProjectsCount").text(closedProjects);
     })
-
     $(document).ready(function() {
         $('#closedProjectsTable > tbody  > tr').each(function () {
             var status = $(this).find('#projectStatus').text();
@@ -61,7 +60,7 @@
                 <!--About Projects -->
                 <div class="list-group">
                     <div class="list-group-item active">
-                        All Projects <span id="activeProjectsCount" class="badge pull-right">5</span>
+                        All Projects <span id="" class="badge pull-right">{{projects.count}}</span>
                     </div>
 
                     <div class="list-group-item">
@@ -79,24 +78,24 @@
                     </div>
                 </div>
 
-                <!--About Projects -->
+                <!--About Users -->
                 <div class="list-group">
                     <div class="list-group-item active">
                         All Users <span id="activeProjectsCount" class="badge pull-right">5</span>
                     </div>
+                </div>
 
-                    <div class="list-group-item">
-                        <span class="glyphicon glyphicon-star"></span>
-                        Active Projects <span id="activeProjectsCount" class="badge pull-right"></span>
+                <!--About Teams -->
+                <div class="list-group">
+                    <div class="list-group-item active">
+                        Teams <span id="activeProjectsCount" class="badge pull-right">3</span>
                     </div>
+                </div>
 
-                    <div class="list-group-item">
-                        <span class="glyphicon glyphicon-ok"></span>
-                        Closed Projects <span id="closedProjectsCount" class="badge pull-right"></span>
-                    </div>
-                    <div class="list-group-item">
-                        <span class="glyphicon glyphicon-remove"></span>
-                        Canceled Projects <span id="closedProjectsCount" class="badge pull-right">0</span>
+                <!--About Customers -->
+                <div class="list-group">
+                    <div class="list-group-item active">
+                        Customers <span id="activeProjectsCount" class="badge pull-right">6</span>
                     </div>
                 </div>
 
@@ -132,7 +131,7 @@
 
                         <!-- Filters and Stuff -->
                         <div class="filters-container">
-                            <div class="input-group">
+                            <div class="input-group input-group-lg">
                                 <label class="sr-only" for="myInputActive"></label>
                                 <input class="form-control" type="text" id="myInputActive" onkeyup="myFunction('activeProjectsTable', 'myInputActive')" placeholder="Search">
                             </div>
@@ -143,7 +142,7 @@
 
                             <!-- Table Head -->
                             <tr>
-                                <th>Project name/ Customer</th>
+                                <th>Project</th>
                                 <th>Progress</th>
                                 <th>Team</th>
                                 <th>Due date</th>
@@ -159,7 +158,7 @@
                                             <!-- Project Name -->
                                             <td class="" id="projectName">
                                                 <h5>{{this.projectName}}</h5>
-                                                <h6>{{this.projectCustomer.customerName}}</h6>
+                                                <a href="/customer/details/{{this.projectCustomer.id}}"><h6>{{this.projectCustomer.customerName}}</h6></a>
                                             </td>
                                             <!-- Project Progress -->
                                             <td class="" id="projectProgress">{{this.projectProgress}}%
@@ -176,7 +175,7 @@
 
                                             <!-- Project Team -->
                                             <td class="" id="projectTeam">
-                                                {{this.projectTeam.teamName}}
+                                                <a href="/team/details/{{this.projectTeam.id}}">{{this.projectTeam.teamName}}</a>
                                             </td>
 
                                             <!-- Project Due date -->
@@ -199,7 +198,7 @@
                                             <!-- Project Name -->
                                             <td class="" id="projectName">
                                                 <h5>{{this.projectName}}</h5>
-                                                <h6>{{this.projectCustomer.customerName}}</h6>
+                                                <a href="/customer/details/{{this.projectCustomer.id}}"><h6>{{this.projectCustomer.customerName}}</h6></a>
                                             </td>
                                             <!-- Project Progress -->
                                             <td class="" id="projectProgress">{{this.projectProgress}}%
@@ -216,7 +215,7 @@
 
                                             <!-- Project Team -->
                                             <td class="" id="projectTeam">
-                                                {{this.projectTeam.teamName}}
+                                                <a href="/team/details/{{this.projectTeam.id}}">{{this.projectTeam.teamName}}</a>
                                             </td>
 
                                             <!-- Project Due date -->
@@ -239,8 +238,8 @@
                     <div role="tabpanel" class="tab-pane fade" id="closedProjects">
 
                         <!-- Filters and Stuff -->
-                        <div class="filters-container">
-                            <div class="input-group">
+                        <div class="filters-container input-group-lg">
+                            <div class="input-group input-group-lg">
                                 <label class="sr-only" for="myInputClosed"></label>
                                 <input class="form-control" type="text" id="myInputClosed" onkeyup="myFunction('closedProjectsTable', 'myInputClosed')" placeholder="Search" >
                             </div>
@@ -251,7 +250,7 @@
 
                             <!-- Table Head -->
                             <tr>
-                                <th>Project name/ Customer</th>
+                                <th>Project</th>
                                 <th>Team</th>
                                 <th>Status</th>
                                 <th>Date Closed</th>
@@ -266,11 +265,13 @@
                                             <!-- Project Name -->
                                             <td class="" id="projectName">
                                                 <h5>{{this.projectName}}</h5>
-                                                <h6>{{this.projectCustomer.customerName}}</h6>
+                                                <a href="/customer/details/{{this.projectCustomer.id}}"><h6>{{this.projectCustomer.customerName}}</h6></a>
                                             </td>
 
                                             <!-- Project Team -->
-                                            <td class="" id="projectTeam">{{this.projectTeam.teamName}}</td>
+                                            <td class="" id="projectTeam">
+                                                <a href="/team/details/{{this.projectTeam.id}}">{{this.projectTeam.teamName}}</a>
+                                            </td>
 
                                             <!-- Status -->
                                             <td class="">
@@ -297,11 +298,13 @@
                                             <!-- Project Name -->
                                             <td class="" id="projectName">
                                                 <h4>{{this.projectName}}</h4>
-                                                <h6>{{this.projectCustomer.customerName}}</h6>
+                                                <a href="/customer/details/{{this.projectCustomer.id}}"><h6>{{this.projectCustomer.customerName}}</h6></a>
                                             </td>
 
                                             <!-- Project Team -->
-                                            <td class="" id="projectTeam">{{this.projectTeam.teamName}}</td>
+                                            <td class="" id="projectTeam">
+                                                <<a href="/team/details/{{this.projectTeam.id}}">{{this.projectTeam.teamName}}</a>
+                                            </td>
 
                                             <!-- Status -->
                                             <td class="" id="projectStatus"><span id="glyphiconStatus" class="glyphicon glyphicon-ok glyphicon-done"></span>{{this.projectStatus}}</td>

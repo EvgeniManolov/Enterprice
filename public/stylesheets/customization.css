@@ -29,6 +29,9 @@ main {
 	box-sizing: border-box;
 }
 
+#remove-btn {
+	margin-top: 5px;
+}
 /* -------------------------------------
  * Typography
  * ------------------------------------- */
