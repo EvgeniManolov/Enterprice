@@ -292,6 +292,10 @@ hr {
 	height: 150px;
 	overflow: hidden;
 }
+.thumbnail-details-customers {
+	height: 250px;
+	overflow: hidden;
+}
 .thumbnail img {
 	width: 120px;
 	height: 120px;
@@ -382,7 +386,9 @@ hr {
 	background-color: #c1e2b3;
 	transition: .5s ease-in-out;
 }
-
+.no-border {
+	border: none !important;
+}
 /* -------------------------------------
  * Caret & Glyphicon: Hoover
  * ------------------------------------- */

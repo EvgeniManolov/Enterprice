@@ -37,10 +37,10 @@
                     <div class="list-group">
 
                         <div class="list-group-item active">
-                            <a href="" onclick="return false" id="filter" class="occupation">
+                            <a href="/userViews/list"  id="filter" class="occupation">
                                 All Occupations
                             </a>
-                            <span class="badge">{{users.count}}</span>
+                            <span class="badge">{{professionsCount.length}}</span>
                         </div>
                         {{#each professionsCount}}
                             <div class="list-group-item">
@@ -82,7 +82,7 @@
 
                         <!--  Old Users  -->
                     {{#each users}}
-                        <div class="col-lg-4 col-md-4 col-xs-6 profileCard">
+                        <div class="col-lg-4 col-md-4 col-xs-6">
                             <div class="thumbnail">
                                 <div class="caption ">
                                     <img class="center-block" src="/images/userProfilePictures/{{this.picture}}">
