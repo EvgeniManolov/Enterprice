@@ -170,13 +170,13 @@
         <div class="container">
 
             <div class="page-header">
-                <h1>{{project.projectName}} / Add Tasks</h1>
+                <h1>{{project.projectName}}<label class="label-tasks">Add Tasks</label></h1>
             </div>
 
             <form class="form-horizontal" method="post" action="/task/create" id="tasksForm">
                 <fieldset>
 
-                    <div class="col-sm-5">
+                    <div class="col-sm-6">
                         <div class="form-group" hidden>
                             <label class="col-md-3 control-label" for="taskProject">Project</label>
                             <div class="col-md-9">
@@ -202,7 +202,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label" for="taskName">Task Name</label>
                             <div class="col-md-9 ">
-                                <input type="text" class="form-control" id="taskName" placeholder="Task name" name="taskName" required >
+                                <input type="text" class="form-control" id="taskName" placeholder="" name="taskName" required >
                             </div>
                         </div>
 
@@ -210,7 +210,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label" for="taskDescription">Task Description</label>
                             <div class="col-md-9" >
-                                <textarea class="form-control" rows="4" id="taskDescription" placeholder="Task Description" name="taskDescription" required ></textarea>
+                                <textarea class="form-control" rows="4" id="taskDescription" placeholder="" name="taskDescription" required ></textarea>
                             </div>
                         </div>
 
@@ -239,8 +239,8 @@
                     </div>
 
 
-                    <div class="col-md-7">
-                        <div class="well">
+                    <div class="col-sm-12">
+                        <div class="section">
 
                             <h4>Tasks Added</h4>
 
@@ -257,9 +257,9 @@
                                 </tr>
                             </table>
 
-                            <div class="section text-right" style="margin-bottom: 20px">
+                            <div class="section text-center" style="margin-bottom: 20px">
 
-                                <h6>Total weight: <span id="totalWeight">0%</span></h6>
+                                <h4>Total tasks weight: <span id="totalWeight">0%</span></h4>
 
                             </div>
                         </div>
@@ -270,7 +270,7 @@
                     <div class="col-sm-12">
                         <div class="modal-footer section">
                             <a href="/project/discard"><div class="btn btn-default">Discard project</div></a>
-                            <button id="doneButton" type="button" class="btn btn-primary" onclick="sendData()">Done</button>
+                            <button id="doneButton" type="button" class="btn btn-primary" onclick="sendData()">Submit Project</button>
                         </div>
                     </div>
 

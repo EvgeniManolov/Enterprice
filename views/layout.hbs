@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <title>Enterprise</title>
     <!-- Latest compiled and minified CSS -->
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
@@ -59,35 +58,57 @@
                                 <li><a id="dLabelClosed" href="/project/list#closedProjects">Statistics</a></li>
                             </ul>
                         </li>
-                        <!--<li class="active"><a href="/userViews/user">Projects</a></li>-->
+
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="/project/list" id="projectsView">
+                                Users <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a id="dLabelActive" href="/userViews/list">Profiles</a></li>
+                                <div role="separator" class="divider"></div>
+                                <li><a id="dLabelClosed" href="/occupation/list">Occupations</a></li>
+                                <div role="separator" class="divider"></div>
+                                <li><a id="dLabelClosed" href="/rate/list">Rates</a></li>
+                            </ul>
+                        </li>
+
                         <li><a href="/team/list">Teams</a></li>
+
                         <li><a href="/customer/list">Customers</a></li>
-                        <li id="usersView"><a href="/userViews/list">Users</a></li>
+
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div>
-            <h4 class="text-center" style="color: #6c000e; font-weight: bold">{{error}}<h4>
+            <h4 class="text-center" style="color: #6c000e; font-weight: bold">{{error}}</h4>
+
         </nav>
 
         <!-- Add Content Buttons -->
         {{#if isAdmin}}
             <div class="container" style="margin-top: 70px; margin-bottom: -60px">
                 <div class="row">
-                    <a class="btn btn-default " href="/project/create"><span class="glyphicon glyphicon-plus"></span> New Project</a>
-                    <a class="btn btn-default " href="/customer/create"><span class="glyphicon glyphicon-plus"></span> New Customer</a>
-                    <a class="btn btn-default" href="/team/create"><span class="glyphicon glyphicon-plus"></span> New Team</a>
-                    <a class="btn btn-default" href="/rate/list"><span class="glyphicon glyphicon glyphicon-usd"></span> User Rates</a>
+                    <a class="btn btn-default" href="/project/create"><span class="glyphicon glyphicon-file"></span> New Project</a>
+                    <a class="btn btn-default" href="/customer/create"><span class="glyphicon glyphicon-briefcase"></span> New Customer</a>
+                    <a class="btn btn-default" href="/team/create"><span class="glyphicon glyphicon-user"></span> New Team</a>
+                    <a class="btn btn-default" href="/occupation/create"><span class="glyphicon glyphicon-plus"></span> New occupation</a>
                 </div>
             </div>
-
-
         {{/if}}
     </header>
 {{/if}}
 
+<script>
+    $(document).ready(function(){
+        $("#error-dismiss-btn").click(function(){
+            $("#error-msg").hide();
+        });
+    });
+</script>
+
 {{#if error}}
-    <div class="text-center">
+    <div class="error-msg" id="error-msg">
         <h4>{{error}}</h4>
+        <button class="btn btn-link" id="error-dismiss-btn" data-dismiss="error-msg">ok</button>
     </div>
 {{/if}}
 

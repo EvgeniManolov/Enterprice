@@ -16,72 +16,88 @@
         </ol>
 
         <div class="container">
-            <div class="col-lg-10">
 
-            <!-- Table Active Projects -->
-            <table class="table table-responsive" id="projectExpensesTable">
+            <div class="page-header">
+                <h1>Project Expenses</h1>
+            </div>
 
-                <!-- Table Head -->
-                <tr>
-                    <th>Description</th>
-                    <th>Date</th>
-                    <th>Amount</th>
-                </tr>
+            <div class="col-sm-12">
 
-                <!-- Table Data -->
-                {{#each project.projectExpensesActual}}
-                        <tr>
+                <!-- Add New Expense -->
+                <div class="section">
+
+                    <!-- Add Button -->
+                    <button id="newExpenseButton" class="btn btn-primary">New Expense</button>
+
+                    <div class="row">
+
+                        <form id="expenseAddForm" hidden class="form-horizontal section " method="post" action="/project/expenses/create/{{project.id}}">
 
                             <!-- Expense Description -->
-                            <td class="" id="expenseDescription">
-                                <h6><strong>{{this.description}}</strong></h6>
-                            </td>
+                            <div class="col-xs-5">
+                                <label class="control-label" for="description">Description</label>
+                                <input class="form-control" id="description" type="text" name="description" required>
+                            </div>
+
 
                             <!-- Expense Date -->
-                            <td class="" id="expenseDate">
-                                {{this.formattedDate}}
+                            <div class="col-xs-3">
+                                <label class="control-label" for="date">Date</label>
+                                <input class="form-control" id="date" type="date" name="date" required>
+                            </div>
+
+                            <!-- Expense Amount -->
+                            <div class="col-xs-2">
+                                <label class="control-label" for="amount">Amount</label>
+                                <input class="form-control" id="amount" type="number" name="amount" required>
+                            </div>
+
+                            <!-- Submit -->
+                            <div class="col-xs-2">
+                                <label class="control-label invisible" for="amount">Amount</label><br>
+                                <button type="submit" class="btn btn-primary" id="expenseAdd" style="margin-top: -1px">Add</button>
+                            </div>
+
+                        </form>
+                     </div>
+                </div>
+
+                <!-- Table Active Projects -->
+                <table class="table" id="projectExpensesTable">
+
+                    <!-- Table Head -->
+                    <tr>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th class="text-right">Amount</th>
+                    </tr>
+
+                    <!-- Table Data -->
+                    {{#each project.projectExpensesActual}}
+                        <tr>
+
+                            <!-- Expense Date -->
+                            <td class="col-xs-2" id="expenseDate">
+                                <p>{{this.formattedDate}}</p>
+                            </td>
+
+                            <!-- Expense Description -->
+                            <td class="col-xs-6" id="expenseDescription">
+                                <h5>{{this.description}}</h5>
                             </td>
 
                             <!-- Expense Amount -->
-                            <td class="" id="expenseAmount">
-                                <span class="">{{this.amount}}</span>
+                            <td class="col-xs-4 text-right" id="expenseAmount">
+                                <h4>$ {{this.amount}}</h4>
                             </td>
-
                         </tr>
-                {{/each}}
-            </table>
-
-            <button id="newExpenseButton" class="btn btn-primary">New Expense</button>
-
-
-            </div>
-
-            <div class="col-lg-10">
-                <form id="expenseAddForm" hidden class="form-vertical" method="post" action="/project/expenses/create/{{project.id}}">
-                    <fieldset>
-
-                    <!-- Expense Description -->
-                        <label class="control-label" for="description">Description</label>
-                        <input id="description" type="text" name="description" required>
-
-                    <!-- Expense Date -->
-                        <label class="control-label" for="date">Date</label>
-                        <input id="date" type="date" name="date" required>
-
-                    <!-- Expense Amount -->
-                        <label class="control-label" for="amount">Amount</label>
-                        <input id="amount" type="number" name="amount" required>
-
-                    <!-- Buttons -->
-                        <button type="submit" class="btn btn-primary" id="expenseAdd">Add</button>
-                    </fieldset>
-
-                </form>
+                    {{/each}}
+                </table>
             </div>
 
             <!--  Back Button  -->
             <a href="/project/details/{{project.id}}">
-                <button class="btn btn-default pull-right">
+                <button class="btn btn-default pull-right" style="margin-bottom: 20px;">
                     <span class="glyphicon glyphicon-menu-left"></span>
                     Back to Project
                 </button>

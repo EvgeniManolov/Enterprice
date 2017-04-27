@@ -33,7 +33,7 @@
         <div class="container">
 
             <div class="page-header">
-                <h1>{{task.taskProjectId.projectName}}</h1>
+                <h1>{{task.taskProjectId.projectName}}<label class="label-tasks">Tasks</label></h1>
             </div>
 
             <!-- Left Section -->
@@ -42,7 +42,7 @@
                 <!--  Project Info  -->
                 <h6>Project Details</h6>
                 <div class="section well">
-                    <h5>{{task.taskProjectId.projectName}}</h5>
+                    <!--<h5>{{task.taskProjectId.projectName}}</h5>-->
                     <p>Project Progress: {{task.taskProjectId.projectProgress}}%
                         <div class="progress" style="width: 100%">
                             <div class="progress-bar"
@@ -69,7 +69,7 @@
                     <hr>
 
                     <span class="glyphicon glyphicon-pencil"></span>
-                    <a href="#">Project Commits <span class="badge pull-right">{{task.taskProjectId.commits}}</span></a>
+                    Project Commits <span class="badge pull-right">{{task.taskProjectId.commits}}</span>
                 </div>
 
                 <!--  Task Info  -->
@@ -96,7 +96,7 @@
                     <hr>
 
                     <span class="glyphicon glyphicon-pencil"></span>
-                    <a href="#">Task Commits <span class="badge pull-right">{{task.commits}}</span></a>
+                    <a href="#commits">Task Commits <span class="badge pull-right">{{task.commits}}</span></a>
 
                 </div>
             </div>
@@ -119,8 +119,6 @@
                 </div>
 
                 <!-- Task Description -->
-                <hr>
-
                 <div class="section">
                     <p>{{task.taskDescription}}</p>
                 </div>
@@ -154,8 +152,8 @@
 
                 {{#if isThereComments}}
                 <!--  Task Commits  -->
-                <div class="section">
-                    <h5>Task Commits:</h5>
+                <div class="section" id="#commits">
+                    <h4>Task Commits:</h4>
                     {{#each task.taskComment}}
                         <div class="media well">
                             <div class="media-left">

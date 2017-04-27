@@ -11,6 +11,7 @@
             $('#inputPhone').parent().parent().addClass('has-success');
             $('.editButton').removeClass('btn-primary').addClass('btn-default');
             $('.editButton').attr('disabled', 'true');
+            $('.saveButton').removeClass('invisible');
         })
     });
 
@@ -54,30 +55,31 @@
             </div>
 
 
-            {{#if user}}
+
                 <!--  Left Side  -->
                 <div class="col-lg-4 col-md-5 col-sm-6">
                     <h4>Customer Details</h4>
+                    <hr>
 
-                    <form class="form-horizontal well">
+                    <form class="form-horizontal well white">
 
-                        <div class="form-group">
-                            <div for="inputPhone" class="col-xs-1 "><span class="glyphicon glyphicon-earphone glyphicon-bigger"></span></div>
-                            <div class="col-xs-11 col-sm-10">
+                        <div class="form-group form-group-no-border">
+                            <div for="inputPhone" class="col-xs-1 "><span class="glyphicon glyphicon-earphone glyphicon-profile"></span></div>
+                            <div class="col-xs-10">
                                 <input id="inputPhone" class="form-control input-no-border" type="text" disabled value="{{customer.customerPhone}}"/>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div for="inputEmail" class="col-xs-1 "><span class="glyphicon glyphicon-envelope glyphicon-bigger"></span></div>
-                            <div class="col-xs-11 col-sm-10">
+                        <div class="form-group form-group-no-border">
+                            <div for="inputEmail" class="col-xs-1 "><span class="glyphicon glyphicon-envelope glyphicon-profile"></span></div>
+                            <div class="col-xs-10">
                                 <input id="inputEmail" class="form-control input-no-border" type="text" disabled value="{{customer.customerEmail}}"/>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div for="inputAddress" class="col-xs-1 "><span class="glyphicon glyphicon-map-marker glyphicon-bigger"></span></div>
-                            <div class="col-xs-11 col-sm-10">
+                        <div class="form-group form-group-no-border">
+                            <div for="inputAddress" class="col-xs-1 "><span class="glyphicon glyphicon-map-marker glyphicon-profile"></span></div>
+                            <div class="col-xs-10">
                                 <input id="inputAddress" class="form-control input-no-border" type="text" disabled value="{{customer.customerAddress}}"/>
                             </div>
                         </div>
@@ -85,13 +87,13 @@
 
                 {{#if isAdmin}}
                     <div class="pull-right">
-                        <button class="btn-sm btn-default saveButton" disabled>Save</button>
+                        <button class="btn-sm btn-default saveButton invisible" disabled>Save</button>
                         <button class="btn-sm btn-primary editButton">Edit</button>
                     </div>
                 {{/if}}
                 </div>
 
-                <!--  Customer Projects - Right Side -->
+                <!--  Team Projects - Right Side -->
                 <div class="col-lg-8 col-md-7 col-sm-6 col-xs-12">
                     <div class="row">
 
@@ -100,7 +102,7 @@
                             <h4>Customer Projects</h4>
                             <div class="container-border section">
                                 <div class="well white">
-                                    {{#each selectedProjects}}
+                                    {{#each customer.projects}}
                                         <p>
                                             <span class="glyphicon glyphicon-star"></span>
                                             {{this.projectName}}<a href="/project/details/{{this.id}}" class="btn-sm pull-right">
@@ -111,12 +113,11 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
-
-
                 </div>
 
-            {{/if}}
+
 
             <!--  Back Button -->
             <div class="col-sm-12">

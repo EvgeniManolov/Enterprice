@@ -55,30 +55,60 @@
             </div>
 
 
-            <!-- Right Section -->
+            <!-- Left Section -->
             <div class="col-md-3 section">
 
-                <!--  About Projects  -->
+                <!--About Projects -->
                 <div class="list-group">
+                    <div class="list-group-item active">
+                        All Projects <span id="activeProjectsCount" class="badge pull-right">5</span>
+                    </div>
+
                     <div class="list-group-item">
                         <span class="glyphicon glyphicon-star"></span>
                         Active Projects <span id="activeProjectsCount" class="badge pull-right"></span>
                     </div>
+
                     <div class="list-group-item">
                         <span class="glyphicon glyphicon-ok"></span>
                         Closed Projects <span id="closedProjectsCount" class="badge pull-right"></span>
+                    </div>
+                    <div class="list-group-item">
+                        <span class="glyphicon glyphicon-remove"></span>
+                        Canceled Projects <span id="closedProjectsCount" class="badge pull-right">0</span>
+                    </div>
+                </div>
+
+                <!--About Projects -->
+                <div class="list-group">
+                    <div class="list-group-item active">
+                        All Users <span id="activeProjectsCount" class="badge pull-right">5</span>
+                    </div>
+
+                    <div class="list-group-item">
+                        <span class="glyphicon glyphicon-star"></span>
+                        Active Projects <span id="activeProjectsCount" class="badge pull-right"></span>
+                    </div>
+
+                    <div class="list-group-item">
+                        <span class="glyphicon glyphicon-ok"></span>
+                        Closed Projects <span id="closedProjectsCount" class="badge pull-right"></span>
+                    </div>
+                    <div class="list-group-item">
+                        <span class="glyphicon glyphicon-remove"></span>
+                        Canceled Projects <span id="closedProjectsCount" class="badge pull-right">0</span>
                     </div>
                 </div>
 
             </div>
 
 
-            <!-- Left Section -->
+            <!-- Right Section -->
 
             <div class="col-md-9 section">
 
                 <!-- Tab Names -->
-                <ul class="nav nav-tabs">
+                <ul class="nav nav-tabs nav-justified">
                     <li class="active">
                         <a href="#activeProject" aria-controls="activeProject" role="tab" data-toggle="tab">
                             <h5>Active Projects</h5>
@@ -102,7 +132,7 @@
 
                         <!-- Filters and Stuff -->
                         <div class="filters-container">
-                            <div class="input-group input-group-lg">
+                            <div class="input-group">
                                 <label class="sr-only" for="myInputActive"></label>
                                 <input class="form-control" type="text" id="myInputActive" onkeyup="myFunction('activeProjectsTable', 'myInputActive')" placeholder="Search">
                             </div>
@@ -128,7 +158,7 @@
 
                                             <!-- Project Name -->
                                             <td class="" id="projectName">
-                                                <h4>{{this.projectName}}</h4>
+                                                <h5>{{this.projectName}}</h5>
                                                 <h6>{{this.projectCustomer.customerName}}</h6>
                                             </td>
                                             <!-- Project Progress -->
@@ -168,8 +198,8 @@
 
                                             <!-- Project Name -->
                                             <td class="" id="projectName">
-                                                <h6><strong>{{this.projectName}}</strong></h6>
-                                                <p>{{this.projectCustomer.customerName}}</p>
+                                                <h5>{{this.projectName}}</h5>
+                                                <h6>{{this.projectCustomer.customerName}}</h6>
                                             </td>
                                             <!-- Project Progress -->
                                             <td class="" id="projectProgress">{{this.projectProgress}}%
@@ -209,8 +239,8 @@
                     <div role="tabpanel" class="tab-pane fade" id="closedProjects">
 
                         <!-- Filters and Stuff -->
-                        <div class="filters-container input-group-lg">
-                            <div class="input-group input-group-lg">
+                        <div class="filters-container">
+                            <div class="input-group">
                                 <label class="sr-only" for="myInputClosed"></label>
                                 <input class="form-control" type="text" id="myInputClosed" onkeyup="myFunction('closedProjectsTable', 'myInputClosed')" placeholder="Search" >
                             </div>
@@ -235,7 +265,7 @@
                                         <tr>
                                             <!-- Project Name -->
                                             <td class="" id="projectName">
-                                                <h4>{{this.projectName}}</h4>
+                                                <h5>{{this.projectName}}</h5>
                                                 <h6>{{this.projectCustomer.customerName}}</h6>
                                             </td>
 

@@ -16,17 +16,20 @@
             {{#if user}}
                 {{#each teams}}
                     <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="thumbnail">
-                            <div class="well">
+                        <div class="thumbnail thumbnail-teams">
+                            <div class="caption">
 
                                 <h5>{{this.teamName}}</h5>
                                 <hr>
+                                <div class="thumbnail-teams-users">
+                                    {{#each userID}}
+                                        <img class="img-team" src="/images/userProfilePictures/{{this.picture}}">
+                                        {{this.fullName}}
+                                        <br>
+                                    {{/each}}
+                                </div>
 
-                                {{#each userID}}
-                                    <img class="img-team" src="/images/userProfilePictures/{{this.picture}}">
-                                    {{this.fullName}}
-                                    <br>
-                                {{/each}}
+
                             </div>
 
                             <div class="">
@@ -38,6 +41,7 @@
                     </div>
                 {{/each}}
             {{/if}}
+
         </div>
     {{/if}}
 </main>

@@ -34,7 +34,7 @@ $('#userName').multiselect();
                     <div class="form-group">
                         <label class="col-sm-4 control-label" for="customerPhone">Team Name</label>
                         <div class="col-sm-4 ">
-                            <input type="text" class="form-control" id="teamName" placeholder="Enter team" name="teamName" required >
+                            <input type="text" class="form-control" id="teamName" placeholder="" name="teamName" required >
                         </div>
                     </div>
 
@@ -42,15 +42,13 @@ $('#userName').multiselect();
                     <div class="form-group">
                         <label class="col-sm-4 control-label " for="userName">User</label>
                         <div class="col-sm-4 ">
-                            <div class="row-fluid">
-                                <select class="selectpicker form-control" multiple="multiple" id="userName" name="userName"  required data-live-search="true">
-                                    {{#each users}}
-                                        <option >
-                                            <div >{{this.fullName}}</div>
-                                        </option>
-                                    {{/each}}
-                                </select>
-                            </div>
+                            <select class="form-control" multiple="multiple" id="userName" name="userName"  required data-live-search="true">
+                                {{#each users}}
+                                    <option >
+                                        <div >{{this.fullName}}</div>
+                                    </option>
+                                {{/each}}
+                            </select>
                         </div>
                     </div>
 
