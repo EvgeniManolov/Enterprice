@@ -57,6 +57,7 @@ module.exports = {
             }
             /* end */
 
+
             formatData(projects);
             formatData(selectedProjects);
 
