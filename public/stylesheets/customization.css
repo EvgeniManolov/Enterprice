@@ -85,13 +85,23 @@ hr {
 	vertical-align: middle;
 	border-radius: 6px;
 	margin: -100px -100px 0 -250px;
-	background: rgba(255, 255, 255, 1)
+	background: rgba(255, 255, 255, 1);
+	border: 1px solid #b1b1b1;
+	-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 }
 .error-msg h4 {
 	line-height: 1.5em;
 }
 .error-msg .btn-link {
+	 margin-top: 30px;
+	 background-color: #0bad8d;
+	 color: #fff;
+ }
+.error-msg .btn-link:hover {
 	margin-top: 30px;
+	background-color: #0b9172;
+	color: #fff;
 }
 
 

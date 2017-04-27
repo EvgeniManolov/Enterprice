@@ -96,17 +96,20 @@
                 </div>
 
                 <!--  Project Info  -->
-                <h6>Project Details</h6>
+                <h6>
+                    Project Status:
+                    {{#if task.taskProjectId.projectActive}}
+                        <span class="glyphicon glyphicon-hourglass"></span>{{task.taskProjectId.date}}
+
+                    {{else}}
+                        <span class="glyphicon glyphicon-star glyphicon-active"></span>
+                        {{task.taskProjectId.projectStatus}} ON {{task.taskProjectId.date}}
+                    {{/if}}
+                </h6>
+
                 <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 section well">
 
-                    {{#if task.taskProjectId.projectActive}}
-                        <span class="glyphicon glyphicon-hourglass"></span>
-                        {{task.taskProjectId.date}}
-                    {{else}}
-                        <h5><span class="glyphicon glyphicon-star glyphicon-active"></span>
-                        {{task.taskProjectId.projectStatus}} ON {{task.taskProjectId.date}}</h5>
-                    {{/if}}
-                    <hr>
+
 
                     <span class="glyphicon glyphicon-hourglass"></span>
                     {{project.date}}
